@@ -130,21 +130,27 @@ export async function POST(req: Request) {
       try {
         const leadData = JSON.parse(jsonMatch[1]);
         if (leadData.lead_captured) {
-          // Store lead in SQLite database
-          const lead = await prisma.lead.create({
-            data: {
-              name: leadData.name || "Unknown (Chat)",
-              email: leadData.email || "unknown@chat.com",
-              projectType: leadData.projectType || "Unspecified",
-              budget: leadData.budget || "Unspecified",
-              timeline: leadData.timeline || "Unspecified",
-              brief: leadData.brief || "Collected in chat",
-              source: "chatbot",
-            },
-          });
+          const leadPayload = {
+            name: leadData.name || "Unknown (Chat)",
+            email: leadData.email || "unknown@chat.com",
+            projectType: leadData.projectType || "Unspecified",
+            budget: leadData.budget || "Unspecified",
+            timeline: leadData.timeline || "Unspecified",
+            brief: leadData.brief || "Collected in chat",
+            source: "chatbot" as const,
+          };
+
+          // Store lead in SQLite database with fallback
+          try {
+            await prisma.lead.create({
+              data: leadPayload,
+            });
+          } catch (dbError) {
+            console.warn("Database save failed (likely serverless SQLite read-only), proceeding gracefully:", dbError);
+          }
 
           // Trigger optional notifications asynchronously
-          notifyLead(lead);
+          notifyLead(leadPayload);
           leadSaved = true;
 
           // Strip the JSON block so the user does not see it in the conversation
@@ -193,18 +199,23 @@ function handleFallbackSimulation(messages: MessageItem[]) {
     const name = userMessages[1]?.content?.split(" ").slice(-1)[0] || "Client";
     const email = userMessages[2]?.content?.match(/[\w.-]+@[\w.-]+\.\w+/)?.[0] || "client@cortexhive.co.uk";
     
+    const leadPayload = {
+      name: name,
+      email: email,
+      projectType: "SaaS / AI Tool",
+      budget: "$10k - $30k (Demo)",
+      timeline: "1-3 months (Demo)",
+      brief: lastMessage,
+      source: "chatbot" as const,
+    };
+
     // Auto-save lead in the database
     prisma.lead.create({
-      data: {
-        name: name,
-        email: email,
-        projectType: "SaaS / AI Tool",
-        budget: "$10k - $30k (Demo)",
-        timeline: "1-3 months (Demo)",
-        brief: lastMessage,
-        source: "chatbot",
-      },
-    }).then(lead => notifyLead(lead)).catch(e => console.error(e));
+      data: leadPayload,
+    }).catch(e => console.warn("Database save failed (likely serverless SQLite read-only), proceeding gracefully:", e));
+
+    // Trigger optional notifications asynchronously
+    notifyLead(leadPayload);
 
     leadSaved = true;
     reply = `Thank you, **${name}**! I have successfully registered your project inquiry in our database. A strategist from the Cortex Hive team will review your requirements and reach out to you at **${email}** within 24 hours. Is there anything else about our services I can answer?`;

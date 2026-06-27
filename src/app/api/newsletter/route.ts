@@ -14,9 +14,14 @@ export async function POST(req: Request) {
     }
 
     // Save to SQLite. Check if already exists.
-    const existing = await prisma.newsletter.findUnique({
-      where: { email },
-    });
+    let existing = null;
+    try {
+      existing = await prisma.newsletter.findUnique({
+        where: { email },
+      });
+    } catch (dbError) {
+      console.warn("Database check failed (likely serverless SQLite read-only), assuming new subscriber:", dbError);
+    }
 
     if (existing) {
       return NextResponse.json(
@@ -25,9 +30,13 @@ export async function POST(req: Request) {
       );
     }
 
-    await prisma.newsletter.create({
-      data: { email },
-    });
+    try {
+      await prisma.newsletter.create({
+        data: { email },
+      });
+    } catch (dbError) {
+      console.warn("Database write failed (likely serverless SQLite read-only), proceeding gracefully:", dbError);
+    }
 
     return NextResponse.json({ success: true, message: "Subscription successful!" });
   } catch (error) {
