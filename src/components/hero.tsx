@@ -174,7 +174,7 @@ export default function Hero() {
           {/* Tagline Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-600 mb-8 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-hive-cyan animate-pulse" />
-            <span>AI-Driven Architecture & Digital Engineering</span>
+            <span>Whether it&apos;s a quick fix or a massive overhaul, we&apos;ve got you covered.</span>
           </div>
 
           {/* Main Title */}
