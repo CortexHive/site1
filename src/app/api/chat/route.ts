@@ -59,27 +59,69 @@ async function notifyLead(lead: LeadData) {
     }
 
     const resendKey = process.env.RESEND_API_KEY;
+    const mailjetKey = process.env.MAILJET_API_KEY;
+    const mailjetSecret = process.env.MAILJET_API_SECRET;
     const adminEmail = process.env.LEAD_NOTIFICATION_EMAIL;
-    if (resendKey && adminEmail) {
-      await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${resendKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: "Cortex Hive Concierge <info@cortexhive.co.uk>",
-          to: adminEmail,
-          subject: `New Lead: ${lead.name} - ${lead.projectType}`,
-          html: `<p><strong>Name:</strong> ${lead.name}</p>
-                 <p><strong>Email:</strong> ${lead.email}</p>
-                 <p><strong>Project Type:</strong> ${lead.projectType}</p>
-                 <p><strong>Budget:</strong> ${lead.budget}</p>
-                 <p><strong>Timeline:</strong> ${lead.timeline}</p>
-                 <p><strong>Brief:</strong> ${lead.brief}</p>
-                 <p><em>Submitted via AI Chatbot Widget</em></p>`,
-        }),
-      });
+
+    if (adminEmail) {
+      // 1. Resend Dispatch
+      if (resendKey) {
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${resendKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: "Cortex Hive Concierge <info@cortexhive.co.uk>",
+            to: adminEmail,
+            subject: `New Lead: ${lead.name} - ${lead.projectType}`,
+            html: `<p><strong>Name:</strong> ${lead.name}</p>
+                   <p><strong>Email:</strong> ${lead.email}</p>
+                   <p><strong>Project Type:</strong> ${lead.projectType}</p>
+                   <p><strong>Budget:</strong> ${lead.budget}</p>
+                   <p><strong>Timeline:</strong> ${lead.timeline}</p>
+                   <p><strong>Brief:</strong> ${lead.brief}</p>
+                   <p><em>Submitted via AI Chatbot Widget</em></p>`,
+          }),
+        });
+      }
+
+      // 2. Mailjet Dispatch
+      if (mailjetKey && mailjetSecret) {
+        const auth = Buffer.from(`${mailjetKey}:${mailjetSecret}`).toString("base64");
+        await fetch("https://api.mailjet.com/v3.1/send", {
+          method: "POST",
+          headers: {
+            Authorization: `Basic ${auth}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Messages: [
+              {
+                From: {
+                  Email: "info@cortexhive.co.uk",
+                  Name: "Cortex Hive Concierge",
+                },
+                To: [
+                  {
+                    Email: adminEmail,
+                    Name: "Cortex Hive HQ",
+                  },
+                ],
+                Subject: `New Lead: ${lead.name} - ${lead.projectType}`,
+                HTMLPart: `<p><strong>Name:</strong> ${lead.name}</p>
+                           <p><strong>Email:</strong> ${lead.email}</p>
+                           <p><strong>Project Type:</strong> ${lead.projectType}</p>
+                           <p><strong>Budget:</strong> ${lead.budget}</p>
+                           <p><strong>Timeline:</strong> ${lead.timeline}</p>
+                           <p><strong>Brief:</strong> ${lead.brief}</p>
+                           <p><em>Submitted via AI Chatbot Widget</em></p>`,
+              },
+            ],
+          }),
+        });
+      }
     }
   } catch (error) {
     console.error("Failed to send notification for chatbot lead:", error);
