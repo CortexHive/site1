@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { db, isFirebaseConfigured } from "@/lib/firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 const DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions";
@@ -191,6 +193,18 @@ export async function POST(req: Request) {
             console.warn("Database save failed (likely serverless SQLite read-only), proceeding gracefully:", dbError);
           }
 
+          // Save to Firebase Firestore if configured
+          if (isFirebaseConfigured && db) {
+            try {
+              await addDoc(collection(db, "leads"), {
+                ...leadPayload,
+                createdAt: new Date().toISOString(),
+              });
+            } catch (fbError) {
+              console.error("Firebase chat lead save failed:", fbError);
+            }
+          }
+
           // Trigger optional notifications asynchronously
           notifyLead(leadPayload);
           leadSaved = true;
@@ -255,6 +269,18 @@ function handleFallbackSimulation(messages: MessageItem[]) {
     prisma.lead.create({
       data: leadPayload,
     }).catch(e => console.warn("Database save failed (likely serverless SQLite read-only), proceeding gracefully:", e));
+
+    // Save to Firebase Firestore if configured
+    if (isFirebaseConfigured && db) {
+      try {
+        addDoc(collection(db, "leads"), {
+          ...leadPayload,
+          createdAt: new Date().toISOString(),
+        }).catch(e => console.error("Firebase chat fallback lead save failed:", e));
+      } catch (fbError) {
+        console.error("Firebase chat fallback lead save failed:", fbError);
+      }
+    }
 
     // Trigger optional notifications asynchronously
     notifyLead(leadPayload);

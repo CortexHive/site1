@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { db, isFirebaseConfigured } from "@/lib/firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 export async function POST(req: Request) {
   try {
@@ -36,6 +38,18 @@ export async function POST(req: Request) {
       });
     } catch (dbError) {
       console.warn("Database write failed (likely serverless SQLite read-only), proceeding gracefully:", dbError);
+    }
+
+    // Save to Firebase Firestore if configured
+    if (isFirebaseConfigured && db) {
+      try {
+        await addDoc(collection(db, "newsletter"), {
+          email,
+          createdAt: new Date().toISOString(),
+        });
+      } catch (fbError) {
+        console.error("Firebase newsletter save failed:", fbError);
+      }
     }
 
     return NextResponse.json({ success: true, message: "Subscription successful!" });

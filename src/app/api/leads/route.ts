@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { db, isFirebaseConfigured } from "@/lib/firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 interface LeadData {
   name: string;
@@ -130,6 +132,24 @@ export async function POST(req: Request) {
       leadId = lead.id;
     } catch (dbError) {
       console.warn("Database save failed (likely serverless SQLite read-only), proceeding gracefully:", dbError);
+    }
+
+    // Save to Firebase Firestore if configured
+    if (isFirebaseConfigured && db) {
+      try {
+        await addDoc(collection(db, "leads"), {
+          name,
+          email,
+          projectType,
+          budget,
+          timeline,
+          brief,
+          source: "form",
+          createdAt: new Date().toISOString(),
+        });
+      } catch (fbError) {
+        console.error("Firebase lead save failed:", fbError);
+      }
     }
 
     // Trigger optional Slack / Email notifications asynchronously
