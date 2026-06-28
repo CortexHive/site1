@@ -120,7 +120,7 @@ export default function Header() {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-lg font-semibold text-slate-700 hover:text-slate-900 transition-colors py-1"
+                  className="block w-full text-left text-lg font-semibold text-slate-700 hover:text-slate-900 transition-colors py-3 px-2 active:bg-slate-50 rounded-lg"
                 >
                   {link.name}
                 </a>
