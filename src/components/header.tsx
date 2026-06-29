@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -15,6 +16,8 @@ const navLinks = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,9 +34,26 @@ export default function Header() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (pathname === "/") {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      router.push("/" + href);
+    }
+  };
+
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsOpen(false);
+    if (pathname === "/") {
+      const element = document.querySelector("#contact");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      router.push("/#contact");
     }
   };
 
@@ -82,10 +102,7 @@ export default function Header() {
         <div className="hidden md:block">
           <Link
             href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-            }}
+            onClick={handleContactClick}
             className="relative inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs uppercase tracking-[0.15em] font-bold text-slate-700 overflow-hidden group border border-slate-300 hover:border-slate-800 hover:text-slate-900 transition-all duration-300"
           >
             <span className="absolute inset-0 bg-gradient-to-r from-hive-cyan/5 via-hive-blue/5 to-hive-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -128,11 +145,7 @@ export default function Header() {
               <hr className="border-slate-200 my-2" />
               <Link
                 href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsOpen(false);
-                  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-                }}
+                onClick={handleContactClick}
                 className="w-full text-center px-6 py-3 rounded-full bg-gradient-hive-solid text-white font-semibold text-sm shadow-md hover:shadow-hive-blue/25 transition-all"
               >
                 Book a Strategy Call
