@@ -1,6 +1,4 @@
 import { Metadata } from "next";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
 import Hero from "@/components/creative-studio/hero";
 import Services from "@/components/creative-studio/services";
 import HowItWorks from "@/components/creative-studio/how-it-works";
@@ -16,9 +14,6 @@ export const metadata: Metadata = {
 export default function CreativeStudioPage() {
   return (
     <div className="bg-white min-h-screen text-slate-900 font-sans selection:bg-purple-150 selection:text-purple-900">
-      {/* Header Navigation */}
-      <Header />
-
       {/* Main Page Sections */}
       <main>
         <Hero />
@@ -27,9 +22,6 @@ export default function CreativeStudioPage() {
         <PortfolioShowcase />
         <BottomCTA />
       </main>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

@@ -39,14 +39,7 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const companies = [
-  "Apex AI",
-  "Scribe Data",
-  "Vortex",
-  "Pinnacle Web",
-  "OmniSaaS",
-  "TensorLabs",
-];
+
 
 export default function Testimonials() {
   return (
@@ -55,24 +48,6 @@ export default function Testimonials() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-hive-cyan/5 rounded-full filter blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Trusted By logo band */}
-        <div className="border-y border-slate-200 py-10 mb-24 bg-slate-50">
-          <div className="max-w-5xl mx-auto px-4">
-            <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-6">
-              TRUSTED BY INNOVATION PARTNERS WORLDWIDE
-            </p>
-            <div className="flex flex-wrap justify-center items-center gap-10 sm:gap-16 opacity-75">
-              {companies.map((company) => (
-                <span
-                  key={company}
-                  className="text-base sm:text-lg font-black tracking-wider text-slate-700 hover:text-hive-cyan transition-colors select-none font-mono"
-                >
-                  {company.toUpperCase()}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">

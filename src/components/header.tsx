@@ -11,6 +11,7 @@ const navLinks = [
   { name: "Portfolio", href: "#portfolio" },
   { name: "Process", href: "#process" },
   { name: "About", href: "#about" },
+  { name: "Creative Studio", href: "/creative-studio" },
 ];
 
 export default function Header() {
@@ -32,15 +33,20 @@ export default function Header() {
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
     setIsOpen(false);
-    if (pathname === "/") {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      if (pathname === "/") {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        router.push("/" + href);
       }
     } else {
-      router.push("/" + href);
+      e.preventDefault();
+      router.push(href);
     }
   };
 

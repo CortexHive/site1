@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { ArrowRight, Loader2, Sparkles } from "lucide-react";
 
 const TwitterIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
@@ -29,6 +30,20 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    if (pathname === "/") {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      router.push("/" + href);
+    }
+  };
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,16 +122,19 @@ export default function Footer() {
             <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Agency Links</h4>
             <ul className="space-y-2.5 text-sm text-slate-600 font-semibold">
               <li>
-                <a href="#services" onClick={(e) => { e.preventDefault(); document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" }); }} className="hover:text-hive-cyan transition-colors">Services</a>
+                <a href="#services" onClick={(e) => handleNavClick(e, "#services")} className="hover:text-hive-cyan transition-colors">Services</a>
               </li>
               <li>
-                <a href="#portfolio" onClick={(e) => { e.preventDefault(); document.querySelector("#portfolio")?.scrollIntoView({ behavior: "smooth" }); }} className="hover:text-white transition-colors hover:text-hive-cyan">Case Studies</a>
+                <a href="#portfolio" onClick={(e) => handleNavClick(e, "#portfolio")} className="hover:text-white transition-colors hover:text-hive-cyan">Case Studies</a>
               </li>
               <li>
-                <a href="#process" onClick={(e) => { e.preventDefault(); document.querySelector("#process")?.scrollIntoView({ behavior: "smooth" }); }} className="hover:text-white transition-colors hover:text-hive-cyan">Our Process</a>
+                <a href="#process" onClick={(e) => handleNavClick(e, "#process")} className="hover:text-white transition-colors hover:text-hive-cyan">Our Process</a>
               </li>
               <li>
-                <a href="#about" onClick={(e) => { e.preventDefault(); document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" }); }} className="hover:text-white transition-colors hover:text-hive-cyan">About Team</a>
+                <a href="#about" onClick={(e) => handleNavClick(e, "#about")} className="hover:text-white transition-colors hover:text-hive-cyan">About Team</a>
+              </li>
+              <li>
+                <Link href="/creative-studio" className="hover:text-hive-cyan transition-colors">Creative Studio</Link>
               </li>
             </ul>
           </div>
