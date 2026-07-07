@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import ChatbotWidget from "@/components/chatbot-widget";
+import ScrollToTop from "@/components/scroll-to-top";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -83,6 +84,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <ChatbotWidget />
+        <ScrollToTop />
       </body>
     </html>
   );

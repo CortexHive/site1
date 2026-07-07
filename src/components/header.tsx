@@ -71,7 +71,7 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="#" className="flex items-center gap-2.5 group font-outfit">
+        <Link href="/" className="flex items-center gap-2.5 group font-outfit">
           <svg className="w-5 h-5 text-hive-cyan transition-transform duration-300 group-hover:rotate-30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" />
             <circle cx="12" cy="12" r="3" fill="currentColor" className="text-hive-purple" />

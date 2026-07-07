@@ -83,7 +83,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Info */}
           <div className="space-y-6">
-            <Link href="#" className="flex items-center gap-2.5 group font-outfit">
+            <Link href="/" className="flex items-center gap-2.5 group font-outfit">
               <svg className="w-5 h-5 text-hive-cyan transition-transform duration-300 group-hover:rotate-30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" />
                 <circle cx="12" cy="12" r="3" fill="currentColor" className="text-hive-purple" />
