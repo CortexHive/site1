@@ -36,11 +36,9 @@ export default function Header() {
     setIsOpen(false);
     if (href.startsWith("#")) {
       e.preventDefault();
-      if (pathname === "/") {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
       } else {
         router.push("/" + href);
       }
