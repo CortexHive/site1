@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const capabilities = [
   {
@@ -25,6 +26,8 @@ const capabilities = [
 ];
 
 export default function PortfolioShowcase() {
+  const router = useRouter();
+
   return (
     <section className="py-24 bg-slate-50 border-t border-slate-200 relative z-10" id="portfolio">
       <div className="max-w-7xl mx-auto px-6">
@@ -95,7 +98,12 @@ export default function PortfolioShowcase() {
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+                  const element = document.querySelector("#contact");
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    router.push("/#contact");
+                  }
                 }}
                 className="inline-flex items-center gap-2 text-sm font-bold text-purple-600 hover:text-purple-800 transition-colors"
               >
