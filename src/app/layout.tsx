@@ -27,39 +27,39 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Cortex Hive — Digital Innovation Partners | AI-Powered Agency",
-  description: "Cortex Hive is a next-generation AI-powered digital agency. We design and build scalable SaaS products, custom AI tools, web applications, and marketing campaigns.",
+  title: "CortexHive — AI Product Studio & Custom Software Development",
+  description: "From business problem to working product. CortexHive designs and builds custom AI applications, intelligent automations, and production software for UK businesses and founders.",
   metadataBase: new URL("https://cortexhive.co.uk"),
   keywords: [
-    "AI Digital Agency",
-    "SaaS Development",
-    "Custom AI Tools",
-    "AI Agents",
-    "Web Application Development",
-    "Next.js Development",
-    "Cortex Hive",
-    "Digital Innovation Studio"
+    "AI Product Studio",
+    "Custom AI Applications",
+    "AI Automation UK",
+    "Software Development UK",
+    "MVP Development",
+    "Full-Stack Web Applications",
+    "CortexHive",
+    "AI Solutions Studio"
   ],
   openGraph: {
-    title: "Cortex Hive — Digital Innovation Partners | AI-Powered Agency",
-    description: "Engineering the AI-driven digital future. We build SaaS platforms, custom AI integrations, web apps, and performance campaigns at speed.",
+    title: "CortexHive — AI Product Studio & Custom Software Development",
+    description: "From business problem to working product. CortexHive designs and builds custom AI applications, intelligent automations, and production software.",
     url: "https://cortexhive.co.uk",
-    siteName: "Cortex Hive",
+    siteName: "CortexHive",
     images: [
       {
         url: "/logo.png",
         width: 800,
         height: 600,
-        alt: "Cortex Hive — Digital Innovation Partners",
+        alt: "CortexHive — AI Product Studio",
       },
     ],
-    locale: "en_US",
+    locale: "en_GB",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cortex Hive — Digital Innovation Partners | AI-Powered Agency",
-    description: "Engineering the AI-driven digital future. We build SaaS platforms, custom AI integrations, web apps, and performance campaigns at speed.",
+    title: "CortexHive — AI Product Studio & Custom Software Development",
+    description: "From business problem to working product. CortexHive designs and builds custom AI applications, intelligent automations, and production software.",
     images: ["/logo.png"],
   },
   robots: {

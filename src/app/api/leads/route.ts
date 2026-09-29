@@ -5,8 +5,11 @@ import { collection, addDoc } from "firebase/firestore";
 
 interface LeadData {
   name: string;
+  company?: string;
   email: string;
+  website?: string;
   projectType: string;
+  problem?: string;
   budget: string;
   timeline: string;
   brief: string;
@@ -20,7 +23,7 @@ async function notifyLead(lead: LeadData) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          text: `🔥 *New Form Lead Captured* 🔥\n*Name:* ${lead.name}\n*Email:* ${lead.email}\n*Type:* ${lead.projectType}\n*Budget:* ${lead.budget}\n*Timeline:* ${lead.timeline}\n*Brief:* ${lead.brief}`,
+          text: `🔥 *New Project Enquiry Received* 🔥\n*Name:* ${lead.name}\n*Company:* ${lead.company || "N/A"}\n*Email:* ${lead.email}\n*Website:* ${lead.website || "N/A"}\n*Service:* ${lead.projectType}\n*Problem to Solve:* ${lead.problem || "N/A"}\n*What to Build:* ${lead.brief}\n*Budget:* ${lead.budget}\n*Timeline:* ${lead.timeline}`,
         }),
       });
     }
@@ -31,6 +34,18 @@ async function notifyLead(lead: LeadData) {
     const adminEmail = process.env.LEAD_NOTIFICATION_EMAIL;
 
     if (adminEmail) {
+      const emailHtml = `<h2>New Project Enquiry — CortexHive</h2>
+                         <p><strong>Name:</strong> ${lead.name}</p>
+                         <p><strong>Company:</strong> ${lead.company || "N/A"}</p>
+                         <p><strong>Email:</strong> ${lead.email}</p>
+                         <p><strong>Website:</strong> ${lead.website || "N/A"}</p>
+                         <p><strong>Service Required:</strong> ${lead.projectType}</p>
+                         <p><strong>Problem to Solve:</strong> ${lead.problem || "N/A"}</p>
+                         <p><strong>What to Build:</strong> ${lead.brief}</p>
+                         <p><strong>Budget:</strong> ${lead.budget}</p>
+                         <p><strong>Timeline:</strong> ${lead.timeline}</p>
+                         <p><em>Submitted via CortexHive Project Enquiry Form</em></p>`;
+
       // 1. Resend Dispatch
       if (resendKey) {
         await fetch("https://api.resend.com/emails", {
@@ -40,16 +55,10 @@ async function notifyLead(lead: LeadData) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "Cortex Hive Portal <info@cortexhive.co.uk>",
+            from: "CortexHive Inquiries <info@cortexhive.co.uk>",
             to: adminEmail,
-            subject: `New Portal Lead: ${lead.name} (${lead.projectType})`,
-            html: `<p><strong>Name:</strong> ${lead.name}</p>
-                   <p><strong>Email:</strong> ${lead.email}</p>
-                   <p><strong>Project Type:</strong> ${lead.projectType}</p>
-                   <p><strong>Budget:</strong> ${lead.budget}</p>
-                   <p><strong>Timeline:</strong> ${lead.timeline}</p>
-                   <p><strong>Brief:</strong> ${lead.brief}</p>
-                   <p><em>Submitted via Multi-step Lead Form</em></p>`,
+            subject: `New Project Enquiry: ${lead.name} (${lead.company || lead.projectType})`,
+            html: emailHtml,
           }),
         });
       }
@@ -68,22 +77,16 @@ async function notifyLead(lead: LeadData) {
               {
                 From: {
                   Email: "info@cortexhive.co.uk",
-                  Name: "Cortex Hive Portal",
+                  Name: "CortexHive Portal",
                 },
                 To: [
                   {
                     Email: adminEmail,
-                    Name: "Cortex Hive HQ",
+                    Name: "CortexHive Team",
                   },
                 ],
-                Subject: `New Portal Lead: ${lead.name} (${lead.projectType})`,
-                HTMLPart: `<p><strong>Name:</strong> ${lead.name}</p>
-                           <p><strong>Email:</strong> ${lead.email}</p>
-                           <p><strong>Project Type:</strong> ${lead.projectType}</p>
-                           <p><strong>Budget:</strong> ${lead.budget}</p>
-                           <p><strong>Timeline:</strong> ${lead.timeline}</p>
-                           <p><strong>Brief:</strong> ${lead.brief}</p>
-                           <p><em>Submitted via Multi-step Lead Form</em></p>`,
+                Subject: `New Project Enquiry: ${lead.name} (${lead.company || lead.projectType})`,
+                HTMLPart: emailHtml,
               },
             ],
           }),
@@ -98,19 +101,19 @@ async function notifyLead(lead: LeadData) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, projectType, budget, timeline, brief } = body;
+    const { name, company, email, website, projectType, problem, budget, timeline, brief } = body;
 
     // Server-side validation
     if (!name || !email || !projectType || !budget || !timeline || !brief) {
       return NextResponse.json(
-        { error: "All fields are required. Please check your inputs and try again." },
+        { error: "Please fill in all required fields (Name, Email, Service, Brief, Budget, Timeline)." },
         { status: 400 }
       );
     }
 
     if (!/\S+@\S+\.\S+/.test(email)) {
       return NextResponse.json(
-        { error: "Please provide a valid business email address." },
+        { error: "Please provide a valid email address." },
         { status: 400 }
       );
     }
@@ -121,8 +124,11 @@ export async function POST(req: Request) {
       const lead = await prisma.lead.create({
         data: {
           name,
+          company: company || null,
           email,
+          website: website || null,
           projectType,
+          problem: problem || null,
           budget,
           timeline,
           brief,
@@ -139,8 +145,11 @@ export async function POST(req: Request) {
       try {
         await addDoc(collection(db, "leads"), {
           name,
+          company: company || "",
           email,
+          website: website || "",
           projectType,
+          problem: problem || "",
           budget,
           timeline,
           brief,
@@ -153,7 +162,7 @@ export async function POST(req: Request) {
     }
 
     // Trigger optional Slack / Email notifications asynchronously
-    notifyLead({ name, email, projectType, budget, timeline, brief });
+    notifyLead({ name, company, email, website, projectType, problem, budget, timeline, brief });
 
     return NextResponse.json({ success: true, leadId });
   } catch (error) {

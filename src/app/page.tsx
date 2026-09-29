@@ -2,32 +2,28 @@ import Hero from "@/components/hero";
 import Services from "@/components/services";
 import Portfolio from "@/components/portfolio";
 import Process from "@/components/process";
-import Testimonials from "@/components/testimonials";
 import About from "@/components/about";
 import LeadForm from "@/components/lead-form";
 
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Section with Real Product Showcase */}
       <Hero />
 
-      {/* Services Section */}
+      {/* 3 Core Services: AI Automation, Custom AI Apps, Software/MVPs */}
       <Services />
 
-      {/* Portfolio Section */}
+      {/* Real Portfolio: 10 Verified Projects & Case Studies */}
       <Portfolio />
 
-      {/* Process Section */}
+      {/* How We Work & Distributed Delivery Model */}
       <Process />
 
-      {/* Testimonials / Social Proof Section */}
-      <Testimonials />
-
-      {/* About / Team Section */}
+      {/* Company Profile & Core Values */}
       <About />
 
-      {/* Lead Capture Form Section */}
+      {/* Project Enquiry Form */}
       <LeadForm />
     </>
   );

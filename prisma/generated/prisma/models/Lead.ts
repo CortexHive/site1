@@ -37,8 +37,11 @@ export type LeadSumAggregateOutputType = {
 export type LeadMinAggregateOutputType = {
   id: number | null
   name: string | null
+  company: string | null
   email: string | null
+  website: string | null
   projectType: string | null
+  problem: string | null
   budget: string | null
   timeline: string | null
   brief: string | null
@@ -49,8 +52,11 @@ export type LeadMinAggregateOutputType = {
 export type LeadMaxAggregateOutputType = {
   id: number | null
   name: string | null
+  company: string | null
   email: string | null
+  website: string | null
   projectType: string | null
+  problem: string | null
   budget: string | null
   timeline: string | null
   brief: string | null
@@ -61,8 +67,11 @@ export type LeadMaxAggregateOutputType = {
 export type LeadCountAggregateOutputType = {
   id: number
   name: number
+  company: number
   email: number
+  website: number
   projectType: number
+  problem: number
   budget: number
   timeline: number
   brief: number
@@ -83,8 +92,11 @@ export type LeadSumAggregateInputType = {
 export type LeadMinAggregateInputType = {
   id?: true
   name?: true
+  company?: true
   email?: true
+  website?: true
   projectType?: true
+  problem?: true
   budget?: true
   timeline?: true
   brief?: true
@@ -95,8 +107,11 @@ export type LeadMinAggregateInputType = {
 export type LeadMaxAggregateInputType = {
   id?: true
   name?: true
+  company?: true
   email?: true
+  website?: true
   projectType?: true
+  problem?: true
   budget?: true
   timeline?: true
   brief?: true
@@ -107,8 +122,11 @@ export type LeadMaxAggregateInputType = {
 export type LeadCountAggregateInputType = {
   id?: true
   name?: true
+  company?: true
   email?: true
+  website?: true
   projectType?: true
+  problem?: true
   budget?: true
   timeline?: true
   brief?: true
@@ -206,8 +224,11 @@ export type LeadGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type LeadGroupByOutputType = {
   id: number
   name: string
+  company: string | null
   email: string
+  website: string | null
   projectType: string
+  problem: string | null
   budget: string
   timeline: string
   brief: string
@@ -241,8 +262,11 @@ export type LeadWhereInput = {
   NOT?: Prisma.LeadWhereInput | Prisma.LeadWhereInput[]
   id?: Prisma.IntFilter<"Lead"> | number
   name?: Prisma.StringFilter<"Lead"> | string
+  company?: Prisma.StringNullableFilter<"Lead"> | string | null
   email?: Prisma.StringFilter<"Lead"> | string
+  website?: Prisma.StringNullableFilter<"Lead"> | string | null
   projectType?: Prisma.StringFilter<"Lead"> | string
+  problem?: Prisma.StringNullableFilter<"Lead"> | string | null
   budget?: Prisma.StringFilter<"Lead"> | string
   timeline?: Prisma.StringFilter<"Lead"> | string
   brief?: Prisma.StringFilter<"Lead"> | string
@@ -253,8 +277,11 @@ export type LeadWhereInput = {
 export type LeadOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  company?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrder
+  website?: Prisma.SortOrderInput | Prisma.SortOrder
   projectType?: Prisma.SortOrder
+  problem?: Prisma.SortOrderInput | Prisma.SortOrder
   budget?: Prisma.SortOrder
   timeline?: Prisma.SortOrder
   brief?: Prisma.SortOrder
@@ -268,8 +295,11 @@ export type LeadWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.LeadWhereInput[]
   NOT?: Prisma.LeadWhereInput | Prisma.LeadWhereInput[]
   name?: Prisma.StringFilter<"Lead"> | string
+  company?: Prisma.StringNullableFilter<"Lead"> | string | null
   email?: Prisma.StringFilter<"Lead"> | string
+  website?: Prisma.StringNullableFilter<"Lead"> | string | null
   projectType?: Prisma.StringFilter<"Lead"> | string
+  problem?: Prisma.StringNullableFilter<"Lead"> | string | null
   budget?: Prisma.StringFilter<"Lead"> | string
   timeline?: Prisma.StringFilter<"Lead"> | string
   brief?: Prisma.StringFilter<"Lead"> | string
@@ -280,8 +310,11 @@ export type LeadWhereUniqueInput = Prisma.AtLeast<{
 export type LeadOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  company?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrder
+  website?: Prisma.SortOrderInput | Prisma.SortOrder
   projectType?: Prisma.SortOrder
+  problem?: Prisma.SortOrderInput | Prisma.SortOrder
   budget?: Prisma.SortOrder
   timeline?: Prisma.SortOrder
   brief?: Prisma.SortOrder
@@ -300,8 +333,11 @@ export type LeadScalarWhereWithAggregatesInput = {
   NOT?: Prisma.LeadScalarWhereWithAggregatesInput | Prisma.LeadScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Lead"> | number
   name?: Prisma.StringWithAggregatesFilter<"Lead"> | string
+  company?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   email?: Prisma.StringWithAggregatesFilter<"Lead"> | string
+  website?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   projectType?: Prisma.StringWithAggregatesFilter<"Lead"> | string
+  problem?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   budget?: Prisma.StringWithAggregatesFilter<"Lead"> | string
   timeline?: Prisma.StringWithAggregatesFilter<"Lead"> | string
   brief?: Prisma.StringWithAggregatesFilter<"Lead"> | string
@@ -311,8 +347,11 @@ export type LeadScalarWhereWithAggregatesInput = {
 
 export type LeadCreateInput = {
   name: string
+  company?: string | null
   email: string
+  website?: string | null
   projectType: string
+  problem?: string | null
   budget: string
   timeline: string
   brief: string
@@ -323,8 +362,11 @@ export type LeadCreateInput = {
 export type LeadUncheckedCreateInput = {
   id?: number
   name: string
+  company?: string | null
   email: string
+  website?: string | null
   projectType: string
+  problem?: string | null
   budget: string
   timeline: string
   brief: string
@@ -334,8 +376,11 @@ export type LeadUncheckedCreateInput = {
 
 export type LeadUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectType?: Prisma.StringFieldUpdateOperationsInput | string
+  problem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   budget?: Prisma.StringFieldUpdateOperationsInput | string
   timeline?: Prisma.StringFieldUpdateOperationsInput | string
   brief?: Prisma.StringFieldUpdateOperationsInput | string
@@ -346,8 +391,11 @@ export type LeadUpdateInput = {
 export type LeadUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectType?: Prisma.StringFieldUpdateOperationsInput | string
+  problem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   budget?: Prisma.StringFieldUpdateOperationsInput | string
   timeline?: Prisma.StringFieldUpdateOperationsInput | string
   brief?: Prisma.StringFieldUpdateOperationsInput | string
@@ -358,8 +406,11 @@ export type LeadUncheckedUpdateInput = {
 export type LeadCreateManyInput = {
   id?: number
   name: string
+  company?: string | null
   email: string
+  website?: string | null
   projectType: string
+  problem?: string | null
   budget: string
   timeline: string
   brief: string
@@ -369,8 +420,11 @@ export type LeadCreateManyInput = {
 
 export type LeadUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectType?: Prisma.StringFieldUpdateOperationsInput | string
+  problem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   budget?: Prisma.StringFieldUpdateOperationsInput | string
   timeline?: Prisma.StringFieldUpdateOperationsInput | string
   brief?: Prisma.StringFieldUpdateOperationsInput | string
@@ -381,8 +435,11 @@ export type LeadUpdateManyMutationInput = {
 export type LeadUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   projectType?: Prisma.StringFieldUpdateOperationsInput | string
+  problem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   budget?: Prisma.StringFieldUpdateOperationsInput | string
   timeline?: Prisma.StringFieldUpdateOperationsInput | string
   brief?: Prisma.StringFieldUpdateOperationsInput | string
@@ -393,8 +450,11 @@ export type LeadUncheckedUpdateManyInput = {
 export type LeadCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  company?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  website?: Prisma.SortOrder
   projectType?: Prisma.SortOrder
+  problem?: Prisma.SortOrder
   budget?: Prisma.SortOrder
   timeline?: Prisma.SortOrder
   brief?: Prisma.SortOrder
@@ -409,8 +469,11 @@ export type LeadAvgOrderByAggregateInput = {
 export type LeadMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  company?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  website?: Prisma.SortOrder
   projectType?: Prisma.SortOrder
+  problem?: Prisma.SortOrder
   budget?: Prisma.SortOrder
   timeline?: Prisma.SortOrder
   brief?: Prisma.SortOrder
@@ -421,8 +484,11 @@ export type LeadMaxOrderByAggregateInput = {
 export type LeadMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  company?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  website?: Prisma.SortOrder
   projectType?: Prisma.SortOrder
+  problem?: Prisma.SortOrder
   budget?: Prisma.SortOrder
   timeline?: Prisma.SortOrder
   brief?: Prisma.SortOrder
@@ -436,6 +502,10 @@ export type LeadSumOrderByAggregateInput = {
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -455,8 +525,11 @@ export type IntFieldUpdateOperationsInput = {
 export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  company?: boolean
   email?: boolean
+  website?: boolean
   projectType?: boolean
+  problem?: boolean
   budget?: boolean
   timeline?: boolean
   brief?: boolean
@@ -467,8 +540,11 @@ export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type LeadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  company?: boolean
   email?: boolean
+  website?: boolean
   projectType?: boolean
+  problem?: boolean
   budget?: boolean
   timeline?: boolean
   brief?: boolean
@@ -479,8 +555,11 @@ export type LeadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type LeadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  company?: boolean
   email?: boolean
+  website?: boolean
   projectType?: boolean
+  problem?: boolean
   budget?: boolean
   timeline?: boolean
   brief?: boolean
@@ -491,8 +570,11 @@ export type LeadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type LeadSelectScalar = {
   id?: boolean
   name?: boolean
+  company?: boolean
   email?: boolean
+  website?: boolean
   projectType?: boolean
+  problem?: boolean
   budget?: boolean
   timeline?: boolean
   brief?: boolean
@@ -500,7 +582,7 @@ export type LeadSelectScalar = {
   createdAt?: boolean
 }
 
-export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "projectType" | "budget" | "timeline" | "brief" | "source" | "createdAt", ExtArgs["result"]["lead"]>
+export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "company" | "email" | "website" | "projectType" | "problem" | "budget" | "timeline" | "brief" | "source" | "createdAt", ExtArgs["result"]["lead"]>
 
 export type $LeadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Lead"
@@ -508,8 +590,11 @@ export type $LeadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
+    company: string | null
     email: string
+    website: string | null
     projectType: string
+    problem: string | null
     budget: string
     timeline: string
     brief: string
@@ -940,8 +1025,11 @@ export interface Prisma__LeadClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface LeadFieldRefs {
   readonly id: Prisma.FieldRef<"Lead", 'Int'>
   readonly name: Prisma.FieldRef<"Lead", 'String'>
+  readonly company: Prisma.FieldRef<"Lead", 'String'>
   readonly email: Prisma.FieldRef<"Lead", 'String'>
+  readonly website: Prisma.FieldRef<"Lead", 'String'>
   readonly projectType: Prisma.FieldRef<"Lead", 'String'>
+  readonly problem: Prisma.FieldRef<"Lead", 'String'>
   readonly budget: Prisma.FieldRef<"Lead", 'String'>
   readonly timeline: Prisma.FieldRef<"Lead", 'String'>
   readonly brief: Prisma.FieldRef<"Lead", 'String'>

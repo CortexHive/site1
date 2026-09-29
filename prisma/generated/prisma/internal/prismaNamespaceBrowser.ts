@@ -71,8 +71,11 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const LeadScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  company: 'company',
   email: 'email',
+  website: 'website',
   projectType: 'projectType',
+  problem: 'problem',
   budget: 'budget',
   timeline: 'timeline',
   brief: 'brief',
@@ -98,4 +101,12 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

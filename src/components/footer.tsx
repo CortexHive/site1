@@ -94,14 +94,14 @@ export default function Footer() {
                   <span className="font-black text-gradient ml-1">HIVE</span>
                 </span>
                 <span className="text-[7.5px] uppercase tracking-[0.28em] text-slate-400 font-bold -mt-1 font-spaceGrotesk">
-                  Digital Innovation Partners
+                  AI &amp; Software Studio
                 </span>
               </div>
             </Link>
-            <p className="text-slate-655 text-slate-600 text-xs sm:text-sm leading-relaxed font-medium">
-              We engineer scalable SaaS platforms, custom AI tools, and immersive digital platforms at the speed of intelligence.
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
+              From Business Problem to Working Product. We build custom AI applications, automation workflows, and production software.
             </p>
-            <div className="flex items-center gap-4 text-slate-505 text-slate-500">
+            <div className="flex items-center gap-4 text-slate-500">
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-hive-cyan transition-colors" aria-label="Twitter">
                 <TwitterIcon />
               </a>
@@ -116,41 +116,41 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Agency Links</h4>
-            <ul className="space-y-2.5 text-sm text-slate-600 font-semibold">
+            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Navigation</h4>
+            <ul className="space-y-2.5 text-sm text-slate-600 font-medium">
               <li>
-                <a href="#services" onClick={(e) => handleNavClick(e, "#services")} className="hover:text-hive-cyan transition-colors">Services</a>
+                <a href="#services" onClick={(e) => handleNavClick(e, "#services")} className="hover:text-slate-950 transition-colors">Services</a>
               </li>
               <li>
-                <a href="#portfolio" onClick={(e) => handleNavClick(e, "#portfolio")} className="hover:text-white transition-colors hover:text-hive-cyan">Case Studies</a>
+                <a href="#portfolio" onClick={(e) => handleNavClick(e, "#portfolio")} className="hover:text-slate-950 transition-colors">Portfolio</a>
               </li>
               <li>
-                <a href="#process" onClick={(e) => handleNavClick(e, "#process")} className="hover:text-white transition-colors hover:text-hive-cyan">Our Process</a>
+                <a href="#process" onClick={(e) => handleNavClick(e, "#process")} className="hover:text-slate-950 transition-colors">Our Process</a>
               </li>
               <li>
-                <a href="#about" onClick={(e) => handleNavClick(e, "#about")} className="hover:text-white transition-colors hover:text-hive-cyan">About Team</a>
+                <Link href="/about" className="hover:text-slate-950 transition-colors">About Studio</Link>
               </li>
               <li>
-                <Link href="/creative-studio" className="hover:text-hive-cyan transition-colors">Creative Studio</Link>
+                <Link href="/creative-studio" className="hover:text-slate-950 transition-colors">Creative Studio</Link>
               </li>
             </ul>
           </div>
 
           {/* Contact Details */}
           <div className="space-y-4">
-            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">HQ Scopes</h4>
-            <ul className="space-y-2.5 text-sm text-slate-600 font-semibold">
+            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Contact &amp; Studio</h4>
+            <ul className="space-y-2.5 text-sm text-slate-600 font-medium">
               <li>
-                <span className="block text-xs text-slate-455 text-slate-400 font-bold uppercase">Inquiries</span>
-                <a href="mailto:info@cortexhive.co.uk" className="hover:text-slate-900 transition-colors">info@cortexhive.co.uk</a>
+                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">Inquiries</span>
+                <a href="mailto:info@cortexhive.co.uk" className="hover:text-slate-900 font-semibold transition-colors">info@cortexhive.co.uk</a>
               </li>
               <li>
-                <span className="block text-xs text-slate-455 text-slate-400 font-bold uppercase">Scoping Hotlines</span>
-                <a href="tel:+447950501323" className="block text-slate-700 font-bold hover:text-hive-cyan transition-colors">+44 7950 501323</a>
+                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">Direct</span>
+                <a href="tel:+447950501323" className="block text-slate-800 font-semibold hover:text-hive-cyan transition-colors">+44 7950 501323</a>
               </li>
               <li>
-                <span className="block text-xs text-slate-455 text-slate-400 font-bold uppercase">Innovation Node</span>
-                <span className="block">London, United Kingdom</span>
+                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">Location</span>
+                <span className="block">United Kingdom (Remote Delivery)</span>
               </li>
             </ul>
           </div>
@@ -160,8 +160,8 @@ export default function Footer() {
             <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
               <span>Hive Intel</span> <Sparkles className="w-4 h-4 text-hive-cyan fill-hive-cyan animate-pulse" />
             </h4>
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-medium">
-              Subscribe to get brief product blueprints, custom AI use cases, and speed-engineering frameworks.
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
+              Practical AI engineering case studies, automation teardowns, and software build notes.
             </p>
             <form onSubmit={handleSubscribe} className="space-y-2.5">
               <div className="relative flex items-center">
@@ -203,12 +203,17 @@ export default function Footer() {
         </div>
 
         {/* Footer Base */}
-        <div className="border-t border-slate-200 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400 font-bold">
-          <p>© {currentYear} Cortex Hive — Digital Innovation Partners. All rights reserved.</p>
-          <div className="flex gap-6">
+        <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+          <div className="text-center md:text-left space-y-1">
+            <p>© {currentYear} CortexHive. All rights reserved.</p>
+            <p className="text-[11px] text-slate-400">
+              CortexHive is a trading name operated as a self-employed business in the United Kingdom. Not registered as a limited company.
+            </p>
+          </div>
+          <div className="flex gap-6 font-semibold">
             <Link href="/privacy" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-slate-900 transition-colors">Terms of Service</Link>
-            <Link href="/accessibility" className="hover:text-slate-900 transition-colors">Accessibility Node</Link>
+            <Link href="/accessibility" className="hover:text-slate-900 transition-colors">Accessibility</Link>
           </div>
         </div>
       </div>

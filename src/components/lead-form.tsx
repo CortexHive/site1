@@ -3,68 +3,108 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  Cpu,
   Layers,
   Globe,
-  Monitor,
-  Megaphone,
-  Video,
-  Cpu,
+  Bot,
+  Laptop,
+  HelpCircle,
   ArrowRight,
   ArrowLeft,
   CheckCircle,
   AlertCircle,
   Loader2,
+  Calendar,
+  PoundSterling,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 
-type FormData = {
-  projectType: string;
+export type ProjectEnquiryData = {
+  name: string;
+  company: string;
+  email: string;
+  website: string;
+  serviceRequired: string;
+  problem: string;
+  brief: string;
   budget: string;
   timeline: string;
-  name: string;
-  email: string;
-  brief: string;
 };
 
-const INITIAL_DATA: FormData = {
-  projectType: "",
+const INITIAL_DATA: ProjectEnquiryData = {
+  name: "",
+  company: "",
+  email: "",
+  website: "",
+  serviceRequired: "",
+  problem: "",
+  brief: "",
   budget: "",
   timeline: "",
-  name: "",
-  email: "",
-  brief: "",
 };
 
-const PROJECT_TYPES = [
-  { id: "SaaS Development", label: "SaaS Product", icon: Layers },
-  { id: "Web App Development", label: "Custom Web App", icon: Globe },
-  { id: "Website Design", label: "Marketing Website", icon: Monitor },
-  { id: "Custom AI Tools", label: "AI Tools / Agents", icon: Cpu },
-  { id: "Marketing & Ads", label: "Marketing Campaigns", icon: Megaphone },
-  { id: "Video & UGC Content", label: "Video & UGC Content", icon: Video },
+const SERVICES = [
+  {
+    id: "AI Automation",
+    label: "AI Automation",
+    desc: "Intelligent workflows, enquiry routing, document & CRM automation",
+    icon: Bot,
+  },
+  {
+    id: "AI Application",
+    label: "AI Application",
+    desc: "Autonomous agents, knowledge bases, document intelligence, RAG",
+    icon: Cpu,
+  },
+  {
+    id: "Software / MVP",
+    label: "Software / MVP",
+    desc: "End-to-end software product, minimum viable product, full prototype",
+    icon: Layers,
+  },
+  {
+    id: "Web Application",
+    label: "Web Application",
+    desc: "High-performance web apps, dashboards, customer portals, SaaS",
+    icon: Globe,
+  },
+  {
+    id: "Digital Platform",
+    label: "Digital Platform",
+    desc: "Community platforms, directories, online marketplaces, tools",
+    icon: Laptop,
+  },
+  {
+    id: "Other",
+    label: "Other / Consultation",
+    desc: "Technical discovery, architecture audit, or bespoke requirement",
+    icon: HelpCircle,
+  },
 ];
 
 const BUDGET_RANGES = [
-  { id: "Under $10k", label: "Under $10k", desc: "For simple web builds or discovery phases" },
-  { id: "$10k - $30k", label: "$10k - $30k", desc: "For typical MVP builds and API integrations" },
-  { id: "$30k - $50k", label: "$30k - $50k", desc: "For full SaaS systems or custom AI tooling" },
-  { id: "$50k+", label: "$50k+", desc: "For enterprise-grade products and multi-platform solutions" },
+  { id: "Under £500", label: "Under £500", desc: "Small automation task or prototype scope" },
+  { id: "£500–£1,000", label: "£500 – £1,000", desc: "Targeted workflow automation or simple app feature" },
+  { id: "£1,000–£2,500", label: "£1,000 – £2,500", desc: "Custom AI tool, focused MVP, or web application" },
+  { id: "£2,500–£5,000", label: "£2,500 – £5,000", desc: "Comprehensive software product or multi-agent system" },
+  { id: "£5,000+", label: "£5,000+", desc: "Full-scale platform development and complex architecture" },
 ];
 
 const TIMELINES = [
-  { id: "Under 1 month", label: "Under 1 month", desc: "Urgent MVP or immediate iteration need" },
-  { id: "1 - 3 months", label: "1 - 3 months", desc: "Standard healthy development timeline" },
-  { id: "3+ months", label: "3+ months", desc: "Large-scale strategic initiatives" },
+  { id: "ASAP", label: "ASAP", desc: "Immediate start required" },
+  { id: "Within 1 Month", label: "Within 1 Month", desc: "Active scoping in progress" },
+  { id: "1–3 Months", label: "1 – 3 Months", desc: "Planned product milestone" },
+  { id: "Flexible", label: "Flexible", desc: "Exploring options and architecture" },
 ];
 
 export default function LeadForm() {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<FormData>(INITIAL_DATA);
+  const [formData, setFormData] = useState<ProjectEnquiryData>(INITIAL_DATA);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSelect = (field: keyof FormData, value: string) => {
+  const handleSelect = (field: keyof ProjectEnquiryData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     setError(null);
   };
@@ -76,17 +116,16 @@ export default function LeadForm() {
   };
 
   const nextStep = () => {
-    // Validate current step before moving forward
-    if (step === 1 && !formData.projectType) {
-      setError("Please select a project type to continue.");
+    if (step === 1 && !formData.serviceRequired) {
+      setError("Please select the primary service required.");
       return;
     }
     if (step === 2 && !formData.budget) {
-      setError("Please select a budget range to continue.");
+      setError("Please select an estimated budget range.");
       return;
     }
     if (step === 3 && !formData.timeline) {
-      setError("Please select a timeline to continue.");
+      setError("Please select your target timeline.");
       return;
     }
     setError(null);
@@ -100,16 +139,17 @@ export default function LeadForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!formData.name.trim()) {
-      setError("Name is required.");
+      setError("Please enter your name.");
       return;
     }
     if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) {
-      setError("A valid email address is required.");
+      setError("Please provide a valid business email address.");
       return;
     }
     if (!formData.brief.trim() || formData.brief.trim().length < 10) {
-      setError("Please provide a brief project description (at least 10 characters).");
+      setError("Please describe what you are trying to build (at least 10 characters).");
       return;
     }
 
@@ -119,24 +159,32 @@ export default function LeadForm() {
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          company: formData.company,
+          email: formData.email,
+          website: formData.website,
+          projectType: formData.serviceRequired,
+          problem: formData.problem,
+          brief: formData.brief,
+          budget: formData.budget,
+          timeline: formData.timeline,
+        }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || "Something went wrong.");
+        throw new Error(data.error || "Failed to submit project enquiry.");
       }
 
       setIsSubmitted(true);
       confetti({
-        particleCount: 150,
-        spread: 80,
-        origin: { y: 0.5 },
-        colors: ["#06b6d4", "#3b82f6", "#a855f7"],
+        particleCount: 120,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ["#7c3aed", "#06b6d4", "#3b82f6"],
       });
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : "Failed to submit. Please try again.";
@@ -149,27 +197,27 @@ export default function LeadForm() {
   const progressPercent = (step / 4) * 100;
 
   return (
-    <section id="contact" className="py-24 bg-background relative overflow-hidden">
+    <section id="contact" className="py-24 bg-white relative overflow-hidden">
       {/* Decorative blurred backdrop glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-hive-purple/5 rounded-full filter blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-hive-cyan/5 rounded-full filter blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/5 rounded-full filter blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/5 rounded-full filter blur-[140px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-sm uppercase tracking-[0.25em] text-hive-purple font-bold mb-3">
-            Build With Us
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest mb-4">
+            Project Scoping
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight mb-4">
+            Have a Problem Worth Solving?
           </h2>
-          <h3 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-5">
-            Start Your Innovation Partnership
-          </h3>
           <p className="text-slate-600 text-sm sm:text-base font-medium">
-            Tell us about your project requirements and receive a detailed strategy blueprint and estimate within 24 hours.
+            Tell us what you&apos;re trying to build, automate or improve. We&apos;ll review your requirements and provide practical feedback within 24 hours.
           </p>
         </div>
 
         {/* Form Container */}
-        <div className="glass-panel rounded-3xl p-6 sm:p-10 border-slate-200 bg-white glow-purple max-w-3xl mx-auto">
+        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl max-w-3xl mx-auto">
           {isSubmitted ? (
             /* Success State */
             <motion.div
@@ -177,14 +225,16 @@ export default function LeadForm() {
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-10 flex flex-col items-center"
             >
-              <div className="w-20 h-20 rounded-full bg-hive-cyan/10 border border-hive-cyan/20 flex items-center justify-center mb-8">
-                <CheckCircle className="w-10 h-10 text-hive-cyan" />
+              <div className="w-16 h-16 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-6">
+                <CheckCircle className="w-8 h-8" />
               </div>
-              <h4 className="text-3xl font-bold text-slate-900 mb-4">Inquiry Received!</h4>
-              <p className="text-slate-700 max-w-lg mb-8 leading-relaxed font-medium">
-                Thank you, <strong className="text-hive-cyan">{formData.name}</strong>. We&apos;ve logged your request for a{" "}
-                <strong className="text-hive-purple">{formData.projectType}</strong>. A strategist will email you at{" "}
-                <strong>{formData.email}</strong> to set up a scoping call.
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-outfit mb-3">
+                Project Enquiry Received
+              </h3>
+              <p className="text-slate-600 text-sm sm:text-base max-w-lg mb-8 leading-relaxed font-medium">
+                Thank you, <strong className="text-slate-900">{formData.name}</strong>. We have received your enquiry regarding{" "}
+                <strong className="text-purple-600">{formData.serviceRequired}</strong>. A product engineer will review your requirements and reach out to{" "}
+                <strong className="text-slate-900">{formData.email}</strong> within 24 hours.
               </p>
               <button
                 onClick={() => {
@@ -192,9 +242,9 @@ export default function LeadForm() {
                   setStep(1);
                   setIsSubmitted(false);
                 }}
-                className="px-6 py-2.5 rounded-full bg-slate-50 border border-slate-250 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors"
+                className="px-6 py-2.5 rounded-full bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors"
               >
-                Submit another request
+                Submit Another Enquiry
               </button>
             </motion.div>
           ) : (
@@ -202,18 +252,18 @@ export default function LeadForm() {
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Progress Bar */}
               <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs text-slate-400 font-bold">
-                  <span>STEP {step} OF 4</span>
-                  <span className="text-slate-750">
-                    {step === 1 && "Project Type"}
+                <div className="flex justify-between items-center text-xs text-slate-500 font-bold uppercase tracking-wider">
+                  <span>Step {step} of 4</span>
+                  <span className="text-purple-600">
+                    {step === 1 && "Service Required"}
                     {step === 2 && "Estimated Budget"}
-                    {step === 3 && "Desired Timeline"}
-                    {step === 4 && "Contact Details"}
+                    {step === 3 && "Target Timeline"}
+                    {step === 4 && "Project Details & Contact"}
                   </span>
                 </div>
                 <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
                   <motion.div
-                    className="h-full bg-gradient-hive-solid"
+                    className="h-full bg-gradient-to-r from-purple-600 to-cyan-500"
                     initial={{ width: "25%" }}
                     animate={{ width: `${progressPercent}%` }}
                     transition={{ duration: 0.3 }}
@@ -221,200 +271,303 @@ export default function LeadForm() {
                 </div>
               </div>
 
-              {/* Error Banner */}
-              <AnimatePresence>
-                {error && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-xs text-red-500 font-medium"
-                  >
-                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                    <span>{error}</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {/* Error Message */}
+              {error && (
+                <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-700 flex items-center gap-2 font-medium">
+                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                  <span>{error}</span>
+                </div>
+              )}
 
-              {/* Steps Animation wrapper */}
-              <div className="min-h-[260px] flex flex-col justify-center">
+              {/* Wizard Steps */}
+              <AnimatePresence mode="wait">
+                {/* STEP 1: SERVICE REQUIRED */}
                 {step === 1 && (
-                  /* Step 1: Project Type */
                   <motion.div
+                    key="step-1"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="space-y-4"
+                    className="space-y-6"
                   >
-                    <label className="text-lg font-bold text-slate-900 block">
-                      What can we help you build?
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                      {PROJECT_TYPES.map((type) => {
-                        const Icon = type.icon;
-                        const isSelected = formData.projectType === type.id;
-                        return (
-                          <button
-                            type="button"
-                            key={type.id}
-                            onClick={() => handleSelect("projectType", type.id)}
-                            className={`p-4 rounded-xl border flex flex-col items-center justify-center gap-2 transition-all ${
-                              isSelected
-                                ? "bg-hive-cyan/10 border-hive-cyan text-slate-900"
-                                : "bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-350 hover:text-slate-900"
-                            }`}
-                          >
-                            <Icon className={`w-6 h-6 ${isSelected ? "text-hive-cyan" : ""}`} />
-                            <span className="text-xs font-bold text-center leading-snug">
-                              {type.label}
-                            </span>
-                          </button>
-                        );
-                      })}
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-950 font-outfit mb-1">
+                        What service are you looking for?
+                      </h3>
+                      <p className="text-xs text-slate-500 font-medium">
+                        Select the primary area of focus for your project.
+                      </p>
                     </div>
-                  </motion.div>
-                )}
 
-                {step === 2 && (
-                  /* Step 2: Budget Range */
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    className="space-y-4"
-                  >
-                    <label className="text-lg font-bold text-slate-900 block">
-                      What is your estimated budget?
-                    </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {BUDGET_RANGES.map((range) => {
-                        const isSelected = formData.budget === range.id;
-                        return (
-                          <button
-                            type="button"
-                            key={range.id}
-                            onClick={() => handleSelect("budget", range.id)}
-                            className={`p-5 rounded-xl border text-left transition-all ${
-                              isSelected
-                                ? "bg-hive-purple/10 border-hive-purple text-slate-900"
-                                : "bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-350"
-                            }`}
-                          >
-                            <span className={`block font-bold text-sm ${isSelected ? "text-hive-purple" : "text-slate-800"}`}>
-                              {range.label}
-                            </span>
-                            <span className="block text-xs text-slate-500 mt-1 leading-normal font-semibold">
-                              {range.desc}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-
-                {step === 3 && (
-                  /* Step 3: Timeline */
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    className="space-y-4"
-                  >
-                    <label className="text-lg font-bold text-slate-900 block">
-                      What is your target timeline?
-                    </label>
-                    <div className="grid grid-cols-1 gap-3">
-                      {TIMELINES.map((tl) => {
-                        const isSelected = formData.timeline === tl.id;
-                        return (
-                          <button
-                            type="button"
-                            key={tl.id}
-                            onClick={() => handleSelect("timeline", tl.id)}
-                            className={`p-5 rounded-xl border text-left transition-all flex items-center justify-between ${
-                              isSelected
-                                ? "bg-hive-blue/10 border-hive-blue text-slate-900"
-                                : "bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-350"
-                            }`}
-                          >
-                            <div>
-                              <span className={`block font-bold text-sm ${isSelected ? "text-hive-blue" : "text-slate-800"}`}>
-                                {tl.label}
-                              </span>
-                              <span className="block text-xs text-slate-505 mt-1 font-semibold">
-                                {tl.desc}
-                              </span>
-                            </div>
-                            <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${isSelected ? "border-hive-blue" : "border-slate-400"}`}>
-                              {isSelected && <div className="w-2 h-2 rounded-full bg-hive-blue" />}
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-
-                {step === 4 && (
-                  /* Step 4: Contact details */
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    className="space-y-4"
-                  >
-                    <label className="text-lg font-bold text-slate-900 block">
-                      Almost there! How should we reach you?
-                    </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label className="text-xs font-bold text-slate-500 block">Name</label>
+                      {SERVICES.map((s) => {
+                        const Icon = s.icon;
+                        const isSelected = formData.serviceRequired === s.id;
+                        return (
+                          <button
+                            type="button"
+                            key={s.id}
+                            onClick={() => handleSelect("serviceRequired", s.id)}
+                            className={`p-4 rounded-2xl border text-left flex items-start gap-3.5 transition-all ${
+                              isSelected
+                                ? "border-purple-600 bg-purple-50/50 shadow-sm"
+                                : "border-slate-200 bg-white hover:border-slate-300"
+                            }`}
+                          >
+                            <div
+                              className={`p-2 rounded-xl flex-shrink-0 ${
+                                isSelected ? "bg-purple-600 text-white" : "bg-slate-100 text-slate-600"
+                              }`}
+                            >
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-bold text-slate-900 mb-0.5">
+                                {s.label}
+                              </div>
+                              <div className="text-[11px] text-slate-500 leading-relaxed font-medium">
+                                {s.desc}
+                              </div>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* STEP 2: BUDGET */}
+                {step === 2 && (
+                  <motion.div
+                    key="step-2"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    className="space-y-6"
+                  >
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-950 font-outfit mb-1">
+                        What is your estimated budget?
+                      </h3>
+                      <p className="text-xs text-slate-500 font-medium">
+                        This helps us recommend the most appropriate architecture and scoping model.
+                      </p>
+                    </div>
+
+                    <div className="space-y-3">
+                      {BUDGET_RANGES.map((b) => {
+                        const isSelected = formData.budget === b.id;
+                        return (
+                          <button
+                            type="button"
+                            key={b.id}
+                            onClick={() => handleSelect("budget", b.id)}
+                            className={`w-full p-4 rounded-2xl border text-left flex items-center justify-between transition-all ${
+                              isSelected
+                                ? "border-purple-600 bg-purple-50/50 shadow-sm"
+                                : "border-slate-200 bg-white hover:border-slate-300"
+                            }`}
+                          >
+                            <div className="flex items-center gap-3">
+                              <div
+                                className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs ${
+                                  isSelected ? "bg-purple-600 text-white" : "bg-slate-100 text-slate-600"
+                                }`}
+                              >
+                                <PoundSterling className="w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="text-sm font-bold text-slate-900">{b.label}</div>
+                                <div className="text-xs text-slate-500 font-medium">{b.desc}</div>
+                              </div>
+                            </div>
+                            <div
+                              className={`w-5 h-5 rounded-full border flex items-center justify-center ${
+                                isSelected ? "border-purple-600 bg-purple-600" : "border-slate-300"
+                              }`}
+                            >
+                              {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* STEP 3: TIMELINE */}
+                {step === 3 && (
+                  <motion.div
+                    key="step-3"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    className="space-y-6"
+                  >
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-950 font-outfit mb-1">
+                        When do you need this delivered?
+                      </h3>
+                      <p className="text-xs text-slate-500 font-medium">
+                        Select your target delivery or launch timeline.
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {TIMELINES.map((t) => {
+                        const isSelected = formData.timeline === t.id;
+                        return (
+                          <button
+                            type="button"
+                            key={t.id}
+                            onClick={() => handleSelect("timeline", t.id)}
+                            className={`p-4 rounded-2xl border text-left flex items-start gap-3.5 transition-all ${
+                              isSelected
+                                ? "border-purple-600 bg-purple-50/50 shadow-sm"
+                                : "border-slate-200 bg-white hover:border-slate-300"
+                            }`}
+                          >
+                            <div
+                              className={`p-2 rounded-xl flex-shrink-0 ${
+                                isSelected ? "bg-purple-600 text-white" : "bg-slate-100 text-slate-600"
+                              }`}
+                            >
+                              <Calendar className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-bold text-slate-900 mb-0.5">
+                                {t.label}
+                              </div>
+                              <div className="text-[11px] text-slate-500 leading-relaxed font-medium">
+                                {t.desc}
+                              </div>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* STEP 4: CONTACT & DETAILS */}
+                {step === 4 && (
+                  <motion.div
+                    key="step-4"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    className="space-y-5"
+                  >
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-950 font-outfit mb-1">
+                        Tell us about your project & contact details
+                      </h3>
+                      <p className="text-xs text-slate-500 font-medium">
+                        Give us the core details so we can understand the problem and architecture.
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-bold text-slate-800">
+                          Your Name <span className="text-purple-600">*</span>
+                        </label>
                         <input
                           type="text"
                           name="name"
+                          required
                           value={formData.name}
                           onChange={handleChange}
-                          placeholder="Your full name"
-                          className="w-full bg-slate-50 border border-slate-200 focus:border-hive-purple/55 focus:ring-1 focus:ring-hive-purple/55 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none transition-all"
+                          placeholder="e.g. Alex Morgan"
+                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
                         />
                       </div>
-                      <div className="space-y-2">
-                        <label className="text-xs font-bold text-slate-500 block">Business Email</label>
+
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-bold text-slate-800">
+                          Company / Organisation
+                        </label>
+                        <input
+                          type="text"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleChange}
+                          placeholder="e.g. Acme Tech"
+                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                        />
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-bold text-slate-800">
+                          Business Email <span className="text-purple-600">*</span>
+                        </label>
                         <input
                           type="email"
                           name="email"
+                          required
                           value={formData.email}
                           onChange={handleChange}
-                          placeholder="you@company.com"
-                          className="w-full bg-slate-50 border border-slate-200 focus:border-hive-purple/55 focus:ring-1 focus:ring-hive-purple/55 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none transition-all"
+                          placeholder="alex@company.com"
+                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                        />
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-bold text-slate-800">
+                          Current Website (if applicable)
+                        </label>
+                        <input
+                          type="text"
+                          name="website"
+                          value={formData.website}
+                          onChange={handleChange}
+                          placeholder="https://example.com"
+                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
                         />
                       </div>
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-xs font-bold text-slate-500 block">Project Description</label>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-slate-800">
+                        What problem are you trying to solve?
+                      </label>
+                      <input
+                        type="text"
+                        name="problem"
+                        value={formData.problem}
+                        onChange={handleChange}
+                        placeholder="e.g. Manual customer enquiry intake is consuming 15 hours a week..."
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-slate-800">
+                        What are you trying to build? <span className="text-purple-600">*</span>
+                      </label>
                       <textarea
                         name="brief"
+                        rows={3}
+                        required
                         value={formData.brief}
                         onChange={handleChange}
-                        rows={4}
-                        placeholder="Tell us what you're building. E.g. 'I want to build a real estate investment SaaS with an automated property valuation AI engine...'"
-                        className="w-full bg-slate-50 border border-slate-200 focus:border-hive-purple/55 focus:ring-1 focus:ring-hive-purple/55 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none transition-all resize-none"
+                        placeholder="Briefly describe the key functionality, users, and desired outcome..."
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors resize-none"
                       />
                     </div>
                   </motion.div>
                 )}
-              </div>
+              </AnimatePresence>
 
-              {/* Navigation buttons */}
-              <div className="flex justify-between items-center pt-4 border-t border-slate-200">
+              {/* Navigation Controls */}
+              <div className="flex justify-between items-center pt-4 border-t border-slate-100">
                 {step > 1 ? (
                   <button
                     type="button"
                     onClick={prevStep}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-250 hover:border-slate-350 hover:bg-slate-50 text-xs font-bold text-slate-700 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
                   >
-                    <ArrowLeft className="w-4 h-4" />
+                    <ArrowLeft className="w-3.5 h-3.5" />
                     <span>Back</span>
                   </button>
                 ) : (
@@ -425,16 +578,16 @@ export default function LeadForm() {
                   <button
                     type="button"
                     onClick={nextStep}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-hive-solid hover:shadow-lg hover:shadow-hive-blue/20 text-xs font-bold text-white transition-all transform hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all"
                   >
-                    <span>Continue</span>
+                    <span>Next Step</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 ) : (
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-hive-solid hover:shadow-lg hover:shadow-hive-cyan/25 text-xs font-bold text-white transition-all transform hover:-translate-y-0.5 disabled:opacity-50 disabled:shadow-none"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all disabled:opacity-50"
                   >
                     {isSubmitting ? (
                       <>
@@ -443,7 +596,7 @@ export default function LeadForm() {
                       </>
                     ) : (
                       <>
-                        <span>Submit Strategy Inquiry</span>
+                        <span>Submit Project Enquiry</span>
                         <ArrowRight className="w-4 h-4" />
                       </>
                     )}

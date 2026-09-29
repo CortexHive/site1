@@ -1,163 +1,105 @@
-"use client";
+import {
+  Target,
+  ShieldCheck,
+  Zap,
+  Users,
+  ArrowRight,
+} from "lucide-react";
+import Link from "next/link";
 
-import { motion } from "framer-motion";
-import { Zap, ShieldCheck, Flame, Compass } from "lucide-react";
+const VALUES = [
+  {
+    icon: Target,
+    title: "Practicality Over Hype",
+    desc: "We focus on software that solves measurable business problems rather than chasing superficial AI novelty.",
+  },
+  {
+    icon: Zap,
+    title: "Velocity Through Modern Stacks",
+    desc: "By combining type-safe TypeScript, Next.js, and automated pipelines, we deliver working product in weeks, not quarters.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Engineering Discipline",
+    desc: "We write clean, documented, and maintainable codebases with secure authentication, strict schemas, and automated testing.",
+  },
+  {
+    icon: Users,
+    title: "Distributed Specialist Resourcing",
+    desc: "We assemble targeted specialists around each project's exact domain, avoiding bloated overhead and generic staffing.",
+  },
+];
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-slate-50/50 relative overflow-hidden">
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-
-      {/* Decorative Blob */}
-      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-[350px] h-[350px] bg-hive-purple/5 rounded-full filter blur-[120px] pointer-events-none" />
-
+    <section id="about" className="py-24 bg-white border-t border-slate-200 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column (Introduction) */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <span className="text-sm uppercase tracking-[0.25em] text-hive-purple font-bold block">
-              Who We Are
-            </span>
-            <h3 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-              Pairing Human Ingenuity with AI Velocity
-            </h3>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
-              Cortex Hive is a high-speed digital innovation studio. We are a collection of product designers, software engineers, and growth marketers who believe standard agency cycles are outdated.
-            </p>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
-              By augmenting our workflows with customized large language models, automated code generation systems, and dynamic asset generation tools, we cut development overhead by 60%+ while maintaining codebases that conform to strict enterprise quality guidelines.
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          {/* Left Column: Who We Are & Mission */}
+          <div className="lg:col-span-6 space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest">
+              About CortexHive
+            </div>
+
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight leading-tight">
+              An AI & Digital Product Studio.
+            </h2>
+
+            <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-semibold">
+              CortexHive is an AI and digital product studio focused on building practical software, automation and intelligent applications.
             </p>
 
-            {/* Core Values / Pillar grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-              <div className="flex gap-3">
-                <div className="w-10 h-10 rounded-xl bg-hive-cyan/10 border border-hive-cyan/20 flex items-center justify-center flex-shrink-0">
-                  <Zap className="w-5 h-5 text-hive-cyan" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900 mb-1">Peak Velocity</h4>
-                  <p className="text-slate-500 text-xs leading-normal font-semibold">
-                    We deliver production-ready MVPs in weeks, not quarters.
-                  </p>
-                </div>
+            <p className="text-slate-600 text-sm leading-relaxed font-medium">
+              We founded CortexHive on a simple principle: modern businesses do not need another abstract agency slide deck or superficial AI demo. They need working software that solves immediate operational bottlenecks and creates measurable enterprise value.
+            </p>
+
+            <p className="text-slate-600 text-sm leading-relaxed font-medium">
+              From automated customer inquiry triage to complex SaaS platforms and driver community platforms like Rydigoo, we partner with founders and business operators to take concepts through complete architecture, engineering, and deployment.
+            </p>
+
+            <div className="pt-2">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 text-sm font-bold text-purple-600 hover:text-purple-800 transition-colors"
+              >
+                <span>Read Full Company Profile & Delivery Model</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Column: Values & Core Philosophy */}
+          <div className="lg:col-span-6 space-y-6">
+            <div className="bg-slate-50 border border-slate-200 rounded-3xl p-8 space-y-6 shadow-sm">
+              <h3 className="text-xl font-bold text-slate-950 font-outfit">
+                How We Operate
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {VALUES.map((val) => {
+                  const Icon = val.icon;
+                  return (
+                    <div key={val.title} className="space-y-2">
+                      <div className="w-9 h-9 rounded-xl bg-purple-100/70 text-purple-700 flex items-center justify-center">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <h4 className="text-sm font-bold text-slate-900 font-outfit">
+                        {val.title}
+                      </h4>
+                      <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                        {val.desc}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
 
-              <div className="flex gap-3">
-                <div className="w-10 h-10 rounded-xl bg-hive-purple/10 border border-hive-purple/20 flex items-center justify-center flex-shrink-0">
-                  <ShieldCheck className="w-5 h-5 text-hive-purple" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900 mb-1">Production Quality</h4>
-                  <p className="text-slate-500 text-xs leading-normal font-semibold">
-                    Clean, TypeScript-strict systems with full responsive design.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="w-10 h-10 rounded-xl bg-hive-blue/10 border border-hive-blue/20 flex items-center justify-center flex-shrink-0">
-                  <Flame className="w-5 h-5 text-hive-blue" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900 mb-1">AI-Forward</h4>
-                  <p className="text-slate-500 text-xs leading-normal font-semibold">
-                    Custom agent architectures and vector integrations standard.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-3">
-                <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0">
-                  <Compass className="w-5 h-5 text-slate-600" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-slate-900 mb-1">Continuous Scoping</h4>
-                  <p className="text-slate-500 text-xs leading-normal font-semibold">
-                    Iterate directly with engineering leads in dedicated channels.
-                  </p>
-                </div>
+              <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500 font-mono">
+                <span>Location: London, United Kingdom</span>
+                <span>Model: Distributed Product Studio</span>
               </div>
             </div>
-          </motion.div>
-
-          {/* Right Column (Comparison Matrix Visual) */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="glass-panel p-6 sm:p-8 rounded-3xl border-slate-250 bg-white glow-purple space-y-6"
-          >
-            <h4 className="text-lg font-bold text-slate-900 mb-4">
-              Traditional Agency vs. Cortex Hive
-            </h4>
-
-            <div className="space-y-4 text-xs sm:text-sm">
-              {/* Row 1 */}
-              <div className="grid grid-cols-3 gap-4 pb-4 border-b border-slate-100 font-bold text-slate-400">
-                <span>Metric</span>
-                <span>Traditional Agency</span>
-                <span className="text-hive-cyan">Cortex Hive</span>
-              </div>
-
-              {/* Row 2 */}
-              <div className="grid grid-cols-3 gap-4 pb-4 border-b border-slate-100 items-center font-medium">
-                <span className="font-bold text-slate-900">MVP Build Time</span>
-                <span className="text-slate-500">3 - 6 Months</span>
-                <span className="text-hive-cyan font-black">2 - 4 Weeks</span>
-              </div>
-
-              {/* Row 3 */}
-              <div className="grid grid-cols-3 gap-4 pb-4 border-b border-slate-100 items-center font-medium">
-                <span className="font-bold text-slate-900">Scoping Cycle</span>
-                <span className="text-slate-500">Days of meetings</span>
-                <span className="text-hive-purple font-black">Instant AI estimate</span>
-              </div>
-
-              {/* Row 4 */}
-              <div className="grid grid-cols-3 gap-4 pb-4 border-b border-slate-100 items-center font-medium">
-                <span className="font-bold text-slate-900">Database Setups</span>
-                <span className="text-slate-500">Manual setup</span>
-                <span className="text-hive-cyan font-black">Autogenerated ORMs</span>
-              </div>
-
-              {/* Row 5 */}
-              <div className="grid grid-cols-3 gap-4 pb-4 border-b border-slate-100 items-center font-medium">
-                <span className="font-bold text-slate-900">Tech Stack</span>
-                <span className="text-slate-500">Outdated CMS/WP</span>
-                <span className="text-slate-800 font-black">Next.js 14 / Prisma</span>
-              </div>
-
-              {/* Row 6 */}
-              <div className="grid grid-cols-3 gap-4 items-center font-medium">
-                <span className="font-bold text-slate-900">Cost Overhead</span>
-                <span className="text-slate-500">High ($50k+)</span>
-                <span className="text-hive-cyan font-black">Optimized ($15k)</span>
-              </div>
-            </div>
-
-            {/* Performance quote badge */}
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 mt-6">
-              <p className="text-xs text-slate-600 italic leading-relaxed font-medium">
-                {"\"By automating standard boilerplate configurations and utilizing specialized LLM coding assistants, our engineers focus 100% of their energy on bespoke business logic, product design, and client goals.\""}
-              </p>
-              <div className="mt-3 flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-hive-purple flex items-center justify-center font-extrabold text-[10px] text-white">
-                  CH
-                </div>
-                <span className="text-[10px] uppercase font-bold text-slate-800">
-                  Cortex Hive engineering directive
-                </span>
-              </div>
-            </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

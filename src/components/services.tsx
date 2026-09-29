@@ -3,118 +3,113 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Layers,
-  Globe,
-  Monitor,
-  Megaphone,
-  Video,
+  Bot,
   Cpu,
+  Layers,
+  CheckCircle2,
+  ArrowRight,
   ChevronDown,
   ChevronUp,
-  CheckCircle2,
 } from "lucide-react";
 
-interface ServiceItem {
+interface ServicePillar {
   id: string;
+  number: string;
   icon: React.ComponentType<{ className?: string }>;
   title: string;
-  shortDesc: string;
-  longDesc: string;
-  features: string[];
+  tagline: string;
+  ctaText: string;
+  serviceCategory: string;
+  overview: string;
+  useCases: string[];
+  deliverables: string[];
   techStack: string[];
-  timeline: string;
 }
 
-const services: ServiceItem[] = [
+const PRIMARY_SERVICES: ServicePillar[] = [
   {
-    id: "ai",
+    id: "ai-automation",
+    number: "01",
+    icon: Bot,
+    title: "AI Automation",
+    tagline: "Turn repetitive processes into intelligent workflows.",
+    ctaText: "Automate Your Business",
+    serviceCategory: "AI Automation",
+    overview:
+      "We help businesses automate manual, repetitive operational processes by integrating specialized AI models, webhooks, and autonomous processing pipelines directly into their existing software stack.",
+    useCases: [
+      "AI enquiry handling & lead triage",
+      "Automated customer support routing",
+      "Email & communication automation",
+      "Intelligent document processing & data extraction",
+      "CRM pipeline updates & automated follow-ups",
+      "Internal business knowledge assistants",
+      "Automated reporting & operational analytics",
+      "Cross-platform workflow synchronization",
+    ],
+    deliverables: [
+      "Custom webhook & API automation pipeline",
+      "Fine-tuned data extraction prompts & schemas",
+      "CRM & database sync integrations",
+      "Error handling, logging, & human-in-the-loop review",
+    ],
+    techStack: ["Node.js", "Python", "OpenAI / Claude API", "Webhooks", "PostgreSQL"],
+  },
+  {
+    id: "custom-ai-apps",
+    number: "02",
     icon: Cpu,
-    title: "Custom AI Tools & Agents",
-    shortDesc: "Bespoke Large Language Model integrations, cognitive search, and autonomous multi-agent systems designed to automate workflows.",
-    longDesc: "We design, fine-tune, and integrate specialized machine learning engines and multi-agent frameworks into your existing workspace, increasing productivity and turning data into automated actions.",
-    features: [
-      "OpenAI, Anthropic & DeepSeek integrations",
-      "Vector search (RAG) & knowledge bases",
-      "Autonomous AI agent workflows",
-      "Custom NLP & transcription engines",
+    title: "Custom AI Applications",
+    tagline: "Put AI to work inside your business.",
+    ctaText: "Build an AI Application",
+    serviceCategory: "AI Application",
+    overview:
+      "We build practical, high-utility AI applications engineered around real business problems. From document intelligence and vector knowledge bases to multi-agent reasoning systems, we make AI genuinely useful.",
+    useCases: [
+      "Custom business AI assistants & copilot interfaces",
+      "Autonomous multi-agent task execution workflows",
+      "Vector search (RAG) over company documentation",
+      "Document intelligence & legal/technical analysis",
+      "Intelligent recommendation engines",
+      "Customer-facing conversational AI portals",
+      "Internal operational decision-support dashboards",
+      "AI-assisted structured content generation",
     ],
-    techStack: ["LangChain", "LlamaIndex", "VectorDBs", "Python"],
-    timeline: "4 - 8 weeks",
+    deliverables: [
+      "Vector database embeddings & indexing pipeline",
+      "Custom multi-agent orchestration architecture",
+      "Production-ready web UI & API endpoints",
+      "Strict data privacy & security isolation",
+    ],
+    techStack: ["LangChain", "VectorDB / pgvector", "Next.js", "FastAPI", "TypeScript"],
   },
   {
-    id: "saas",
+    id: "software-mvp",
+    number: "03",
     icon: Layers,
-    title: "SaaS Product Development",
-    shortDesc: "End-to-end engineering of scalable software-as-a-service platforms, from multi-tenant database architectures to automated billing.",
-    longDesc: "We build modern software-as-a-service products with robust multi-tenant architectures, secure data isolation, complex authorization, subscription billing, and rich interactive dashboards.",
-    features: [
-      "Multi-tenant database structures",
-      "Stripe subscription integrations",
-      "Interactive data charts & usage metrics",
-      "Scalable API server architectures",
+    title: "Software & MVP Development",
+    tagline: "Turn your idea into a working product.",
+    ctaText: "Start a Project",
+    serviceCategory: "Software / MVP",
+    overview:
+      "We take software ideas from concept to production-ready digital products. We build complete, scalable web applications, SaaS platforms, internal business portals, and validated MVPs designed for real user adoption.",
+    useCases: [
+      "Full-stack SaaS platforms with subscription billing",
+      "High-performance responsive web applications",
+      "Online marketplaces & directory platforms",
+      "Custom client portals & administration dashboards",
+      "EdTech & structured assessment platforms",
+      "Internal bespoke business management systems",
+      "Rapid prototypes & minimum viable products (MVPs)",
+      "API architectures & third-party integrations",
     ],
-    techStack: ["Next.js", "Node.js", "PostgreSQL", "Prisma"],
-    timeline: "6 - 12 weeks",
-  },
-  {
-    id: "webapps",
-    icon: Globe,
-    title: "High-Fidelity Web Apps",
-    shortDesc: "Interactive, high-performance web applications built for speed, real-time sync, and outstanding user engagement.",
-    longDesc: "We build robust, full-stack web applications prioritizing lightning-fast rendering speed, serverless architectures, real-time sync, and fluid animations that feel native.",
-    features: [
-      "Real-time websockets synchronization",
-      "State-of-the-art state management",
-      "Offline capabilities & caching",
-      "Complex interactive dashboard UI",
+    deliverables: [
+      "Clean, scalable TypeScript & Next.js codebase",
+      "Relational database design & secure authentication",
+      "Responsive, mobile-optimised user interface",
+      "Cloud deployment & automated CI/CD pipeline",
     ],
-    techStack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-    timeline: "4 - 8 weeks",
-  },
-  {
-    id: "websites",
-    icon: Monitor,
-    title: "Premium Website Design",
-    shortDesc: "SEO-optimized, mobile-responsive marketing websites designed to build brand authority and convert visitors into leads.",
-    longDesc: "We design websites that stand out. With custom illustrations, smooth page transitions, structured layouts, and integrated lead capture, we ensure your agency or company commands authority.",
-    features: [
-      "Stunning custom Webflow/Next.js design",
-      "Perfect mobile responsiveness",
-      "SEO best practices & quick load speeds",
-      "Lead generation & analytics hooks",
-    ],
-    techStack: ["Next.js 14", "Framer Motion", "Vercel Analytics"],
-    timeline: "2 - 4 weeks",
-  },
-  {
-    id: "marketing",
-    icon: Megaphone,
-    title: "Marketing & Ad Creatives",
-    shortDesc: "Data-driven performance advertising campaigns and high-converting creative brand designs optimized for scalable growth.",
-    longDesc: "We execute performance marketing campaigns powered by data. We create highly engaging ad graphics, copy, and structural funnel landing pages that lower acquisition costs.",
-    features: [
-      "High-converting landing page setups",
-      "Ad creative design (graphics & copy)",
-      "A/B testing & analytics optimization",
-      "Pixel tracking & campaign structuring",
-    ],
-    techStack: ["Google Analytics", "Meta Ads", "TikTok Ads", "Figma"],
-    timeline: "Ongoing / Retainer",
-  },
-  {
-    id: "ugc",
-    icon: Video,
-    title: "Video & UGC Content",
-    shortDesc: "Engaging user-generated video content and professional editing designed to drive virality across social platforms.",
-    longDesc: "We match your brand with creator networks and script, shoot, and edit vertical-format social media content that stops the scroll and boosts viral product growth.",
-    features: [
-      "Scriptwriting & hooks engineering",
-      "Creator matching & coordination",
-      "Vertical video editing & typography",
-      "High-frequency distribution strategies",
-    ],
-    techStack: ["Premiere Pro", "CapCut", "TikTok Studio", "Frame.io"],
-    timeline: "Monthly batches",
+    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma / Supabase"],
   },
 ];
 
@@ -125,97 +120,134 @@ export default function Services() {
     setExpandedId(expandedId === id ? null : id);
   };
 
+  const scrollToContact = () => {
+    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section id="services" className="py-24 bg-slate-50/50 relative overflow-hidden">
-      {/* Decorative background grid pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-60" />
-      
-      {/* Glow dot in the center */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-hive-cyan/5 rounded-full filter blur-[150px] pointer-events-none" />
+    <section id="services" className="py-24 bg-slate-50/50 border-t border-slate-200 relative overflow-hidden">
+      {/* Background grid accent */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/5 rounded-full filter blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="text-sm uppercase tracking-[0.25em] text-hive-cyan font-bold mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest mb-4">
+            Core Capabilities
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight mb-5">
             What We Build
           </h2>
-          <h3 className="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-6">
-            Bespoke Services Engineered for Hyper-Growth
-          </h3>
-          <p className="text-slate-600 text-lg font-medium">
-            We leverage artificial intelligence and modern development paradigms to design, 
-            develop, and market digital products in fractions of standard agency time.
+          <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
+            We don&apos;t just talk about AI. We build it. CortexHive specializes in three practical disciplines to turn business challenges into working software.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => {
+        {/* 3 Core Services Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {PRIMARY_SERVICES.map((service, index) => {
             const Icon = service.icon;
             const isExpanded = expandedId === service.id;
 
             return (
               <motion.div
                 key={service.id}
-                layout
-                className={`glass-panel rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between h-full ${
-                  isExpanded ? "border-hive-cyan/40 shadow-md shadow-hive-cyan/5" : "hover:border-slate-350"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`bg-white rounded-3xl p-8 border transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-xl ${
+                  isExpanded ? "border-purple-600 ring-1 ring-purple-600/20" : "border-slate-200 hover:border-slate-350"
                 }`}
               >
-                <div className="flex-1 flex flex-col">
-                  {/* Header Icon + Title */}
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-hive flex items-center justify-center border border-slate-200">
-                      <Icon className="w-6 h-6 text-hive-cyan" />
+                <div>
+                  {/* Top Badge & Number */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 shadow-sm">
+                      <Icon className="w-6 h-6" />
                     </div>
-                    <h4 className="text-xl font-bold text-slate-900 tracking-tight">
-                      {service.title}
-                    </h4>
+                    <span className="text-xs font-mono font-bold tracking-widest text-slate-400">
+                      {service.number}
+                    </span>
                   </div>
 
-                  {/* Short Description */}
-                  <p className="text-slate-600 text-sm leading-relaxed mb-6 font-medium">
-                    {service.shortDesc}
+                  {/* Title & Tagline */}
+                  <h3 className="text-2xl font-extrabold text-slate-950 font-outfit tracking-tight mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm font-semibold text-purple-600 mb-4">
+                    {service.tagline}
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium mb-6">
+                    {service.overview}
                   </p>
 
-                  {/* Expandable Panel */}
-                  <AnimatePresence initial={false}>
+                  {/* Use Cases List */}
+                  <div className="space-y-2 mb-6">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
+                      Key Applications:
+                    </span>
+                    <ul className="space-y-2">
+                      {service.useCases.slice(0, 4).map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-purple-600 flex-shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Expandable Technical Details */}
+                  <AnimatePresence>
                     {isExpanded && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden border-t border-slate-100 pt-4 mt-4 space-y-4"
                       >
-                        <div className="border-t border-slate-200 pt-4 mt-2 flex flex-col gap-4">
-                          <p className="text-xs text-slate-700 leading-relaxed font-medium">
-                            {service.longDesc}
-                          </p>
+                        <div>
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
+                            Additional Applications:
+                          </span>
+                          <ul className="space-y-1.5">
+                            {service.useCases.slice(4).map((item, idx) => (
+                              <li key={idx} className="flex items-start gap-2 text-xs text-slate-600 font-medium">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-600 flex-shrink-0 mt-0.5" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
 
-                          <div>
-                            <span className="text-xs font-bold text-hive-cyan uppercase tracking-wider">
-                              Key Deliverables:
-                            </span>
-                            <ul className="mt-2 space-y-1.5">
-                              {service.features.map((feat, idx) => (
-                                <li key={idx} className="flex items-center gap-2 text-xs text-slate-600 font-medium">
-                                  <CheckCircle2 className="w-3.5 h-3.5 text-hive-cyan flex-shrink-0" />
-                                  <span>{feat}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                        <div>
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                            Production Deliverables:
+                          </span>
+                          <ul className="space-y-1">
+                            {service.deliverables.map((d, idx) => (
+                              <li key={idx} className="text-[11px] text-slate-600 font-medium list-disc list-inside">
+                                {d}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
 
-                          <div className="flex flex-wrap gap-2 items-center justify-between text-xs pt-2 border-t border-slate-100">
-                            <div>
-                              <span className="text-slate-400 font-semibold">Stack: </span>
-                              <span className="text-slate-700 font-bold">{service.techStack.join(" • ")}</span>
-                            </div>
-                            <div>
-                              <span className="text-slate-400 font-semibold">Timeline: </span>
-                              <span className="text-hive-purple font-bold">{service.timeline}</span>
-                            </div>
+                        <div className="pt-2">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                            Core Technologies:
+                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            {service.techStack.map((tech) => (
+                              <span
+                                key={tech}
+                                className="px-2 py-0.5 rounded-md bg-slate-100 text-[10px] font-mono text-slate-700 font-semibold"
+                              >
+                                {tech}
+                              </span>
+                            ))}
                           </div>
                         </div>
                       </motion.div>
@@ -223,18 +255,24 @@ export default function Services() {
                   </AnimatePresence>
                 </div>
 
-                {/* Action button */}
-                <button
-                  onClick={() => toggleExpand(service.id)}
-                  className="w-full mt-4 py-2.5 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 hover:border-slate-350 text-xs font-bold text-slate-700 flex items-center justify-center gap-2 transition-all"
-                >
-                  <span>{isExpanded ? "Show Less" : "Learn More"}</span>
-                  {isExpanded ? (
-                    <ChevronUp className="w-4 h-4 text-slate-500" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4 text-slate-500" />
-                  )}
-                </button>
+                {/* Card Actions */}
+                <div className="pt-6 border-t border-slate-100 mt-6 space-y-3">
+                  <button
+                    onClick={() => toggleExpand(service.id)}
+                    className="w-full text-xs font-bold text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1.5 py-1.5 transition-colors"
+                  >
+                    <span>{isExpanded ? "Show Less" : "View Full Scope & Stack"}</span>
+                    {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                  </button>
+
+                  <button
+                    onClick={scrollToContact}
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-sm hover:shadow transition-all"
+                  >
+                    <span>{service.ctaText}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </motion.div>
             );
           })}
