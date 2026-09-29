@@ -46,15 +46,15 @@ export default function About() {
             </h2>
 
             <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-semibold">
-              CortexHive is an AI and digital product studio focused on building practical software, automation and intelligent applications.
+              CortexHive was built around a simple principle: modern businesses don&apos;t need another abstract AI presentation or superficial technology demo. They need working software that solves real problems.
             </p>
 
             <p className="text-slate-600 text-sm leading-relaxed font-medium">
-              We founded CortexHive on a simple principle: modern businesses do not need another abstract agency slide deck or superficial AI demo. They need working software that solves immediate operational bottlenecks and creates measurable enterprise value.
+              CortexHive brings together AI, software development, automation and product thinking to turn business problems and product ideas into practical digital solutions.
             </p>
 
             <p className="text-slate-600 text-sm leading-relaxed font-medium">
-              From automated customer inquiry triage to complex SaaS platforms and driver community platforms like Rydigoo, we partner with founders and business operators to take concepts through complete architecture, engineering, and deployment.
+              From automated workflow triage to full-stack platforms like MarkScheme and driver community platforms like Rydigoo, our team partners with founders and business operators to take concepts through complete architecture, engineering, and deployment.
             </p>
 
             <div className="pt-2">

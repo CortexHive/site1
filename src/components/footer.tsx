@@ -150,7 +150,7 @@ export default function Footer() {
               </li>
               <li>
                 <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">Location</span>
-                <span className="block">United Kingdom (Remote Delivery)</span>
+                <span className="block">London, United Kingdom</span>
               </li>
             </ul>
           </div>
@@ -204,11 +204,8 @@ export default function Footer() {
 
         {/* Footer Base */}
         <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-          <div className="text-center md:text-left space-y-1">
+          <div className="text-center md:text-left">
             <p>© {currentYear} CortexHive. All rights reserved.</p>
-            <p className="text-[11px] text-slate-400">
-              CortexHive is a trading name operated as a self-employed business in the United Kingdom. Not registered as a limited company.
-            </p>
           </div>
           <div className="flex gap-6 font-semibold">
             <Link href="/privacy" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>

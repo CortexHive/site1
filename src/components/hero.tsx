@@ -49,13 +49,24 @@ const REAL_SHOWCASE = [
   {
     id: "evtradeshow",
     name: "EVTradeShow",
-    tag: "DIGITAL PLATFORM",
+    tag: "DIGITAL PRODUCT",
     role: "EV Events Directory",
     stat: "Global Directory",
     detail: "Searchable international EV summits, calendar filters & organizer portal.",
     icon: Layers,
     color: "from-emerald-500/20 to-teal-500/20",
     badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+  },
+  {
+    id: "aurapdf",
+    name: "AuraPDF",
+    tag: "CORTEXHIVE PRODUCT",
+    role: "Offline-First PDF Software",
+    stat: "Client-Side Processing",
+    detail: "Zero-server document manipulation, digital signatures, redactions and local export.",
+    icon: Layers,
+    color: "from-amber-500/20 to-orange-500/20",
+    badgeColor: "bg-amber-50 text-amber-700 border-amber-200",
   },
 ];
 
@@ -145,6 +156,19 @@ export default function Hero() {
           </motion.div>
         </div>
 
+        {/* Built, Not Just Promised Section */}
+        <div className="mt-14 mb-8 text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-bold text-slate-700 uppercase tracking-widest mb-3">
+            Real Proof of Delivery
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-outfit tracking-tight mb-3">
+            Built, Not Just Promised.
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
+            From driver platforms and education systems to AI applications and digital products, CortexHive builds working technology around real-world requirements.
+          </p>
+        </div>
+
         {/* Real Product Interface Showcase (No Generic AI Brain Imagery) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -155,18 +179,18 @@ export default function Hero() {
           {/* Product Interface Window Frame */}
           <div className="bg-slate-900 rounded-3xl border border-slate-800 shadow-2xl overflow-hidden">
             {/* Top Browser Bar */}
-            <div className="px-6 py-4 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between">
+            <div className="px-4 sm:px-6 py-3.5 bg-slate-950/80 border-b border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-rose-500/80" />
-                <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-                <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                <span className="ml-3 text-xs font-mono text-slate-400 hidden sm:inline">
+                <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                <span className="ml-2 text-xs font-mono text-slate-400 hidden sm:inline">
                   cortexhive://products/{REAL_SHOWCASE[activeTab].id}
                 </span>
               </div>
 
               {/* Product Switcher Pills */}
-              <div className="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800">
+              <div className="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800 overflow-x-auto max-w-full">
                 {REAL_SHOWCASE.map((item, idx) => (
                   <button
                     key={item.id}
@@ -290,6 +314,23 @@ export default function Hero() {
                         <div className="p-3 bg-slate-900/80 rounded-xl border border-slate-700/60 flex items-center justify-between">
                           <span className="text-xs text-slate-300 font-medium">Conference Organizer Submissions</span>
                           <span className="text-[10px] text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded">Portal Live</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {activeTab === 4 && (
+                      <div className="space-y-3">
+                        <div className="p-3 bg-slate-900/80 rounded-xl border border-slate-700/60 flex items-center justify-between">
+                          <span className="text-xs text-slate-300 font-medium">Client-Side PDF Engine</span>
+                          <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Zero-Server</span>
+                        </div>
+                        <div className="p-3 bg-slate-900/80 rounded-xl border border-slate-700/60 flex items-center justify-between">
+                          <span className="text-xs text-slate-300 font-medium">Cryptographic Digital Signatures</span>
+                          <span className="text-[10px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">Canvas Active</span>
+                        </div>
+                        <div className="p-3 bg-slate-900/80 rounded-xl border border-slate-700/60 flex items-center justify-between">
+                          <span className="text-xs text-slate-300 font-medium">Document Redaction & Form Filling</span>
+                          <span className="text-[10px] text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded">Privacy-First</span>
                         </div>
                       </div>
                     )}

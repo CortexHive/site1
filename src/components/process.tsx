@@ -239,10 +239,10 @@ export default function Process() {
 
               <div className="space-y-1">
                 <div className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                  Zero Agency Bloat
+                  Focused Delivery
                 </div>
                 <div className="text-xs text-slate-300 font-medium">
-                  100% of your budget goes towards building working product.
+                  A lean delivery model designed to minimise unnecessary agency overhead.
                 </div>
               </div>
             </div>

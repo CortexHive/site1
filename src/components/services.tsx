@@ -33,7 +33,7 @@ const PRIMARY_SERVICES: ServicePillar[] = [
     icon: Bot,
     title: "AI Automation",
     tagline: "Turn repetitive processes into intelligent workflows.",
-    ctaText: "Automate Your Business",
+    ctaText: "Start a Project",
     serviceCategory: "AI Automation",
     overview:
       "We help businesses automate manual, repetitive operational processes by integrating specialized AI models, webhooks, and autonomous processing pipelines directly into their existing software stack.",
@@ -61,7 +61,7 @@ const PRIMARY_SERVICES: ServicePillar[] = [
     icon: Cpu,
     title: "Custom AI Applications",
     tagline: "Put AI to work inside your business.",
-    ctaText: "Build an AI Application",
+    ctaText: "Start a Project",
     serviceCategory: "AI Application",
     overview:
       "We build practical, high-utility AI applications engineered around real business problems. From document intelligence and vector knowledge bases to multi-agent reasoning systems, we make AI genuinely useful.",
@@ -78,7 +78,7 @@ const PRIMARY_SERVICES: ServicePillar[] = [
     deliverables: [
       "Vector database embeddings & indexing pipeline",
       "Custom multi-agent orchestration architecture",
-      "Production-ready web UI & API endpoints",
+      "Deployment-ready web UI & API endpoints",
       "Strict data privacy & security isolation",
     ],
     techStack: ["LangChain", "VectorDB / pgvector", "Next.js", "FastAPI", "TypeScript"],
@@ -92,7 +92,7 @@ const PRIMARY_SERVICES: ServicePillar[] = [
     ctaText: "Start a Project",
     serviceCategory: "Software / MVP",
     overview:
-      "We take software ideas from concept to production-ready digital products. We build complete, scalable web applications, SaaS platforms, internal business portals, and validated MVPs designed for real user adoption.",
+      "We take software ideas from concept to deployment-ready digital products built for real-world use. We engineer scalable web applications, SaaS platforms, internal business portals, and validated MVPs designed for real user adoption.",
     useCases: [
       "Full-stack SaaS platforms with subscription billing",
       "High-performance responsive web applications",

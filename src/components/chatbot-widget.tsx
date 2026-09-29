@@ -24,7 +24,8 @@ export default function ChatbotWidget() {
     {
       id: "welcome",
       role: "assistant",
-      content: "Hello! Welcome to **Cortex Hive** 🐝. I am your AI concierge. I can answer questions about our digital building services, how we work, or help you start a project inquiry. May I have your name and the type of project you are working on?",
+      content:
+        "Hello and welcome to **CortexHive**!\n\nI can answer questions about our core capabilities, share real case studies, or help you start a project inquiry.\n\nWhat are you looking to build or automate?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -109,9 +110,55 @@ export default function ChatbotWidget() {
       {
         id: "welcome",
         role: "assistant",
-        content: "Hello! Welcome to **Cortex Hive** 🐝. I am your AI concierge. I can answer questions about our digital building services, how we work, or help you start a project inquiry. May I have your name and the type of project you are working on?",
+        content:
+          "Hello and welcome to **CortexHive**!\n\nI can answer questions about our core capabilities, share real case studies, or help you start a project inquiry.\n\nWhat are you looking to build or automate?",
       },
     ]);
+  };
+
+  const renderMessageContent = (content: string, isUser: boolean) => {
+    // Strip JSON block if present
+    const cleaned = content.replace(/```json[\s\S]*?```/g, "").trim();
+    // Split into distinct lines / paragraphs
+    const lines = cleaned.split("\n").map((l) => l.trim()).filter(Boolean);
+
+    return (
+      <div className="space-y-2">
+        {lines.map((line, lIdx) => {
+          const isNumbered = /^\d+[\.\)]\s/.test(line);
+          const isBullet = line.startsWith("- ") || line.startsWith("• ") || line.startsWith("* ");
+          const isItem = isNumbered || isBullet;
+
+          return (
+            <div
+              key={lIdx}
+              className={
+                isItem
+                  ? isUser
+                    ? "pl-2 border-l border-white/40 my-1"
+                    : "pl-2.5 py-1 px-2.5 my-1.5 rounded-lg bg-white/70 border border-slate-200/60 shadow-xs"
+                  : ""
+              }
+            >
+              <p className="leading-relaxed text-xs sm:text-sm">
+                {line.split("**").map((chunk, i) =>
+                  i % 2 === 1 ? (
+                    <strong
+                      key={i}
+                      className={isUser ? "text-white font-bold" : "text-slate-950 font-bold"}
+                    >
+                      {chunk}
+                    </strong>
+                  ) : (
+                    chunk
+                  )
+                )}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    );
   };
 
   return (
@@ -124,7 +171,7 @@ export default function ChatbotWidget() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 100 }}
             transition={{ type: "spring", stiffness: 260, damping: 25 }}
-            className="w-[360px] sm:w-[400px] h-[550px] rounded-2xl glass-panel flex flex-col shadow-2xl overflow-hidden border-hive-cyan/20 glow-cyan"
+            className="w-[360px] sm:w-[410px] h-[560px] rounded-2xl glass-panel flex flex-col shadow-2xl overflow-hidden border-hive-cyan/20 glow-cyan max-w-[calc(100vw-2rem)]"
           >
             {/* Header */}
             <div className="p-4 bg-gradient-hive-solid flex items-center justify-between border-b border-white/10 shadow-sm">
@@ -136,7 +183,7 @@ export default function ChatbotWidget() {
                   <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
                     Hive Concierge <Sparkles className="w-3.5 h-3.5 text-white fill-white animate-pulse" />
                   </h4>
-                  <span className="text-[10px] text-white/80">AI Innovation Partner</span>
+                  <span className="text-[10px] text-white/80">AI &amp; Software Studio</span>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -165,22 +212,13 @@ export default function ChatbotWidget() {
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div
-                    className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
+                    className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm ${
                       msg.role === "user"
                         ? "bg-gradient-hive-solid text-white rounded-br-none font-medium shadow-sm"
-                        : "bg-slate-100/90 text-slate-800 border border-slate-200/50 rounded-bl-none"
+                        : "bg-slate-100/90 text-slate-800 border border-slate-200/60 rounded-bl-none shadow-xs"
                     }`}
                   >
-                    {/* Parse simple markdown tags for bold */}
-                    {msg.content.split("**").map((chunk, i) =>
-                      i % 2 === 1 ? (
-                        <strong key={i} className={msg.role === "user" ? "text-white font-bold" : "text-hive-purple font-bold"}>
-                          {chunk}
-                        </strong>
-                      ) : (
-                        chunk
-                      )
-                    )}
+                    {renderMessageContent(msg.content, msg.role === "user")}
                   </div>
                 </div>
               ))}

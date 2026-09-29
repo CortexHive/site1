@@ -596,7 +596,7 @@ export default function LeadForm() {
                       </>
                     ) : (
                       <>
-                        <span>Submit Project Enquiry</span>
+                        <span>Request a Project Estimate</span>
                         <ArrowRight className="w-4 h-4" />
                       </>
                     )}

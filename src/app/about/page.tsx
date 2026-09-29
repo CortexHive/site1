@@ -43,11 +43,11 @@ export default function AboutPage() {
           </h1>
 
           <p className="text-xl sm:text-2xl text-slate-700 font-semibold leading-relaxed">
-            CortexHive is an AI and digital product studio focused on building practical software, automation and intelligent applications.
+            CortexHive was built around a simple principle: modern businesses don&apos;t need another abstract AI presentation or superficial technology demo. They need working software that solves real problems.
           </p>
 
           <p className="text-slate-600 text-base leading-relaxed font-medium">
-            We operate at the intersection of product engineering, artificial intelligence, and workflow automation. Our mission is to take complex business problems and turn them into robust, reliable, and scalable digital solutions.
+            CortexHive brings together AI, software development, automation and product thinking to turn business problems and product ideas into practical digital solutions.
           </p>
         </div>
 
