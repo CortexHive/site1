@@ -16,6 +16,7 @@ import {
   Loader2,
   Calendar,
   PoundSterling,
+  Mail,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 
@@ -157,6 +158,7 @@ export default function LeadForm() {
     setIsSubmitting(true);
 
     try {
+      // 1. Submit to internal API endpoint (Prisma SQLite, Slack, Resend, Mailjet)
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -172,6 +174,28 @@ export default function LeadForm() {
           timeline: formData.timeline,
         }),
       });
+
+      // 2. Also submit to Netlify Forms (native Netlify form dashboard capture)
+      try {
+        await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({
+            "form-name": "contact",
+            name: formData.name,
+            company: formData.company,
+            email: formData.email,
+            website: formData.website,
+            serviceRequired: formData.serviceRequired,
+            problem: formData.problem,
+            brief: formData.brief,
+            budget: formData.budget,
+            timeline: formData.timeline,
+          }).toString(),
+        });
+      } catch (netlifyErr) {
+        console.warn("Netlify form capture notice:", netlifyErr);
+      }
 
       const data = await res.json();
 
@@ -204,16 +228,80 @@ export default function LeadForm() {
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest mb-4">
-            Project Scoping
+            Project Scoping &amp; Contact
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight mb-4">
             Have a Problem Worth Solving?
           </h2>
           <p className="text-slate-600 text-sm sm:text-base font-medium">
-            Tell us what you&apos;re trying to build, automate or improve. We&apos;ll review your requirements and provide practical feedback within 24 hours.
+            Reach out directly via WhatsApp or email, or complete our structured scoping form. We&apos;ll review your requirements and provide practical feedback within 24 hours.
           </p>
+        </div>
+
+        {/* Quick Connect Options: WhatsApp & Direct Email */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto mb-8">
+          {/* WhatsApp Direct Connect Card */}
+          <a
+            href="https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative p-5 rounded-3xl bg-emerald-50/80 hover:bg-emerald-100/80 border border-emerald-200/80 hover:border-emerald-400 hover:shadow-lg hover:shadow-emerald-500/10 transition-all flex items-center justify-between"
+          >
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform flex-shrink-0">
+                <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.531 1.93.814 2.79.815 3.183 0 5.77-2.586 5.77-5.766.002-3.181-2.583-5.766-5.769-5.766zm3.385 8.163c-.144.407-.837.774-1.171.823-.335.05-.776.082-2.222-.516-1.745-.722-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.793 0-.852.449-1.272.608-1.446.16-.175.348-.218.464-.218.116 0 .232.001.333.006.106.005.249-.04.39.299.144.348.492 1.201.536 1.289.043.087.072.19.014.305-.058.116-.087.189-.174.29-.087.102-.183.228-.261.306-.088.087-.179.182-.077.357.101.174.45 1.743 1.968 2.392.203.087.324.076.445-.062.12-.138.514-.6.652-.804.137-.204.275-.171.464-.101.189.07 1.201.566 1.408.669.207.102.345.153.395.239.05.087.05.503-.094.91zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.981-1.396A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.638 0-3.167-.487-4.448-1.326l-.319-.21-2.955.775.789-2.883-.231-.367C3.937 14.887 3.4 13.487 3.4 12c0-4.742 3.858-8.6 8.6-8.6s8.6 3.858 8.6 8.6-3.858 8.6-8.6 8.6z"/>
+                </svg>
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-bold text-slate-900">Connect on WhatsApp</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-200/70 text-emerald-900">
+                    Fastest
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-medium mt-0.5">
+                  +44 7950 501323 • Direct Chat
+                </p>
+              </div>
+            </div>
+            <ArrowRight className="w-4 h-4 text-emerald-600 group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2" />
+          </a>
+
+          {/* Direct Email Card */}
+          <a
+            href="mailto:info@cortexhive.co.uk?subject=Project%20Enquiry%20-%20CortexHive"
+            className="group relative p-5 rounded-3xl bg-purple-50/80 hover:bg-purple-100/80 border border-purple-200/80 hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/10 transition-all flex items-center justify-between"
+          >
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform flex-shrink-0">
+                <Mail className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-bold text-slate-900">Connect via Email</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-200/70 text-purple-900">
+                    Inbox
+                  </span>
+                </div>
+                <p className="text-xs text-slate-600 font-medium mt-0.5">
+                  info@cortexhive.co.uk • 24hr Reply
+                </p>
+              </div>
+            </div>
+            <ArrowRight className="w-4 h-4 text-purple-600 group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2" />
+          </a>
+        </div>
+
+        {/* Form Separator */}
+        <div className="flex items-center justify-center gap-3 max-w-md mx-auto mb-8">
+          <div className="h-px bg-slate-200 flex-1" />
+          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 whitespace-nowrap">
+            Or Use The Scoping Wizard Below
+          </span>
+          <div className="h-px bg-slate-200 flex-1" />
         </div>
 
         {/* Form Container */}
@@ -249,7 +337,20 @@ export default function LeadForm() {
             </motion.div>
           ) : (
             /* Form Wizard */
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form
+              onSubmit={handleSubmit}
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              className="space-y-8"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+              <p className="hidden">
+                <label>
+                  Don’t fill this out if you&apos;re human: <input name="bot-field" />
+                </label>
+              </p>
               {/* Progress Bar */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-xs text-slate-500 font-bold uppercase tracking-wider">

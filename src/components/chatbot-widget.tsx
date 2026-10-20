@@ -14,7 +14,7 @@ interface Message {
 const PRESETS = [
   "What services do you offer?",
   "How do we get started?",
-  "How fast can you build a SaaS?",
+  "Chat on WhatsApp",
   "I'd like to build custom AI tools",
 ];
 
@@ -202,6 +202,22 @@ export default function ChatbotWidget() {
                   <X className="w-4 h-4" />
                 </button>
               </div>
+            </div>
+
+            {/* Quick WhatsApp connect bar */}
+            <div className="bg-emerald-500/10 border-b border-emerald-500/20 px-3.5 py-1.5 flex items-center justify-between text-xs">
+              <span className="text-emerald-700 font-medium flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Fast-track response
+              </span>
+              <a
+                href="https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1 hover:underline"
+              >
+                Chat on WhatsApp &rarr;
+              </a>
             </div>
 
             {/* Chat Messages */}

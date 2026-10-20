@@ -38,6 +38,11 @@ Real Projects:
 - EVTradeShow: International electric vehicle summit and events directory.
 - AuraPDF: Offline-first client-side PDF productivity software.
 
+Contact Options:
+- WhatsApp Direct Chat: +44 7950 501323 (link: https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project.)
+- Email: info@cortexhive.co.uk
+- If the user asks to speak on WhatsApp or contact directly, immediately provide the WhatsApp phone number and direct link.
+
 Lead Qualifying Information:
 Collect naturally over the conversation:
 - Name
@@ -263,16 +268,18 @@ function handleFallbackSimulation(messages: MessageItem[]) {
   // Simple state machine simulation based on number of user interactions
   const count = userMessages.length;
 
-  if (lastMessage.includes("pricing") || lastMessage.includes("cost") || lastMessage.includes("package")) {
-    reply = "Cortex Hive offers three pricing tiers: **Starter** ($5k+) for MVP builds, **Growth** ($15k+) for fully featured SaaS and Custom AI integrations, and **Enterprise** ($50k+) for scaled operations. What budget range are you planning for your project?";
+  if (lastMessage.includes("whatsapp") || lastMessage.includes("phone") || lastMessage.includes("call") || lastMessage.includes("contact")) {
+    reply = "You can message us directly on WhatsApp at **+44 7950 501323** ([Open WhatsApp Chat](https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project.)) or email us at **info@cortexhive.co.uk**.\n\nAlternatively, tell me what you're looking to build right here and I'll log your requirements!";
+  } else if (lastMessage.includes("pricing") || lastMessage.includes("cost") || lastMessage.includes("package") || lastMessage.includes("budget")) {
+    reply = "Our projects are scoped in clear £ GBP investment tiers:\n- **Under £500**: Rapid automation scripts or focused prototypes\n- **£500–£1,000**: AI workflow integrations and automations\n- **£1,000–£2,500**: Targeted MVPs and custom AI tools\n- **£2,500–£5,000+**: Scaled software platforms and comprehensive systems\n\nWhat budget range are you planning for your project?";
   } else if (lastMessage.includes("service") || lastMessage.includes("what do you do") || lastMessage.includes("capabilities")) {
-    reply = "We design and build bespoke SaaS products, high-fidelity Web Apps, modern marketing Websites, custom AI tools, and UGC/video content campaigns. Which of these services aligns with your goals?";
+    reply = "We specialize in:\n1. **AI Automation** (intelligent workflows, CRM/document bots)\n2. **Custom AI Applications** (specialized business copilots & RAG tools)\n3. **Software & MVP Development** (production web platforms & rapid SaaS MVPs)\n\nWhich of these would you like to explore?";
   } else if (count === 1) {
-    reply = "Welcome to Cortex Hive! 🐝 I'm your AI concierge. I can tell you about our AI-augmented design/development services or pricing. Could you start by sharing your name and what type of project you're thinking of building?";
+    reply = "Welcome to CortexHive! I'm your AI concierge. I can discuss our AI automation, custom software capabilities, or connect you with our engineers.\n\nCould you share your name and what type of project you're planning to build?";
   } else if (count === 2) {
-    reply = "Nice to meet you! To help me understand your project, could you share your business email and your approximate budget range? (e.g. Under $10k, $10k-$30k, or $30k+)";
+    reply = "Great to meet you! To help understand your project scope, could you share your business email and your approximate budget range (e.g., Under £1,000, £1,000–£2,500, £2,500–£5,000+)?";
   } else if (count === 3) {
-    reply = "Thank you! What is your ideal timeline for launching this (e.g., within 1 month, 1-3 months, or more)? Also, please give a brief, 1-sentence summary of what the project needs to do.";
+    reply = "Thank you! What is your ideal launch timeline (e.g. 2–4 weeks, 1–2 months), and a 1-sentence summary of the main problem you want solved?";
   } else {
     // Collect simulated details and save lead
     const name = userMessages[1]?.content?.split(" ").slice(-1)[0] || "Client";
