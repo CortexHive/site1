@@ -42,7 +42,7 @@ export default function About() {
             </div>
 
             <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight leading-tight">
-              An AI & Digital Product Studio.
+              A Modern Digital Solutions Agency.
             </h2>
 
             <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-semibold">

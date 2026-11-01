@@ -115,9 +115,9 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-slate-950 font-outfit tracking-tight leading-[1.08] mb-6"
           >
-            From Business Problem to{" "}
+            Digital Solutions That Move{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
-              Working Product.
+              Your Business Forward.
             </span>
           </motion.h1>
 
@@ -128,7 +128,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium mb-10"
           >
-            CortexHive builds AI-powered applications, intelligent automation and custom software for businesses and ambitious founders.
+            From professional websites to intelligent AI solutions, we help businesses build their digital presence, streamline operations and grow with confidence.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -136,23 +136,35 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3.5"
           >
             <button
               onClick={() => scrollTo("#contact")}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all"
             >
-              <span>Start a Project</span>
+              <span>Get a Free Quote</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
             <button
-              onClick={() => scrollTo("#portfolio")}
+              onClick={() => scrollTo("#services")}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-bold text-sm transition-all"
             >
-              <span>Explore Our Work</span>
+              <span>Explore Our Services</span>
               <ChevronRight className="w-4 h-4 text-slate-500" />
             </button>
+
+            <a
+              href="https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-sm transition-all"
+            >
+              <svg className="w-4 h-4 fill-current text-emerald-600" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.531 1.93.814 2.79.815 3.183 0 5.77-2.586 5.77-5.766.002-3.181-2.583-5.766-5.769-5.766zm3.385 8.163c-.144.407-.837.774-1.171.823-.335.05-.776.082-2.222-.516-1.745-.722-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.793 0-.852.449-1.272.608-1.446.16-.175.348-.218.464-.218.116 0 .232.001.333.006.106.005.249-.04.39.299.144.348.492 1.201.536 1.289.043.087.072.19.014.305-.058.116-.087.189-.174.29-.087.102-.183.228-.261.306-.088.087-.179.182-.077.357.101.174.45 1.743 1.968 2.392.203.087.324.076.445-.062.12-.138.514-.6.652-.804.137-.204.275-.171.464-.101.189.07 1.201.566 1.408.669.207.102.345.153.395.239.05.087.05.503-.094.91zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.981-1.396A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.638 0-3.167-.487-4.448-1.326l-.319-.21-2.955.775.789-2.883-.231-.367C3.937 14.887 3.4 13.487 3.4 12c0-4.742 3.858-8.6 8.6-8.6s8.6 3.858 8.6 8.6-3.858 8.6-8.6 8.6z"/>
+              </svg>
+              <span>Chat on WhatsApp</span>
+            </a>
           </motion.div>
         </div>
 

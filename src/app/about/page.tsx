@@ -70,16 +70,16 @@ export default function AboutPage() {
             What We Build
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
               <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center">
                 <Workflow className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-slate-900 font-outfit">
-                AI Automation
+                Website Design
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                Turning repetitive operations into intelligent workflows — from inquiry triage and document parsing to CRM automation and follow-ups.
+                High-converting responsive websites, from £50 trades starter sites to bespoke multi-page platforms.
               </p>
             </div>
 
@@ -88,10 +88,22 @@ export default function AboutPage() {
                 <Cpu className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-slate-900 font-outfit">
-                Custom AI Applications
+                AI Receptionist
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                Autonomous agent workflows, enterprise RAG knowledge bases, document intelligence, and customer-facing AI products.
+                24/7 conversational voice call answering that captures customer enquiries and texts you instant summaries.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center">
+                <Workflow className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 font-outfit">
+                AI Automation
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                Turning repetitive operations into intelligent workflows — enquiry triage, document OCR, and CRM sync.
               </p>
             </div>
 
@@ -100,10 +112,10 @@ export default function AboutPage() {
                 <Layers className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-slate-900 font-outfit">
-                Software & MVPs
+                Software &amp; MVPs
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                Complete SaaS platforms, client portals, educational technology systems, and minimum viable products delivered for market validation.
+                Complete SaaS platforms, client portals, and bespoke database-driven business systems.
               </p>
             </div>
           </div>

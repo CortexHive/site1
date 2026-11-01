@@ -7,12 +7,20 @@ interface LeadData {
   name: string;
   company?: string;
   email: string;
+  phone?: string;
   website?: string;
   projectType: string;
   problem?: string;
-  budget: string;
-  timeline: string;
+  budget?: string;
+  timeline?: string;
   brief: string;
+  preferredContact?: string;
+  source?: string;
+  // AI Receptionist specific fields
+  businessType?: string;
+  callVolume?: string;
+  currentPhoneSystem?: string;
+  aiFeatures?: string;
 }
 
 async function notifyLead(lead: LeadData) {
@@ -23,7 +31,7 @@ async function notifyLead(lead: LeadData) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          text: `🔥 *New Project Enquiry Received* 🔥\n*Name:* ${lead.name}\n*Company:* ${lead.company || "N/A"}\n*Email:* ${lead.email}\n*Website:* ${lead.website || "N/A"}\n*Service:* ${lead.projectType}\n*Problem to Solve:* ${lead.problem || "N/A"}\n*What to Build:* ${lead.brief}\n*Budget:* ${lead.budget}\n*Timeline:* ${lead.timeline}`,
+          text: `🔥 *New Enquiry Received — CortexHive* 🔥\n*Name:* ${lead.name}\n*Business:* ${lead.company || "N/A"}\n*Email:* ${lead.email}\n*Phone:* ${lead.phone || "N/A"}\n*Service:* ${lead.projectType}\n*Preferred Contact:* ${lead.preferredContact || "Any"}\n*Budget:* ${lead.budget || "N/A"}\n*Details:* ${lead.brief}${lead.callVolume ? `\n*Call Volume:* ${lead.callVolume}` : ""}`,
         }),
       });
     }
@@ -34,17 +42,22 @@ async function notifyLead(lead: LeadData) {
     const adminEmail = process.env.LEAD_NOTIFICATION_EMAIL;
 
     if (adminEmail) {
-      const emailHtml = `<h2>New Project Enquiry — CortexHive</h2>
-                         <p><strong>Name:</strong> ${lead.name}</p>
-                         <p><strong>Company:</strong> ${lead.company || "N/A"}</p>
-                         <p><strong>Email:</strong> ${lead.email}</p>
-                         <p><strong>Website:</strong> ${lead.website || "N/A"}</p>
-                         <p><strong>Service Required:</strong> ${lead.projectType}</p>
-                         <p><strong>Problem to Solve:</strong> ${lead.problem || "N/A"}</p>
-                         <p><strong>What to Build:</strong> ${lead.brief}</p>
-                         <p><strong>Budget:</strong> ${lead.budget}</p>
-                         <p><strong>Timeline:</strong> ${lead.timeline}</p>
-                         <p><em>Submitted via CortexHive Project Enquiry Form</em></p>`;
+      const emailHtml = `<h2>New Business Enquiry — CortexHive</h2>
+                         <p><strong>Name / Contact Person:</strong> ${lead.name}</p>
+                         <p><strong>Business / Company:</strong> ${lead.company || "N/A"}</p>
+                         <p><strong>Email Address:</strong> <a href="mailto:${lead.email}">${lead.email}</a></p>
+                         <p><strong>Phone Number:</strong> ${lead.phone ? `<a href="tel:${lead.phone}">${lead.phone}</a>` : "Not provided"}</p>
+                         <p><strong>Preferred Contact:</strong> ${lead.preferredContact || "Email / Phone"}</p>
+                         <p><strong>Service Requested:</strong> ${lead.projectType}</p>
+                         ${lead.budget ? `<p><strong>Budget / Package:</strong> ${lead.budget}</p>` : ""}
+                         ${lead.timeline ? `<p><strong>Target Timeline:</strong> ${lead.timeline}</p>` : ""}
+                         ${lead.businessType ? `<p><strong>Business Type:</strong> ${lead.businessType}</p>` : ""}
+                         ${lead.callVolume ? `<p><strong>Est. Monthly Call Volume:</strong> ${lead.callVolume}</p>` : ""}
+                         ${lead.currentPhoneSystem ? `<p><strong>Current Phone System:</strong> ${lead.currentPhoneSystem}</p>` : ""}
+                         ${lead.aiFeatures ? `<p><strong>Required AI Features:</strong> ${lead.aiFeatures}</p>` : ""}
+                         <p><strong>Project Requirements / Brief:</strong></p>
+                         <blockquote style="background:#f8fafc;padding:12px;border-left:4px solid #7c3aed;margin:8px 0;">${lead.brief.replace(/\n/g, "<br/>")}</blockquote>
+                         <p><em>Submitted via CortexHive Web Portal (${lead.source || "form"}) on ${new Date().toLocaleString("en-GB")}</em></p>`;
 
       // 1. Resend Dispatch
       if (resendKey) {
@@ -55,9 +68,9 @@ async function notifyLead(lead: LeadData) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "CortexHive Inquiries <info@cortexhive.co.uk>",
+            from: "CortexHive Enquiries <info@cortexhive.co.uk>",
             to: adminEmail,
-            subject: `New Project Enquiry: ${lead.name} (${lead.company || lead.projectType})`,
+            subject: `New Enquiry: ${lead.name} — ${lead.projectType}`,
             html: emailHtml,
           }),
         });
@@ -85,7 +98,7 @@ async function notifyLead(lead: LeadData) {
                     Name: "CortexHive Team",
                   },
                 ],
-                Subject: `New Project Enquiry: ${lead.name} (${lead.company || lead.projectType})`,
+                Subject: `New Enquiry: ${lead.name} — ${lead.projectType}`,
                 HTMLPart: emailHtml,
               },
             ],
@@ -101,12 +114,41 @@ async function notifyLead(lead: LeadData) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, company, email, website, projectType, problem, budget, timeline, brief } = body;
+    const {
+      name,
+      contactPerson,
+      company,
+      businessName,
+      email,
+      phone,
+      website,
+      projectType,
+      serviceRequired,
+      problem,
+      budget,
+      timeline,
+      brief,
+      requirements,
+      notes,
+      preferredContact,
+      businessType,
+      callVolume,
+      currentPhoneSystem,
+      aiFeatures,
+      source = "form",
+    } = body;
+
+    const leadName = name || contactPerson;
+    const leadCompany = company || businessName || "";
+    const leadService = projectType || serviceRequired || "General Enquiry";
+    const leadBrief = brief || requirements || notes || "No additional brief provided";
+    const leadBudget = budget || "Standard / Disclosed in Discovery";
+    const leadTimeline = timeline || "Standard";
 
     // Server-side validation
-    if (!name || !email || !projectType || !budget || !timeline || !brief) {
+    if (!leadName || !email) {
       return NextResponse.json(
-        { error: "Please fill in all required fields (Name, Email, Service, Brief, Budget, Timeline)." },
+        { error: "Please provide your name and a valid email address." },
         { status: 400 }
       );
     }
@@ -118,21 +160,32 @@ export async function POST(req: Request) {
       );
     }
 
+    // Compose formatted note for database storage preserving schema
+    const formattedProblem = [
+      phone ? `Phone: ${phone}` : null,
+      preferredContact ? `Preferred Contact: ${preferredContact}` : null,
+      businessType ? `Industry: ${businessType}` : null,
+      callVolume ? `Call Volume: ${callVolume}` : null,
+      problem || null,
+    ]
+      .filter(Boolean)
+      .join(" | ");
+
     // Save lead to SQLite database via Prisma
     let leadId: number | string = "fallback-id-" + Date.now();
     try {
       const lead = await prisma.lead.create({
         data: {
-          name,
-          company: company || null,
+          name: leadName,
+          company: leadCompany || null,
           email,
           website: website || null,
-          projectType,
-          problem: problem || null,
-          budget,
-          timeline,
-          brief,
-          source: "form",
+          projectType: leadService,
+          problem: formattedProblem || null,
+          budget: leadBudget,
+          timeline: leadTimeline,
+          brief: leadBrief,
+          source: source,
         },
       });
       leadId = lead.id;
@@ -144,16 +197,22 @@ export async function POST(req: Request) {
     if (isFirebaseConfigured && db) {
       try {
         await addDoc(collection(db, "leads"), {
-          name,
-          company: company || "",
+          name: leadName,
+          company: leadCompany,
           email,
+          phone: phone || "",
           website: website || "",
-          projectType,
-          problem: problem || "",
-          budget,
-          timeline,
-          brief,
-          source: "form",
+          projectType: leadService,
+          problem: formattedProblem,
+          budget: leadBudget,
+          timeline: leadTimeline,
+          brief: leadBrief,
+          preferredContact: preferredContact || "",
+          businessType: businessType || "",
+          callVolume: callVolume || "",
+          currentPhoneSystem: currentPhoneSystem || "",
+          aiFeatures: aiFeatures || "",
+          source: source,
           createdAt: new Date().toISOString(),
         });
       } catch (fbError) {
@@ -162,7 +221,24 @@ export async function POST(req: Request) {
     }
 
     // Trigger optional Slack / Email notifications asynchronously
-    notifyLead({ name, company, email, website, projectType, problem, budget, timeline, brief });
+    notifyLead({
+      name: leadName,
+      company: leadCompany,
+      email,
+      phone,
+      website,
+      projectType: leadService,
+      problem: formattedProblem,
+      budget: leadBudget,
+      timeline: leadTimeline,
+      brief: leadBrief,
+      preferredContact,
+      businessType,
+      callVolume,
+      currentPhoneSystem,
+      aiFeatures,
+      source,
+    });
 
     return NextResponse.json({ success: true, leadId });
   } catch (error) {

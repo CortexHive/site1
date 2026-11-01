@@ -5,19 +5,52 @@
   <title>Netlify Forms Detector</title>
 </head>
 <body>
-  <!-- This hidden static form allows Netlify to register the form during build time -->
+  <!-- Netlify Form Detection during static build -->
+  
+  <!-- 1. Primary Multi-Channel Contact & Project Enquiry Form -->
   <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
     <input type="hidden" name="form-name" value="contact" />
     <input type="text" name="bot-field" />
     <input type="text" name="name" />
     <input type="text" name="company" />
     <input type="email" name="email" />
+    <input type="tel" name="phone" />
     <input type="url" name="website" />
     <input type="text" name="serviceRequired" />
+    <input type="text" name="budget" />
+    <input type="text" name="preferredContact" />
     <textarea name="problem"></textarea>
     <textarea name="brief"></textarea>
-    <input type="text" name="budget" />
     <input type="text" name="timeline" />
+  </form>
+
+  <!-- 2. Dedicated AI Receptionist Enquiry & Demo Request Form -->
+  <form name="ai-receptionist" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="ai-receptionist" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="businessName" />
+    <input type="text" name="contactPerson" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="text" name="businessType" />
+    <input type="text" name="callVolume" />
+    <input type="text" name="currentPhoneSystem" />
+    <input type="text" name="aiFeatures" />
+    <textarea name="notes"></textarea>
+  </form>
+
+  <!-- 3. Dedicated £50 Small Business Starter Website Form -->
+  <form name="small-business-quote" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="small-business-quote" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="businessName" />
+    <input type="text" name="contactPerson" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="text" name="tradeOrIndustry" />
+    <input type="text" name="package" />
+    <input type="text" name="preferredContact" />
+    <textarea name="requirements"></textarea>
   </form>
 </body>
 </html>

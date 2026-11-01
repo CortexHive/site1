@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Bot,
@@ -20,6 +21,7 @@ interface ServicePillar {
   tagline: string;
   ctaText: string;
   serviceCategory: string;
+  pageUrl: string;
   overview: string;
   useCases: string[];
   deliverables: string[];
@@ -35,6 +37,7 @@ const PRIMARY_SERVICES: ServicePillar[] = [
     tagline: "Turn repetitive processes into intelligent workflows.",
     ctaText: "Start a Project",
     serviceCategory: "AI Automation",
+    pageUrl: "/ai-automation",
     overview:
       "We help businesses automate manual, repetitive operational processes by integrating specialized AI models, webhooks, and autonomous processing pipelines directly into their existing software stack.",
     useCases: [
@@ -59,44 +62,46 @@ const PRIMARY_SERVICES: ServicePillar[] = [
     id: "custom-ai-apps",
     number: "02",
     icon: Cpu,
-    title: "Custom AI Applications",
-    tagline: "Put AI to work inside your business.",
+    title: "AI Receptionist & Custom AI",
+    tagline: "Never miss a call & put AI to work in your business.",
     ctaText: "Start a Project",
     serviceCategory: "AI Application",
+    pageUrl: "/ai-receptionist",
     overview:
-      "We build practical, high-utility AI applications engineered around real business problems. From document intelligence and vector knowledge bases to multi-agent reasoning systems, we make AI genuinely useful.",
+      "We build practical AI systems, from 24/7 conversational voice receptionists that pick up customer calls to document intelligence and vector knowledge bases engineered around real business problems.",
     useCases: [
+      "24/7 AI Receptionist & incoming call answering",
       "Custom business AI assistants & copilot interfaces",
-      "Autonomous multi-agent task execution workflows",
       "Vector search (RAG) over company documentation",
-      "Document intelligence & legal/technical analysis",
-      "Intelligent recommendation engines",
+      "Document intelligence & technical analysis",
       "Customer-facing conversational AI portals",
+      "Lead qualification & instant SMS alerts",
       "Internal operational decision-support dashboards",
-      "AI-assisted structured content generation",
+      "Autonomous multi-agent task execution",
     ],
     deliverables: [
+      "Twilio / ElevenLabs telephony integration",
+      "Custom conversational voice workflows",
       "Vector database embeddings & indexing pipeline",
-      "Custom multi-agent orchestration architecture",
       "Deployment-ready web UI & API endpoints",
-      "Strict data privacy & security isolation",
     ],
-    techStack: ["LangChain", "VectorDB / pgvector", "Next.js", "FastAPI", "TypeScript"],
+    techStack: ["Twilio", "ElevenLabs", "LangChain", "Next.js", "TypeScript"],
   },
   {
     id: "software-mvp",
     number: "03",
     icon: Layers,
-    title: "Software & MVP Development",
-    tagline: "Turn your idea into a working product.",
+    title: "Websites & Software Development",
+    tagline: "From £50 starter sites to bespoke web software.",
     ctaText: "Start a Project",
     serviceCategory: "Software / MVP",
+    pageUrl: "/software-development",
     overview:
-      "We take software ideas from concept to deployment-ready digital products built for real-world use. We engineer scalable web applications, SaaS platforms, internal business portals, and validated MVPs designed for real user adoption.",
+      "We take software ideas and business websites from concept to deployment-ready digital products. From affordable starter websites for trades to full-stack SaaS platforms and internal portals.",
     useCases: [
+      "£50 small business & trades starter websites",
+      "High-performance responsive company websites",
       "Full-stack SaaS platforms with subscription billing",
-      "High-performance responsive web applications",
-      "Online marketplaces & directory platforms",
       "Custom client portals & administration dashboards",
       "EdTech & structured assessment platforms",
       "Internal bespoke business management systems",
@@ -257,13 +262,22 @@ export default function Services() {
 
                 {/* Card Actions */}
                 <div className="pt-6 border-t border-slate-100 mt-6 space-y-3">
-                  <button
-                    onClick={() => toggleExpand(service.id)}
-                    className="w-full text-xs font-bold text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1.5 py-1.5 transition-colors"
-                  >
-                    <span>{isExpanded ? "Show Less" : "View Full Scope & Stack"}</span>
-                    {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-                  </button>
+                  <div className="flex items-center justify-between text-xs font-bold">
+                    <button
+                      onClick={() => toggleExpand(service.id)}
+                      className="text-slate-600 hover:text-slate-900 flex items-center gap-1 py-1 transition-colors"
+                    >
+                      <span>{isExpanded ? "Less Details" : "Technical Stack"}</span>
+                      {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                    </button>
+                    <Link
+                      href={service.pageUrl}
+                      className="text-purple-600 hover:text-purple-700 flex items-center gap-1 group py-1"
+                    >
+                      <span>Dedicated Page</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </Link>
+                  </div>
 
                   <button
                     onClick={scrollToContact}
@@ -276,6 +290,26 @@ export default function Services() {
               </motion.div>
             );
           })}
+        </div>
+
+        {/* Quick Links to All Specialized Service Pages */}
+        <div className="mt-14 pt-8 border-t border-slate-200/80 flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-xs font-semibold text-slate-700">
+          <span className="text-slate-400 font-bold uppercase tracking-wider text-[11px]">Explore All Services:</span>
+          <Link href="/website-design" className="px-3.5 py-1.5 rounded-full bg-white border border-slate-200 hover:border-purple-300 hover:text-purple-600 transition-colors shadow-2xs">
+            Website Design
+          </Link>
+          <Link href="/small-business-websites" className="px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 hover:bg-emerald-100 transition-colors shadow-2xs">
+            £50 Trades Websites
+          </Link>
+          <Link href="/ai-receptionist" className="px-3.5 py-1.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 hover:bg-cyan-100 transition-colors shadow-2xs">
+            AI Receptionist
+          </Link>
+          <Link href="/ai-automation" className="px-3.5 py-1.5 rounded-full bg-white border border-slate-200 hover:border-purple-300 hover:text-purple-600 transition-colors shadow-2xs">
+            AI Automation
+          </Link>
+          <Link href="/software-development" className="px-3.5 py-1.5 rounded-full bg-white border border-slate-200 hover:border-purple-300 hover:text-purple-600 transition-colors shadow-2xs">
+            Software Development
+          </Link>
         </div>
       </div>
     </section>

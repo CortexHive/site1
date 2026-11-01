@@ -3,11 +3,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Cpu,
   Layers,
   Globe,
   Bot,
-  Laptop,
   HelpCircle,
   ArrowRight,
   ArrowLeft,
@@ -17,90 +15,102 @@ import {
   Calendar,
   PoundSterling,
   Mail,
+  Phone,
+  Sparkles,
 } from "lucide-react";
 import confetti from "canvas-confetti";
+import { SITE_CONFIG } from "@/lib/config";
 
 export type ProjectEnquiryData = {
   name: string;
   company: string;
   email: string;
+  phone: string;
   website: string;
   serviceRequired: string;
   problem: string;
   brief: string;
   budget: string;
   timeline: string;
+  preferredContact: string;
 };
 
 const INITIAL_DATA: ProjectEnquiryData = {
   name: "",
   company: "",
   email: "",
+  phone: "",
   website: "",
-  serviceRequired: "",
+  serviceRequired: "Website Design",
   problem: "",
   brief: "",
-  budget: "",
-  timeline: "",
+  budget: "Under £500",
+  timeline: "Within 1 Month",
+  preferredContact: "WhatsApp",
 };
 
-const SERVICES = [
+export const SERVICES = [
   {
-    id: "AI Automation",
-    label: "AI Automation",
-    desc: "Intelligent workflows, enquiry routing, document & CRM automation",
-    icon: Bot,
-  },
-  {
-    id: "AI Application",
-    label: "AI Application",
-    desc: "Autonomous agents, knowledge bases, document intelligence, RAG",
-    icon: Cpu,
-  },
-  {
-    id: "Software / MVP",
-    label: "Software / MVP",
-    desc: "End-to-end software product, minimum viable product, full prototype",
-    icon: Layers,
-  },
-  {
-    id: "Web Application",
-    label: "Web Application",
-    desc: "High-performance web apps, dashboards, customer portals, SaaS",
+    id: "Website Design",
+    label: "Website Design & Development",
+    desc: "Bespoke company websites, conversion landing pages, and web redesigns.",
     icon: Globe,
   },
   {
-    id: "Digital Platform",
-    label: "Digital Platform",
-    desc: "Community platforms, directories, online marketplaces, tools",
-    icon: Laptop,
+    id: "£50 Small Business Website",
+    label: "£50 Small Business Starter Website",
+    desc: "Professional 1-page site for tradespeople, builders, plumbers, cleaners, and local services.",
+    icon: Sparkles,
+  },
+  {
+    id: "AI Receptionist",
+    label: "AI Receptionist & Call Answering",
+    desc: "24/7 AI answering service that picks up calls, answers FAQs, and captures customer leads.",
+    icon: Phone,
+  },
+  {
+    id: "AI Automation",
+    label: "AI & Business Automation",
+    desc: "Intelligent workflows, CRM sync, enquiry triage, and document extraction pipelines.",
+    icon: Bot,
+  },
+  {
+    id: "Software Development",
+    label: "Custom Software Development",
+    desc: "Full-stack SaaS MVPs, client portals, internal dashboards, and database systems.",
+    icon: Layers,
   },
   {
     id: "Other",
-    label: "Other / Consultation",
-    desc: "Technical discovery, architecture audit, or bespoke requirement",
+    label: "Other / Technical Discovery",
+    desc: "Architecture audit, technology consulting, or bespoke digital transformation.",
     icon: HelpCircle,
   },
 ];
 
 const BUDGET_RANGES = [
+  { id: "£50 Starter Package", label: "£50 Starter Package", desc: "For trades & small business 1-page websites" },
   { id: "Under £500", label: "Under £500", desc: "Small automation task or prototype scope" },
-  { id: "£500–£1,000", label: "£500 – £1,000", desc: "Targeted workflow automation or simple app feature" },
-  { id: "£1,000–£2,500", label: "£1,000 – £2,500", desc: "Custom AI tool, focused MVP, or web application" },
+  { id: "£500–£1,000", label: "£500 – £1,000", desc: "Targeted workflow automation or standard web development" },
+  { id: "£1,000–£2,500", label: "£1,000 – £2,500", desc: "Custom AI tool, focused MVP, or multi-page business platform" },
   { id: "£2,500–£5,000", label: "£2,500 – £5,000", desc: "Comprehensive software product or multi-agent system" },
   { id: "£5,000+", label: "£5,000+", desc: "Full-scale platform development and complex architecture" },
 ];
 
 const TIMELINES = [
-  { id: "ASAP", label: "ASAP", desc: "Immediate start required" },
+  { id: "ASAP", label: "ASAP (Within 7 days)", desc: "Immediate start required" },
   { id: "Within 1 Month", label: "Within 1 Month", desc: "Active scoping in progress" },
   { id: "1–3 Months", label: "1 – 3 Months", desc: "Planned product milestone" },
   { id: "Flexible", label: "Flexible", desc: "Exploring options and architecture" },
 ];
 
-export default function LeadForm() {
+export default function LeadForm({ defaultService }: { defaultService?: string }) {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<ProjectEnquiryData>(INITIAL_DATA);
+  const [formData, setFormData] = useState<ProjectEnquiryData>({
+    ...INITIAL_DATA,
+    serviceRequired: defaultService || INITIAL_DATA.serviceRequired,
+    budget: defaultService === "£50 Small Business Website" ? "£50 Starter Package" : INITIAL_DATA.budget,
+  });
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -110,7 +120,7 @@ export default function LeadForm() {
     setError(null);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     setError(null);
@@ -149,8 +159,8 @@ export default function LeadForm() {
       setError("Please provide a valid business email address.");
       return;
     }
-    if (!formData.brief.trim() || formData.brief.trim().length < 10) {
-      setError("Please describe what you are trying to build (at least 10 characters).");
+    if (!formData.brief.trim() || formData.brief.trim().length < 8) {
+      setError("Please describe what you are looking to build or achieve (at least 8 characters).");
       return;
     }
 
@@ -166,16 +176,18 @@ export default function LeadForm() {
           name: formData.name,
           company: formData.company,
           email: formData.email,
+          phone: formData.phone,
           website: formData.website,
           projectType: formData.serviceRequired,
           problem: formData.problem,
           brief: formData.brief,
           budget: formData.budget,
           timeline: formData.timeline,
+          preferredContact: formData.preferredContact,
         }),
       });
 
-      // 2. Also submit to Netlify Forms (native Netlify form dashboard capture)
+      // 2. Dual submit to Netlify Forms (native Netlify dashboard capture)
       try {
         await fetch("/", {
           method: "POST",
@@ -185,12 +197,14 @@ export default function LeadForm() {
             name: formData.name,
             company: formData.company,
             email: formData.email,
+            phone: formData.phone,
             website: formData.website,
             serviceRequired: formData.serviceRequired,
-            problem: formData.problem,
-            brief: formData.brief,
             budget: formData.budget,
             timeline: formData.timeline,
+            preferredContact: formData.preferredContact,
+            problem: formData.problem,
+            brief: formData.brief,
           }).toString(),
         });
       } catch (netlifyErr) {
@@ -200,7 +214,7 @@ export default function LeadForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || "Failed to submit project enquiry.");
+        throw new Error(data.error || "Failed to submit enquiry.");
       }
 
       setIsSubmitted(true);
@@ -208,7 +222,7 @@ export default function LeadForm() {
         particleCount: 120,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ["#7c3aed", "#06b6d4", "#3b82f6"],
+        colors: ["#7c3aed", "#06b6d4", "#25D366"],
       });
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : "Failed to submit. Please try again.";
@@ -218,52 +232,46 @@ export default function LeadForm() {
     }
   };
 
-  const progressPercent = (step / 4) * 100;
-
   return (
-    <section id="contact" className="py-24 bg-white relative overflow-hidden">
-      {/* Decorative blurred backdrop glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/5 rounded-full filter blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/5 rounded-full filter blur-[140px] pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
+    <section id="contact" className="py-24 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest mb-4">
-            Project Scoping &amp; Contact
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest mb-3">
+            Start a Project
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight mb-4">
-            Have a Problem Worth Solving?
+            Get a Free Quote or Scoping Call.
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base font-medium">
-            Reach out directly via WhatsApp or email, or complete our structured scoping form. We&apos;ll review your requirements and provide practical feedback within 24 hours.
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
+            Tell us about your business goals. We review requirements within 24 hours and provide transparent scope, timeline, and fixed pricing options.
           </p>
         </div>
 
-        {/* Quick Connect Options: WhatsApp & Direct Email */}
+        {/* Quick Connect Options (WhatsApp & Email Direct) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto mb-8">
-          {/* WhatsApp Direct Connect Card */}
+          {/* WhatsApp Direct Chat Card */}
           <a
-            href="https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project."
+            href={SITE_CONFIG.getWhatsAppLink("quote")}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative p-5 rounded-3xl bg-emerald-50/80 hover:bg-emerald-100/80 border border-emerald-200/80 hover:border-emerald-400 hover:shadow-lg hover:shadow-emerald-500/10 transition-all flex items-center justify-between"
           >
             <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform flex-shrink-0">
+              <div className="w-12 h-12 rounded-2xl bg-[#25D366] text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform flex-shrink-0">
                 <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
                   <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.531 1.93.814 2.79.815 3.183 0 5.77-2.586 5.77-5.766.002-3.181-2.583-5.766-5.769-5.766zm3.385 8.163c-.144.407-.837.774-1.171.823-.335.05-.776.082-2.222-.516-1.745-.722-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.793 0-.852.449-1.272.608-1.446.16-.175.348-.218.464-.218.116 0 .232.001.333.006.106.005.249-.04.39.299.144.348.492 1.201.536 1.289.043.087.072.19.014.305-.058.116-.087.189-.174.29-.087.102-.183.228-.261.306-.088.087-.179.182-.077.357.101.174.45 1.743 1.968 2.392.203.087.324.076.445-.062.12-.138.514-.6.652-.804.137-.204.275-.171.464-.101.189.07 1.201.566 1.408.669.207.102.345.153.395.239.05.087.05.503-.094.91zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.981-1.396A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.638 0-3.167-.487-4.448-1.326l-.319-.21-2.955.775.789-2.883-.231-.367C3.937 14.887 3.4 13.487 3.4 12c0-4.742 3.858-8.6 8.6-8.6s8.6 3.858 8.6 8.6-3.858 8.6-8.6 8.6z"/>
                 </svg>
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-slate-900">Connect on WhatsApp</span>
+                  <span className="text-sm font-bold text-slate-900">Chat on WhatsApp</span>
                   <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-200/70 text-emerald-900">
                     Fastest
                   </span>
                 </div>
                 <p className="text-xs text-slate-600 font-medium mt-0.5">
-                  +44 7950 501323 • Direct Chat
+                  {SITE_CONFIG.phoneDisplay} • Direct Reply
                 </p>
               </div>
             </div>
@@ -287,7 +295,7 @@ export default function LeadForm() {
                   </span>
                 </div>
                 <p className="text-xs text-slate-600 font-medium mt-0.5">
-                  info@cortexhive.co.uk • 24hr Reply
+                  {SITE_CONFIG.email} • 24hr Reply
                 </p>
               </div>
             </div>
@@ -299,7 +307,7 @@ export default function LeadForm() {
         <div className="flex items-center justify-center gap-3 max-w-md mx-auto mb-8">
           <div className="h-px bg-slate-200 flex-1" />
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 whitespace-nowrap">
-            Or Use The Scoping Wizard Below
+            Or Complete The Scoping Form Below
           </span>
           <div className="h-px bg-slate-200 flex-1" />
         </div>
@@ -321,9 +329,26 @@ export default function LeadForm() {
               </h3>
               <p className="text-slate-600 text-sm sm:text-base max-w-lg mb-8 leading-relaxed font-medium">
                 Thank you, <strong className="text-slate-900">{formData.name}</strong>. We have received your enquiry regarding{" "}
-                <strong className="text-purple-600">{formData.serviceRequired}</strong>. A product engineer will review your requirements and reach out to{" "}
+                <strong className="text-purple-600">{formData.serviceRequired}</strong>. Our team will review your requirements and reach out to{" "}
                 <strong className="text-slate-900">{formData.email}</strong> within 24 hours.
               </p>
+
+              {/* Optional Instant WhatsApp follow up */}
+              <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 max-w-md w-full mb-6">
+                <p className="text-xs text-emerald-900 font-semibold mb-3">
+                  Want an immediate update or have urgent questions?
+                </p>
+                <a
+                  href={SITE_CONFIG.getWhatsAppLink("quote")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold transition-all shadow-sm"
+                >
+                  <span>Follow Up on WhatsApp Now</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+
               <button
                 onClick={() => {
                   setFormData(INITIAL_DATA);
@@ -345,44 +370,44 @@ export default function LeadForm() {
               netlify-honeypot="bot-field"
               className="space-y-8"
             >
+              {/* Hidden Netlify Inputs */}
               <input type="hidden" name="form-name" value="contact" />
-              <p className="hidden">
-                <label>
-                  Don’t fill this out if you&apos;re human: <input name="bot-field" />
-                </label>
-              </p>
-              {/* Progress Bar */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs text-slate-500 font-bold uppercase tracking-wider">
-                  <span>Step {step} of 4</span>
-                  <span className="text-purple-600">
-                    {step === 1 && "Service Required"}
-                    {step === 2 && "Estimated Budget"}
-                    {step === 3 && "Target Timeline"}
-                    {step === 4 && "Project Details & Contact"}
-                  </span>
-                </div>
-                <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-gradient-to-r from-purple-600 to-cyan-500"
-                    initial={{ width: "25%" }}
-                    animate={{ width: `${progressPercent}%` }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </div>
+              <input type="hidden" name="bot-field" />
+
+              {/* Progress Bar / Steps Header */}
+              <div className="flex items-center justify-between border-b border-slate-100 pb-5">
+                {[
+                  { num: 1, label: "Service" },
+                  { num: 2, label: "Budget" },
+                  { num: 3, label: "Timeline" },
+                  { num: 4, label: "Details" },
+                ].map((s) => (
+                  <div key={s.num} className="flex items-center gap-2">
+                    <div
+                      className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
+                        step === s.num
+                          ? "bg-purple-600 text-white"
+                          : step > s.num
+                          ? "bg-emerald-500 text-white"
+                          : "bg-slate-100 text-slate-500"
+                      }`}
+                    >
+                      {step > s.num ? "✓" : s.num}
+                    </div>
+                    <span
+                      className={`text-xs font-semibold hidden sm:inline ${
+                        step === s.num ? "text-slate-900" : "text-slate-400"
+                      }`}
+                    >
+                      {s.label}
+                    </span>
+                  </div>
+                ))}
               </div>
 
-              {/* Error Message */}
-              {error && (
-                <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-700 flex items-center gap-2 font-medium">
-                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                  <span>{error}</span>
-                </div>
-              )}
-
-              {/* Wizard Steps */}
+              {/* STEP CONTENT */}
               <AnimatePresence mode="wait">
-                {/* STEP 1: SERVICE REQUIRED */}
+                {/* STEP 1: SERVICE */}
                 {step === 1 && (
                   <motion.div
                     key="step-1"
@@ -396,7 +421,7 @@ export default function LeadForm() {
                         What service are you looking for?
                       </h3>
                       <p className="text-xs text-slate-500 font-medium">
-                        Select the primary area of focus for your project.
+                        Select the primary solution that matches your current business requirements.
                       </p>
                     </div>
 
@@ -451,7 +476,7 @@ export default function LeadForm() {
                         What is your estimated budget?
                       </h3>
                       <p className="text-xs text-slate-500 font-medium">
-                        This helps us recommend the most appropriate architecture and scoping model.
+                        This helps us recommend the most appropriate scope and architecture without surprise costs.
                       </p>
                     </div>
 
@@ -510,7 +535,7 @@ export default function LeadForm() {
                         When do you need this delivered?
                       </h3>
                       <p className="text-xs text-slate-500 font-medium">
-                        Select your target delivery or launch timeline.
+                        Select your target launch date or operational deadline.
                       </p>
                     </div>
 
@@ -561,17 +586,17 @@ export default function LeadForm() {
                   >
                     <div>
                       <h3 className="text-lg font-bold text-slate-950 font-outfit mb-1">
-                        Tell us about your project & contact details
+                        Your Contact & Project Details
                       </h3>
                       <p className="text-xs text-slate-500 font-medium">
-                        Give us the core details so we can understand the problem and architecture.
+                        Provide your contact information and requirements so our specialists can prepare your proposal.
                       </p>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold text-slate-800">
-                          Your Name <span className="text-purple-600">*</span>
+                          Full Name <span className="text-purple-600">*</span>
                         </label>
                         <input
                           type="text"
@@ -586,21 +611,21 @@ export default function LeadForm() {
 
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold text-slate-800">
-                          Company / Organisation
+                          Business / Trading Name
                         </label>
                         <input
                           type="text"
                           name="company"
                           value={formData.company}
                           onChange={handleChange}
-                          placeholder="e.g. Acme Tech"
+                          placeholder="e.g. Morgan Electricals"
                           className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
                         />
                       </div>
 
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold text-slate-800">
-                          Business Email <span className="text-purple-600">*</span>
+                          Email Address <span className="text-purple-600">*</span>
                         </label>
                         <input
                           type="email"
@@ -608,21 +633,53 @@ export default function LeadForm() {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          placeholder="alex@company.com"
+                          placeholder="alex@example.co.uk"
                           className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
                         />
                       </div>
 
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold text-slate-800">
-                          Current Website (if applicable)
+                          Telephone / Mobile Number
+                        </label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder="e.g. 07950 501323"
+                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-bold text-slate-800">
+                          Preferred Contact Method
+                        </label>
+                        <select
+                          name="preferredContact"
+                          value={formData.preferredContact}
+                          onChange={handleChange}
+                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                        >
+                          <option value="WhatsApp">WhatsApp (Fastest)</option>
+                          <option value="Email">Email</option>
+                          <option value="Phone">Phone Call</option>
+                        </select>
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-bold text-slate-800">
+                          Existing Website (if any)
                         </label>
                         <input
                           type="text"
                           name="website"
                           value={formData.website}
                           onChange={handleChange}
-                          placeholder="https://example.com"
+                          placeholder="https://example.co.uk"
                           className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
                         />
                       </div>
@@ -630,21 +687,7 @@ export default function LeadForm() {
 
                     <div className="space-y-1.5">
                       <label className="text-xs font-bold text-slate-800">
-                        What problem are you trying to solve?
-                      </label>
-                      <input
-                        type="text"
-                        name="problem"
-                        value={formData.problem}
-                        onChange={handleChange}
-                        placeholder="e.g. Manual customer enquiry intake is consuming 15 hours a week..."
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
-                      />
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-slate-800">
-                        What are you trying to build? <span className="text-purple-600">*</span>
+                        Project Description &amp; Requirements <span className="text-purple-600">*</span>
                       </label>
                       <textarea
                         name="brief"
@@ -652,21 +695,36 @@ export default function LeadForm() {
                         required
                         value={formData.brief}
                         onChange={handleChange}
-                        placeholder="Briefly describe the key functionality, users, and desired outcome..."
+                        placeholder="Tell us what you need built, any key features, or what business challenge you want solved..."
                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors resize-none"
                       />
+                    </div>
+
+                    {/* Privacy & Consent Notice */}
+                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-500 leading-relaxed">
+                      By submitting, you consent to CortexHive processing your details in accordance with our{" "}
+                      <a href="/privacy" className="underline hover:text-slate-800">Privacy Policy</a>{" "}
+                      to respond to your enquiry. We never share your data with third parties.
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              {/* Navigation Controls */}
-              <div className="flex justify-between items-center pt-4 border-t border-slate-100">
+              {/* Error Alert */}
+              {error && (
+                <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 flex items-center gap-2.5 text-xs text-red-700">
+                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                  <span>{error}</span>
+                </div>
+              )}
+
+              {/* Controls */}
+              <div className="flex items-center justify-between pt-4 border-t border-slate-100">
                 {step > 1 ? (
                   <button
                     type="button"
                     onClick={prevStep}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 transition-colors"
                   >
                     <ArrowLeft className="w-3.5 h-3.5" />
                     <span>Back</span>
@@ -679,16 +737,16 @@ export default function LeadForm() {
                   <button
                     type="button"
                     onClick={nextStep}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-purple-600 hover:bg-purple-700 text-xs font-bold text-white transition-all shadow-md hover:shadow-lg"
                   >
                     <span>Next Step</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 ) : (
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all disabled:opacity-50"
+                    className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-purple-600 hover:bg-purple-700 text-xs font-bold text-white transition-all shadow-md hover:shadow-lg disabled:opacity-50"
                   >
                     {isSubmitting ? (
                       <>
@@ -697,8 +755,8 @@ export default function LeadForm() {
                       </>
                     ) : (
                       <>
-                        <span>Request a Project Estimate</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <span>Submit Project Enquiry</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
                       </>
                     )}
                   </button>

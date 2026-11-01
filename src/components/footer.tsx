@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { ArrowRight, Loader2, Sparkles } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/config";
 
 const TwitterIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -33,62 +31,14 @@ const WhatsappIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
 );
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [message, setMessage] = useState("");
-  const router = useRouter();
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    } else {
-      router.push("/" + href);
-    }
-  };
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-
-    setStatus("loading");
-    setMessage("");
-
-    try {
-      const res = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Subscription failed.");
-      }
-
-      setStatus("success");
-      setMessage(data.message || "Thank you for subscribing!");
-      setEmail("");
-    } catch (err) {
-      setStatus("error");
-      const errMsg = err instanceof Error ? err.message : "Something went wrong. Please try again.";
-      setMessage(errMsg);
-    }
-  };
-
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-55 bg-slate-50 border-t border-slate-200 pt-20 pb-8 relative overflow-hidden">
-      {/* Decorative gradient glowing backdrop */}
-      <div className="absolute bottom-0 left-10 w-[300px] h-[300px] bg-hive-purple/5 rounded-full filter blur-[100px] pointer-events-none" />
-
+    <footer className="bg-slate-50 border-t border-slate-200 pt-20 pb-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
           {/* Brand Info */}
-          <div className="space-y-6">
+          <div className="lg:col-span-2 space-y-5">
             <Link href="/" className="flex items-center gap-2.5 group font-outfit">
               <svg className="w-5 h-5 text-hive-cyan transition-transform duration-300 group-hover:rotate-30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" />
@@ -100,15 +50,15 @@ export default function Footer() {
                   <span className="font-black text-gradient ml-1">HIVE</span>
                 </span>
                 <span className="text-[7.5px] uppercase tracking-[0.28em] text-slate-400 font-bold -mt-1 font-spaceGrotesk">
-                  AI &amp; Software Studio
+                  Digital Solutions Agency
                 </span>
               </div>
             </Link>
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
-              From Business Problem to Working Product. We build custom AI applications, automation workflows, and production software.
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal max-w-sm">
+              Digital Solutions That Move Your Business Forward. We build professional websites, £50 starter sites for trades, 24/7 AI receptionists, and custom software systems.
             </p>
-            <div className="flex items-center gap-4 text-slate-500">
-              <a href="https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" className="hover:text-emerald-500 transition-colors" aria-label="WhatsApp">
+            <div className="flex items-center gap-4 text-slate-500 pt-1">
+              <a href={SITE_CONFIG.getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-500 transition-colors" aria-label="WhatsApp">
                 <WhatsappIcon />
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-hive-cyan transition-colors" aria-label="Twitter">
@@ -123,21 +73,24 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Solutions & Services */}
           <div className="space-y-4">
-            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Navigation</h4>
-            <ul className="space-y-2.5 text-sm text-slate-600 font-medium">
+            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-spaceGrotesk">Solutions</h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-slate-600 font-medium">
               <li>
-                <a href="#services" onClick={(e) => handleNavClick(e, "#services")} className="hover:text-slate-950 transition-colors">Services</a>
+                <Link href="/website-design" className="hover:text-slate-950 transition-colors">Website Design</Link>
               </li>
               <li>
-                <a href="#portfolio" onClick={(e) => handleNavClick(e, "#portfolio")} className="hover:text-slate-950 transition-colors">Portfolio</a>
+                <Link href="/small-business-websites" className="hover:text-emerald-700 font-semibold text-emerald-600 transition-colors">£50 Trades Websites</Link>
               </li>
               <li>
-                <a href="#process" onClick={(e) => handleNavClick(e, "#process")} className="hover:text-slate-950 transition-colors">Our Process</a>
+                <Link href="/ai-receptionist" className="hover:text-slate-950 transition-colors">AI Receptionist</Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-slate-950 transition-colors">About Studio</Link>
+                <Link href="/ai-automation" className="hover:text-slate-950 transition-colors">AI &amp; Automation</Link>
+              </li>
+              <li>
+                <Link href="/software-development" className="hover:text-slate-950 transition-colors">Software &amp; MVPs</Link>
               </li>
               <li>
                 <Link href="/creative-studio" className="hover:text-slate-950 transition-colors">Creative Studio</Link>
@@ -145,80 +98,65 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Details */}
+          {/* Company & Proof */}
           <div className="space-y-4">
-            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">Contact &amp; Studio</h4>
-            <ul className="space-y-2.5 text-sm text-slate-600 font-medium">
+            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-spaceGrotesk">Company</h4>
+            <ul className="space-y-2 text-xs sm:text-sm text-slate-600 font-medium">
               <li>
-                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">Inquiries</span>
-                <a href="mailto:info@cortexhive.co.uk" className="hover:text-slate-900 font-semibold transition-colors">info@cortexhive.co.uk</a>
+                <Link href="/about" className="hover:text-slate-950 transition-colors">About Agency</Link>
               </li>
               <li>
-                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">Direct</span>
-                <a href="tel:+447950501323" className="block text-slate-800 font-semibold hover:text-hive-cyan transition-colors">+44 7950 501323</a>
+                <Link href="/portfolio" className="hover:text-slate-950 transition-colors">Portfolio &amp; Case Studies</Link>
               </li>
               <li>
-                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">WhatsApp</span>
-                <a href="https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" className="block text-emerald-600 font-semibold hover:text-emerald-700 transition-colors">+44 7950 501323 (Chat Now)</a>
+                <Link href="/services" className="hover:text-slate-950 transition-colors">Services Directory</Link>
               </li>
               <li>
-                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">Location</span>
-                <span className="block">London, United Kingdom</span>
+                <Link href="/contact" className="hover:text-slate-950 transition-colors">Contact Us</Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="hover:text-slate-950 transition-colors">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-slate-950 transition-colors">Terms of Service</Link>
               </li>
             </ul>
           </div>
 
-          {/* Newsletter Form */}
+          {/* Contact & Studio Details */}
           <div className="space-y-4">
-            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-              <span>Hive Intel</span> <Sparkles className="w-4 h-4 text-hive-cyan fill-hive-cyan animate-pulse" />
-            </h4>
-            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
-              Practical AI engineering case studies, automation teardowns, and software build notes.
-            </p>
-            <form onSubmit={handleSubscribe} className="space-y-2.5">
-              <div className="relative flex items-center">
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@company.com"
-                  className="w-full bg-white border border-slate-250 focus:border-hive-cyan/50 focus:ring-1 focus:ring-hive-cyan/50 rounded-xl pl-4 pr-12 py-3 text-xs text-slate-800 focus:outline-none transition-all placeholder-slate-400"
-                />
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="absolute right-1.5 top-1.5 p-1.5 rounded-lg bg-slate-50 border border-slate-200 hover:border-hive-cyan/30 text-slate-700 flex items-center justify-center transition-all disabled:opacity-50"
-                  aria-label="Subscribe"
-                >
-                  {status === "loading" ? (
-                    <Loader2 className="w-4 h-4 animate-spin text-hive-cyan" />
-                  ) : (
-                    <ArrowRight className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
-
-              {message && (
-                <div
-                  className={`text-[11px] p-2.5 rounded-lg font-medium ${
-                    status === "success"
-                      ? "bg-green-500/10 border border-green-500/20 text-green-600"
-                      : "bg-red-500/10 border border-red-500/20 text-red-650 text-red-600"
-                  }`}
-                >
-                  {message}
-                </div>
-              )}
-            </form>
+            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-spaceGrotesk">Direct Contact</h4>
+            <ul className="space-y-3 text-xs sm:text-sm text-slate-600 font-medium">
+              <li>
+                <span className="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Telephone &amp; AI</span>
+                <a href={`tel:${SITE_CONFIG.phone}`} className="block text-slate-800 font-semibold hover:text-cyan-600 transition-colors">
+                  {SITE_CONFIG.phoneDisplay}
+                </a>
+              </li>
+              <li>
+                <span className="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">WhatsApp</span>
+                <a href={SITE_CONFIG.getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="block text-emerald-600 font-semibold hover:text-emerald-700 transition-colors">
+                  {SITE_CONFIG.phoneDisplay} (Chat Now)
+                </a>
+              </li>
+              <li>
+                <span className="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Email</span>
+                <a href={`mailto:${SITE_CONFIG.email}`} className="hover:text-slate-900 font-semibold transition-colors">
+                  {SITE_CONFIG.email}
+                </a>
+              </li>
+              <li>
+                <span className="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">Location</span>
+                <span className="block">{SITE_CONFIG.location}</span>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Footer Base */}
+        {/* Footer Bottom Bar */}
         <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-          <div className="text-center md:text-left">
-            <p>© {currentYear} CortexHive. All rights reserved.</p>
+          <div>
+            <p>© {currentYear} CortexHive. All rights reserved. Registered in England &amp; Wales.</p>
           </div>
           <div className="flex gap-6 font-semibold">
             <Link href="/privacy" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>

@@ -6,30 +6,37 @@ import { collection, addDoc } from "firebase/firestore";
 const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
 const DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions";
 
-const SYSTEM_PROMPT = `You are the AI Concierge for CortexHive — an AI & Software Product Studio based in the United Kingdom.
-Core Philosophy: "From Business Problem to Working Product. We don't just talk about AI. We build it."
+const SYSTEM_PROMPT = `You are the AI Concierge for CortexHive — a Digital Solutions Agency based in the United Kingdom.
+Core Philosophy: "Digital Solutions That Move Your Business Forward. From professional websites to intelligent AI solutions."
 
 CRITICAL FORMATTING & STYLE DIRECTIVES:
 - KEEP REPLIES SHORT, HIGHLY STRUCTURED, AND AIRY.
 - NEVER dump long crowded paragraphs or dense blocks of run-on text.
 - Use line breaks between short points. Keep explanations under 2 sentences per point.
 - When answering "What services do you offer?", format cleanly as:
-  **1. AI Automation**
-  Workflow automation, document parsing, and operational bots.
+  **1. Website Design & £50 Starter Sites**
+  Bespoke business websites and £50 starter packages for builders, plumbers, electricians and tradespeople.
 
-  **2. Custom AI Applications**
-  Specialized business AI copilots, knowledge bases (RAG), and reasoning tools.
+  **2. AI Receptionist & Call Answering**
+  24/7 conversational voice assistant that answers customer calls, answers FAQs, and texts you leads.
 
-  **3. Software & MVP Development**
-  Fast-to-market web platforms, SaaS products, and mobile MVPs.
-- When discussing pricing, use £ GBP tiers: Under £500, £500–£1,000, £1,000–£2,500, £2,500–£5,000, £5,000+.
+  **3. AI & Business Automation**
+  Workflow automation, CRM sync, enquiry triage, and document extraction.
+
+  **4. Custom Software & SaaS MVPs**
+  Client portals, admin dashboards, and full-stack web applications.
+- When discussing pricing:
+  * £50 for small business starter websites
+  * From £500 for custom multi-page sites and automation
+  * Tailored monthly plans for AI Receptionist
+  * £1,500–£5,000+ for custom software platforms
 - Always be direct, polite, and helpful. Ask at most ONE short qualifying question at a time.
 
 Primary Capabilities:
-1. AI Automation (workflows, integrations, triage, OCR/document pipelines)
-2. Custom AI Applications (copilots, RAG knowledge bases, domain tools)
-3. Software & MVP Development (Next.js, TypeScript, PostgreSQL, fast MVPs)
-4. Creative Studio (brand assets, UI/UX systems)
+1. Website Design & Development (including £50 small business starter sites)
+2. AI Receptionist & Virtual Answering (Twilio & ElevenLabs integration-ready)
+3. AI Automation (workflows, integrations, triage, OCR/document pipelines)
+4. Custom Software & MVP Development (Next.js, TypeScript, PostgreSQL)
 
 Real Projects:
 - Rydigoo: UK gig & private hire driver community platform with AI letter generator.
@@ -40,6 +47,7 @@ Real Projects:
 
 Contact Options:
 - WhatsApp Direct Chat: +44 7950 501323 (link: https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project.)
+- Telephone: 07950 501323 (call: +447950501323)
 - Email: info@cortexhive.co.uk
 - If the user asks to speak on WhatsApp or contact directly, immediately provide the WhatsApp phone number and direct link.
 
@@ -269,13 +277,17 @@ function handleFallbackSimulation(messages: MessageItem[]) {
   const count = userMessages.length;
 
   if (lastMessage.includes("whatsapp") || lastMessage.includes("phone") || lastMessage.includes("call") || lastMessage.includes("contact")) {
-    reply = "You can message us directly on WhatsApp at **+44 7950 501323** ([Open WhatsApp Chat](https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project.)) or email us at **info@cortexhive.co.uk**.\n\nAlternatively, tell me what you're looking to build right here and I'll log your requirements!";
+    reply = "You can call us directly on **07950 501323**, message us on WhatsApp at **+44 7950 501323** ([Open WhatsApp Chat](https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project.)) or email **info@cortexhive.co.uk**.\n\nAlternatively, tell me what you're looking to build right here and I'll log your requirements!";
+  } else if (lastMessage.includes("50") || lastMessage.includes("starter") || lastMessage.includes("trades") || lastMessage.includes("plumber") || lastMessage.includes("builder")) {
+    reply = "We offer a **£50 Professional Starter Website** for UK tradespeople, builders, plumbers, electricians and small businesses! It includes a mobile-friendly 1-page design, services list, WhatsApp chat, and enquiry form. Would you like to request one?";
+  } else if (lastMessage.includes("receptionist") || lastMessage.includes("answering") || lastMessage.includes("voice")) {
+    reply = "Our **AI Receptionist** answers incoming business calls 24/7 with a natural British voice, answers company FAQs, collects caller details, and texts you instant lead summaries. Would you like to arrange a demo?";
   } else if (lastMessage.includes("pricing") || lastMessage.includes("cost") || lastMessage.includes("package") || lastMessage.includes("budget")) {
-    reply = "Our projects are scoped in clear £ GBP investment tiers:\n- **Under £500**: Rapid automation scripts or focused prototypes\n- **£500–£1,000**: AI workflow integrations and automations\n- **£1,000–£2,500**: Targeted MVPs and custom AI tools\n- **£2,500–£5,000+**: Scaled software platforms and comprehensive systems\n\nWhat budget range are you planning for your project?";
+    reply = "Our projects are transparently scoped:\n- **£50**: Professional 1-page starter website for trades\n- **£500–£1,500**: Bespoke multi-page business websites and automation\n- **Monthly plans**: 24/7 AI Receptionist & call answering\n- **£1,500–£5,000+**: Custom software applications & SaaS MVPs\n\nWhat type of project are you planning?";
   } else if (lastMessage.includes("service") || lastMessage.includes("what do you do") || lastMessage.includes("capabilities")) {
-    reply = "We specialize in:\n1. **AI Automation** (intelligent workflows, CRM/document bots)\n2. **Custom AI Applications** (specialized business copilots & RAG tools)\n3. **Software & MVP Development** (production web platforms & rapid SaaS MVPs)\n\nWhich of these would you like to explore?";
+    reply = "We specialize in:\n1. **Website Design** (including £50 starter sites for trades)\n2. **AI Receptionist** (24/7 automated call answering & triage)\n3. **AI & Business Automation** (workflows & document processing)\n4. **Custom Software & SaaS** (portals, dashboards & MVPs)\n\nWhich of these would you like to explore?";
   } else if (count === 1) {
-    reply = "Welcome to CortexHive! I'm your AI concierge. I can discuss our AI automation, custom software capabilities, or connect you with our engineers.\n\nCould you share your name and what type of project you're planning to build?";
+    reply = "Welcome to CortexHive! I'm your digital solutions concierge. I can tell you about our £50 websites for trades, 24/7 AI Receptionist, custom web development, or connect you with our team.\n\nCould you share your name and what you're looking to build?";
   } else if (count === 2) {
     reply = "Great to meet you! To help understand your project scope, could you share your business email and your approximate budget range (e.g., Under £1,000, £1,000–£2,500, £2,500–£5,000+)?";
   } else if (count === 3) {
