@@ -11,8 +11,8 @@ const FAQS = [
     a: "We work with UK small businesses, tradespeople (builders, plumbers, electricians, handymen, cleaning services), professional practices, startups, and established companies looking to improve their digital presence and streamline operations with modern software and AI.",
   },
   {
-    q: "How does the £50 Small Business Starter Website offer work?",
-    a: "Our £50 starter website gives UK trades and local businesses a professional, mobile-friendly one-page website with their services, contact details, click-to-call buttons, and WhatsApp integration. It's a genuine acquisition package designed to make entering the digital space affordable. Standard running costs like domain names (~£10/yr) and hosting (from £5/mo) are transparently kept separate.",
+    q: "How does the £99 Small Business Starter Website offer work?",
+    a: "Our £99 starter website gives UK trades and local businesses a professional, mobile-friendly one-page website with their services, contact details, click-to-call buttons, and WhatsApp integration. It's a genuine acquisition package designed to make entering the digital space affordable. Standard running costs like domain names (~£10/yr) and hosting (from £5/mo) are transparently kept separate.",
   },
   {
     q: "How does the AI Receptionist work with my existing phone number?",
@@ -40,17 +40,17 @@ export default function HomeFaq() {
   };
 
   return (
-    <section className="py-20 bg-slate-50 border-t border-slate-200">
-      <div className="max-w-4xl mx-auto px-6 space-y-12">
+    <section className="py-14 sm:py-20 bg-slate-50 border-t border-slate-200">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-10 sm:space-y-12">
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Answers to Common Questions</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight">
             Frequently Asked Questions
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 font-medium max-w-2xl mx-auto">
+          <p className="text-xs sm:text-base text-slate-600 font-medium max-w-2xl mx-auto px-2 sm:px-0">
             Everything you need to know about our web design, AI receptionists, and software development workflows.
           </p>
         </div>

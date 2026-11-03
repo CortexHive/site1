@@ -92,14 +92,14 @@ const PRIMARY_SERVICES: ServicePillar[] = [
     number: "03",
     icon: Layers,
     title: "Websites & Software Development",
-    tagline: "From £50 starter sites to bespoke web software.",
+    tagline: "From £99 starter sites to bespoke web software.",
     ctaText: "Start a Project",
     serviceCategory: "Software / MVP",
     pageUrl: "/software-development",
     overview:
       "We take software ideas and business websites from concept to deployment-ready digital products. From affordable starter websites for trades to full-stack SaaS platforms and internal portals.",
     useCases: [
-      "£50 small business & trades starter websites",
+      "£99 small business & trades starter websites",
       "High-performance responsive company websites",
       "Full-stack SaaS platforms with subscription billing",
       "Custom client portals & administration dashboards",
@@ -299,7 +299,7 @@ export default function Services() {
             Website Design
           </Link>
           <Link href="/small-business-websites" className="px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 hover:bg-emerald-100 transition-colors shadow-2xs">
-            £50 Trades Websites
+            £99 Trades Websites
           </Link>
           <Link href="/ai-receptionist" className="px-3.5 py-1.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 hover:bg-cyan-100 transition-colors shadow-2xs">
             AI Receptionist

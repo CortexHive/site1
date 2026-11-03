@@ -18,7 +18,7 @@ export default function Home() {
       {/* 2. Services Overview */}
       <Services />
 
-      {/* 3. Small Business Digital Solutions (£50 Starter Offer & Trades Focus) */}
+      {/* 3. Small Business Digital Solutions (£99 Starter Offer & Trades Focus) */}
       <HomeTradesSpotlight />
 
       {/* 4. AI Receptionist Introduction (Never Miss a Call 24/7) */}

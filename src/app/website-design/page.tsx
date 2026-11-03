@@ -66,7 +66,7 @@ const PILLARS = [
 const PACKAGES = [
   {
     name: "Starter One-Page",
-    price: "£50",
+    price: "£99",
     period: "one-off build fee",
     tagline: "Ideal for tradespeople, sole traders, and local services.",
     popular: true,
@@ -79,7 +79,7 @@ const PACKAGES = [
       "Basic on-page SEO setup",
       "Delivered in 3–5 days",
     ],
-    ctaText: "Explore £50 Package",
+    ctaText: "Explore £99 Package",
     href: "/small-business-websites",
   },
   {
@@ -122,30 +122,30 @@ const PACKAGES = [
 
 export default function WebsiteDesignPage() {
   return (
-    <div className="bg-white min-h-screen text-slate-900 pt-28 pb-20">
-      <div className="max-w-6xl mx-auto px-6 space-y-20">
+    <div className="bg-white min-h-screen text-slate-900 pt-24 sm:pt-28 pb-16 sm:pb-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-16 sm:space-y-20">
         {/* Hero Section */}
-        <div className="text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest shadow-xs">
+        <div className="text-center max-w-4xl mx-auto space-y-5 sm:space-y-6">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-[11px] sm:text-xs font-bold text-purple-700 uppercase tracking-widest shadow-xs">
             <Globe className="w-4 h-4 text-purple-600" />
             <span>Digital Solutions Agency • United Kingdom</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-slate-950 font-outfit tracking-tight leading-[1.08]">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-slate-950 font-outfit tracking-tight leading-[1.12] sm:leading-[1.08]">
             Websites Built to Turn{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
               Visitors into Customers.
             </span>
           </h1>
 
-          <p className="text-lg sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
+          <p className="text-base sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium px-2 sm:px-0">
             From affordable starter websites for tradespeople to high-performance platforms for established UK businesses, we engineer web presences that inspire trust and generate leads.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
             <a
               href="#quote-form"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow-md hover:shadow-xl transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-xl active:scale-98 transition-all"
             >
               <span>Get a Free Quote</span>
               <ArrowRight className="w-4 h-4" />
@@ -153,17 +153,17 @@ export default function WebsiteDesignPage() {
 
             <Link
               href="/small-business-websites"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-sm transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:py-4 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-xs sm:text-sm transition-all"
             >
               <Sparkles className="w-4 h-4 text-emerald-600" />
-              <span>See £50 Trades Website Offer</span>
+              <span>See £99 Trades Website Offer</span>
             </Link>
 
             <a
               href={SITE_CONFIG.getWhatsAppLink("quote")}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-bold text-sm transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-bold text-xs sm:text-sm transition-all"
             >
               <span>Chat on WhatsApp</span>
             </a>

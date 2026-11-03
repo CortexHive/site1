@@ -59,8 +59,8 @@ export const SERVICES = [
     icon: Globe,
   },
   {
-    id: "£50 Small Business Website",
-    label: "£50 Small Business Starter Website",
+    id: "£99 Small Business Website",
+    label: "£99 Small Business Starter Website",
     desc: "Professional 1-page site for tradespeople, builders, plumbers, cleaners, and local services.",
     icon: Sparkles,
   },
@@ -91,7 +91,7 @@ export const SERVICES = [
 ];
 
 const BUDGET_RANGES = [
-  { id: "£50 Starter Package", label: "£50 Starter Package", desc: "For trades & small business 1-page websites" },
+  { id: "£99 Starter Package", label: "£99 Starter Package", desc: "For trades & small business 1-page websites" },
   { id: "Under £500", label: "Under £500", desc: "Small automation task or prototype scope" },
   { id: "£500–£1,000", label: "£500 – £1,000", desc: "Targeted workflow automation or standard web development" },
   { id: "£1,000–£2,500", label: "£1,000 – £2,500", desc: "Custom AI tool, focused MVP, or multi-page business platform" },
@@ -112,7 +112,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
   const [formData, setFormData] = useState<ProjectEnquiryData>({
     ...INITIAL_DATA,
     serviceRequired: defaultService || INITIAL_DATA.serviceRequired,
-    budget: defaultService === "£50 Small Business Website" ? "£50 Starter Package" : INITIAL_DATA.budget,
+    budget: defaultService === "£99 Small Business Website" ? "£99 Starter Package" : INITIAL_DATA.budget,
   });
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -252,44 +252,44 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
   };
 
   return (
-    <section id="contact" className="py-24 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6 relative z-10">
+    <section id="contact" className="py-16 sm:py-24 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest mb-3">
             Start a Project
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight mb-3 sm:mb-4">
             Get a Free Quote or Scoping Call.
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
+          <p className="text-slate-600 text-xs sm:text-base leading-relaxed font-medium px-2 sm:px-0">
             Tell us about your business goals. We review requirements within 24 hours and provide transparent scope, timeline, and fixed pricing options.
           </p>
         </div>
 
         {/* Quick Connect Options (WhatsApp & Email Direct) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-3xl mx-auto mb-6 sm:mb-8">
           {/* WhatsApp Direct Chat Card */}
           <a
             href={SITE_CONFIG.getWhatsAppLink("quote")}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative p-5 rounded-3xl bg-emerald-50/80 hover:bg-emerald-100/80 border border-emerald-200/80 hover:border-emerald-400 hover:shadow-lg hover:shadow-emerald-500/10 transition-all flex items-center justify-between"
+            className="group relative p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-emerald-50/80 hover:bg-emerald-100/80 border border-emerald-200/80 hover:border-emerald-400 hover:shadow-lg hover:shadow-emerald-500/10 transition-all flex items-center justify-between active:scale-98"
           >
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-[#25D366] text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform flex-shrink-0">
-                <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            <div className="flex items-center gap-3 sm:gap-3.5">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#25D366] text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform flex-shrink-0">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24">
                   <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.531 1.93.814 2.79.815 3.183 0 5.77-2.586 5.77-5.766.002-3.181-2.583-5.766-5.769-5.766zm3.385 8.163c-.144.407-.837.774-1.171.823-.335.05-.776.082-2.222-.516-1.745-.722-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.793 0-.852.449-1.272.608-1.446.16-.175.348-.218.464-.218.116 0 .232.001.333.006.106.005.249-.04.39.299.144.348.492 1.201.536 1.289.043.087.072.19.014.305-.058.116-.087.189-.174.29-.087.102-.183.228-.261.306-.088.087-.179.182-.077.357.101.174.45 1.743 1.968 2.392.203.087.324.076.445-.062.12-.138.514-.6.652-.804.137-.204.275-.171.464-.101.189.07 1.201.566 1.408.669.207.102.345.153.395.239.05.087.05.503-.094.91zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.981-1.396A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.638 0-3.167-.487-4.448-1.326l-.319-.21-2.955.775.789-2.883-.231-.367C3.937 14.887 3.4 13.487 3.4 12c0-4.742 3.858-8.6 8.6-8.6s8.6 3.858 8.6 8.6-3.858 8.6-8.6 8.6z"/>
                 </svg>
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-slate-900">Chat on WhatsApp</span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-200/70 text-emerald-900">
+                  <span className="text-xs sm:text-sm font-bold text-slate-900">Chat on WhatsApp</span>
+                  <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-200/70 text-emerald-900">
                     Fastest
                   </span>
                 </div>
-                <p className="text-xs text-slate-600 font-medium mt-0.5">
+                <p className="text-[11px] sm:text-xs text-slate-600 font-medium mt-0.5">
                   {SITE_CONFIG.phoneDisplay} • Direct Reply
                 </p>
               </div>
@@ -300,20 +300,20 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
           {/* Direct Email Card */}
           <a
             href="mailto:info@cortexhive.co.uk?subject=Project%20Enquiry%20-%20CortexHive"
-            className="group relative p-5 rounded-3xl bg-purple-50/80 hover:bg-purple-100/80 border border-purple-200/80 hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/10 transition-all flex items-center justify-between"
+            className="group relative p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-purple-50/80 hover:bg-purple-100/80 border border-purple-200/80 hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/10 transition-all flex items-center justify-between active:scale-98"
           >
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform flex-shrink-0">
-                <Mail className="w-5 h-5" />
+            <div className="flex items-center gap-3 sm:gap-3.5">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform flex-shrink-0">
+                <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-slate-900">Connect via Email</span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-200/70 text-purple-900">
+                  <span className="text-xs sm:text-sm font-bold text-slate-900">Connect via Email</span>
+                  <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-200/70 text-purple-900">
                     Inbox
                   </span>
                 </div>
-                <p className="text-xs text-slate-600 font-medium mt-0.5">
+                <p className="text-[11px] sm:text-xs text-slate-600 font-medium mt-0.5">
                   {SITE_CONFIG.email} • 24hr Reply
                 </p>
               </div>
@@ -323,16 +323,16 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
         </div>
 
         {/* Form Separator */}
-        <div className="flex items-center justify-center gap-3 max-w-md mx-auto mb-8">
+        <div className="flex items-center justify-center gap-3 max-w-md mx-auto mb-6 sm:mb-8">
           <div className="h-px bg-slate-200 flex-1" />
-          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 whitespace-nowrap">
+          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400 whitespace-nowrap">
             Or Complete The Scoping Form Below
           </span>
           <div className="h-px bg-slate-200 flex-1" />
         </div>
 
         {/* Form Container */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl max-w-3xl mx-auto">
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-10 border border-slate-200 shadow-xl max-w-3xl mx-auto">
           {isSubmitted ? (
             /* Success State */
             <motion.div
@@ -394,7 +394,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
               <input type="hidden" name="bot-field" />
 
               {/* Mode Switcher: Quick 30-Second Quote vs 4-Step Guided Wizard */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pb-5 border-b border-slate-100">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pb-5 border-b border-slate-100">
                 <div className="inline-flex p-1 rounded-2xl bg-slate-100 border border-slate-200/80 w-full sm:w-auto">
                   <button
                     type="button"
@@ -402,7 +402,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                       setMode("fast");
                       setError(null);
                     }}
-                    className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                    className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 sm:py-2 rounded-xl text-xs font-bold transition-all ${
                       mode === "fast"
                         ? "bg-white text-purple-700 shadow-sm"
                         : "text-slate-600 hover:text-slate-900"
@@ -417,18 +417,18 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                       setMode("wizard");
                       setError(null);
                     }}
-                    className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                    className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 sm:py-2 rounded-xl text-xs font-bold transition-all ${
                       mode === "wizard"
                         ? "bg-white text-purple-700 shadow-sm"
                         : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
                     <SlidersHorizontal className="w-3.5 h-3.5 text-slate-500" />
-                    <span>4-Step Project Scoping</span>
+                    <span>4-Step Scoping</span>
                   </button>
                 </div>
 
-                <div className="text-[11px] font-semibold text-slate-500">
+                <div className="text-[11px] font-semibold text-slate-500 text-center sm:text-right truncate">
                   Selected:{" "}
                   <span className="text-purple-700 font-bold">{formData.serviceRequired}</span>
                 </div>
@@ -436,13 +436,13 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
 
               {mode === "fast" ? (
                 /* FAST 30-SECOND SINGLE-SCREEN QUOTE FORM */
-                <div className="space-y-5">
+                <div className="space-y-4 sm:space-y-5">
                   {/* Quick Service Pill Selector */}
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-slate-800 block">
                       1. Select Service Needed <span className="text-purple-600">*</span>
                     </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5">
                       {SERVICES.map((s) => {
                         const Icon = s.icon;
                         const isSelected = formData.serviceRequired === s.id;
@@ -452,11 +452,11 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                             key={s.id}
                             onClick={() => {
                               handleSelect("serviceRequired", s.id);
-                              if (s.id === "£50 Small Business Website") {
-                                handleSelect("budget", "£50 Starter Package");
+                              if (s.id === "£99 Small Business Website") {
+                                handleSelect("budget", "£99 Starter Package");
                               }
                             }}
-                            className={`p-3 rounded-xl border text-left flex items-center gap-2.5 transition-all ${
+                            className={`p-3 rounded-xl border text-left flex items-center gap-2.5 transition-all active:scale-98 min-h-[46px] ${
                               isSelected
                                 ? "border-purple-600 bg-purple-50/70 text-purple-950 shadow-sm"
                                 : "border-slate-200 bg-slate-50/50 hover:bg-white hover:border-slate-300 text-slate-700"
@@ -477,7 +477,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                   </div>
 
                   {/* Contact Fields */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                     <div className="space-y-1.5">
                       <label className="text-xs font-bold text-slate-800">
                         Your Name <span className="text-purple-600">*</span>
@@ -489,7 +489,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="e.g. Alex Morgan"
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                        className="w-full px-3.5 sm:px-4 py-2.5 sm:py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors"
                       />
                     </div>
 
@@ -503,7 +503,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="e.g. 07950 501323"
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                        className="w-full px-3.5 sm:px-4 py-2.5 sm:py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors"
                       />
                     </div>
 
@@ -518,7 +518,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="alex@example.co.uk"
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                        className="w-full px-3.5 sm:px-4 py-2.5 sm:py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors"
                       />
                     </div>
 
@@ -530,7 +530,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                         name="preferredContact"
                         value={formData.preferredContact}
                         onChange={handleChange}
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                        className="w-full px-3.5 sm:px-4 py-2.5 sm:py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors"
                       >
                         <option value="WhatsApp">WhatsApp (Fastest Reply)</option>
                         <option value="Phone">Phone Call</option>
@@ -550,8 +550,8 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                       required
                       value={formData.brief}
                       onChange={handleChange}
-                      placeholder="Briefly describe your business and what you need (e.g., £50 starter website for our plumbing business, AI receptionist for missed calls, or custom web app)..."
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors resize-none"
+                      placeholder="Briefly describe your business and what you need (e.g., £99 starter website for our plumbing business, AI receptionist for missed calls, or custom web app)..."
+                      className="w-full px-3.5 sm:px-4 py-2.5 sm:py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors resize-none"
                     />
                   </div>
 
@@ -826,7 +826,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                           value={formData.name}
                           onChange={handleChange}
                           placeholder="e.g. Alex Morgan"
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                          className="w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors"
                         />
                       </div>
 
@@ -840,7 +840,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                           value={formData.company}
                           onChange={handleChange}
                           placeholder="e.g. Morgan Electricals"
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                          className="w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors"
                         />
                       </div>
 
@@ -855,7 +855,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                           value={formData.email}
                           onChange={handleChange}
                           placeholder="alex@example.co.uk"
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                          className="w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors"
                         />
                       </div>
 
@@ -869,7 +869,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                           value={formData.phone}
                           onChange={handleChange}
                           placeholder="e.g. 07950 501323"
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                          className="w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors"
                         />
                       </div>
                     </div>
@@ -883,7 +883,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                           name="preferredContact"
                           value={formData.preferredContact}
                           onChange={handleChange}
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                          className="w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors"
                         >
                           <option value="WhatsApp">WhatsApp (Fastest)</option>
                           <option value="Email">Email</option>
@@ -901,7 +901,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                           value={formData.website}
                           onChange={handleChange}
                           placeholder="https://example.co.uk"
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                          className="w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors"
                         />
                       </div>
                     </div>
@@ -917,7 +917,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                         value={formData.brief}
                         onChange={handleChange}
                         placeholder="Tell us what you need built, any key features, or what business challenge you want solved..."
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors resize-none"
+                        className="w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors resize-none"
                       />
                     </div>
 

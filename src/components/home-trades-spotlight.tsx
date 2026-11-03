@@ -26,14 +26,14 @@ const TRADES = [
 
 export default function HomeTradesSpotlight() {
   return (
-    <section className="py-20 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <section className="py-14 sm:py-20 bg-slate-50 border-t border-slate-200 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Offer Details */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/70 border border-emerald-300 text-xs font-bold text-emerald-900 uppercase tracking-widest">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-emerald-100/70 border border-emerald-300 text-[11px] sm:text-xs font-bold text-emerald-900 uppercase tracking-widest">
               <Sparkles className="w-4 h-4 text-emerald-600" />
-              <span>Small Business &amp; Trades Acquisition Offer</span>
+              <span>Small Business &amp; Trades Offer</span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight leading-tight">
@@ -43,26 +43,26 @@ export default function HomeTradesSpotlight() {
               </span>
             </h2>
 
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-medium">
+            <p className="text-sm sm:text-lg text-slate-600 leading-relaxed font-medium">
               Get a professional online presence without the expensive agency price tag. Designed specifically for UK tradespeople, sole traders, and local service providers.
             </p>
 
             {/* Price Badge */}
-            <div className="p-5 rounded-2xl bg-white border border-emerald-200 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="p-4 sm:p-5 rounded-2xl bg-white border border-emerald-200 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 block">
                   Professional Starter Website
                 </span>
                 <div className="flex items-baseline gap-2 mt-0.5">
-                  <span className="text-4xl font-black font-outfit text-slate-950">£50</span>
+                  <span className="text-3xl sm:text-4xl font-black font-outfit text-slate-950">£99</span>
                   <span className="text-xs text-slate-500 font-semibold">one-off build fee</span>
                 </div>
               </div>
               <Link
                 href="/small-business-websites"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition-all whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition-all whitespace-nowrap active:scale-98"
               >
-                <span>View Full £50 Package</span>
+                <span>View Full £99 Package</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -86,7 +86,7 @@ export default function HomeTradesSpotlight() {
 
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <a
-                href={SITE_CONFIG.getWhatsAppLink("small-business-50")}
+                href={SITE_CONFIG.getWhatsAppLink("small-business-99")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 hover:text-emerald-800"
@@ -98,7 +98,7 @@ export default function HomeTradesSpotlight() {
           </div>
 
           {/* Right Column: Targeted Trades Grid */}
-          <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-6">
+          <div className="lg:col-span-5 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-200 shadow-md space-y-5 sm:space-y-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 Industry Specific Solutions

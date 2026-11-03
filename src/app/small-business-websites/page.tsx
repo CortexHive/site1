@@ -15,11 +15,11 @@ import LeadForm from "@/components/lead-form";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Professional Starter Websites for Trades & Small Businesses — £50 | CortexHive",
+  title: "Professional Starter Websites for Trades & Small Businesses — £99 | CortexHive",
   description:
-    "Your business deserves to be online. Get a professional one-page website for builders, plumbers, electricians, handymen and UK small businesses for just £50.",
+    "Your business deserves to be online. Get a professional one-page website for builders, plumbers, electricians, handymen and UK small businesses for just £99.",
   keywords: [
-    "£50 website design UK",
+    "£99 website design UK",
     "Affordable website design UK",
     "Small business website design",
     "Website design for builders",
@@ -72,12 +72,12 @@ const TRANSPARENCY_NOTES = [
 
 const FAQS = [
   {
-    q: "Why is the starter website only £50?",
+    q: "Why is the starter website only £99?",
     a: "We believe every tradesperson and independent UK business deserves a credible digital footprint without paying £1,000+ agency markups. We use modern, high-speed templates tuned specifically for local service enquiries, keeping costs low while delivering high quality.",
   },
   {
     q: "Are there any hidden catches?",
-    a: "No hidden catches. The £50 covers the complete design and build of your professional one-page website with contact form and WhatsApp integration. As with any website on the internet, domain registration and hosting are standard third-party running costs, which we keep 100% transparent.",
+    a: "No hidden catches. The £99 covers the complete design and build of your professional one-page website with contact form and WhatsApp integration. As with any website on the internet, domain registration and hosting are standard third-party running costs, which we keep 100% transparent.",
   },
   {
     q: "How long does it take to get my website live?",
@@ -91,35 +91,35 @@ const FAQS = [
 
 export default function SmallBusinessWebsitesPage() {
   return (
-    <div className="bg-white min-h-screen text-slate-900 pt-28 pb-20">
-      <div className="max-w-6xl mx-auto px-6 space-y-20">
+    <div className="bg-white min-h-screen text-slate-900 pt-24 sm:pt-28 pb-16 sm:pb-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-16 sm:space-y-20">
         {/* Hero Section */}
-        <div className="text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-800 uppercase tracking-widest shadow-xs">
+        <div className="text-center max-w-4xl mx-auto space-y-5 sm:space-y-6">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] sm:text-xs font-bold text-emerald-800 uppercase tracking-widest shadow-xs">
             <Sparkles className="w-4 h-4 text-emerald-600" />
             <span>Special Acquisition Offer for UK Businesses</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-slate-950 font-outfit tracking-tight leading-[1.08]">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-slate-950 font-outfit tracking-tight leading-[1.12] sm:leading-[1.08]">
             Your Business Deserves to{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-cyan-600">
               Be Online.
             </span>
           </h1>
 
-          <p className="text-lg sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
+          <p className="text-base sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium px-2 sm:px-0">
             Get a professional online presence without the expensive agency price tag.
           </p>
 
           {/* Pricing Highlight Pill */}
-          <div className="pt-4 pb-2">
-            <div className="inline-block p-6 sm:p-8 rounded-3xl bg-slate-900 text-white shadow-2xl border border-slate-800">
+          <div className="pt-2 sm:pt-4 pb-2">
+            <div className="inline-block p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-slate-900 text-white shadow-2xl border border-slate-800 w-full sm:w-auto">
               <span className="text-xs uppercase tracking-widest text-emerald-400 font-bold block mb-1">
                 Transparent UK Pricing
               </span>
               <div className="flex items-baseline justify-center gap-2">
-                <span className="text-5xl sm:text-6xl font-black font-outfit text-white">£50</span>
-                <span className="text-slate-400 text-sm font-semibold">one-off build fee</span>
+                <span className="text-4xl sm:text-6xl font-black font-outfit text-white">£99</span>
+                <span className="text-slate-400 text-xs sm:text-sm font-semibold">one-off build fee</span>
               </div>
               <p className="text-xs text-slate-300 mt-2 max-w-md mx-auto">
                 Complete, modern 1-page business website designed to convert local searchers into phone calls and WhatsApp enquiries.
@@ -128,20 +128,20 @@ export default function SmallBusinessWebsitesPage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 pt-2">
             <a
               href="#order-form"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md hover:shadow-xl transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-xl active:scale-98 transition-all"
             >
-              <span>Request Your £50 Website</span>
+              <span>Request Your £99 Website</span>
               <ArrowRight className="w-4 h-4" />
             </a>
 
             <a
-              href={SITE_CONFIG.getWhatsAppLink("small-business-50")}
+              href={SITE_CONFIG.getWhatsAppLink("small-business-99")}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-bold text-sm transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:py-4 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-bold text-xs sm:text-sm transition-all"
             >
               <Phone className="w-4 h-4 text-emerald-600" />
               <span>WhatsApp Us Directly</span>
@@ -183,25 +183,25 @@ export default function SmallBusinessWebsitesPage() {
         {/* Package Comparison: What is Included vs Transparent Separates */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Inclusions Card */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border-2 border-emerald-500/50 shadow-lg space-y-6">
+          <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 border-emerald-500/50 shadow-lg space-y-5 sm:space-y-6">
             <div className="flex items-center justify-between border-b border-slate-100 pb-4">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">
-                  Included in the £50 Package
+                  Included in the £99 Package
                 </span>
-                <h3 className="text-2xl font-extrabold text-slate-950 font-outfit">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-slate-950 font-outfit">
                   Everything You Need to Start Getting Leads
                 </h3>
               </div>
-              <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs">
+              <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs whitespace-nowrap">
                 Guaranteed Quality
               </span>
             </div>
 
-            <ul className="space-y-3.5">
+            <ul className="space-y-3 sm:space-y-3.5">
               {INCLUSIONS.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-xs sm:text-sm text-slate-700 font-medium">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                <li key={i} className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm text-slate-700 font-medium">
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -209,12 +209,12 @@ export default function SmallBusinessWebsitesPage() {
           </div>
 
           {/* Transparent Add-ons / Exclusions Card */}
-          <div className="lg:col-span-5 bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-6">
+          <div className="lg:col-span-5 bg-slate-50 rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-slate-200 space-y-5 sm:space-y-6">
             <div className="border-b border-slate-200 pb-4">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
                 100% Honesty &amp; Transparency
               </span>
-              <h3 className="text-xl font-bold text-slate-900 font-outfit">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-outfit">
                 Separately Charged Running Costs
               </h3>
               <p className="text-xs text-slate-500 mt-1">
@@ -222,7 +222,7 @@ export default function SmallBusinessWebsitesPage() {
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3.5 sm:space-y-4">
               {TRANSPARENCY_NOTES.map((note, i) => (
                 <div key={i} className="space-y-1">
                   <div className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
@@ -251,7 +251,7 @@ export default function SmallBusinessWebsitesPage() {
 
           <div className="space-y-3">
             {FAQS.map((faq, i) => (
-              <div key={i} className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+              <div key={i} className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200">
                 <h4 className="text-sm font-bold text-slate-900 mb-1.5">{faq.q}</h4>
                 <p className="text-xs text-slate-600 leading-relaxed font-medium">{faq.a}</p>
               </div>
@@ -260,20 +260,20 @@ export default function SmallBusinessWebsitesPage() {
         </div>
 
         {/* Enquiry Form */}
-        <div id="order-form" className="pt-6">
-          <div className="text-center max-w-xl mx-auto mb-8">
+        <div id="order-form" className="pt-4 sm:pt-6">
+          <div className="text-center max-w-xl mx-auto mb-6 sm:mb-8">
             <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">
               Get Started Today
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-950 font-outfit mt-1">
-              Request Your £50 Website
+              Request Your £99 Website
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 font-medium mt-1">
               Fill in your business details below or reach out on WhatsApp to get started immediately.
             </p>
           </div>
 
-          <LeadForm defaultService="£50 Small Business Website" />
+          <LeadForm defaultService="£99 Small Business Website" />
         </div>
       </div>
     </div>

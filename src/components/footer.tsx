@@ -55,7 +55,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal max-w-sm">
-              Digital Solutions That Move Your Business Forward. We build professional websites, £50 starter sites for trades, 24/7 AI receptionists, and custom software systems.
+              Digital Solutions That Move Your Business Forward. We build professional websites, £99 starter sites for trades, 24/7 AI receptionists, and custom software systems.
             </p>
             <div className="flex items-center gap-4 text-slate-500 pt-1">
               <a href={SITE_CONFIG.getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-500 transition-colors" aria-label="WhatsApp">
@@ -81,7 +81,7 @@ export default function Footer() {
                 <Link href="/website-design" className="hover:text-slate-950 transition-colors">Website Design</Link>
               </li>
               <li>
-                <Link href="/small-business-websites" className="hover:text-emerald-700 font-semibold text-emerald-600 transition-colors">£50 Trades Websites</Link>
+                <Link href="/small-business-websites" className="hover:text-emerald-700 font-semibold text-emerald-600 transition-colors">£99 Trades Websites</Link>
               </li>
               <li>
                 <Link href="/ai-receptionist" className="hover:text-slate-950 transition-colors">AI Receptionist</Link>

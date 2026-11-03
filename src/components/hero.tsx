@@ -95,19 +95,19 @@ export default function Hero() {
   };
 
   return (
-    <div className="relative bg-white pt-28 pb-16 overflow-hidden">
+    <div className="relative bg-white pt-24 sm:pt-28 pb-12 sm:pb-16 overflow-hidden">
       {/* Subtle Background Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-tr from-purple-100/60 via-cyan-50/40 to-transparent rounded-full filter blur-[100px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Main Hero Header */}
-        <div className="text-center max-w-4xl mx-auto mb-16">
+        <div className="text-center max-w-4xl mx-auto mb-12 sm:mb-16">
           {/* Company Stance Badge */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-[11px] font-bold text-purple-700 uppercase tracking-widest mb-8 shadow-sm"
+            className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-[10px] sm:text-[11px] font-bold text-purple-700 uppercase tracking-widest mb-6 sm:mb-8 shadow-xs"
           >
             <span className="w-2 h-2 rounded-full bg-purple-600 animate-pulse" />
             <span>We Don&apos;t Just Talk About AI. We Build It.</span>
@@ -118,7 +118,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-slate-950 font-outfit tracking-tight leading-[1.08] mb-6"
+            className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-slate-950 font-outfit tracking-tight leading-[1.12] sm:leading-[1.08] mb-5 sm:mb-6"
           >
             Digital Solutions That Move{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
@@ -131,7 +131,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium mb-10"
+            className="text-sm sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium mb-8 sm:mb-10 px-2 sm:px-0"
           >
             From professional websites to intelligent AI solutions, we help businesses build their digital presence, streamline operations and grow with confidence.
           </motion.p>
@@ -141,11 +141,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3.5"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-3.5"
           >
             <button
               onClick={() => scrollTo("#contact")}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-98 transition-all"
             >
               <span>Get a Free Quote</span>
               <ArrowRight className="w-4 h-4" />
@@ -153,7 +153,7 @@ export default function Hero() {
 
             <button
               onClick={() => scrollTo("#services")}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-bold text-sm transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-bold text-xs sm:text-sm transition-all"
             >
               <span>Explore Our Services</span>
               <ChevronRight className="w-4 h-4 text-slate-500" />
@@ -163,7 +163,7 @@ export default function Hero() {
               href="https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-sm transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-xs sm:text-sm transition-all"
             >
               <svg className="w-4 h-4 fill-current text-emerald-600" viewBox="0 0 24 24">
                 <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.531 1.93.814 2.79.815 3.183 0 5.77-2.586 5.77-5.766.002-3.181-2.583-5.766-5.769-5.766zm3.385 8.163c-.144.407-.837.774-1.171.823-.335.05-.776.082-2.222-.516-1.745-.722-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.793 0-.852.449-1.272.608-1.446.16-.175.348-.218.464-.218.116 0 .232.001.333.006.106.005.249-.04.39.299.144.348.492 1.201.536 1.289.043.087.072.19.014.305-.058.116-.087.189-.174.29-.087.102-.183.228-.261.306-.088.087-.179.182-.077.357.101.174.45 1.743 1.968 2.392.203.087.324.076.445-.062.12-.138.514-.6.652-.804.137-.204.275-.171.464-.101.189.07 1.201.566 1.408.669.207.102.345.153.395.239.05.087.05.503-.094.91zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.981-1.396A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.638 0-3.167-.487-4.448-1.326l-.319-.21-2.955.775.789-2.883-.231-.367C3.937 14.887 3.4 13.487 3.4 12c0-4.742 3.858-8.6 8.6-8.6s8.6 3.858 8.6 8.6-3.858 8.6-8.6 8.6z"/>
@@ -177,24 +177,24 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.38 }}
-            className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 text-left max-w-4xl mx-auto"
+            className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 text-left max-w-4xl mx-auto"
           >
             <Link
               href="/small-business-websites"
-              className="group p-4 rounded-2xl bg-slate-50/90 hover:bg-emerald-50/70 border border-slate-200 hover:border-emerald-300 transition-all flex items-start gap-3.5 shadow-2xs"
+              className="group p-3.5 sm:p-4 rounded-2xl bg-slate-50/90 hover:bg-emerald-50/70 border border-slate-200 hover:border-emerald-300 transition-all flex items-start gap-3.5 shadow-2xs"
             >
               <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Sparkles className="w-5 h-5" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-700">
+                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-emerald-700">
                     Get Online Fast
                   </span>
                   <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-0.5 transition-all" />
                 </div>
                 <p className="text-sm font-bold text-slate-900 mt-0.5">
-                  £50 Starter Websites
+                  £99 Starter Websites
                 </p>
                 <p className="text-[11px] text-slate-500 font-medium leading-snug mt-0.5">
                   For trades, builders, plumbers &amp; small businesses. Ready in 3–5 days.
@@ -204,14 +204,14 @@ export default function Hero() {
 
             <Link
               href="/ai-receptionist"
-              className="group p-4 rounded-2xl bg-slate-50/90 hover:bg-cyan-50/70 border border-slate-200 hover:border-cyan-300 transition-all flex items-start gap-3.5 shadow-2xs"
+              className="group p-3.5 sm:p-4 rounded-2xl bg-slate-50/90 hover:bg-cyan-50/70 border border-slate-200 hover:border-cyan-300 transition-all flex items-start gap-3.5 shadow-2xs"
             >
               <div className="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <PhoneCall className="w-5 h-5" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-cyan-700">
+                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-cyan-700">
                     Never Miss a Call
                   </span>
                   <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-cyan-600 group-hover:translate-x-0.5 transition-all" />
@@ -227,14 +227,14 @@ export default function Hero() {
 
             <Link
               href="/software-development"
-              className="group p-4 rounded-2xl bg-slate-50/90 hover:bg-purple-50/70 border border-slate-200 hover:border-purple-300 transition-all flex items-start gap-3.5 shadow-2xs"
+              className="group p-3.5 sm:p-4 rounded-2xl bg-slate-50/90 hover:bg-purple-50/70 border border-slate-200 hover:border-purple-300 transition-all flex items-start gap-3.5 shadow-2xs"
             >
               <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Zap className="w-5 h-5" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-purple-700">
+                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-purple-700">
                     Work Smarter
                   </span>
                   <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-purple-600 group-hover:translate-x-0.5 transition-all" />
@@ -250,17 +250,17 @@ export default function Hero() {
           </motion.div>
 
           {/* Trust & Guarantee Badges */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-slate-500 font-semibold">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] sm:text-xs text-slate-500 font-semibold px-2">
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
               Transparent Fixed Pricing
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
               Direct UK Engineering Support
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
               Fast Turnaround &amp; Full Code Ownership
             </span>
           </div>
@@ -289,23 +289,23 @@ export default function Hero() {
           {/* Product Interface Window Frame */}
           <div className="bg-slate-900 rounded-3xl border border-slate-800 shadow-2xl overflow-hidden">
             {/* Top Browser Bar */}
-            <div className="px-4 sm:px-6 py-3.5 bg-slate-950/80 border-b border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="px-3 sm:px-6 py-3 bg-slate-950/80 border-b border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3">
               <div className="flex items-center gap-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
                 <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                <span className="ml-2 text-xs font-mono text-slate-400 hidden sm:inline">
+                <span className="ml-2 text-[11px] sm:text-xs font-mono text-slate-400 truncate max-w-[200px] sm:max-w-none">
                   cortexhive://products/{REAL_SHOWCASE[activeTab].id}
                 </span>
               </div>
 
               {/* Product Switcher Pills */}
-              <div className="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800 overflow-x-auto max-w-full">
+              <div className="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800 overflow-x-auto max-w-full w-full sm:w-auto -mx-1 px-1 sm:mx-0 sm:px-1">
                 {REAL_SHOWCASE.map((item, idx) => (
                   <button
                     key={item.id}
                     onClick={() => setActiveTab(idx)}
-                    className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
+                    className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0 ${
                       activeTab === idx
                         ? "bg-purple-600 text-white shadow-sm"
                         : "text-slate-400 hover:text-white"
@@ -318,7 +318,7 @@ export default function Hero() {
             </div>
 
             {/* Product UI Viewport */}
-            <div className="p-6 sm:p-10 bg-gradient-to-b from-slate-900 to-slate-950 text-white">
+            <div className="p-4 sm:p-8 md:p-10 bg-gradient-to-b from-slate-900 to-slate-950 text-white">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 {/* Left: Product Meta & Status */}
                 <div className="lg:col-span-5 space-y-4">

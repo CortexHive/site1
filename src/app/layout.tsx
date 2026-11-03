@@ -30,7 +30,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "CortexHive — Digital Solutions Agency | Websites, AI Receptionist & Custom Software",
   description:
-    "From professional websites and £50 trades starter sites to 24/7 AI receptionists and custom software development, we help UK businesses build their digital presence, streamline operations and grow with confidence.",
+    "From professional websites and £99 trades starter sites to 24/7 AI receptionists and custom software development, we help UK businesses build their digital presence, streamline operations and grow with confidence.",
   metadataBase: new URL("https://cortexhive.co.uk"),
   keywords: [
     "Website design UK",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CortexHive — Digital Solutions Agency | Websites, AI Receptionist & Custom Software",
     description:
-      "Digital solutions that move your business forward. Professional websites, £50 starter packages for trades, 24/7 AI receptionist, and custom software systems.",
+      "Digital solutions that move your business forward. Professional websites, £99 starter packages for trades, 24/7 AI receptionist, and custom software systems.",
     url: "https://cortexhive.co.uk",
     siteName: "CortexHive",
     images: [
@@ -113,7 +113,7 @@ const jsonLd = {
         itemOffered: {
           "@type": "Service",
           name: "Small Business & Trades Starter Website",
-          description: "Professional 1-page website with mobile design and WhatsApp lead capture for £50.",
+          description: "Professional 1-page website with mobile design and WhatsApp lead capture for £99.",
         },
       },
       {

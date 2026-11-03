@@ -6,17 +6,17 @@ import { SITE_CONFIG } from "@/lib/config";
 
 const PACKAGES = [
   {
-    id: "starter-50",
+    id: "starter-99",
     badge: "Most Popular for Trades",
     name: "Starter Business Website",
-    price: "£50",
+    price: "£99",
     period: "one-off build fee",
     desc: "Get a professional online presence for your trade or local business without agency markups.",
     icon: Sparkles,
     accent: "emerald",
-    serviceRequired: "£50 Small Business Website",
-    budget: "£50 Starter Package",
-    whatsappContext: "small-business-50",
+    serviceRequired: "£99 Small Business Website",
+    budget: "£99 Starter Package",
+    whatsappContext: "small-business-99",
     learnMoreHref: "/small-business-websites",
     features: [
       "Professional 1-page responsive website",
@@ -26,7 +26,7 @@ const PACKAGES = [
       "Basic on-page Google SEO setup",
       "Ready in 3 to 5 business days",
     ],
-    ctaLabel: "Claim £50 Website",
+    ctaLabel: "Claim £99 Website",
   },
   {
     id: "ai-receptionist",
@@ -112,23 +112,23 @@ export default function PricingPackages() {
   };
 
   return (
-    <section id="pricing" className="py-24 bg-white border-t border-slate-200 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section id="pricing" className="py-16 sm:py-24 bg-white border-t border-slate-200 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest mb-4">
             Transparent Investment
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight mb-3 sm:mb-4">
             Clear Packages. No Agency Guesswork.
           </h2>
-          <p className="text-slate-600 text-sm sm:text-lg leading-relaxed font-medium">
-            Whether you need an affordable £50 starter website to get your trade online this week or a full-scale software platform, choose a package below for an instant quote.
+          <p className="text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed font-medium px-2 sm:px-0">
+            Whether you need an affordable £99 starter website to get your trade online this week or a full-scale software platform, choose a package below for an instant quote.
           </p>
         </div>
 
         {/* 4-Column Package Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch">
           {PACKAGES.map((pkg) => {
             const Icon = pkg.icon;
             const isEmerald = pkg.accent === "emerald";
@@ -137,7 +137,7 @@ export default function PricingPackages() {
             return (
               <div
                 key={pkg.id}
-                className={`rounded-3xl p-6 sm:p-7 border flex flex-col justify-between transition-all duration-300 ${
+                className={`rounded-2xl sm:rounded-3xl p-5 sm:p-7 border flex flex-col justify-between transition-all duration-300 ${
                   isEmerald
                     ? "border-2 border-emerald-500 bg-emerald-50/20 shadow-xl relative"
                     : isCyan
@@ -147,9 +147,9 @@ export default function PricingPackages() {
               >
                 <div>
                   {/* Top Badge */}
-                  <div className="flex items-center justify-between gap-2 mb-5">
+                  <div className="flex items-center justify-between gap-2 mb-4 sm:mb-5">
                     <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center border ${
+                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center border ${
                         isEmerald
                           ? "bg-emerald-600 text-white border-emerald-600"
                           : isCyan
@@ -157,7 +157,7 @@ export default function PricingPackages() {
                           : "bg-white text-purple-600 border-slate-200"
                       }`}
                     >
-                      <Icon className="w-5 h-5" />
+                      <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                     <span
                       className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider ${
@@ -173,7 +173,7 @@ export default function PricingPackages() {
                   </div>
 
                   {/* Title & Description */}
-                  <h3 className="text-lg font-extrabold text-slate-950 font-outfit">
+                  <h3 className="text-base sm:text-lg font-extrabold text-slate-950 font-outfit">
                     {pkg.name}
                   </h3>
                   <p className="text-xs text-slate-600 font-medium mt-1 leading-relaxed">
@@ -181,8 +181,8 @@ export default function PricingPackages() {
                   </p>
 
                   {/* Price */}
-                  <div className="my-5 py-4 border-y border-slate-200/80">
-                    <div className="text-3xl font-black text-slate-950 font-outfit">
+                  <div className="my-4 sm:my-5 py-3 sm:py-4 border-y border-slate-200/80">
+                    <div className="text-2xl sm:text-3xl font-black text-slate-950 font-outfit">
                       {pkg.price}
                     </div>
                     <div className="text-[11px] font-semibold text-slate-500 mt-0.5">
@@ -191,7 +191,7 @@ export default function PricingPackages() {
                   </div>
 
                   {/* Feature List */}
-                  <ul className="space-y-2.5 mb-6">
+                  <ul className="space-y-2 sm:space-y-2.5 mb-5 sm:mb-6">
                     {pkg.features.map((feat, idx) => (
                       <li
                         key={idx}
@@ -217,7 +217,7 @@ export default function PricingPackages() {
                   <button
                     type="button"
                     onClick={() => handleSelectPackage(pkg.serviceRequired, pkg.budget)}
-                    className={`w-full py-3 px-4 rounded-xl text-xs font-bold inline-flex items-center justify-center gap-2 transition-all shadow-sm ${
+                    className={`w-full min-h-[44px] py-3 px-4 rounded-xl text-xs font-bold inline-flex items-center justify-center gap-2 transition-all shadow-sm active:scale-98 ${
                       isEmerald
                         ? "bg-emerald-600 hover:bg-emerald-700 text-white"
                         : isCyan
@@ -232,7 +232,7 @@ export default function PricingPackages() {
                   <div className="flex items-center justify-between px-1 pt-1 text-[11px] font-bold">
                     <Link
                       href={pkg.learnMoreHref}
-                      className="text-slate-500 hover:text-slate-900 transition-colors"
+                      className="text-slate-500 hover:text-slate-900 transition-colors py-1"
                     >
                       Full details &rarr;
                     </Link>
@@ -240,7 +240,7 @@ export default function PricingPackages() {
                       href={SITE_CONFIG.getWhatsAppLink(pkg.whatsappContext)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-emerald-700 hover:text-emerald-800 transition-colors"
+                      className="text-emerald-700 hover:text-emerald-800 transition-colors py-1"
                     >
                       WhatsApp Us
                     </a>

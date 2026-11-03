@@ -33,8 +33,8 @@ export const SITE_CONFIG = {
   // Pre-filled WhatsApp message generators
   getWhatsAppLink: (context?: string) => {
     let text = "Hi CortexHive, I would like to discuss a project.";
-    if (context === "small-business-50") {
-      text = "Hi CortexHive, I am interested in the £50 Professional Starter Website for my business.";
+    if (context === "small-business-50" || context === "small-business-99") {
+      text = "Hi CortexHive, I am interested in the £99 Professional Starter Website for my business.";
     } else if (context === "ai-receptionist") {
       text = "Hi CortexHive, I would like to enquire about your AI Receptionist and call answering service.";
     } else if (context === "ai-automation") {

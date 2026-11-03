@@ -16,7 +16,7 @@ import { SITE_CONFIG } from "@/lib/config";
 export const metadata: Metadata = {
   title: "Services & Digital Solutions UK | CortexHive",
   description:
-    "Explore CortexHive services: professional website design, £50 small business starter sites, 24/7 AI receptionist, AI business automation and custom software development.",
+    "Explore CortexHive services: professional website design, £99 small business starter sites, 24/7 AI receptionist, AI business automation and custom software development.",
   keywords: [
     "Digital solutions agency UK",
     "Website design UK",
@@ -36,7 +36,7 @@ const ALL_SERVICES = [
     badge: "Most Requested",
     tagline: "Websites built to turn visitors into paying customers.",
     desc: "Bespoke company websites, conversion landing pages, and full website redesigns optimized for Google search and mobile devices.",
-    startingAt: "From £500 (or £50 Starter)",
+    startingAt: "From £500 (or £99 Starter)",
     href: "/website-design",
     highlights: [
       "Mobile-first responsive design",
@@ -50,10 +50,10 @@ const ALL_SERVICES = [
     number: "02",
     icon: Wrench,
     title: "Small Business & Trades Starter Websites",
-    badge: "£50 Special Offer",
+    badge: "£99 Special Offer",
     tagline: "Your business deserves to be online without high agency fees.",
     desc: "A dedicated 1-page professional website for builders, plumbers, electricians, handymen, and local tradespeople with WhatsApp and direct call buttons.",
-    startingAt: "£50 one-off build fee",
+    startingAt: "£99 one-off build fee",
     href: "/small-business-websites",
     highlights: [
       "Engineered for your specific trade",
