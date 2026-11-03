@@ -2,6 +2,7 @@ import Hero from "@/components/hero";
 import Services from "@/components/services";
 import HomeTradesSpotlight from "@/components/home-trades-spotlight";
 import HomeAiReceptionistSpotlight from "@/components/home-ai-receptionist-spotlight";
+import PricingPackages from "@/components/pricing-packages";
 import Portfolio from "@/components/portfolio";
 import Process from "@/components/process";
 import About from "@/components/about";
@@ -11,7 +12,7 @@ import LeadForm from "@/components/lead-form";
 export default function Home() {
   return (
     <>
-      {/* 1. Hero Section with Real Product Showcase */}
+      {/* 1. Hero Section with Quick-Path Conversion Strip & Real Product Showcase */}
       <Hero />
 
       {/* 2. Services Overview */}
@@ -23,19 +24,22 @@ export default function Home() {
       {/* 4. AI Receptionist Introduction (Never Miss a Call 24/7) */}
       <HomeAiReceptionistSpotlight />
 
-      {/* 5. Why Choose CortexHive (Values & Disciplines) */}
+      {/* 5. Transparent Pricing & Instant Package Selector */}
+      <PricingPackages />
+
+      {/* 6. Why Choose CortexHive (Values & Disciplines) */}
       <About />
 
-      {/* 6. How We Work (Discovery to Deployment) */}
+      {/* 7. How We Work (Discovery to Deployment) */}
       <Process />
 
-      {/* 7. Selected Portfolio & Real Case Studies */}
+      {/* 8. Selected Portfolio & Real Case Studies */}
       <Portfolio />
 
-      {/* 8. Frequently Asked Questions */}
+      {/* 9. Frequently Asked Questions */}
       <HomeFaq />
 
-      {/* 9. Contact & Enquiry Section (Multi-Channel + Netlify + WhatsApp) */}
+      {/* 10. Contact & Enquiry Section (Fast 30s Mode + 4-Step Wizard + Netlify + WhatsApp) */}
       <LeadForm />
     </>
   );

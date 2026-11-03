@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -10,6 +11,10 @@ import {
   Globe,
   Terminal,
   ChevronRight,
+  Sparkles,
+  PhoneCall,
+  Zap,
+  CheckCircle2,
 } from "lucide-react";
 
 const REAL_SHOWCASE = [
@@ -166,6 +171,99 @@ export default function Hero() {
               <span>Chat on WhatsApp</span>
             </a>
           </motion.div>
+
+          {/* Fast-Track Client Acquisition Strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.38 }}
+            className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 text-left max-w-4xl mx-auto"
+          >
+            <Link
+              href="/small-business-websites"
+              className="group p-4 rounded-2xl bg-slate-50/90 hover:bg-emerald-50/70 border border-slate-200 hover:border-emerald-300 transition-all flex items-start gap-3.5 shadow-2xs"
+            >
+              <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <Sparkles className="w-5 h-5" />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-700">
+                    Get Online Fast
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-0.5 transition-all" />
+                </div>
+                <p className="text-sm font-bold text-slate-900 mt-0.5">
+                  £50 Starter Websites
+                </p>
+                <p className="text-[11px] text-slate-500 font-medium leading-snug mt-0.5">
+                  For trades, builders, plumbers &amp; small businesses. Ready in 3–5 days.
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="/ai-receptionist"
+              className="group p-4 rounded-2xl bg-slate-50/90 hover:bg-cyan-50/70 border border-slate-200 hover:border-cyan-300 transition-all flex items-start gap-3.5 shadow-2xs"
+            >
+              <div className="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <PhoneCall className="w-5 h-5" />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-cyan-700">
+                    Never Miss a Call
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-cyan-600 group-hover:translate-x-0.5 transition-all" />
+                </div>
+                <p className="text-sm font-bold text-slate-900 mt-0.5">
+                  24/7 AI Receptionist
+                </p>
+                <p className="text-[11px] text-slate-500 font-medium leading-snug mt-0.5">
+                  Answers calls, qualifies leads &amp; texts you instant summaries.
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="/software-development"
+              className="group p-4 rounded-2xl bg-slate-50/90 hover:bg-purple-50/70 border border-slate-200 hover:border-purple-300 transition-all flex items-start gap-3.5 shadow-2xs"
+            >
+              <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <Zap className="w-5 h-5" />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-purple-700">
+                    Work Smarter
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-purple-600 group-hover:translate-x-0.5 transition-all" />
+                </div>
+                <p className="text-sm font-bold text-slate-900 mt-0.5">
+                  AI &amp; Custom Software
+                </p>
+                <p className="text-[11px] text-slate-500 font-medium leading-snug mt-0.5">
+                  Automated workflows, client portals &amp; full-stack SaaS MVPs.
+                </p>
+              </div>
+            </Link>
+          </motion.div>
+
+          {/* Trust & Guarantee Badges */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-slate-500 font-semibold">
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              Transparent Fixed Pricing
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              Direct UK Engineering Support
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              Fast Turnaround &amp; Full Code Ownership
+            </span>
+          </div>
         </div>
 
         {/* Built, Not Just Promised Section */}

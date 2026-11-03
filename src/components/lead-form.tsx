@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Layers,
@@ -17,6 +17,8 @@ import {
   Mail,
   Phone,
   Sparkles,
+  Zap,
+  SlidersHorizontal,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { SITE_CONFIG } from "@/lib/config";
@@ -105,6 +107,7 @@ const TIMELINES = [
 ];
 
 export default function LeadForm({ defaultService }: { defaultService?: string }) {
+  const [mode, setMode] = useState<"fast" | "wizard">("fast");
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<ProjectEnquiryData>({
     ...INITIAL_DATA,
@@ -114,6 +117,22 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    const handlePackageSelect = (e: Event) => {
+      const customEvent = e as CustomEvent<{ serviceRequired: string; budget: string }>;
+      if (customEvent.detail) {
+        setFormData((prev) => ({
+          ...prev,
+          serviceRequired: customEvent.detail.serviceRequired || prev.serviceRequired,
+          budget: customEvent.detail.budget || prev.budget,
+        }));
+        setError(null);
+      }
+    };
+    window.addEventListener("cortexhive:select-package", handlePackageSelect);
+    return () => window.removeEventListener("cortexhive:select-package", handlePackageSelect);
+  }, []);
 
   const handleSelect = (field: keyof ProjectEnquiryData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -361,49 +380,251 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
               </button>
             </motion.div>
           ) : (
-            /* Form Wizard */
+            /* Form Container (Fast 30s Mode or 4-Step Wizard) */
             <form
               onSubmit={handleSubmit}
               name="contact"
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
-              className="space-y-8"
+              className="space-y-7"
             >
               {/* Hidden Netlify Inputs */}
               <input type="hidden" name="form-name" value="contact" />
               <input type="hidden" name="bot-field" />
 
-              {/* Progress Bar / Steps Header */}
-              <div className="flex items-center justify-between border-b border-slate-100 pb-5">
-                {[
-                  { num: 1, label: "Service" },
-                  { num: 2, label: "Budget" },
-                  { num: 3, label: "Timeline" },
-                  { num: 4, label: "Details" },
-                ].map((s) => (
-                  <div key={s.num} className="flex items-center gap-2">
-                    <div
-                      className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
-                        step === s.num
-                          ? "bg-purple-600 text-white"
-                          : step > s.num
-                          ? "bg-emerald-500 text-white"
-                          : "bg-slate-100 text-slate-500"
-                      }`}
-                    >
-                      {step > s.num ? "✓" : s.num}
-                    </div>
-                    <span
-                      className={`text-xs font-semibold hidden sm:inline ${
-                        step === s.num ? "text-slate-900" : "text-slate-400"
-                      }`}
-                    >
-                      {s.label}
-                    </span>
-                  </div>
-                ))}
+              {/* Mode Switcher: Quick 30-Second Quote vs 4-Step Guided Wizard */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pb-5 border-b border-slate-100">
+                <div className="inline-flex p-1 rounded-2xl bg-slate-100 border border-slate-200/80 w-full sm:w-auto">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMode("fast");
+                      setError(null);
+                    }}
+                    className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                      mode === "fast"
+                        ? "bg-white text-purple-700 shadow-sm"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    <Zap className="w-3.5 h-3.5 text-purple-600" />
+                    <span>Quick Quote (30s)</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMode("wizard");
+                      setError(null);
+                    }}
+                    className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                      mode === "wizard"
+                        ? "bg-white text-purple-700 shadow-sm"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    <SlidersHorizontal className="w-3.5 h-3.5 text-slate-500" />
+                    <span>4-Step Project Scoping</span>
+                  </button>
+                </div>
+
+                <div className="text-[11px] font-semibold text-slate-500">
+                  Selected:{" "}
+                  <span className="text-purple-700 font-bold">{formData.serviceRequired}</span>
+                </div>
               </div>
+
+              {mode === "fast" ? (
+                /* FAST 30-SECOND SINGLE-SCREEN QUOTE FORM */
+                <div className="space-y-5">
+                  {/* Quick Service Pill Selector */}
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-800 block">
+                      1. Select Service Needed <span className="text-purple-600">*</span>
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                      {SERVICES.map((s) => {
+                        const Icon = s.icon;
+                        const isSelected = formData.serviceRequired === s.id;
+                        return (
+                          <button
+                            type="button"
+                            key={s.id}
+                            onClick={() => {
+                              handleSelect("serviceRequired", s.id);
+                              if (s.id === "£50 Small Business Website") {
+                                handleSelect("budget", "£50 Starter Package");
+                              }
+                            }}
+                            className={`p-3 rounded-xl border text-left flex items-center gap-2.5 transition-all ${
+                              isSelected
+                                ? "border-purple-600 bg-purple-50/70 text-purple-950 shadow-sm"
+                                : "border-slate-200 bg-slate-50/50 hover:bg-white hover:border-slate-300 text-slate-700"
+                            }`}
+                          >
+                            <div
+                              className={`p-1.5 rounded-lg flex-shrink-0 ${
+                                isSelected ? "bg-purple-600 text-white" : "bg-white text-slate-600 border border-slate-200"
+                              }`}
+                            >
+                              <Icon className="w-3.5 h-3.5" />
+                            </div>
+                            <span className="text-xs font-bold leading-tight">{s.id}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Contact Fields */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-slate-800">
+                        Your Name <span className="text-purple-600">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="e.g. Alex Morgan"
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-slate-800">
+                        Telephone / WhatsApp Number
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="e.g. 07950 501323"
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-slate-800">
+                        Email Address <span className="text-purple-600">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="alex@example.co.uk"
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-slate-800">
+                        Preferred Reply Method
+                      </label>
+                      <select
+                        name="preferredContact"
+                        value={formData.preferredContact}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors"
+                      >
+                        <option value="WhatsApp">WhatsApp (Fastest Reply)</option>
+                        <option value="Phone">Phone Call</option>
+                        <option value="Email">Email</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Brief */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-800">
+                      How can we help your business? <span className="text-purple-600">*</span>
+                    </label>
+                    <textarea
+                      name="brief"
+                      rows={3}
+                      required
+                      value={formData.brief}
+                      onChange={handleChange}
+                      placeholder="Briefly describe your business and what you need (e.g., £50 starter website for our plumbing business, AI receptionist for missed calls, or custom web app)..."
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-sm text-slate-900 focus:outline-none transition-colors resize-none"
+                    />
+                  </div>
+
+                  {/* Error Alert */}
+                  {error && (
+                    <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 flex items-center gap-2.5 text-xs text-red-700">
+                      <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                      <span>{error}</span>
+                    </div>
+                  )}
+
+                  {/* Privacy & Submit */}
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                    <p className="text-[11px] text-slate-500 leading-relaxed text-center sm:text-left">
+                      Protected by our{" "}
+                      <a href="/privacy" className="underline hover:text-slate-800">
+                        Privacy Policy
+                      </a>
+                      . No obligation &amp; zero spam.
+                    </p>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-purple-600 hover:bg-purple-700 text-xs font-bold text-white transition-all shadow-lg shadow-purple-600/20 disabled:opacity-50"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Sending Request...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Get My Free Quote</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                /* 4-STEP SCOPING WIZARD */
+                <>
+                  {/* Progress Bar / Steps Header */}
+                  <div className="flex items-center justify-between border-b border-slate-100 pb-5">
+                    {[
+                      { num: 1, label: "Service" },
+                      { num: 2, label: "Budget" },
+                      { num: 3, label: "Timeline" },
+                      { num: 4, label: "Details" },
+                    ].map((s) => (
+                      <div key={s.num} className="flex items-center gap-2">
+                        <div
+                          className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
+                            step === s.num
+                              ? "bg-purple-600 text-white"
+                              : step > s.num
+                              ? "bg-emerald-500 text-white"
+                              : "bg-slate-100 text-slate-500"
+                          }`}
+                        >
+                          {step > s.num ? "✓" : s.num}
+                        </div>
+                        <span
+                          className={`text-xs font-semibold hidden sm:inline ${
+                            step === s.num ? "text-slate-900" : "text-slate-400"
+                          }`}
+                        >
+                          {s.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
 
               {/* STEP CONTENT */}
               <AnimatePresence mode="wait">
@@ -760,8 +981,10 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                       </>
                     )}
                   </button>
-                )}
-              </div>
+                  )}
+                </div>
+              </>
+            )}
             </form>
           )}
         </div>
