@@ -1,10 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import {
-  Globe,
   ArrowRight,
   CheckCircle2,
-  Sparkles,
   Smartphone,
   Gauge,
   Search,
@@ -16,17 +14,15 @@ import LeadForm from "@/components/lead-form";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Professional Website Design & Web Development UK | CortexHive",
+  title: "Bespoke Web Platform Design & Development UK | CortexHive",
   description:
-    "Bespoke website design and development for UK businesses, tradespeople, startups and SMEs. High speed, responsive, SEO-ready websites built to turn visitors into paying customers.",
+    "High-performance website engineering and digital platforms for UK companies, contractors, startups, and SMEs. Built for search visibility and client conversion.",
   keywords: [
     "Website design UK",
     "Web development agency UK",
     "Bespoke business websites",
-    "Affordable website design UK",
     "Next.js website development",
     "Conversion rate optimization UK",
-    "Small business website designer",
   ],
 };
 
@@ -34,7 +30,7 @@ const PILLARS = [
   {
     icon: Smartphone,
     title: "100% Mobile & Tablet Responsive",
-    desc: "Over 68% of local UK service searches happen on smartphones. Every layout is crafted to load smoothly on iOS and Android devices.",
+    desc: "Over 68% of commercial searches happen on smartphones. Every layout is crafted to load smoothly on iOS and Android devices.",
   },
   {
     icon: Gauge,
@@ -65,55 +61,52 @@ const PILLARS = [
 
 const PACKAGES = [
   {
-    name: "Starter One-Page",
-    price: "£99",
-    period: "one-off build fee",
-    tagline: "Ideal for tradespeople, sole traders, and local services.",
-    popular: true,
-    features: [
-      "1-page responsive layout",
-      "Business overview & services list",
-      "WhatsApp chat integration",
-      "Interactive enquiry form",
-      "Click-to-call mobile buttons",
-      "Basic on-page SEO setup",
-      "Delivered in 3–5 days",
-    ],
-    ctaText: "Explore £99 Package",
-    href: "/small-business-websites",
-  },
-  {
-    name: "Professional Multi-Page",
-    price: "£500 – £1,500",
-    period: "fixed price project",
-    tagline: "For established businesses needing detailed service pages and case studies.",
+    name: "Focused Web Platform",
+    scope: "Scoped Fixed Milestone",
+    tagline: "Ideal for trades, local services, and standalone product launches.",
     popular: false,
     features: [
-      "4–8 custom designed pages",
-      "Dedicated service & location landing pages",
-      "Case studies & portfolio gallery",
-      "Comprehensive on-page & technical SEO",
-      "Advanced Netlify lead forms with file uploads",
-      "Blog / insights publishing engine",
-      "Analytics & conversion tracking",
+      "Responsive conversion-focused layout",
+      "Executive business overview & services breakdown",
+      "Direct WhatsApp and click-to-call integration",
+      "Interactive enquiry and lead capture form",
+      "Technical on-page SEO & Schema.org tags",
+      "Fast milestone delivery in 3–5 business days",
+      "100% source code and asset ownership",
     ],
-    ctaText: "Request Multi-Page Quote",
+    ctaText: "Scope Focused Platform",
     href: "#quote-form",
   },
   {
-    name: "Custom Web Application",
-    price: "£2,500+",
-    period: "custom scope",
-    tagline: "For startups, SaaS platforms, portals, and database-driven web software.",
+    name: "Commercial Web Platform",
+    scope: "Milestone Scoped Build",
+    tagline: "For established businesses needing dedicated service silos and case studies.",
+    popular: true,
+    features: [
+      "4–8 custom designed responsive pages",
+      "Dedicated service & practice area landing architectures",
+      "Client case studies & verified work gallery",
+      "Comprehensive Google Search Console & XML sitemap",
+      "Advanced enquiry capture with lead notification routing",
+      "Sub-second edge caching on Cloudflare/Vercel",
+      "Analytics & conversion tracking integration",
+    ],
+    ctaText: "Scope Commercial Platform",
+    href: "#quote-form",
+  },
+  {
+    name: "Custom Web Application & Portal",
+    scope: "Full-Stack Engineering",
+    tagline: "For startups, platforms, member portals, and database-driven web software.",
     popular: false,
     features: [
-      "Full-stack Next.js, Node & PostgreSQL",
-      "User authentication & client portals",
-      "Admin management dashboards",
+      "Full-stack Next.js, TypeScript & PostgreSQL",
+      "Secure user authentication & client portals",
+      "Admin management dashboards & analytics",
       "AI API and third-party webhook integrations",
-      "Stripe / GoCardless subscription billing",
-      "Complete deployment pipeline & testing",
-      "Ongoing engineering support",
+      "Stripe / GoCardless subscription billing rails",
+      "Automated CI/CD deployment & testing pipelines",
+      "Ongoing engineering care & SLA support",
     ],
     ctaText: "Discuss Web Application",
     href: "/software-development",
@@ -126,59 +119,54 @@ export default function WebsiteDesignPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-16 sm:space-y-20">
         {/* Hero Section */}
         <div className="text-center max-w-4xl mx-auto space-y-5 sm:space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-[11px] sm:text-xs font-bold text-purple-700 uppercase tracking-widest shadow-xs">
-            <Globe className="w-4 h-4 text-purple-600" />
-            <span>Digital Solutions Agency • United Kingdom</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-50 border border-slate-200 text-xs font-mono uppercase tracking-[0.16em] text-blue-600 font-semibold">
+            WEB ARCHITECTURE &amp; DESIGN
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-slate-950 font-outfit tracking-tight leading-[1.12] sm:leading-[1.08]">
-            Websites Built to Turn{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
-              Visitors into Customers.
-            </span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#090D16] tracking-tight leading-[1.12]">
+            Web Platforms Built to Turn Visitors into Clients.
           </h1>
 
-          <p className="text-base sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium px-2 sm:px-0">
-            From affordable starter websites for tradespeople to high-performance platforms for established UK businesses, we engineer web presences that inspire trust and generate leads.
+          <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            From focused commercial platforms for UK contractors to high-performance web systems for established companies, we engineer web experiences that command authority and generate qualified enquiries.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 pt-2">
             <a
               href="#quote-form"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-xl active:scale-98 transition-all"
+              className="px-8 py-3.5 rounded-lg bg-[#0F172A] hover:bg-blue-600 text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors shadow-2xs"
             >
-              <span>Get a Free Quote</span>
+              <span>Discuss a Web Project</span>
               <ArrowRight className="w-4 h-4" />
             </a>
 
             <Link
               href="/small-business-websites"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:py-4 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-xs sm:text-sm transition-all"
+              className="px-8 py-3.5 rounded-lg bg-white hover:bg-slate-50 border border-slate-300 text-[#0F172A] font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
             >
-              <Sparkles className="w-4 h-4 text-emerald-600" />
-              <span>See £99 Trades Website Offer</span>
+              <span>Commercial &amp; Trade Systems</span>
             </Link>
 
             <a
-              href={SITE_CONFIG.getWhatsAppLink("quote")}
+              href={SITE_CONFIG.getWhatsAppLink("website")}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-bold text-xs sm:text-sm transition-all"
+              className="px-6 py-3.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200 text-[#0F172A] font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
             >
-              <span>Chat on WhatsApp</span>
+              <span>WhatsApp Consultation</span>
             </a>
           </div>
         </div>
 
-        {/* Core Pillars */}
+        {/* 6 Value Pillars Grid */}
         <div className="space-y-8">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-purple-600">
-              Our Web Standards
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-outfit mt-1">
-              Why Our Websites Perform Better
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#090D16]">
+              Engineered for Speed, Authority &amp; Conversion
             </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+              Every platform is custom-built on modern frameworks with zero bloated page builders.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -187,15 +175,15 @@ export default function WebsiteDesignPage() {
               return (
                 <div
                   key={i}
-                  className="p-6 rounded-3xl bg-slate-50 border border-slate-200 hover:border-purple-300 hover:shadow-md transition-all space-y-3"
+                  className="p-6 rounded-xl bg-[#F8FAFC] border border-slate-200 hover:border-slate-300 transition-colors space-y-3"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-purple-600 flex items-center justify-center shadow-xs">
-                    <Icon className="w-6 h-6" />
+                  <div className="w-10 h-10 rounded-lg bg-white border border-slate-200 text-[#0F172A] flex items-center justify-center">
+                    <Icon className="w-5 h-5 text-blue-600" />
                   </div>
-                  <h3 className="text-base font-bold text-slate-950 font-outfit">
+                  <h3 className="text-base font-bold text-[#090D16]">
                     {p.title}
                   </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {p.desc}
                   </p>
                 </div>
@@ -204,78 +192,69 @@ export default function WebsiteDesignPage() {
           </div>
         </div>
 
-        {/* Transparent Options Grid */}
+        {/* Scopes Grid */}
         <div className="space-y-8">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-purple-600">
-              Clear Options
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-outfit mt-1">
-              Transparent Website Packages
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#090D16]">
+              Structured Web Practice Scopes
             </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+              Predictable fixed-scope delivery tailored to your commercial stage.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
             {PACKAGES.map((pkg, i) => (
               <div
                 key={i}
-                className={`p-8 rounded-3xl border flex flex-col justify-between transition-all ${
+                className={`rounded-xl p-7 flex flex-col justify-between transition-all ${
                   pkg.popular
-                    ? "border-2 border-emerald-500 bg-emerald-50/20 shadow-xl relative"
-                    : "border-slate-200 bg-white"
+                    ? "bg-[#F8FAFC] border-2 border-[#0F172A] shadow-md"
+                    : "bg-white border border-slate-200 hover:border-slate-300"
                 }`}
               >
-                {pkg.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-emerald-600 text-white font-bold text-[10px] uppercase tracking-wider">
-                    Most Popular for Trades
-                  </span>
-                )}
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-extrabold text-slate-950 font-outfit">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-bold text-[#090D16]">
                       {pkg.name}
                     </h3>
-                    <p className="text-xs text-slate-500 mt-1">{pkg.tagline}</p>
-                  </div>
-
-                  <div className="pt-2 pb-1 border-b border-slate-100">
-                    <span className="text-3xl sm:text-4xl font-black font-outfit text-slate-950">
-                      {pkg.price}
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold">
+                      {pkg.scope}
                     </span>
-                    <span className="text-xs text-slate-400 block mt-0.5">{pkg.period}</span>
                   </div>
 
-                  <ul className="space-y-2.5 pt-2">
-                    {pkg.features.map((feat, fIdx) => (
-                      <li key={fIdx} className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-xs text-slate-600 mb-6 leading-relaxed">
+                    {pkg.tagline}
+                  </p>
+
+                  <ul className="space-y-2.5 mb-8">
+                    {pkg.features.map((feat, idx) => (
+                      <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 flex-shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="pt-6">
-                  <Link
-                    href={pkg.href}
-                    className={`w-full py-3 rounded-full text-xs font-bold inline-flex items-center justify-center gap-2 transition-all ${
-                      pkg.popular
-                        ? "bg-emerald-600 hover:bg-emerald-700 text-white shadow-md"
-                        : "bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200"
-                    }`}
-                  >
-                    <span>{pkg.ctaText}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
+                <a
+                  href={pkg.href}
+                  className={`w-full py-3 px-4 rounded-lg text-xs font-semibold text-center transition-colors ${
+                    pkg.popular
+                      ? "bg-blue-600 hover:bg-[#0F172A] text-white"
+                      : "bg-[#0F172A] hover:bg-blue-600 text-white"
+                  }`}
+                >
+                  {pkg.ctaText}
+                </a>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Lead Form Section */}
+        {/* Lead Form */}
         <div id="quote-form" className="pt-6">
-          <LeadForm defaultService="Website Design" />
+          <LeadForm defaultService="Web Platform & Design" />
         </div>
       </div>
     </div>

@@ -9,203 +9,158 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
+const DIVISIONS = [
+  {
+    index: "DIVISION 01",
+    tag: "WEB ARCHITECTURE",
+    title: "Web Platforms & Digital Presence",
+    summary:
+      "High-performance websites and institutional web platforms engineered for brand authority, search visibility, and measurable client acquisition.",
+    icon: Globe,
+    href: "/website-design",
+    ctaLabel: "Explore Web Platforms",
+    capabilities: [
+      "Bespoke corporate & commercial websites",
+      "Conversion-engineered landing architectures",
+      "Sector-specific platforms for trades & clinics",
+      "Interactive enquiry & appointment intake funnels",
+      "Technical SEO & Schema.org structured graphs",
+      "Sub-second Next.js edge performance",
+    ],
+    stack: ["Next.js 14", "TypeScript", "Tailwind CSS", "Cloudflare Edge"],
+  },
+  {
+    index: "DIVISION 02",
+    tag: "APPLIED AI & VOICE",
+    title: "AI Systems & Workflow Automation",
+    summary:
+      "Production AI agents, conversational voice receptionists, and automated pipelines that eliminate manual administrative bottlenecks.",
+    icon: Bot,
+    href: "/ai-automation",
+    ctaLabel: "Explore AI & Automation",
+    capabilities: [
+      "24/7 autonomous British voice AI receptionists",
+      "Inbound call qualification & instant SMS/CRM dispatch",
+      "Document intelligence & automated PDF extraction",
+      "Private company knowledge bases (RAG pipelines)",
+      "Multi-step CRM, email & webhook orchestration",
+      "Custom LLM evaluation & guardrails",
+    ],
+    stack: ["OpenAI / Claude", "ElevenLabs Voice", "Twilio", "Vector RAG"],
+  },
+  {
+    index: "DIVISION 03",
+    tag: "PRODUCT ENGINEERING",
+    title: "Custom Software & SaaS Platforms",
+    summary:
+      "End-to-end architecture, database design, and full-stack engineering for proprietary software products, SaaS MVPs, and internal tools.",
+    icon: Layers,
+    href: "/software-development",
+    ctaLabel: "Explore Software Engineering",
+    capabilities: [
+      "Full-stack SaaS MVP architecture & delivery",
+      "Multi-role client, student & admin portals",
+      "Internal operations & dispatch dashboards",
+      "Relational database & REST/GraphQL API systems",
+      "Stripe subscription & usage-based billing rails",
+      "Complete source code & IP ownership handover",
+    ],
+    stack: ["React / Next.js", "PostgreSQL", "Supabase", "Stripe API"],
+  },
+];
+
 export default function ServiceDivisions() {
   return (
-    <section id="services" className="py-20 sm:py-28 bg-[#F8FAFD] border-b border-[#E2E8F0] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-blue-700 uppercase tracking-widest mb-4">
-            Commercial Divisions
+    <section id="services" className="py-20 sm:py-28 bg-[#F8FAFC] border-b border-slate-200 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Asymmetric Editorial Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end pb-12 mb-12 border-b border-slate-200">
+          <div className="lg:col-span-7 space-y-3">
+            <div className="text-xs font-mono uppercase tracking-[0.18em] text-blue-600 font-semibold">
+              01 // CORE PRACTICE AREAS
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#090D16] tracking-[-0.025em] leading-[1.1]">
+              Three Specialized Engineering Divisions.
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#14243A] tracking-tight mb-4">
-            Digital Solutions for Modern Businesses.
-          </h2>
-          <p className="text-base sm:text-lg text-[#475569] leading-relaxed font-normal">
-            We operate three specialized divisions designed to solve practical business challenges — from getting online affordably to deploying autonomous AI agents and building complete software products.
-          </p>
+          <div className="lg:col-span-5">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+              Every engagement is structured around practical commercial outcomes — whether establishing a commanding web presence, automating customer operations with AI, or shipping a full-scale software platform.
+            </p>
+          </div>
         </div>
 
-        {/* 3 Main Commercial Division Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-          {/* DIVISION A: WEBSITES & DIGITAL PRESENCE */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-blue-600/20 hover:border-blue-600 shadow-subtle hover:shadow-hover transition-all duration-300 flex flex-col justify-between relative group">
-            <div>
-              {/* Header & Badge */}
-              <div className="flex items-center justify-between mb-5">
-                <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
-                  <Globe className="w-6 h-6" />
-                </div>
-                <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200">
-                  Starting from £99
-                </span>
-              </div>
-
-              <div className="text-xs font-bold uppercase tracking-wider text-blue-600 mb-1">
-                Division 01
-              </div>
-              <h3 className="text-2xl font-extrabold text-[#14243A] mb-3">
-                Websites &amp; Digital Presence
-              </h3>
-              <p className="text-sm text-[#475569] leading-relaxed mb-6 font-normal">
-                Professional websites that help small businesses establish their online presence and attract customers.
-              </p>
-
-              <div className="border-t border-[#E2E8F0] pt-5 mb-8">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#64748B] block mb-3">
-                  Services Provided:
-                </span>
-                <ul className="space-y-2.5">
-                  {[
-                    "Affordable business websites",
-                    "One-page websites (from £99)",
-                    "Multi-page websites (from £349)",
-                    "High-converting landing pages",
-                    "E-commerce websites",
-                    "Website redesigns",
-                    "Booking and enquiry websites",
-                    "Website maintenance & care plans",
-                  ].map((service, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs text-[#334155] font-medium leading-snug">
-                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                      <span>{service}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="pt-2">
-              <Link
-                href="/pricing"
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xs"
+        {/* 3-Column Architectural Matrix */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+          {DIVISIONS.map((div) => {
+            const Icon = div.icon;
+            return (
+              <div
+                key={div.index}
+                className="bg-white rounded-xl border border-slate-200 p-7 sm:p-8 flex flex-col justify-between hover:border-slate-300 hover:shadow-[0_12px_32px_-12px_rgba(15,23,42,0.08)] transition-all duration-200"
               >
-                <span>Explore Website Packages</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
+                <div>
+                  {/* Top Bar */}
+                  <div className="flex items-center justify-between pb-5 mb-6 border-b border-slate-100">
+                    <div>
+                      <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-slate-400 block">
+                        {div.index}
+                      </span>
+                      <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-600 mt-0.5 block">
+                        {div.tag}
+                      </span>
+                    </div>
+                    <div className="w-10 h-10 rounded-lg bg-slate-100 text-[#0F172A] flex items-center justify-center">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                  </div>
 
-          {/* DIVISION B: AI, AUTOMATION & INTELLIGENT AGENTS */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E2E8F0] hover:border-sky-500 shadow-subtle hover:shadow-hover transition-all duration-300 flex flex-col justify-between group">
-            <div>
-              {/* Header & Badge */}
-              <div className="flex items-center justify-between mb-5">
-                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center">
-                  <Bot className="w-6 h-6" />
+                  {/* Title & Summary */}
+                  <h3 className="text-xl font-bold text-[#090D16] tracking-tight mb-3">
+                    {div.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                    {div.summary}
+                  </p>
+
+                  {/* Capabilities List */}
+                  <div className="space-y-2.5 mb-7">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
+                      Key Deliverables
+                    </div>
+                    {div.capabilities.map((cap, i) => (
+                      <div key={i} className="flex items-start gap-2.5 text-xs text-slate-700 leading-snug">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <span>{cap}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-slate-100 text-[#475569] border border-[#CBD5E1]">
-                  Contact for Pricing
-                </span>
-              </div>
 
-              <div className="text-xs font-bold uppercase tracking-wider text-sky-600 mb-1">
-                Division 02
-              </div>
-              <h3 className="text-2xl font-extrabold text-[#14243A] mb-3">
-                AI, Automation &amp; Intelligent Agents
-              </h3>
-              <p className="text-sm text-[#475569] leading-relaxed mb-6 font-normal">
-                Build intelligent AI solutions that automate repetitive work, improve customer experiences and streamline business operations.
-              </p>
+                {/* Stack & Action */}
+                <div className="pt-5 border-t border-slate-100 space-y-5">
+                  <div className="flex flex-wrap gap-1.5">
+                    {div.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-0.5 rounded bg-slate-50 border border-slate-200 text-[10px] font-mono text-slate-600"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
 
-              <div className="border-t border-[#E2E8F0] pt-5 mb-8">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#64748B] block mb-3">
-                  Services Provided:
-                </span>
-                <ul className="space-y-2.5">
-                  {[
-                    "Custom AI agents",
-                    "AI customer support assistants",
-                    "AI voice agents",
-                    "AI receptionists",
-                    "Automated enquiry handling",
-                    "Business process automation",
-                    "Document intelligence",
-                    "AI-powered knowledge assistants",
-                    "Custom AI integrations",
-                    "AI API development",
-                  ].map((service, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs text-[#334155] font-medium leading-snug">
-                      <CheckCircle2 className="w-4 h-4 text-sky-500 flex-shrink-0 mt-0.5" />
-                      <span>{service}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="pt-2">
-              <Link
-                href="/ai-automation"
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-full bg-[#14243A] hover:bg-blue-600 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xs"
-              >
-                <span>Explore AI Solutions</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-
-          {/* DIVISION C: SOFTWARE, SAAS & DIGITAL PLATFORMS */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E2E8F0] hover:border-indigo-500 shadow-subtle hover:shadow-hover transition-all duration-300 flex flex-col justify-between group">
-            <div>
-              {/* Header & Badge */}
-              <div className="flex items-center justify-between mb-5">
-                <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                  <Layers className="w-6 h-6" />
+                  <Link
+                    href={div.href}
+                    className="w-full py-3 px-4 rounded-lg bg-[#0F172A] hover:bg-blue-600 text-white text-xs font-semibold inline-flex items-center justify-between transition-colors"
+                  >
+                    <span>{div.ctaLabel}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                 </div>
-                <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-slate-100 text-[#475569] border border-[#CBD5E1]">
-                  Contact for Pricing
-                </span>
               </div>
-
-              <div className="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-1">
-                Division 03
-              </div>
-              <h3 className="text-2xl font-extrabold text-[#14243A] mb-3">
-                Software, SaaS &amp; Digital Platforms
-              </h3>
-              <p className="text-sm text-[#475569] leading-relaxed mb-6 font-normal">
-                Turn business ideas into functional digital products, custom applications and scalable software platforms.
-              </p>
-
-              <div className="border-t border-[#E2E8F0] pt-5 mb-8">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#64748B] block mb-3">
-                  Services Provided:
-                </span>
-                <ul className="space-y-2.5">
-                  {[
-                    "SaaS development",
-                    "Custom business software",
-                    "Web applications",
-                    "Subscription platforms",
-                    "Customer portals",
-                    "Admin dashboards",
-                    "Education technology (EdTech)",
-                    "Marketplace development",
-                    "Booking systems",
-                    "API & database integrations",
-                    "MVP development",
-                  ].map((service, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs text-[#334155] font-medium leading-snug">
-                      <CheckCircle2 className="w-4 h-4 text-indigo-600 flex-shrink-0 mt-0.5" />
-                      <span>{service}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="pt-2">
-              <Link
-                href="/software-development"
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-full bg-[#14243A] hover:bg-blue-600 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xs"
-              >
-                <span>Explore Software Development</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

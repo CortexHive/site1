@@ -47,22 +47,22 @@ export default function HomeTradesSpotlight() {
               Get a professional online presence without the expensive agency price tag. Designed specifically for UK tradespeople, sole traders, and local service providers.
             </p>
 
-            {/* Price Badge */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-white border border-emerald-200 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+            {/* Delivery Scope Badge */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-white border border-blue-200 shadow-xs flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 block">
-                  Professional Starter Website
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-600 block">
+                  Turnkey Commercial Web Platform
                 </span>
                 <div className="flex items-baseline gap-2 mt-0.5">
-                  <span className="text-3xl sm:text-4xl font-black font-outfit text-slate-950">£99</span>
-                  <span className="text-xs text-slate-500 font-semibold">one-off build fee</span>
+                  <span className="text-xl sm:text-2xl font-black font-outfit text-slate-950">Fixed Milestone Scope</span>
+                  <span className="text-xs text-slate-500 font-semibold">fast turnaround</span>
                 </div>
               </div>
               <Link
                 href="/small-business-websites"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition-all whitespace-nowrap active:scale-98"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#0F172A] hover:bg-blue-600 text-white font-bold text-xs shadow-xs transition-all whitespace-nowrap active:scale-98"
               >
-                <span>View Full £99 Package</span>
+                <span>View Full Platform Scope</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -131,8 +131,8 @@ export default function HomeTradesSpotlight() {
             </div>
 
             <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-[11px] text-slate-600 leading-relaxed">
-              <strong className="text-slate-900 block mb-0.5">Transparent Running Costs:</strong>
-              Domain registration and cloud hosting are standard external costs (from £5/mo). No hidden fees, no fake promises.
+              <strong className="text-slate-900 block mb-0.5">Transparent Infrastructure:</strong>
+              Domain registration and cloud hosting are connected directly to your own accounts. Full source ownership and no vendor lock-in.
             </div>
           </div>
         </div>

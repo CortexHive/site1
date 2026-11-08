@@ -20,32 +20,26 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "CortexHive | Website Design, AI Automation & Software Development UK",
+  title: "CortexHive — AI Systems, Custom Software & Web Engineering Studio UK",
   description:
-    "Professional websites from £99, custom AI agents, business automation and bespoke software development. Discover digital solutions from CortexHive.",
+    "CortexHive is a UK technology studio engineering bespoke web platforms, autonomous AI agents, workflow automation, and full-stack SaaS software.",
   metadataBase: new URL("https://cortexhive.co.uk"),
   keywords: [
-    "affordable website design UK",
-    "£99 website design",
-    "small business website design",
-    "website design for sole traders",
-    "website design for startups",
-    "professional business websites",
-    "website design for tradespeople",
+    "software engineering studio UK",
     "AI automation services UK",
+    "custom AI agents UK",
+    "AI voice receptionist UK",
+    "bespoke web development UK",
+    "Next.js development agency UK",
+    "SaaS MVP development UK",
+    "custom software development London",
     "business process automation",
-    "custom AI agents",
-    "AI voice agents UK",
-    "AI receptionist for small businesses",
-    "custom software development UK",
-    "SaaS development UK",
-    "web application development",
     "CortexHive",
   ],
   openGraph: {
-    title: "CortexHive | Website Design, AI Automation & Software Development UK",
+    title: "CortexHive — AI Systems, Custom Software & Web Engineering Studio",
     description:
-      "We design professional websites, build intelligent AI solutions and develop custom digital products that help businesses automate operations, work smarter and grow.",
+      "We architect, design, and engineer bespoke web platforms, autonomous AI systems, and production software for ambitious organisations.",
     url: "https://cortexhive.co.uk",
     siteName: "CortexHive",
     images: [
@@ -53,7 +47,7 @@ export const metadata: Metadata = {
         url: "/logo.png",
         width: 800,
         height: 600,
-        alt: "CortexHive — AI, Websites & Software Development",
+        alt: "CortexHive — AI, Web Platforms & Software Engineering",
       },
     ],
     locale: "en_GB",
@@ -61,9 +55,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CortexHive | Website Design, AI Automation & Software Development UK",
+    title: "CortexHive — AI Systems, Custom Software & Web Engineering Studio",
     description:
-      "We design professional websites, build intelligent AI solutions and develop custom digital products that help businesses automate operations, work smarter and grow.",
+      "We architect, design, and engineer bespoke web platforms, autonomous AI systems, and production software for ambitious organisations.",
     images: ["/logo.png"],
   },
   robots: {
@@ -82,7 +76,7 @@ const jsonLd = {
       url: "https://cortexhive.co.uk",
       logo: "https://cortexhive.co.uk/logo.png",
       description:
-        "UK technology studio providing professional website design, practical AI automation, custom AI agents, and software/SaaS development.",
+        "UK software and AI engineering studio building bespoke web platforms, autonomous AI agents, workflow automation, and SaaS applications.",
       telephone: "+447950501323",
       email: "info@cortexhive.co.uk",
       address: {
@@ -102,59 +96,39 @@ const jsonLd = {
     {
       "@type": "ProfessionalService",
       "@id": "https://cortexhive.co.uk/#service",
-      name: "CortexHive Digital Solutions",
+      name: "CortexHive Software & AI Engineering",
       url: "https://cortexhive.co.uk",
       telephone: "+447950501323",
       email: "info@cortexhive.co.uk",
-      priceRange: "££",
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "CortexHive Service Divisions",
+        name: "CortexHive Engineering Practice Areas",
         itemListElement: [
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Launch Website Package",
-              description: "Professional 1-page business website for sole traders and small businesses starting from £99.",
-            },
-            price: "99.00",
-            priceCurrency: "GBP",
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Business Website Package",
-              description: "Comprehensive 5-page business website designed to establish an authentic online presence and generate enquiries.",
-            },
-            price: "349.00",
-            priceCurrency: "GBP",
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "Business Growth Website",
-              description: "Up to 8 pages with advanced forms, analytics, and SEO foundations.",
-            },
-            price: "699.00",
-            priceCurrency: "GBP",
-          },
-          {
-            "@type": "Offer",
-            itemOffered: {
-              "@type": "Service",
-              name: "AI & Business Automation",
-              description: "Intelligent workflows, customer enquiry triage, document extraction, and custom AI agents.",
+              name: "Web Platforms & Digital Architecture",
+              description:
+                "High-performance Next.js websites, institutional platforms, and conversion-engineered digital experiences.",
             },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Custom Software & SaaS Development",
-              description: "Full-stack web applications, portals, dashboards, and subscription platforms.",
+              name: "AI Agents & Workflow Automation",
+              description:
+                "Autonomous voice receptionists, document intelligence pipelines, and custom LLM integrations.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Custom Software & SaaS Engineering",
+              description:
+                "Full-stack web applications, multi-role client portals, internal operations dashboards, and SaaS MVPs.",
             },
           },
         ],
@@ -177,7 +151,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${manrope.variable} font-sans bg-white text-[#475569] antialiased min-h-screen flex flex-col justify-between selection:bg-blue-100 selection:text-[#14243A]`}
+        className={`${inter.variable} ${manrope.variable} font-sans bg-white text-[#334155] antialiased min-h-screen flex flex-col justify-between selection:bg-slate-900 selection:text-white`}
       >
         <Header />
         <main className="flex-grow">{children}</main>

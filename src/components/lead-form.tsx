@@ -43,71 +43,63 @@ const INITIAL_DATA: ProjectEnquiryData = {
   email: "",
   phone: "",
   website: "",
-  serviceRequired: "Website Design",
+  serviceRequired: "Web Platform & Design",
   problem: "",
   brief: "",
-  budget: "Under £500",
+  budget: "Scope First",
   timeline: "Within 1 Month",
   preferredContact: "WhatsApp",
 };
 
 export const SERVICES = [
   {
-    id: "Launch Website (£99)",
-    label: "Launch Website (£99)",
-    desc: "1-page fast responsive site for trades, sole traders, and local businesses.",
+    id: "Web Platform & Design",
+    label: "Web Platform & Digital Presence",
+    desc: "Bespoke high-converting websites, landing architectures, and web platforms.",
+    icon: Globe,
+  },
+  {
+    id: "Business & Trade Website",
+    label: "Commercial & Trade Website",
+    desc: "Turnkey responsive website with enquiry capture and WhatsApp integration.",
     icon: Sparkles,
   },
   {
-    id: "Business Website (£349)",
-    label: "Business Website (£349) — Most Popular",
-    desc: "Up to 5 pages, custom brand layout, lead capture, and Google indexing.",
-    icon: Globe,
-  },
-  {
-    id: "Business Growth Website (£699)",
-    label: "Business Growth Website (£699)",
-    desc: "Up to 8–10 pages, dedicated service silos, advanced SEO & lead funnels.",
-    icon: Globe,
-  },
-  {
     id: "AI Receptionist",
-    label: "AI Voice & Receptionist",
-    desc: "24/7 conversational voice AI that answers calls, answers FAQs & logs leads.",
+    label: "AI Voice & Call Receptionist",
+    desc: "24/7 conversational British voice AI that answers calls and logs leads.",
     icon: Phone,
   },
   {
-    id: "AI Automation",
+    id: "AI & Workflow Automation",
     label: "AI & Workflow Automation",
     desc: "Intelligent workflows, document parsing, CRM sync, and internal AI tools.",
     icon: Bot,
   },
   {
-    id: "Software Development",
+    id: "Custom Software & SaaS",
     label: "Custom Software & SaaS MVP",
     desc: "Full-stack web applications, client portals, internal dashboards & APIs.",
     icon: Layers,
   },
   {
-    id: "Other",
-    label: "Other / Technical Discovery",
-    desc: "Technical consultation, architecture audit, or bespoke enterprise scope.",
+    id: "Technical Consultation",
+    label: "Architecture & Technical Discovery",
+    desc: "Technical consultation, system architecture audit, or bespoke enterprise scope.",
     icon: HelpCircle,
   },
 ];
 
 const BUDGET_RANGES = [
-  { id: "£99", label: "£99", desc: "Launch Website package" },
-  { id: "£349", label: "£349", desc: "Business Website package" },
-  { id: "£699", label: "£699", desc: "Business Growth Website package" },
-  { id: "£1,000–£3,000", label: "£1,000 – £3,000", desc: "Targeted AI automation, voice system, or custom module" },
-  { id: "£3,000–£5,000", label: "£3,000 – £5,000", desc: "Custom software MVP, client portal, or multi-agent system" },
-  { id: "£5,000+", label: "£5,000+", desc: "Full-scale platform development and complex architecture" },
-  { id: "Discuss", label: "Discuss / Scope First", desc: "Flexible; let's discuss project requirements first" },
+  { id: "Scope First", label: "Request Fixed Scope", desc: "Recommend the right architecture based on our requirements" },
+  { id: "Standard Web Scope", label: "Web Platform Scope", desc: "Focused commercial website or digital platform build" },
+  { id: "AI / Automation Pilot", label: "AI / Voice Integration", desc: "Targeted AI voice agent, RAG pipeline, or workflow automation" },
+  { id: "Full-Stack Product / MVP", label: "Custom Software / MVP", desc: "Bespoke web application, client portal, or SaaS platform" },
+  { id: "Enterprise / Multi-Phase", label: "Multi-Phase Engineering", desc: "Comprehensive system architecture and ongoing engineering" },
 ];
 
 const TIMELINES = [
-  { id: "ASAP", label: "ASAP (Within 7 days)", desc: "Immediate start required" },
+  { id: "ASAP", label: "Immediate (Within 1–2 Weeks)", desc: "Priority project initiation" },
   { id: "Within 1 Month", label: "Within 1 Month", desc: "Active scoping in progress" },
   { id: "1–3 Months", label: "1 – 3 Months", desc: "Planned product milestone" },
   { id: "Flexible", label: "Flexible", desc: "Exploring options and architecture" },
@@ -119,7 +111,6 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
   const [formData, setFormData] = useState<ProjectEnquiryData>({
     ...INITIAL_DATA,
     serviceRequired: defaultService || INITIAL_DATA.serviceRequired,
-    budget: defaultService === "£99 Small Business Website" ? "£99 Starter Package" : INITIAL_DATA.budget,
   });
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -459,9 +450,6 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                             key={s.id}
                             onClick={() => {
                               handleSelect("serviceRequired", s.id);
-                              if (s.id === "£99 Small Business Website") {
-                                handleSelect("budget", "£99 Starter Package");
-                              }
                             }}
                             className={`p-3 rounded-xl border text-left flex items-center gap-2.5 transition-all active:scale-98 min-h-[46px] ${
                               isSelected
@@ -557,7 +545,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
                       required
                       value={formData.brief}
                       onChange={handleChange}
-                      placeholder="Briefly describe your business and what you need (e.g., £99 starter website for our plumbing business, AI receptionist for missed calls, or custom web app)..."
+                      placeholder="Briefly describe your project or operational requirements (e.g. bespoke web platform, 24/7 AI voice receptionist, internal workflow automation, or custom SaaS MVP)..."
                       className="w-full px-3.5 sm:px-4 py-2.5 sm:py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-purple-600 text-base sm:text-sm text-slate-900 focus:outline-none transition-colors resize-none"
                     />
                   </div>

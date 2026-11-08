@@ -55,33 +55,33 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Websites */}
+          {/* Column 2: Web Platforms */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-[#14243A] uppercase tracking-wider">Websites</h4>
+            <h4 className="text-xs font-bold text-[#14243A] uppercase tracking-wider">Web Platforms</h4>
             <ul className="space-y-2 text-xs text-[#475569]">
               <li>
-                <Link href="/small-business-websites" className="hover:text-blue-600 font-semibold text-emerald-700 transition-colors">
-                  Launch Website (£99)
-                </Link>
-              </li>
-              <li>
                 <Link href="/website-design" className="hover:text-blue-600 transition-colors">
-                  Business Website (£349)
+                  Bespoke Web Platforms
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="hover:text-blue-600 transition-colors">
-                  Business Growth (£699)
-                </Link>
-              </li>
-              <li>
-                <Link href="/pricing" className="hover:text-blue-600 transition-colors">
-                  Monthly Care Plans (from £15)
+                <Link href="/small-business-websites" className="hover:text-blue-600 transition-colors">
+                  Commercial Business Websites
                 </Link>
               </li>
               <li>
                 <Link href="/industries/tradespeople" className="hover:text-blue-600 transition-colors">
-                  Websites for Tradespeople
+                  Trade &amp; Contractor Systems
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries/startups" className="hover:text-blue-600 transition-colors">
+                  Startup Landing Architectures
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="hover:text-blue-600 transition-colors">
+                  Managed Cloud Infrastructure
                 </Link>
               </li>
             </ul>
@@ -167,7 +167,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/pricing" className="hover:text-blue-600 transition-colors">
-                  Pricing &amp; Packages
+                  Engagement Models
                 </Link>
               </li>
               <li>

@@ -92,14 +92,14 @@ const PRIMARY_SERVICES: ServicePillar[] = [
     number: "03",
     icon: Layers,
     title: "Websites & Software Development",
-    tagline: "From £99 starter sites to bespoke web software.",
+    tagline: "From commercial websites to bespoke web software.",
     ctaText: "Start a Project",
     serviceCategory: "Software / MVP",
     pageUrl: "/software-development",
     overview:
-      "We take software ideas and business websites from concept to deployment-ready digital products. From affordable starter websites for trades to full-stack SaaS platforms and internal portals.",
+      "We take software ideas and business websites from concept to deployment-ready digital products. From high-converting websites for businesses to full-stack SaaS platforms and internal portals.",
     useCases: [
-      "£99 small business & trades starter websites",
+      "Commercial & trade web platforms with lead capture",
       "High-performance responsive company websites",
       "Full-stack SaaS platforms with subscription billing",
       "Custom client portals & administration dashboards",
@@ -298,8 +298,8 @@ export default function Services() {
           <Link href="/website-design" className="px-3.5 py-1.5 rounded-full bg-white border border-slate-200 hover:border-purple-300 hover:text-purple-600 transition-colors shadow-2xs">
             Website Design
           </Link>
-          <Link href="/small-business-websites" className="px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 hover:bg-emerald-100 transition-colors shadow-2xs">
-            £99 Trades Websites
+          <Link href="/small-business-websites" className="px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 hover:bg-blue-100 transition-colors shadow-2xs">
+            Commercial Websites
           </Link>
           <Link href="/ai-receptionist" className="px-3.5 py-1.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 hover:bg-cyan-100 transition-colors shadow-2xs">
             AI Receptionist

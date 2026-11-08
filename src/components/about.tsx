@@ -1,80 +1,95 @@
 import {
   TrendingUp,
   Cpu,
-  Receipt,
+  ShieldCheck,
   Zap,
   MessageSquare,
   MapPin,
   ArrowRight,
-  ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
 
 const PILLARS = [
   {
+    index: "01",
     icon: TrendingUp,
-    title: "Commercial Focus",
-    desc: "We build websites and software designed to generate measurable business results, not just look nice. Every project starts with your business objective.",
+    title: "Commercial Engineering",
+    desc: "We build software and digital platforms designed to generate measurable commercial outcomes, not superficial technical novelty.",
   },
   {
+    index: "02",
     icon: Cpu,
-    title: "Modern Technology Stack",
-    desc: "Built with Next.js, React, TypeScript, and production AI frameworks for sub-second speeds, enterprise security, and long-term maintainability.",
+    title: "Production-Grade Stack",
+    desc: "Engineered with Next.js, React, TypeScript, PostgreSQL, and vetted AI APIs for sub-second latency, security, and maintainability.",
   },
   {
-    icon: Receipt,
-    title: "Transparent Pricing",
-    desc: "Clear packages with no surprise costs, hidden retainers, or unnecessary upsells. You know exactly what you are paying before work starts.",
+    index: "03",
+    icon: ShieldCheck,
+    title: "Predictable Milestone Scopes",
+    desc: "Clear written specifications and structured milestones. You know exact deliverables and timelines before engineering begins.",
   },
   {
+    index: "04",
     icon: Zap,
-    title: "Fast Turnaround",
-    desc: "Most websites live in 3–7 business days. Software MVPs delivered in weeks, not quarters. We move fast without cutting corners.",
+    title: "High-Velocity Execution",
+    desc: "Focused engineering sprints that take concepts from initial brief to live production software in weeks rather than quarters.",
   },
   {
+    index: "05",
     icon: MessageSquare,
-    title: "Direct Communication",
-    desc: "You talk directly with the people designing and engineering your product. No account manager layers, no phone tag, no lost instructions.",
+    title: "Direct Engineer Access",
+    desc: "You collaborate directly with the architects and engineers building your system — no account management layers or lost context.",
   },
   {
+    index: "06",
     icon: MapPin,
-    title: "UK-Based Perspective",
-    desc: "Operating in the UK, understanding the UK market, UK trading environments, and local consumer expectations.",
+    title: "UK Commercial Alignment",
+    desc: "Operating from the United Kingdom with deep understanding of UK business operations, compliance, and customer expectations.",
   },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="py-20 sm:py-28 bg-[#FFFFFF] border-b border-[#E2E8F0] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5F8FC] border border-[#E2E8F0] text-xs font-bold text-blue-700 uppercase tracking-widest mb-4">
-            Why CortexHive
+    <section id="about" className="py-20 sm:py-28 bg-white border-b border-slate-200 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Asymmetric Editorial Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end pb-12 mb-12 border-b border-slate-200">
+          <div className="lg:col-span-7 space-y-3">
+            <div className="text-xs font-mono uppercase tracking-[0.18em] text-blue-600 font-semibold">
+              06 // STUDIO PRINCIPLES
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#090D16] tracking-[-0.025em] leading-[1.1]">
+              Technology Should Solve Problems. Not Create More.
+            </h2>
           </div>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-[#14243A] tracking-tight mb-4">
-            Technology Should Solve Problems. Not Create More.
-          </h2>
-          <p className="text-[#475569] text-base sm:text-lg leading-relaxed font-normal">
-            Modern businesses don&apos;t need another abstract presentation or superficial demo. They need working software, fast websites, and practical automation that drives real revenue.
-          </p>
+          <div className="lg:col-span-5">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+              CortexHive brings together full-stack software engineering, applied AI automation, and commercial product design to turn operational challenges into dependable digital assets.
+            </p>
+          </div>
         </div>
 
         {/* 6 Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-14">
-          {PILLARS.map((pillar, idx) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {PILLARS.map((pillar) => {
             const Icon = pillar.icon;
             return (
               <div
-                key={idx}
-                className="bg-[#F8FAFD] border border-[#E2E8F0] rounded-2xl p-6 sm:p-7 hover:border-blue-300 hover:shadow-md transition-all group"
+                key={pillar.index}
+                className="bg-[#F8FAFC] border border-slate-200 rounded-xl p-6 sm:p-7 hover:bg-white hover:border-slate-300 transition-all"
               >
-                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                  <Icon className="w-5 h-5" />
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-mono font-bold text-slate-400">
+                    {pillar.index}
+                  </span>
+                  <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 text-[#0F172A] flex items-center justify-center">
+                    <Icon className="w-4 h-4 text-blue-600" />
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-[#14243A] mb-2">
+                <h3 className="text-base sm:text-lg font-bold text-[#090D16] mb-2">
                   {pillar.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {pillar.desc}
                 </p>
               </div>
@@ -82,19 +97,16 @@ export default function About() {
           })}
         </div>
 
-        {/* Bottom Banner */}
-        <div className="bg-[#F5F8FC] border border-[#E2E8F0] rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-            <p className="text-xs sm:text-sm font-semibold text-[#14243A]">
-              CortexHive is a UK digital agency committed to transparent delivery, honest advice, and commercial results.
-            </p>
-          </div>
+        {/* Bottom Studio Link Bar */}
+        <div className="bg-[#F8FAFC] border border-slate-200 rounded-xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <p className="text-xs sm:text-sm font-medium text-slate-700">
+            Learn more about our engineering discipline, proprietary software platforms, and delivery standards.
+          </p>
           <Link
             href="/about"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800 transition-colors flex-shrink-0"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-[#0F172A] hover:text-blue-600 transition-colors flex-shrink-0"
           >
-            <span>Read full company profile</span>
+            <span>Read Studio Profile</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>

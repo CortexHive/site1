@@ -3,46 +3,45 @@
 
 export const SITE_CONFIG = {
   name: "CortexHive",
-  tagline: "Digital Solutions That Move Your Business Forward",
+  tagline: "From Business Problem to Working Product.",
   description:
-    "From professional websites to intelligent AI solutions, we help UK businesses build their digital presence, streamline operations and grow with confidence.",
+    "CortexHive is a UK software, AI automation, and digital product engineering studio building production web platforms, autonomous AI workflows, and custom software.",
   url: "https://cortexhive.co.uk",
   email: "info@cortexhive.co.uk",
-  
+
   // UK Business Phone Configuration
-  // Configured via NEXT_PUBLIC_BUSINESS_PHONE or central default
   phone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || "+44 7950 501323",
   phoneDisplay: "07950 501323",
   phoneInternational: "+44 7950 501323",
-  
+
   // WhatsApp Configuration
   whatsappNumber: "447950501323",
   whatsappUrl: "https://wa.me/447950501323",
-  
+
   // Location
   location: "London, United Kingdom",
   country: "United Kingdom",
-  
+
   // Core Propositions
   propositions: {
-    getOnline: "Affordable professional websites for small businesses and tradespeople.",
-    neverMissACall: "AI-powered receptionist and virtual call answering 24/7.",
-    workSmarter: "Intelligent AI automation and custom software development.",
+    getOnline: "Bespoke web platforms and high-conversion digital experiences.",
+    neverMissACall: "Autonomous AI voice agents and 24/7 intelligent call triage.",
+    workSmarter: "Production AI workflows, SaaS platforms, and custom software engineering.",
   },
-  
+
   // Pre-filled WhatsApp message generators
   getWhatsAppLink: (context?: string) => {
-    let text = "Hi CortexHive, I would like to discuss a project.";
-    if (context === "small-business-50" || context === "small-business-99") {
-      text = "Hi CortexHive, I am interested in the £99 Professional Starter Website for my business.";
+    let text = "Hello CortexHive, I would like to discuss a software or digital project.";
+    if (context === "website" || context === "small-business-99" || context === "small-business-50") {
+      text = "Hello CortexHive, I would like to discuss a website or web platform project for my business.";
     } else if (context === "ai-receptionist") {
-      text = "Hi CortexHive, I would like to enquire about your AI Receptionist and call answering service.";
+      text = "Hello CortexHive, I would like to enquire about your AI Voice Agent & Receptionist system.";
     } else if (context === "ai-automation") {
-      text = "Hi CortexHive, I want to learn more about your AI automation services.";
+      text = "Hello CortexHive, I would like to discuss custom AI automation and workflow integration.";
     } else if (context === "software") {
-      text = "Hi CortexHive, I have a custom software / web application project to discuss.";
+      text = "Hello CortexHive, I have a custom software or SaaS application project to scope.";
     } else if (context === "quote") {
-      text = "Hi CortexHive, I would like to request a free quote for my business.";
+      text = "Hello CortexHive, I would like to request a technical consultation and project proposal.";
     }
     return `https://wa.me/447950501323?text=${encodeURIComponent(text)}`;
   },

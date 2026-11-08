@@ -22,19 +22,19 @@ interface IndustryData {
   subheading: string;
   icon: React.ComponentType<{ className?: string }>;
   painPoints: { title: string; desc: string }[];
-  solutions: { name: string; price: string; desc: string; cta: string }[];
+  solutions: { name: string; scope: string; desc: string; cta: string }[];
   keyInclusions: string[];
 }
 
 const INDUSTRIES: Record<string, IndustryData> = {
   tradespeople: {
-    title: "Websites & AI Call Answering for Tradespeople | CortexHive",
+    title: "Web Platforms & AI Call Handling for Tradespeople | CortexHive",
     metaDesc:
-      "Affordable £99 Launch Websites and 24/7 AI call answering for builders, plumbers, electricians, and UK trades. Never miss another job.",
+      "Bespoke commercial web platforms and 24/7 AI call answering for builders, plumbers, electricians, and UK trades. Never miss another job.",
     badge: "Built for UK Trades & Contractors",
     heading: "Get More Local Jobs Without Answering the Phone While on the Tools.",
     subheading:
-      "Professional £99 Launch Websites and 24/7 AI Voice Receptionists engineered specifically for builders, plumbers, electricians, handymen, and independent trades.",
+      "Professional web platforms and 24/7 AI Voice Receptionists engineered specifically for builders, plumbers, electricians, handymen, and independent trades.",
     icon: Wrench,
     painPoints: [
       {
@@ -46,20 +46,20 @@ const INDUSTRIES: Record<string, IndustryData> = {
         desc: "Customers want to verify you online before letting you into their homes. Social media alone isn't enough to build trust.",
       },
       {
-        title: "Absurd Agency Quotes",
-        desc: "Big agencies quote £2,000+ for basic websites with expensive monthly lock-ins. You just need a clean, honest site that works.",
+        title: "Unreliable Agency Retainers",
+        desc: "Big agencies quote expensive monthly lock-ins with no clear deliverables. You need a fast, dependable platform that generates enquiries.",
       },
     ],
     solutions: [
       {
-        name: "Launch Website",
-        price: "£99 one-off",
-        desc: "Clean 1-page mobile-friendly site with your services, review highlights, WhatsApp button, and enquiry form.",
-        cta: "Claim £99 Website",
+        name: "Turnkey Trade Web Platform",
+        scope: "Fixed Scoped Milestone",
+        desc: "High-speed mobile-friendly site with your services, review highlights, WhatsApp button, and enquiry form.",
+        cta: "Scope Trade Platform",
       },
       {
-        name: "24/7 AI Receptionist",
-        price: "Tailored Plan",
+        name: "24/7 AI Voice Receptionist",
+        scope: "Tailored Implementation",
         desc: "An intelligent voice agent that picks up calls after 2 rings, answers FAQs, and texts you lead details instantly.",
         cta: "Request Voice Demo",
       },
@@ -70,7 +70,7 @@ const INDUSTRIES: Record<string, IndustryData> = {
       "Customer enquiry & quote request form",
       "Local Google Search SEO setup",
       "Live in 3 to 5 business days",
-      "Zero monthly lock-in contracts",
+      "100% Source code and asset ownership",
     ],
   },
   "beauty-salons": {
@@ -98,14 +98,14 @@ const INDUSTRIES: Record<string, IndustryData> = {
     ],
     solutions: [
       {
-        name: "Business Website",
-        price: "£349 one-off",
-        desc: "Up to 5 elegant pages with treatment galleries, price lists, booking links, and Google Search setup.",
-        cta: "Choose Salon Package",
+        name: "Salon & Clinic Web Platform",
+        scope: "Full-Featured Build",
+        desc: "Elegant bespoke pages with treatment galleries, service details, direct booking links, and Google Search setup.",
+        cta: "Scope Salon Platform",
       },
       {
         name: "Automated Inquiry Triage",
-        price: "Contact for Pricing",
+        scope: "Automated Integration",
         desc: "Intelligent messaging answering treatment FAQs, contraindications, and pre-care instructions automatically.",
         cta: "Discuss Automation",
       },
@@ -144,16 +144,16 @@ const INDUSTRIES: Record<string, IndustryData> = {
     ],
     solutions: [
       {
-        name: "Business Website",
-        price: "£349 one-off",
+        name: "Interactive Restaurant Platform",
+        scope: "Interactive Web Platform",
         desc: "Mobile-first responsive restaurant site with live interactive menu, OpenTable/Resy links, and location maps.",
-        cta: "Get Restaurant Site",
+        cta: "Scope Restaurant Platform",
       },
       {
-        name: "Monthly Care & Updates",
-        price: "£29/month",
-        desc: "We update your seasonal menus, price changes, and holiday opening hours so you can focus on service.",
-        cta: "Add Care Plan",
+        name: "Managed Updates & Hosting",
+        scope: "Continuous Support",
+        desc: "We update your seasonal menus, price changes, and holiday opening hours so you can focus on hospitality.",
+        cta: "Discuss Maintenance",
       },
     ],
     keyInclusions: [
@@ -166,13 +166,13 @@ const INDUSTRIES: Record<string, IndustryData> = {
     ],
   },
   "small-businesses": {
-    title: "Websites & AI Automation for UK Small Businesses | CortexHive",
+    title: "Web Platforms & AI Automation for UK Businesses | CortexHive",
     metaDesc:
       "Professional web development, lead generation funnels, and AI automation for growing small businesses and professional services in the UK.",
     badge: "Small Businesses & Professional Services",
     heading: "Modern Technology Built to Help Your Business Grow & Work Smarter.",
     subheading:
-      "From accessible fixed-price website packages to intelligent workflow automation, CortexHive helps UK small businesses win more customers and eliminate repetitive admin.",
+      "From high-converting commercial web platforms to intelligent workflow automation, CortexHive helps UK businesses win more customers and eliminate repetitive admin.",
     icon: Briefcase,
     painPoints: [
       {
@@ -190,16 +190,16 @@ const INDUSTRIES: Record<string, IndustryData> = {
     ],
     solutions: [
       {
-        name: "Business Website",
-        price: "£349 one-off",
-        desc: "Up to 5 pages with custom branding, case studies, conversion lead funnels, and Google indexing.",
-        cta: "Choose Business Package",
+        name: "Commercial Web Platform",
+        scope: "Milestone Scoped Build",
+        desc: "Custom branding, client case studies, conversion lead funnels, and comprehensive Google Search indexing.",
+        cta: "Discuss Web Platform",
       },
       {
-        name: "Business Growth Website",
-        price: "£699 one-off",
-        desc: "Comprehensive 8–10 page platform with detailed service silos, blog, and advanced search optimization.",
-        cta: "Choose Growth Package",
+        name: "Enterprise Growth Platform",
+        scope: "Enterprise Scale",
+        desc: "Comprehensive multi-page architecture with detailed service silos, blog, and advanced entity search optimization.",
+        cta: "Discuss Growth Platform",
       },
     ],
     keyInclusions: [
@@ -222,8 +222,8 @@ const INDUSTRIES: Record<string, IndustryData> = {
     icon: Rocket,
     painPoints: [
       {
-        title: "Overpriced Agency Estimates",
-        desc: "Traditional consultancies quoting £40,000+ and 6-month timelines for MVPs that could be shipped in 4 weeks.",
+        title: "Bloated Agency Estimates",
+        desc: "Traditional consultancies quoting 6-month timelines for MVPs that could be shipped cleanly in 4 weeks.",
       },
       {
         title: "Flaky Freelancers & Technical Debt",
@@ -237,13 +237,13 @@ const INDUSTRIES: Record<string, IndustryData> = {
     solutions: [
       {
         name: "Custom Software & SaaS MVP",
-        price: "Contact for Pricing",
+        scope: "Milestone Engineering",
         desc: "Full-stack Next.js, TypeScript, PostgreSQL, auth, Stripe billing, and scalable APIs delivered in milestones.",
         cta: "Scope Your MVP",
       },
       {
         name: "Custom AI & Voice Agents",
-        price: "Contact for Pricing",
+        scope: "Applied AI Pipeline",
         desc: "Proprietary vector embeddings, document intelligence pipelines, and autonomous agent workflows.",
         cta: "Discuss AI Architecture",
       },
@@ -334,7 +334,7 @@ export default function IndustryPage({ params }: { params: { industry: string } 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {data.painPoints.map((item, i) => (
               <div key={i} className="bg-white rounded-2xl border border-[#E2E8F0] p-6 shadow-2xs">
-                <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 font-bold text-xs flex items-center justify-center mb-4">
+                <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold text-xs flex items-center justify-center mb-4">
                   0{i + 1}
                 </div>
                 <h3 className="text-base font-bold text-[#14243A] mb-2">{item.title}</h3>
@@ -350,10 +350,10 @@ export default function IndustryPage({ params }: { params: { industry: string } 
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-xs font-bold uppercase tracking-wider text-blue-700 block mb-2">
-              Recommended Packages
+              Engineering Solutions
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-[#14243A] tracking-tight">
-              Tailored Solutions For Your Needs
+              Tailored Architecture For Your Needs
             </h2>
           </div>
 
@@ -366,7 +366,7 @@ export default function IndustryPage({ params }: { params: { industry: string } 
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="text-xl font-bold text-[#14243A]">{sol.name}</h3>
-                    <span className="text-sm font-extrabold text-blue-700">{sol.price}</span>
+                    <span className="text-xs font-mono font-bold px-2 py-1 rounded bg-slate-100 text-slate-700">{sol.scope}</span>
                   </div>
                   <p className="text-xs sm:text-sm text-[#475569] mb-6 leading-relaxed">
                     {sol.desc}

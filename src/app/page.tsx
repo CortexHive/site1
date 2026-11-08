@@ -15,10 +15,10 @@ export default function Home() {
       {/* 1. Hero Section (Section 5.1 & 5.2): Clean light modern studio aesthetic, interactive showcase & capabilities */}
       <Hero />
 
-      {/* 2. Service Divisions (Section 5.3): The 3 Pillars (Websites from £99, AI & Automation, Software & SaaS) */}
+      {/* 2. Service Divisions: The 3 Core Practice Areas (Web Platforms, AI & Automation, Software & SaaS) */}
       <ServiceDivisions />
 
-      {/* 3. Transparent Packages (Section 6 & 7): £99, £349 (Popular), £699, Custom AI/Software + Monthly Care */}
+      {/* 3. Engagement Models: Fixed-Scope Delivery, Applied AI Implementation, Full-Stack Product Engineering */}
       <PricingPackages />
 
       {/* 4. Proof of Delivery / Our Products (Section 10): AuraPDF, MarkScheme, Rydigo, Skyview, EVTradeShow */}

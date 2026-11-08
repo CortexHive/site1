@@ -79,7 +79,7 @@ export default function AboutPage() {
                 Website Design
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                High-converting responsive websites, from £99 trades starter sites to bespoke multi-page platforms.
+                High-converting responsive websites and commercial platforms engineered for authority and client acquisition.
               </p>
             </div>
 

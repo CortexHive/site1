@@ -3,7 +3,19 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, ChevronDown, Sparkles, Bot, Layers, PhoneCall, Globe, Code2 } from "lucide-react";
+import {
+  Menu,
+  X,
+  ArrowRight,
+  ChevronDown,
+  Bot,
+  Layers,
+  PhoneCall,
+  Globe,
+  Code2,
+  Cpu,
+  Terminal,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/config";
 
@@ -11,7 +23,7 @@ interface NavDropdownItem {
   name: string;
   href: string;
   desc: string;
-  badge?: string;
+  tag?: string;
   icon: React.ComponentType<{ className?: string }>;
 }
 
@@ -25,13 +37,12 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 15);
+      setIsScrolled(window.scrollY > 12);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -42,7 +53,6 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Close mobile nav on route change
   useEffect(() => {
     setIsOpen(false);
     setActiveDropdown(null);
@@ -50,30 +60,23 @@ export default function Header() {
 
   const websiteItems: NavDropdownItem[] = [
     {
-      name: "Website Packages & Pricing",
-      href: "/pricing",
-      desc: "Transparent £99, £349, and £699 business website packages",
-      badge: "From £99",
-      icon: Sparkles,
-    },
-    {
-      name: "Bespoke Website Design",
+      name: "Bespoke Web Platforms",
       href: "/website-design",
-      desc: "Conversion-first websites built for UK companies and brands",
+      desc: "High-speed Next.js web architecture engineered for authority and conversion",
+      tag: "Architecture",
       icon: Globe,
     },
     {
-      name: "Launch Websites for Trades",
+      name: "Commercial & Trade Systems",
       href: "/small-business-websites",
-      desc: "Fast, mobile-friendly websites for tradespeople and local services",
-      badge: "£99",
+      desc: "Turnkey digital presence and lead capture systems for UK businesses",
       icon: Code2,
     },
     {
       name: "Industry Solutions",
       href: "/industries/tradespeople",
-      desc: "Tailored digital solutions for trades, salons, restaurants & startups",
-      icon: Sparkles,
+      desc: "Sector-specific platforms for trades, clinics, hospitality, and startups",
+      icon: Layers,
     },
   ];
 
@@ -81,147 +84,147 @@ export default function Header() {
     {
       name: "AI & Workflow Automation",
       href: "/ai-automation",
-      desc: "Intelligent enquiry triage, document extraction, and CRM sync",
+      desc: "Automated document pipelines, CRM synchronisation, and intelligent triage",
+      tag: "Pipelines",
       icon: Bot,
     },
     {
-      name: "Custom AI Agents & RAG",
-      href: "/ai-automation",
-      desc: "Task-oriented knowledge and document intelligence agents for business",
-      icon: Sparkles,
+      name: "Autonomous Voice Receptionist",
+      href: "/ai-receptionist",
+      desc: "24/7 conversational British voice AI for inbound call handling and qualification",
+      tag: "Voice AI",
+      icon: PhoneCall,
     },
     {
-      name: "24/7 AI Voice Receptionist",
-      href: "/ai-receptionist",
-      desc: "Natural British voice call answering and instant lead logging",
-      badge: "24/7 Voice",
-      icon: PhoneCall,
+      name: "Custom LLM & RAG Systems",
+      href: "/ai-automation",
+      desc: "Private knowledge bases, vector search, and domain-specific AI agents",
+      icon: Cpu,
     },
   ];
 
   const softwareItems: NavDropdownItem[] = [
     {
-      name: "Software & SaaS Development",
+      name: "Custom Software & SaaS",
       href: "/software-development",
-      desc: "End-to-end digital product design, architecture, and engineering",
-      icon: Layers,
+      desc: "Full-stack TypeScript, React, and PostgreSQL application engineering",
+      tag: "Full-Stack",
+      icon: Terminal,
     },
     {
-      name: "SaaS Platforms & MVPs",
-      href: "/software-development",
-      desc: "Subscription platforms, membership systems, and client portals",
-      icon: Code2,
-    },
-    {
-      name: "Custom Business Applications",
-      href: "/software-development",
-      desc: "Internal dashboards, management tools, and database systems",
-      icon: Globe,
-    },
-    {
-      name: "Our Live Products & Case Studies",
+      name: "Proprietary Products & Case Studies",
       href: "/our-products",
-      desc: "Explore AuraPDF, MarkScheme, Rydigo, and client systems",
-      badge: "Verified",
+      desc: "Explore AuraPDF, MarkScheme, Rydigo, Skyview, and live production deployments",
+      tag: "Live Proof",
       icon: Layers,
+    },
+    {
+      name: "Engagement & Delivery Models",
+      href: "/pricing",
+      desc: "How we scope, structure, and deliver fixed-milestone software engagements",
+      icon: Code2,
     },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-[#E2E8F0] py-3 shadow-xs"
-          : "bg-white/90 backdrop-blur-sm border-b border-[#E2E8F0]/60 py-4 sm:py-5"
+          ? "bg-white/95 backdrop-blur-md border-b border-slate-200/90 py-3 shadow-[0_1px_3px_rgba(15,23,42,0.03)]"
+          : "bg-white/90 backdrop-blur-sm border-b border-slate-200/70 py-4"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between" ref={dropdownRef}>
-        {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0" aria-label="CortexHive Home">
-          <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-xs group-hover:bg-blue-700 transition-colors">
-            <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6"
+        ref={dropdownRef}
+      >
+        {/* Left: Architectural Brand Mark */}
+        <Link
+          href="/"
+          className="flex items-center gap-3 group flex-shrink-0"
+          aria-label="CortexHive Home"
+        >
+          <div className="w-9 h-9 rounded-lg bg-[#0F172A] flex items-center justify-center text-white border border-slate-800 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors">
+            <svg className="w-4 h-4 fill-none stroke-current stroke-[2]" viewBox="0 0 24 24">
               <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" />
               <circle cx="12" cy="12" r="2.5" fill="currentColor" />
             </svg>
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-extrabold tracking-tight text-[#14243A] flex items-center">
-              <span>CORTEX</span>
-              <span className="text-blue-600 ml-0.5">HIVE</span>
+            <span className="text-base font-extrabold tracking-[-0.02em] text-[#0F172A] leading-none">
+              CORTEX<span className="text-blue-600">HIVE</span>
             </span>
-            <span className="text-[9px] uppercase tracking-[0.2em] text-[#64748B] font-bold -mt-1">
-              Technology Studio
+            <span className="text-[9px] font-mono uppercase tracking-[0.18em] text-slate-500 mt-1 leading-none">
+              Software &amp; AI Studio
             </span>
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-7">
-          <Link
-            href="/"
-            className={`text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
-              pathname === "/" ? "text-blue-600 font-bold" : "text-[#475569] hover:text-[#14243A]"
-            }`}
-          >
-            Home
-          </Link>
-
-          {/* Websites Dropdown */}
+        {/* Center: Clean, Well-Spaced Navigation */}
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          {/* Web Platforms Dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setActiveDropdown("websites")}
             onMouseLeave={() => setActiveDropdown(null)}
           >
             <button
+              type="button"
               onClick={() => setActiveDropdown(activeDropdown === "websites" ? null : "websites")}
-              className={`inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
-                pathname.includes("website") || pathname === "/pricing"
-                  ? "text-blue-600 font-bold"
-                  : "text-[#475569] hover:text-[#14243A]"
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+                pathname.includes("website")
+                  ? "text-[#0F172A] bg-slate-100 font-semibold"
+                  : "text-slate-600 hover:text-[#0F172A] hover:bg-slate-50"
               }`}
             >
-              <span>Websites</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === "websites" ? "rotate-180" : ""}`} />
+              <span>Web Platforms</span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
+                  activeDropdown === "websites" ? "rotate-180 text-[#0F172A]" : ""
+                }`}
+              />
             </button>
 
             <AnimatePresence>
               {activeDropdown === "websites" && (
                 <motion.div
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute top-full left-0 w-80 bg-white rounded-2xl border border-[#E2E8F0] shadow-lg p-2.5 z-50"
+                  exit={{ opacity: 0, y: 6 }}
+                  transition={{ duration: 0.14 }}
+                  className="absolute top-full left-0 pt-2 w-80 z-50"
                 >
-                  {websiteItems.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F5F8FC] transition-colors group"
-                      >
-                        <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-[#14243A] group-hover:text-blue-600 transition-colors">
-                              {item.name}
-                            </span>
-                            {item.badge && (
-                              <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                                {item.badge}
-                              </span>
-                            )}
+                  <div className="bg-white rounded-xl border border-slate-200 shadow-[0_12px_32px_-8px_rgba(15,23,42,0.12)] p-2">
+                    {websiteItems.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors group"
+                        >
+                          <div className="w-8 h-8 rounded-md bg-slate-100 text-slate-700 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#0F172A] group-hover:text-white transition-colors">
+                            <Icon className="w-4 h-4" />
                           </div>
-                          <p className="text-[11px] text-[#64748B] leading-snug mt-0.5 line-clamp-2">
-                            {item.desc}
-                          </p>
-                        </div>
-                      </Link>
-                    );
-                  })}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-xs font-semibold text-[#0F172A]">
+                                {item.name}
+                              </span>
+                              {item.tag && (
+                                <span className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">
+                                  {item.tag}
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
+                              {item.desc}
+                            </p>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -234,48 +237,62 @@ export default function Header() {
             onMouseLeave={() => setActiveDropdown(null)}
           >
             <button
+              type="button"
               onClick={() => setActiveDropdown(activeDropdown === "ai" ? null : "ai")}
-              className={`inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[13px] font-medium transition-colors ${
                 pathname.includes("ai")
-                  ? "text-blue-600 font-bold"
-                  : "text-[#475569] hover:text-[#14243A]"
+                  ? "text-[#0F172A] bg-slate-100 font-semibold"
+                  : "text-slate-600 hover:text-[#0F172A] hover:bg-slate-50"
               }`}
             >
               <span>AI &amp; Automation</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === "ai" ? "rotate-180" : ""}`} />
+              <ChevronDown
+                className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
+                  activeDropdown === "ai" ? "rotate-180 text-[#0F172A]" : ""
+                }`}
+              />
             </button>
 
             <AnimatePresence>
               {activeDropdown === "ai" && (
                 <motion.div
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute top-full left-0 w-80 bg-white rounded-2xl border border-[#E2E8F0] shadow-lg p-2.5 z-50"
+                  exit={{ opacity: 0, y: 6 }}
+                  transition={{ duration: 0.14 }}
+                  className="absolute top-full left-0 pt-2 w-80 z-50"
                 >
-                  {aiItems.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F5F8FC] transition-colors group"
-                      >
-                        <div className="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <span className="text-xs font-bold text-[#14243A] group-hover:text-blue-600 transition-colors block">
-                            {item.name}
-                          </span>
-                          <p className="text-[11px] text-[#64748B] leading-snug mt-0.5 line-clamp-2">
-                            {item.desc}
-                          </p>
-                        </div>
-                      </Link>
-                    );
-                  })}
+                  <div className="bg-white rounded-xl border border-slate-200 shadow-[0_12px_32px_-8px_rgba(15,23,42,0.12)] p-2">
+                    {aiItems.map((item, idx) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={idx}
+                          href={item.href}
+                          className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors group"
+                        >
+                          <div className="w-8 h-8 rounded-md bg-slate-100 text-slate-700 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#0F172A] group-hover:text-white transition-colors">
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-xs font-semibold text-[#0F172A]">
+                                {item.name}
+                              </span>
+                              {item.tag && (
+                                <span className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-blue-50 text-blue-700">
+                                  {item.tag}
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
+                              {item.desc}
+                            </p>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -288,48 +305,62 @@ export default function Header() {
             onMouseLeave={() => setActiveDropdown(null)}
           >
             <button
+              type="button"
               onClick={() => setActiveDropdown(activeDropdown === "software" ? null : "software")}
-              className={`inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
-                pathname.includes("software") || pathname.includes("saas") || pathname.includes("application")
-                  ? "text-blue-600 font-bold"
-                  : "text-[#475569] hover:text-[#14243A]"
+              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+                pathname.includes("software")
+                  ? "text-[#0F172A] bg-slate-100 font-semibold"
+                  : "text-slate-600 hover:text-[#0F172A] hover:bg-slate-50"
               }`}
             >
               <span>Software &amp; SaaS</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === "software" ? "rotate-180" : ""}`} />
+              <ChevronDown
+                className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
+                  activeDropdown === "software" ? "rotate-180 text-[#0F172A]" : ""
+                }`}
+              />
             </button>
 
             <AnimatePresence>
               {activeDropdown === "software" && (
                 <motion.div
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute top-full left-0 w-84 bg-white rounded-2xl border border-[#E2E8F0] shadow-lg p-2.5 z-50"
+                  exit={{ opacity: 0, y: 6 }}
+                  transition={{ duration: 0.14 }}
+                  className="absolute top-full left-0 pt-2 w-80 z-50"
                 >
-                  {softwareItems.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F5F8FC] transition-colors group"
-                      >
-                        <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <span className="text-xs font-bold text-[#14243A] group-hover:text-blue-600 transition-colors block">
-                            {item.name}
-                          </span>
-                          <p className="text-[11px] text-[#64748B] leading-snug mt-0.5 line-clamp-2">
-                            {item.desc}
-                          </p>
-                        </div>
-                      </Link>
-                    );
-                  })}
+                  <div className="bg-white rounded-xl border border-slate-200 shadow-[0_12px_32px_-8px_rgba(15,23,42,0.12)] p-2">
+                    {softwareItems.map((item, idx) => {
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={idx}
+                          href={item.href}
+                          className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors group"
+                        >
+                          <div className="w-8 h-8 rounded-md bg-slate-100 text-slate-700 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#0F172A] group-hover:text-white transition-colors">
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-xs font-semibold text-[#0F172A]">
+                                {item.name}
+                              </span>
+                              {item.tag && (
+                                <span className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">
+                                  {item.tag}
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
+                              {item.desc}
+                            </p>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -337,57 +368,53 @@ export default function Header() {
 
           <Link
             href="/our-products"
-            className={`text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
-              pathname === "/our-products" || pathname === "/portfolio" ? "text-blue-600 font-bold" : "text-[#475569] hover:text-[#14243A]"
+            className={`px-3.5 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+              pathname === "/our-products" || pathname === "/portfolio"
+                ? "text-[#0F172A] bg-slate-100 font-semibold"
+                : "text-slate-600 hover:text-[#0F172A] hover:bg-slate-50"
             }`}
           >
-            Our Products
+            Products &amp; Work
           </Link>
 
           <Link
             href="/about"
-            className={`text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
-              pathname === "/about" ? "text-blue-600 font-bold" : "text-[#475569] hover:text-[#14243A]"
+            className={`px-3.5 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+              pathname === "/about"
+                ? "text-[#0F172A] bg-slate-100 font-semibold"
+                : "text-slate-600 hover:text-[#0F172A] hover:bg-slate-50"
             }`}
           >
-            About
-          </Link>
-
-          <Link
-            href="/contact"
-            className={`text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
-              pathname === "/contact" ? "text-blue-600 font-bold" : "text-[#475569] hover:text-[#14243A]"
-            }`}
-          >
-            Contact
+            Studio
           </Link>
         </nav>
 
-        {/* Desktop Action Buttons */}
-        <div className="hidden lg:flex items-center gap-3">
+        {/* Right: Executive Actions */}
+        <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
           <Link
-            href="/pricing"
-            className="text-xs font-bold text-[#14243A] hover:text-blue-600 px-3 py-2 transition-colors"
+            href="/contact"
+            className="text-[13px] font-medium text-slate-600 hover:text-[#0F172A] px-3 py-2 transition-colors"
           >
-            Pricing
+            Contact
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-600 hover:bg-blue-700 text-white shadow-xs hover:shadow-md transition-all active:scale-98"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold bg-[#0F172A] hover:bg-blue-600 text-white transition-colors shadow-2xs"
           >
             <span>Start a Project</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
-        {/* Mobile menu toggle */}
+        {/* Mobile menu button */}
         <button
+          type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden p-2.5 rounded-xl text-[#14243A] hover:bg-[#F5F8FC] transition-colors"
+          className="lg:hidden p-2 rounded-lg text-[#0F172A] hover:bg-slate-100 transition-colors"
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
         >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
@@ -398,34 +425,37 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="lg:hidden bg-white border-b border-[#E2E8F0] overflow-hidden shadow-xl"
+            className="lg:hidden bg-white border-b border-slate-200 overflow-hidden"
           >
-            <div className="px-5 py-6 space-y-3 max-h-[85vh] overflow-y-auto">
+            <div className="px-4 pt-3 pb-6 space-y-2 max-h-[82vh] overflow-y-auto">
               <Link
                 href="/"
-                className="block py-2 text-sm font-bold text-[#14243A] hover:text-blue-600 border-b border-slate-100"
+                className="block py-2.5 text-sm font-semibold text-[#0F172A] border-b border-slate-100"
               >
                 Home
               </Link>
 
-              {/* Mobile Websites Accordion */}
+              {/* Mobile Web Platforms */}
               <div className="border-b border-slate-100 pb-2">
                 <button
                   type="button"
                   onClick={() => setMobileExpanded(mobileExpanded === "websites" ? null : "websites")}
-                  className="w-full flex items-center justify-between py-2 text-sm font-bold text-[#14243A]"
+                  className="w-full flex items-center justify-between py-2 text-sm font-semibold text-[#0F172A]"
                 >
-                  <span>Websites &amp; Digital Presence</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === "websites" ? "rotate-180 text-blue-600" : ""}`} />
+                  <span>Web Platforms</span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${
+                      mobileExpanded === "websites" ? "rotate-180 text-blue-600" : ""
+                    }`}
+                  />
                 </button>
                 {mobileExpanded === "websites" && (
                   <div className="pl-3 space-y-2 pt-1 pb-2">
-                    {websiteItems.map((item) => (
+                    {websiteItems.map((item, idx) => (
                       <Link
-                        key={item.href}
+                        key={idx}
                         href={item.href}
-                        className="block py-1.5 text-xs font-semibold text-[#475569] hover:text-blue-600"
+                        className="block py-1.5 text-xs font-medium text-slate-600 hover:text-[#0F172A]"
                       >
                         {item.name}
                       </Link>
@@ -434,23 +464,27 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Mobile AI Accordion */}
+              {/* Mobile AI */}
               <div className="border-b border-slate-100 pb-2">
                 <button
                   type="button"
                   onClick={() => setMobileExpanded(mobileExpanded === "ai" ? null : "ai")}
-                  className="w-full flex items-center justify-between py-2 text-sm font-bold text-[#14243A]"
+                  className="w-full flex items-center justify-between py-2 text-sm font-semibold text-[#0F172A]"
                 >
-                  <span>AI, Automation &amp; Agents</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === "ai" ? "rotate-180 text-blue-600" : ""}`} />
+                  <span>AI &amp; Automation</span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${
+                      mobileExpanded === "ai" ? "rotate-180 text-blue-600" : ""
+                    }`}
+                  />
                 </button>
                 {mobileExpanded === "ai" && (
                   <div className="pl-3 space-y-2 pt-1 pb-2">
-                    {aiItems.map((item) => (
+                    {aiItems.map((item, idx) => (
                       <Link
-                        key={item.href}
+                        key={idx}
                         href={item.href}
-                        className="block py-1.5 text-xs font-semibold text-[#475569] hover:text-blue-600"
+                        className="block py-1.5 text-xs font-medium text-slate-600 hover:text-[#0F172A]"
                       >
                         {item.name}
                       </Link>
@@ -459,23 +493,27 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Mobile Software Accordion */}
+              {/* Mobile Software */}
               <div className="border-b border-slate-100 pb-2">
                 <button
                   type="button"
                   onClick={() => setMobileExpanded(mobileExpanded === "software" ? null : "software")}
-                  className="w-full flex items-center justify-between py-2 text-sm font-bold text-[#14243A]"
+                  className="w-full flex items-center justify-between py-2 text-sm font-semibold text-[#0F172A]"
                 >
-                  <span>Software, SaaS &amp; Products</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === "software" ? "rotate-180 text-blue-600" : ""}`} />
+                  <span>Software &amp; SaaS</span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${
+                      mobileExpanded === "software" ? "rotate-180 text-blue-600" : ""
+                    }`}
+                  />
                 </button>
                 {mobileExpanded === "software" && (
                   <div className="pl-3 space-y-2 pt-1 pb-2">
-                    {softwareItems.map((item) => (
+                    {softwareItems.map((item, idx) => (
                       <Link
-                        key={item.href}
+                        key={idx}
                         href={item.href}
-                        className="block py-1.5 text-xs font-semibold text-[#475569] hover:text-blue-600"
+                        className="block py-1.5 text-xs font-medium text-slate-600 hover:text-[#0F172A]"
                       >
                         {item.name}
                       </Link>
@@ -485,50 +523,40 @@ export default function Header() {
               </div>
 
               <Link
-                href="/pricing"
-                className="block py-2 text-sm font-bold text-[#14243A] hover:text-blue-600 border-b border-slate-100"
-              >
-                Website Pricing (From £99)
-              </Link>
-
-              <Link
                 href="/our-products"
-                className="block py-2 text-sm font-bold text-[#14243A] hover:text-blue-600 border-b border-slate-100"
+                className="block py-2.5 text-sm font-semibold text-[#0F172A] border-b border-slate-100"
               >
-                Our Products
+                Products &amp; Work
               </Link>
 
               <Link
                 href="/about"
-                className="block py-2 text-sm font-bold text-[#14243A] hover:text-blue-600 border-b border-slate-100"
+                className="block py-2.5 text-sm font-semibold text-[#0F172A] border-b border-slate-100"
               >
-                About Us
+                Studio
               </Link>
 
               <Link
                 href="/contact"
-                className="block py-2 text-sm font-bold text-[#14243A] hover:text-blue-600 border-b border-slate-100"
+                className="block py-2.5 text-sm font-semibold text-[#0F172A] border-b border-slate-100"
               >
                 Contact
               </Link>
 
-              {/* Action CTAs in Mobile Drawer */}
-              <div className="pt-4 space-y-2.5">
+              <div className="pt-3 flex flex-col gap-2.5">
                 <Link
                   href="/contact"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all"
+                  className="w-full py-3 rounded-lg bg-[#0F172A] text-white text-center text-xs font-semibold"
                 >
-                  <span>Start a Project</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  Start a Project
                 </Link>
-
                 <a
-                  href={SITE_CONFIG.getWhatsAppLink()}
+                  href={SITE_CONFIG.getWhatsAppLink("quote")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-xs transition-all"
+                  className="w-full py-3 rounded-lg border border-slate-200 text-[#0F172A] text-center text-xs font-semibold"
                 >
-                  <span>Chat on WhatsApp</span>
+                  Direct WhatsApp Inquiry
                 </a>
               </div>
             </div>
