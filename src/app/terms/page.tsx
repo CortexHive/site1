@@ -28,7 +28,7 @@ export default function TermsPage() {
           <section className="space-y-2">
             <h2 className="text-base font-bold text-slate-900 uppercase tracking-wide">1. Business Entity &amp; Application</h2>
             <p>
-              These Terms govern your use of the website and services provided under the trading name <span className="text-slate-950 font-semibold">CortexHive</span>, operated as a self-employed business in the United Kingdom. CortexHive is not a limited company.
+              These Terms govern your use of the website and services provided under the brand and trading name <span className="text-slate-950 font-semibold">CortexHive</span> in the United Kingdom.
             </p>
           </section>
 

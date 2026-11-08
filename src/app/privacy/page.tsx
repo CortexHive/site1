@@ -28,7 +28,7 @@ export default function PrivacyPage() {
           <section className="space-y-2">
             <h2 className="text-base font-bold text-slate-900 uppercase tracking-wide">1. Business Identity &amp; Data Controller</h2>
             <p>
-              CortexHive is a trading name operated as a self-employed business in the United Kingdom. We act as the data controller for personal information collected through this website (<span className="text-slate-900 font-mono text-xs">cortexhive.co.uk</span>) and our direct client project communications.
+              CortexHive operates in the United Kingdom. We act as the data controller for personal information collected through this website (<span className="text-slate-900 font-mono text-xs">cortexhive.co.uk</span>) and our direct client project communications.
             </p>
             <p>
               For inquiries regarding personal data or privacy matters, contact: <a href="mailto:info@cortexhive.co.uk" className="text-hive-blue font-semibold hover:underline">info@cortexhive.co.uk</a>.

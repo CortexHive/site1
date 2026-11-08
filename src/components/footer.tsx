@@ -189,11 +189,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Footer Bottom Bar: Accurate Legal Status */}
+        {/* Footer Bottom Bar */}
         <div className="border-t border-[#E2E8F0] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#64748B]">
           <div>
             <p>
-              &copy; {currentYear} CortexHive. All rights reserved. CortexHive is a trading name operated as a self-employed business in the United Kingdom. Registered in England &amp; Wales.
+              &copy; {currentYear} CortexHive. All rights reserved.
             </p>
           </div>
           <div className="flex gap-6 font-medium">
