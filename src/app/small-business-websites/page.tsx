@@ -113,15 +113,15 @@ export default function SmallBusinessWebsitesPage() {
 
           {/* Pricing Highlight Pill */}
           <div className="pt-2 sm:pt-4 pb-2">
-            <div className="inline-block p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-slate-900 text-white shadow-2xl border border-slate-800 w-full sm:w-auto">
-              <span className="text-xs uppercase tracking-widest text-emerald-400 font-bold block mb-1">
+            <div className="inline-block p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#F8FAFD] text-[#14243A] shadow-md border-2 border-emerald-500 w-full sm:w-auto">
+              <span className="text-xs uppercase tracking-widest text-emerald-700 font-extrabold block mb-1">
                 Transparent UK Pricing
               </span>
               <div className="flex items-baseline justify-center gap-2">
-                <span className="text-4xl sm:text-6xl font-black font-outfit text-white">£99</span>
-                <span className="text-slate-400 text-xs sm:text-sm font-semibold">one-off build fee</span>
+                <span className="text-4xl sm:text-6xl font-black font-outfit text-[#14243A]">£99</span>
+                <span className="text-[#64748B] text-xs sm:text-sm font-semibold">one-off build fee</span>
               </div>
-              <p className="text-xs text-slate-300 mt-2 max-w-md mx-auto">
+              <p className="text-xs text-[#475569] mt-2 max-w-md mx-auto">
                 Complete, modern 1-page business website designed to convert local searchers into phone calls and WhatsApp enquiries.
               </p>
             </div>

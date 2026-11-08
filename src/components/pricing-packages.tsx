@@ -1,101 +1,139 @@
 "use client";
 
-import Link from "next/link";
-import { CheckCircle2, ArrowRight, Sparkles, PhoneCall, Globe, Layers } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
 
-const PACKAGES = [
+export const PACKAGES = [
   {
-    id: "starter-99",
-    badge: "Most Popular for Trades",
-    name: "Starter Business Website",
+    id: "launch-99",
+    badge: "Fastest Online",
+    name: "Launch Website",
     price: "£99",
-    period: "one-off build fee",
-    desc: "Get a professional online presence for your trade or local business without agency markups.",
-    icon: Sparkles,
-    accent: "emerald",
-    serviceRequired: "£99 Small Business Website",
-    budget: "£99 Starter Package",
+    period: "one-off fixed fee",
+    tagline: "For sole traders, trades & new services needing a professional start.",
+    popular: false,
+    serviceRequired: "Launch Website (£99)",
+    budget: "£99",
     whatsappContext: "small-business-99",
-    learnMoreHref: "/small-business-websites",
     features: [
-      "Professional 1-page responsive website",
-      "Tailored for builders, plumbers, electricians & trades",
-      "Direct WhatsApp chat & click-to-call buttons",
-      "Customer quote & enquiry form",
+      "Single-page responsive website",
+      "Clean, modern mobile-first design",
+      "Lead enquiry & quote capture form",
+      "Direct Click-to-call & WhatsApp buttons",
       "Basic on-page Google SEO setup",
-      "Ready in 3 to 5 business days",
+      "Fast cloud hosting configuration",
+      "Live in 3 to 5 business days",
     ],
-    ctaLabel: "Claim £99 Website",
+    ctaLabel: "Choose Launch (£99)",
   },
   {
-    id: "ai-receptionist",
-    badge: "24/7 Call Capture",
-    name: "AI Receptionist & Call Triage",
-    price: "Custom Plan",
-    period: "tailored to call volume",
-    desc: "Never lose a customer call while on the tools, in a meeting, or closed for the evening.",
-    icon: PhoneCall,
-    accent: "cyan",
-    serviceRequired: "AI Receptionist",
-    budget: "Under £500",
-    whatsappContext: "ai-receptionist",
-    learnMoreHref: "/ai-receptionist",
-    features: [
-      "Answers incoming calls 24/7 within 2 rings",
-      "Natural British English conversational voice",
-      "Answers FAQs, opening hours & service areas",
-      "Captures caller name, phone, postcode & job need",
-      "Sends instant SMS & email lead summaries",
-      "Works with your existing UK mobile or landline",
-    ],
-    ctaLabel: "Request Voice Demo",
-  },
-  {
-    id: "growth-web-ai",
-    badge: "Growing Businesses",
-    name: "Multi-Page Site or AI Workflow",
-    price: "£500 – £1,500",
-    period: "fixed price scope",
-    desc: "For established companies needing a multi-page web platform or automated business workflows.",
-    icon: Globe,
-    accent: "purple",
-    serviceRequired: "Website Design",
-    budget: "£500–£1,000",
+    id: "business-349",
+    badge: "Most Popular",
+    name: "Business Website",
+    price: "£349",
+    period: "one-off fixed fee",
+    tagline: "For established small businesses & professional services.",
+    popular: true,
+    serviceRequired: "Business Website (£349)",
+    budget: "£349",
     whatsappContext: "quote",
-    learnMoreHref: "/website-design",
     features: [
-      "4–8 custom-designed responsive pages",
-      "Dedicated service & local area landing pages",
-      "Or custom AI email/document automation pipeline",
-      "CRM & database lead synchronization",
-      "Full UK technical SEO & Google indexing",
-      "Sub-second Next.js loading performance",
+      "Up to 5 custom pages (Home, About, Services, Work, Contact)",
+      "Bespoke layout tailored to your brand identity",
+      "Conversion & lead generation optimisation",
+      "Google Search Console & XML sitemap setup",
+      "Interactive enquiry capture & notifications",
+      "Sub-second loading speed optimisation",
+      "Full domain & SSL connection",
     ],
-    ctaLabel: "Get Fixed Quote",
+    ctaLabel: "Choose Business (£349)",
+  },
+  {
+    id: "growth-699",
+    badge: "Comprehensive",
+    name: "Business Growth",
+    price: "£699",
+    period: "one-off fixed fee",
+    tagline: "For growing companies wanting a complete digital platform.",
+    popular: false,
+    serviceRequired: "Business Growth Website (£699)",
+    budget: "£699",
+    whatsappContext: "quote",
+    features: [
+      "Up to 8–10 dedicated service & location pages",
+      "Detailed service silos & case study showcases",
+      "Blog / articles / resources architecture",
+      "Advanced structured data & local SEO hierarchy",
+      "Automated customer lead routing flows",
+      "Integrated analytics & conversion event tracking",
+      "Optional CMS capability for easy editing",
+    ],
+    ctaLabel: "Choose Growth (£699)",
   },
   {
     id: "custom-software",
-    badge: "Full-Stack Product",
-    name: "Custom Software & SaaS MVP",
-    price: "£2,500+",
-    period: "milestone-based delivery",
-    desc: "End-to-end engineering for web applications, customer portals, and scalable SaaS products.",
-    icon: Layers,
-    accent: "slate",
-    serviceRequired: "Software Development",
-    budget: "£2,500–£5,000",
+    badge: "Bespoke Solutions",
+    name: "Custom AI & Software",
+    price: "Contact for Pricing",
+    period: "scoped milestone delivery",
+    tagline: "For businesses needing intelligent automation, custom AI or SaaS.",
+    popular: false,
+    serviceRequired: "Custom AI & Software",
+    budget: "Contact for Pricing",
     whatsappContext: "software",
-    learnMoreHref: "/software-development",
     features: [
-      "Full-stack Next.js, TypeScript & PostgreSQL",
-      "Secure user authentication & client portals",
-      "Custom admin & management dashboards",
-      "Stripe / subscription billing integration",
-      "AI agent & third-party API integrations",
-      "100% source code & IP ownership",
+      "Custom AI agents & autonomous workflow pipelines",
+      "AI voice receptionist & automated call handling",
+      "Internal productivity dashboards & employee tools",
+      "SaaS MVP architecture & full-stack development",
+      "Secure client portals & role-based authentication",
+      "Third-party API, CRM & database integrations",
+      "100% intellectual property & code ownership",
     ],
-    ctaLabel: "Scope Your Project",
+    ctaLabel: "Discuss Custom Scope",
+  },
+];
+
+export const MONTHLY_SERVICES = [
+  {
+    name: "Website Hosting & Security",
+    price: "£15",
+    period: "per month",
+    desc: "Essential high-speed UK cloud hosting and enterprise security monitoring.",
+    features: [
+      "High-speed UK-based cloud hosting",
+      "Enterprise SSL encryption certificate",
+      "Daily automated backups",
+      "99.9% uptime & health monitoring",
+      "DNS configuration & renewal guidance",
+    ],
+  },
+  {
+    name: "Website Care & Updates",
+    price: "£29",
+    period: "per month",
+    popular: true,
+    desc: "Hosting plus monthly hands-on maintenance, edits, and technical upkeep.",
+    features: [
+      "Everything in Hosting & Security included",
+      "Up to 1 hour of content & image updates each month",
+      "Technical framework & security patch updates",
+      "Form delivery testing & spam protection",
+      "Priority email & ticket support",
+    ],
+  },
+  {
+    name: "Growth Care",
+    price: "£59",
+    period: "per month",
+    desc: "Proactive monthly technical care, SEO checks, and regular continuous improvements.",
+    features: [
+      "Everything in Website Care included",
+      "Up to 3 hours of updates and design tweaks/month",
+      "Monthly SEO rankings & search index audit",
+      "Quarterly site speed & conversion review",
+      "Direct priority WhatsApp support channel",
+    ],
   },
 ];
 
@@ -112,143 +150,164 @@ export default function PricingPackages() {
   };
 
   return (
-    <section id="pricing" className="py-16 sm:py-24 bg-white border-t border-slate-200 relative overflow-hidden">
+    <section id="pricing" className="py-20 sm:py-28 bg-[#FFFFFF] border-b border-[#E2E8F0] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest mb-4">
-            Transparent Investment
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5F8FC] border border-[#E2E8F0] text-xs font-bold text-blue-700 uppercase tracking-widest mb-4">
+            Transparent Pricing
           </div>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight mb-3 sm:mb-4">
-            Clear Packages. No Agency Guesswork.
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-[#14243A] tracking-tight mb-4">
+            Transparent Packages. Zero Hidden Fees.
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed font-medium px-2 sm:px-0">
-            Whether you need an affordable £99 starter website to get your trade online this week or a full-scale software platform, choose a package below for an instant quote.
+          <p className="text-[#475569] text-base sm:text-lg leading-relaxed font-normal">
+            Whether you need an accessible website to establish your business online or an intelligent custom AI product, we provide clear fixed pricing with upfront deliverables.
           </p>
         </div>
 
-        {/* 4-Column Package Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch">
+        {/* 4 Packages Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch mb-20">
           {PACKAGES.map((pkg) => {
-            const Icon = pkg.icon;
-            const isEmerald = pkg.accent === "emerald";
-            const isCyan = pkg.accent === "cyan";
-
             return (
               <div
                 key={pkg.id}
-                className={`rounded-2xl sm:rounded-3xl p-5 sm:p-7 border flex flex-col justify-between transition-all duration-300 ${
-                  isEmerald
-                    ? "border-2 border-emerald-500 bg-emerald-50/20 shadow-xl relative"
-                    : isCyan
-                    ? "border-2 border-cyan-500/60 bg-cyan-50/15 shadow-lg relative"
-                    : "border-slate-200 bg-slate-50/60 hover:border-purple-300 hover:bg-white hover:shadow-lg"
+                className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 relative ${
+                  pkg.popular
+                    ? "bg-[#FFFFFF] border-2 border-blue-600 shadow-xl ring-4 ring-blue-600/10"
+                    : "bg-[#FFFFFF] border border-[#E2E8F0] hover:border-blue-300 hover:shadow-lg"
                 }`}
               >
+                {pkg.popular && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-blue-600 text-white text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
+                    Most Popular
+                  </div>
+                )}
+
                 <div>
-                  {/* Top Badge */}
-                  <div className="flex items-center justify-between gap-2 mb-4 sm:mb-5">
-                    <div
-                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center border ${
-                        isEmerald
-                          ? "bg-emerald-600 text-white border-emerald-600"
-                          : isCyan
-                          ? "bg-cyan-600 text-white border-cyan-600"
-                          : "bg-white text-purple-600 border-slate-200"
-                      }`}
-                    >
-                      <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </div>
+                  <div className="flex items-center justify-between gap-2 mb-4">
                     <span
-                      className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider ${
-                        isEmerald
-                          ? "bg-emerald-100 text-emerald-800"
-                          : isCyan
-                          ? "bg-cyan-100 text-cyan-800"
-                          : "bg-purple-100 text-purple-800"
+                      className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md ${
+                        pkg.popular
+                          ? "bg-blue-50 text-blue-700 border border-blue-200"
+                          : "bg-[#F5F8FC] text-[#475569] border border-[#E2E8F0]"
                       }`}
                     >
                       {pkg.badge}
                     </span>
                   </div>
 
-                  {/* Title & Description */}
-                  <h3 className="text-base sm:text-lg font-extrabold text-slate-950 font-outfit">
+                  <h3 className="text-xl font-bold text-[#14243A]">
                     {pkg.name}
                   </h3>
-                  <p className="text-xs text-slate-600 font-medium mt-1 leading-relaxed">
-                    {pkg.desc}
+                  <p className="text-xs text-[#64748B] mt-1.5 leading-relaxed min-h-[36px]">
+                    {pkg.tagline}
                   </p>
 
-                  {/* Price */}
-                  <div className="my-4 sm:my-5 py-3 sm:py-4 border-y border-slate-200/80">
-                    <div className="text-2xl sm:text-3xl font-black text-slate-950 font-outfit">
+                  <div className="my-5 py-4 border-y border-[#E2E8F0]">
+                    <div className="text-3xl font-extrabold text-[#14243A]">
                       {pkg.price}
                     </div>
-                    <div className="text-[11px] font-semibold text-slate-500 mt-0.5">
+                    <div className="text-xs text-[#64748B] mt-1 font-medium">
                       {pkg.period}
                     </div>
                   </div>
 
-                  {/* Feature List */}
-                  <ul className="space-y-2 sm:space-y-2.5 mb-5 sm:mb-6">
+                  <ul className="space-y-3 mb-6">
                     {pkg.features.map((feat, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-start gap-2 text-xs text-slate-700 font-medium leading-snug"
-                      >
-                        <CheckCircle2
-                          className={`w-4 h-4 flex-shrink-0 mt-0.5 ${
-                            isEmerald
-                              ? "text-emerald-600"
-                              : isCyan
-                              ? "text-cyan-600"
-                              : "text-purple-600"
-                          }`}
-                        />
+                      <li key={idx} className="flex items-start gap-2.5 text-xs text-[#475569] leading-snug">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Actions */}
-                <div className="space-y-2.5 pt-2">
+                <div className="space-y-3 pt-2">
                   <button
                     type="button"
                     onClick={() => handleSelectPackage(pkg.serviceRequired, pkg.budget)}
-                    className={`w-full min-h-[44px] py-3 px-4 rounded-xl text-xs font-bold inline-flex items-center justify-center gap-2 transition-all shadow-sm active:scale-98 ${
-                      isEmerald
-                        ? "bg-emerald-600 hover:bg-emerald-700 text-white"
-                        : isCyan
-                        ? "bg-cyan-600 hover:bg-cyan-700 text-white"
-                        : "bg-slate-950 hover:bg-purple-600 text-white"
+                    className={`w-full min-h-[46px] py-3 px-4 rounded-xl text-xs font-bold inline-flex items-center justify-center gap-2 transition-all ${
+                      pkg.popular
+                        ? "bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/20"
+                        : "bg-[#14243A] hover:bg-blue-600 text-white"
                     }`}
                   >
                     <span>{pkg.ctaLabel}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-4 h-4" />
                   </button>
 
-                  <div className="flex items-center justify-between px-1 pt-1 text-[11px] font-bold">
-                    <Link
-                      href={pkg.learnMoreHref}
-                      className="text-slate-500 hover:text-slate-900 transition-colors py-1"
-                    >
-                      Full details &rarr;
-                    </Link>
+                  <div className="flex items-center justify-between px-1 text-[11px] font-semibold">
                     <a
                       href={SITE_CONFIG.getWhatsAppLink(pkg.whatsappContext)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-emerald-700 hover:text-emerald-800 transition-colors py-1"
+                      className="text-emerald-700 hover:text-emerald-800 transition-colors"
                     >
-                      WhatsApp Us
+                      WhatsApp questions &rarr;
                     </a>
                   </div>
                 </div>
               </div>
             );
           })}
+        </div>
+
+        {/* Section 7: Optional Monthly Services Strip */}
+        <div className="bg-[#F8FAFD] border border-[#E2E8F0] rounded-3xl p-6 sm:p-10">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-700 block mb-2">
+              Optional Ongoing Support
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-bold text-[#14243A]">
+              Monthly Website Care &amp; Hosting Plans
+            </h3>
+            <p className="text-sm text-[#64748B] mt-2">
+              Completely optional. You own 100% of your website. Choose a care plan if you want us to handle hosting, updates, and ongoing technical maintenance. No long-term contracts. Cancel anytime.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {MONTHLY_SERVICES.map((plan, i) => (
+              <div
+                key={i}
+                className={`bg-white rounded-2xl p-6 border flex flex-col justify-between ${
+                  plan.popular ? "border-2 border-blue-600 shadow-md" : "border-[#E2E8F0]"
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-base font-bold text-[#14243A]">{plan.name}</h4>
+                    {plan.popular && (
+                      <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
+                        Recommended
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-baseline gap-1 mb-3">
+                    <span className="text-3xl font-extrabold text-[#14243A]">{plan.price}</span>
+                    <span className="text-xs text-[#64748B]">/{plan.period}</span>
+                  </div>
+                  <p className="text-xs text-[#64748B] mb-5 leading-relaxed">{plan.desc}</p>
+                  <ul className="space-y-2.5 mb-6">
+                    {plan.features.map((feat, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-xs text-[#475569]">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => handleSelectPackage(`Monthly Plan: ${plan.name}`, plan.price)}
+                  className="w-full py-2.5 px-3 rounded-lg border border-[#E2E8F0] hover:border-blue-600 hover:text-blue-600 text-xs font-bold text-[#14243A] transition-colors"
+                >
+                  Select Plan
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

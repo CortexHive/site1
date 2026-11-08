@@ -2,250 +2,155 @@
 
 import { motion } from "framer-motion";
 import {
-  Search,
   Compass,
-  Code2,
-  CheckCircle2,
-  Rocket,
-  RefreshCw,
+  FileCode2,
   Cpu,
-  Layers,
-  Database,
-  Cloud,
-  LineChart,
-  Workflow,
+  Rocket,
+  Clock,
+  ShieldCheck,
 } from "lucide-react";
 
-const LIFECYCLE_STAGES = [
+const PROCESS_STAGES = [
   {
-    stage: "01",
-    name: "DISCOVER",
-    subtitle: "Problem Analysis & Scoping",
-    desc: "We analyze the business problem, assess technical feasibility, and define functional requirements before selecting the architecture.",
-    icon: Search,
-  },
-  {
-    stage: "02",
-    name: "DESIGN",
-    subtitle: "Architecture & UX Design",
-    desc: "We design clean, intuitive user interfaces in Figma and architect database schemas, API contracts, and data pipelines.",
+    step: "01",
+    name: "Discover",
+    headline: "Understand the Problem",
+    turnaround: "Day 1 – 2",
+    summary:
+      "We understand your business problem, target audience, and commercial goals. No confusing jargon — just clear conversations about what you need to achieve.",
+    clientProvides: "Your vision, requirements, content, or current pain points.",
+    weDeliver: "Defined project brief, technical recommendation & fixed price proposal.",
     icon: Compass,
   },
   {
-    stage: "03",
-    name: "BUILD",
-    subtitle: "Full-Stack Development",
-    desc: "We write clean, type-safe code using Next.js and TypeScript, building the database, authentication, backend logic, and user interfaces.",
-    icon: Code2,
+    step: "02",
+    name: "Plan",
+    headline: "Architecture & Scope",
+    turnaround: "Day 2 – 3",
+    summary:
+      "We map out the user flows, responsive UI layouts, system architecture, and technical deliverables. You get a clear roadmap with zero hidden costs.",
+    clientProvides: "Branding assets, feedback on wireframes & approval to build.",
+    weDeliver: "Interactive wireframes, data structure, API specifications & milestones.",
+    icon: FileCode2,
   },
   {
-    stage: "04",
-    name: "TEST",
-    subtitle: "Rigorous QA & Security",
-    desc: "We test user workflows, validate API edge cases, review mobile responsiveness, and ensure data isolation and security.",
-    icon: CheckCircle2,
-  },
-  {
-    stage: "05",
-    name: "LAUNCH",
-    subtitle: "Production Deployment",
-    desc: "We deploy the application to optimized cloud environments with automated CI/CD pipelines, SSL encryption, and domain routing.",
-    icon: Rocket,
-  },
-  {
-    stage: "06",
-    name: "EVOLVE",
-    subtitle: "Ongoing Improvement",
-    desc: "We review operational performance, monitor real-world user activity, and iterate functionality based on measurable feedback.",
-    icon: RefreshCw,
-  },
-];
-
-const TECH_CATEGORIES = [
-  {
-    title: "AI & LLM",
+    step: "03",
+    name: "Build",
+    headline: "Engineering & AI Integration",
+    turnaround: "Day 3 – 5 (Websites) / Weeks (Software)",
+    summary:
+      "We design and code with clean modern frameworks (Next.js, TypeScript, AI APIs). You see live staging progress as it develops, not months later.",
+    clientProvides: "Feedback on staging previews & verification of workflows.",
+    weDeliver: "Production-ready codebase, responsive design, AI pipelines & test coverage.",
     icon: Cpu,
-    techs: ["OpenAI API", "Anthropic Claude", "DeepSeek", "LangChain", "Vector Embeddings", "RAG Pipelines"],
   },
   {
-    title: "Automation",
-    icon: Workflow,
-    techs: ["Automated Webhooks", "Cron Jobs", "Email Automation", "Custom NLP Extraction", "Workflow Pipelines"],
-  },
-  {
-    title: "Frontend",
-    icon: Layers,
-    techs: ["Next.js 14", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-  },
-  {
-    title: "Backend",
-    icon: Code2,
-    techs: ["Node.js", "Python", "Next.js Server Actions", "FastAPI", "REST APIs"],
-  },
-  {
-    title: "Databases",
-    icon: Database,
-    techs: ["Supabase", "PostgreSQL", "SQLite", "Prisma ORM", "Firebase Firestore"],
-  },
-  {
-    title: "APIs & Integration",
-    icon: Workflow,
-    techs: ["Stripe API", "Mailjet / Resend", "Third-Party Webhooks", "REST Endpoints"],
-  },
-  {
-    title: "Cloud & Hosting",
-    icon: Cloud,
-    techs: ["Vercel", "Netlify", "Cloudflare DNS", "AWS S3"],
-  },
-  {
-    title: "Analytics & Monitoring",
-    icon: LineChart,
-    techs: ["Custom Event Tracking", "Google Analytics", "Performance Logging", "Error Monitoring"],
+    step: "04",
+    name: "Launch",
+    headline: "Deployment & Growth",
+    turnaround: "Launch Day & Beyond",
+    summary:
+      "We test, configure domains, set up SSL, connect analytics, submit sitemaps to Google, and hand over a working product with optional monthly care.",
+    clientProvides: "Domain registrar access or DNS delegation.",
+    weDeliver: "Live production deployment, full source code ownership & handover training.",
+    icon: Rocket,
   },
 ];
 
 export default function Process() {
   return (
-    <section id="process" className="py-24 bg-slate-50/60 border-t border-slate-200 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-28">
-        {/* PART 1: HOW WE WORK (6 Stages) */}
-        <div>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest mb-4">
-              Development Lifecycle
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight mb-5">
-              How We Work
-            </h2>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
-              We operate an agile, disciplined product delivery process designed to take a software requirement from initial discovery to stable production deployment.
-            </p>
+    <section id="process" className="py-20 sm:py-28 bg-[#F8FAFD] border-b border-[#E2E8F0] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#E2E8F0] text-xs font-bold text-blue-700 uppercase tracking-widest mb-4 shadow-2xs">
+            Simple 4-Stage Method
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {LIFECYCLE_STAGES.map((s, idx) => {
-              const Icon = s.icon;
-              return (
-                <motion.div
-                  key={s.stage}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.08 }}
-                  className="bg-white rounded-3xl p-8 border border-slate-200 hover:border-purple-300 shadow-xs hover:shadow-lg transition-all"
-                >
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <span className="text-xs font-mono font-bold tracking-widest text-slate-400">
-                      {s.stage}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-extrabold text-slate-950 font-outfit mb-1">
-                    {s.name}
-                  </h3>
-                  <div className="text-xs font-bold uppercase tracking-wider text-purple-600 mb-3">
-                    {s.subtitle}
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-                    {s.desc}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-[#14243A] tracking-tight mb-4">
+            How We Work: From Brief to Live Product
+          </h2>
+          <p className="text-[#475569] text-base sm:text-lg leading-relaxed font-normal">
+            A structured, transparent delivery framework designed to ship fast, eliminate guesswork, and ensure you always have complete visibility.
+          </p>
         </div>
 
-        {/* PART 2: TECHNOLOGY STACK (Categorised) */}
-        <div>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-200 text-xs font-bold text-cyan-800 uppercase tracking-widest mb-4">
-              Proven Architecture
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-outfit tracking-tight mb-5">
-              Technologies We Actually Use
-            </h2>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-medium">
-              We avoid unnecessary bloat and hype. We build on modern, robust technologies that deliver production stability, security, and developer velocity.
-            </p>
-          </div>
+        {/* 4 Stages Horizontal / Responsive Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch mb-16">
+          {PROCESS_STAGES.map((stage, idx) => {
+            const Icon = stage.icon;
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {TECH_CATEGORIES.map((cat) => {
-              const Icon = cat.icon;
-              return (
-                <div
-                  key={cat.title}
-                  className="bg-white rounded-3xl p-6 border border-slate-200 hover:border-slate-300 shadow-xs flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 mb-4">
+            return (
+              <motion.div
+                key={stage.step}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: idx * 0.1 }}
+                className="bg-white rounded-2xl border border-[#E2E8F0] p-6 sm:p-7 flex flex-col justify-between hover:border-blue-300 hover:shadow-md transition-all relative"
+              >
+                <div>
+                  {/* Step Number & Icon */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-2xl font-black text-blue-600 font-mono tracking-tighter">
+                      {stage.step}
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-[#F5F8FC] border border-[#E2E8F0] flex items-center justify-center text-blue-600">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-base font-extrabold text-slate-950 font-outfit mb-4">
-                      {cat.title}
-                    </h3>
-                    <ul className="space-y-2">
-                      {cat.techs.map((tech) => (
-                        <li key={tech} className="text-xs text-slate-600 font-medium flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                          <span>{tech}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  </div>
+
+                  {/* Title & Timeline */}
+                  <h3 className="text-xl font-bold text-[#14243A] tracking-tight">
+                    {stage.name}
+                  </h3>
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-blue-700 mt-1 mb-3">
+                    <Clock className="w-3.5 h-3.5" />
+                    <span>{stage.turnaround}</span>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6 font-normal">
+                    {stage.summary}
+                  </p>
+                </div>
+
+                {/* Handover & Delivery Details */}
+                <div className="pt-4 border-t border-[#E2E8F0] space-y-3 text-xs">
+                  <div>
+                    <span className="font-bold text-[#14243A] block mb-1">What you provide:</span>
+                    <p className="text-[#64748B] leading-relaxed">{stage.clientProvides}</p>
+                  </div>
+                  <div>
+                    <span className="font-bold text-emerald-700 block mb-1">What we deliver:</span>
+                    <p className="text-[#475569] leading-relaxed">{stage.weDeliver}</p>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* PART 3: DISTRIBUTED DELIVERY MODEL */}
-        <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-3xl p-8 sm:p-12 text-white border border-slate-800 shadow-xl">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-900/60 border border-purple-500/30 text-xs font-bold text-purple-300 uppercase tracking-widest mb-4">
-              Flexible Resourcing
+        {/* Reassurance banner */}
+        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0">
+              <ShieldCheck className="w-6 h-6" />
             </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-outfit tracking-tight text-white mb-4">
-              Our Distributed Delivery Model
-            </h2>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-medium mb-6">
-              CortexHive uses a flexible distributed delivery model, bringing together specialist capabilities across design, development, AI, automation and product engineering according to project requirements.
-            </p>
-            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-medium mb-8">
-              Rather than maintaining bloated agency overheads or pushing junior generalists onto complex technical problems, CortexHive combines hands-on technical product leadership with a trusted network of vetted specialist contractors and engineering resources. Each project receives the exact architectural focus it demands.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-slate-800">
-              <div className="space-y-1">
-                <div className="text-xs font-bold uppercase tracking-wider text-purple-400">
-                  Product Leadership
-                </div>
-                <div className="text-xs text-slate-300 font-medium">
-                  Direct engagement with technical engineering leads.
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <div className="text-xs font-bold uppercase tracking-wider text-cyan-400">
-                  Targeted Capabilities
-                </div>
-                <div className="text-xs text-slate-300 font-medium">
-                  Specialists assembled specifically for your stack and requirements.
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <div className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                  Focused Delivery
-                </div>
-                <div className="text-xs text-slate-300 font-medium">
-                  A lean delivery model designed to minimise unnecessary agency overhead.
-                </div>
-              </div>
+            <div>
+              <h4 className="text-base font-bold text-[#14243A]">No Trapped Code. You Own 100% of Everything.</h4>
+              <p className="text-xs sm:text-sm text-[#64748B] mt-0.5">
+                Full intellectual property, domain registration, and source code ownership transferred on completion. No proprietary lock-in.
+              </p>
             </div>
+          </div>
+
+          <div className="flex items-center gap-3 flex-shrink-0 w-full sm:w-auto">
+            <button
+              type="button"
+              onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-sm"
+            >
+              Start Stage 01 Today
+            </button>
           </div>
         </div>
       </div>

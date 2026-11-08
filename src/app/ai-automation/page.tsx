@@ -149,21 +149,21 @@ export default function AiAutomationPage() {
         </div>
 
         {/* Business Discipline & Principles */}
-        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 space-y-6">
+        <div className="bg-[#F8FAFD] text-[#14243A] rounded-3xl p-8 sm:p-12 space-y-6 border border-[#E2E8F0]">
           <div className="max-w-2xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
               Our AI Engineering Philosophy
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-outfit">
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-outfit text-[#14243A]">
               We Don&apos;t Just Talk About AI. We Build Working Pipelines.
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
             {PRINCIPLES.map((pr, i) => (
-              <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-slate-800/70 border border-slate-700/60">
-                <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
-                <span className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+              <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-[#E2E8F0]">
+                <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                <span className="text-xs sm:text-sm text-[#475569] leading-relaxed font-medium">
                   {pr}
                 </span>
               </div>

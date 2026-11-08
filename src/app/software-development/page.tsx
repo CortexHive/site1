@@ -161,29 +161,29 @@ export default function SoftwareDevelopmentPage() {
         </div>
 
         {/* Real Proof of Delivery Teaser */}
-        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 space-y-8">
+        <div className="bg-[#F8FAFD] text-[#14243A] rounded-3xl p-8 sm:p-12 space-y-8 border border-[#E2E8F0]">
           <div className="max-w-2xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
               Proven Delivery
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-outfit">
+            <h2 className="text-2xl sm:text-4xl font-extrabold font-outfit text-[#14243A]">
               Real Software in Production
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400">
+            <p className="text-xs sm:text-sm text-[#64748B]">
               We don&apos;t just build prototypes; we ship production platforms with active users and rigorous engineering standards.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {CASE_STUDIES.map((cs, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 space-y-3">
-                <span className="text-xs text-cyan-400 font-bold uppercase tracking-wider block">
+              <div key={i} className="p-6 rounded-2xl bg-white border border-[#E2E8F0] space-y-3 shadow-2xs">
+                <span className="text-xs text-blue-700 font-bold uppercase tracking-wider block">
                   {cs.tagline}
                 </span>
-                <h4 className="text-lg font-bold text-white font-outfit">
+                <h4 className="text-lg font-bold text-[#14243A] font-outfit">
                   {cs.title}
                 </h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-[#475569] leading-relaxed">
                   {cs.desc}
                 </p>
               </div>
@@ -192,10 +192,10 @@ export default function SoftwareDevelopmentPage() {
 
           <div className="pt-2 text-center">
             <Link
-              href="/portfolio"
-              className="inline-flex items-center gap-2 text-xs font-bold text-cyan-400 hover:text-cyan-300"
+              href="/our-products"
+              className="inline-flex items-center gap-2 text-xs font-bold text-blue-700 hover:text-blue-800"
             >
-              <span>Explore All 10 Verified Portfolio Case Studies</span>
+              <span>Explore All Verified Portfolio Case Studies</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

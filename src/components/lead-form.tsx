@@ -53,50 +53,57 @@ const INITIAL_DATA: ProjectEnquiryData = {
 
 export const SERVICES = [
   {
-    id: "Website Design",
-    label: "Website Design & Development",
-    desc: "Bespoke company websites, conversion landing pages, and web redesigns.",
-    icon: Globe,
-  },
-  {
-    id: "£99 Small Business Website",
-    label: "£99 Small Business Starter Website",
-    desc: "Professional 1-page site for tradespeople, builders, plumbers, cleaners, and local services.",
+    id: "Launch Website (£99)",
+    label: "Launch Website (£99)",
+    desc: "1-page fast responsive site for trades, sole traders, and local businesses.",
     icon: Sparkles,
   },
   {
+    id: "Business Website (£349)",
+    label: "Business Website (£349) — Most Popular",
+    desc: "Up to 5 pages, custom brand layout, lead capture, and Google indexing.",
+    icon: Globe,
+  },
+  {
+    id: "Business Growth Website (£699)",
+    label: "Business Growth Website (£699)",
+    desc: "Up to 8–10 pages, dedicated service silos, advanced SEO & lead funnels.",
+    icon: Globe,
+  },
+  {
     id: "AI Receptionist",
-    label: "AI Receptionist & Call Answering",
-    desc: "24/7 AI answering service that picks up calls, answers FAQs, and captures customer leads.",
+    label: "AI Voice & Receptionist",
+    desc: "24/7 conversational voice AI that answers calls, answers FAQs & logs leads.",
     icon: Phone,
   },
   {
     id: "AI Automation",
-    label: "AI & Business Automation",
-    desc: "Intelligent workflows, CRM sync, enquiry triage, and document extraction pipelines.",
+    label: "AI & Workflow Automation",
+    desc: "Intelligent workflows, document parsing, CRM sync, and internal AI tools.",
     icon: Bot,
   },
   {
     id: "Software Development",
-    label: "Custom Software Development",
-    desc: "Full-stack SaaS MVPs, client portals, internal dashboards, and database systems.",
+    label: "Custom Software & SaaS MVP",
+    desc: "Full-stack web applications, client portals, internal dashboards & APIs.",
     icon: Layers,
   },
   {
     id: "Other",
     label: "Other / Technical Discovery",
-    desc: "Architecture audit, technology consulting, or bespoke digital transformation.",
+    desc: "Technical consultation, architecture audit, or bespoke enterprise scope.",
     icon: HelpCircle,
   },
 ];
 
 const BUDGET_RANGES = [
-  { id: "£99 Starter Package", label: "£99 Starter Package", desc: "For trades & small business 1-page websites" },
-  { id: "Under £500", label: "Under £500", desc: "Small automation task or prototype scope" },
-  { id: "£500–£1,000", label: "£500 – £1,000", desc: "Targeted workflow automation or standard web development" },
-  { id: "£1,000–£2,500", label: "£1,000 – £2,500", desc: "Custom AI tool, focused MVP, or multi-page business platform" },
-  { id: "£2,500–£5,000", label: "£2,500 – £5,000", desc: "Comprehensive software product or multi-agent system" },
+  { id: "£99", label: "£99", desc: "Launch Website package" },
+  { id: "£349", label: "£349", desc: "Business Website package" },
+  { id: "£699", label: "£699", desc: "Business Growth Website package" },
+  { id: "£1,000–£3,000", label: "£1,000 – £3,000", desc: "Targeted AI automation, voice system, or custom module" },
+  { id: "£3,000–£5,000", label: "£3,000 – £5,000", desc: "Custom software MVP, client portal, or multi-agent system" },
   { id: "£5,000+", label: "£5,000+", desc: "Full-scale platform development and complex architecture" },
+  { id: "Discuss", label: "Discuss / Scope First", desc: "Flexible; let's discuss project requirements first" },
 ];
 
 const TIMELINES = [

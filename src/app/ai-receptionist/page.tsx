@@ -186,15 +186,15 @@ export default function AiReceptionistPage() {
         </div>
 
         {/* Suitable Industries */}
-        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 space-y-8">
+        <div className="bg-[#F8FAFD] text-[#14243A] rounded-3xl p-8 sm:p-12 space-y-8 border border-[#E2E8F0]">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
               Industry Focus
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-outfit">
+            <h2 className="text-2xl sm:text-4xl font-extrabold font-outfit text-[#14243A]">
               Who Benefits Most from an AI Receptionist?
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400">
+            <p className="text-xs sm:text-sm text-[#64748B]">
               Every missed call is a missed customer who dials the next competitor on Google. Keep your business responsive 24/7.
             </p>
           </div>
@@ -203,13 +203,13 @@ export default function AiReceptionistPage() {
             {INDUSTRIES.map((ind, i) => (
               <div
                 key={i}
-                className="p-5 rounded-2xl bg-slate-800/80 border border-slate-700/80 space-y-2"
+                className="p-5 rounded-2xl bg-white border border-[#E2E8F0] space-y-2 shadow-2xs"
               >
-                <h4 className="text-sm font-bold text-white font-outfit flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                <h4 className="text-sm font-bold text-[#14243A] font-outfit flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-blue-600" />
                   <span>{ind.name}</span>
                 </h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-[#475569] leading-relaxed">
                   {ind.desc}
                 </p>
               </div>

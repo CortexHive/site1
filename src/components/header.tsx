@@ -1,101 +1,381 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown, Sparkles, Bot, Layers, PhoneCall, Globe, Code2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/config";
 
-const navLinks = [
-  { name: "Services", href: "/services" },
-  { name: "AI Receptionist", href: "/ai-receptionist" },
-  { name: "Portfolio", href: "/portfolio" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
-];
+interface NavDropdownItem {
+  name: string;
+  href: string;
+  desc: string;
+  badge?: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 15);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Close mobile nav on route change
+  useEffect(() => {
+    setIsOpen(false);
+    setActiveDropdown(null);
+  }, [pathname]);
+
+  const websiteItems: NavDropdownItem[] = [
+    {
+      name: "Website Packages & Pricing",
+      href: "/pricing",
+      desc: "Transparent £99, £349, and £699 business website packages",
+      badge: "From £99",
+      icon: Sparkles,
+    },
+    {
+      name: "Bespoke Website Design",
+      href: "/website-design",
+      desc: "Conversion-first websites built for UK companies and brands",
+      icon: Globe,
+    },
+    {
+      name: "Launch Websites for Trades",
+      href: "/small-business-websites",
+      desc: "Fast, mobile-friendly websites for tradespeople and local services",
+      badge: "£99",
+      icon: Code2,
+    },
+    {
+      name: "Industry Solutions",
+      href: "/industries/tradespeople",
+      desc: "Tailored digital solutions for trades, salons, restaurants & startups",
+      icon: Sparkles,
+    },
+  ];
+
+  const aiItems: NavDropdownItem[] = [
+    {
+      name: "AI & Workflow Automation",
+      href: "/ai-automation",
+      desc: "Intelligent enquiry triage, document extraction, and CRM sync",
+      icon: Bot,
+    },
+    {
+      name: "Custom AI Agents & RAG",
+      href: "/ai-automation",
+      desc: "Task-oriented knowledge and document intelligence agents for business",
+      icon: Sparkles,
+    },
+    {
+      name: "24/7 AI Voice Receptionist",
+      href: "/ai-receptionist",
+      desc: "Natural British voice call answering and instant lead logging",
+      badge: "24/7 Voice",
+      icon: PhoneCall,
+    },
+  ];
+
+  const softwareItems: NavDropdownItem[] = [
+    {
+      name: "Software & SaaS Development",
+      href: "/software-development",
+      desc: "End-to-end digital product design, architecture, and engineering",
+      icon: Layers,
+    },
+    {
+      name: "SaaS Platforms & MVPs",
+      href: "/software-development",
+      desc: "Subscription platforms, membership systems, and client portals",
+      icon: Code2,
+    },
+    {
+      name: "Custom Business Applications",
+      href: "/software-development",
+      desc: "Internal dashboards, management tools, and database systems",
+      icon: Globe,
+    },
+    {
+      name: "Our Live Products & Case Studies",
+      href: "/our-products",
+      desc: "Explore AuraPDF, MarkScheme, Rydigo, and client systems",
+      badge: "Verified",
+      icon: Layers,
+    },
+  ];
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-slate-200/80 py-3.5 shadow-xs"
-          : "bg-white/70 backdrop-blur-sm py-5"
+          ? "bg-white/95 backdrop-blur-md border-b border-[#E2E8F0] py-3 shadow-xs"
+          : "bg-white/90 backdrop-blur-sm border-b border-[#E2E8F0]/60 py-4 sm:py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group font-outfit flex-shrink-0">
-          <svg className="w-5 h-5 text-hive-cyan transition-transform duration-300 group-hover:rotate-30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" />
-            <circle cx="12" cy="12" r="3" fill="currentColor" className="text-hive-purple" />
-          </svg>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between" ref={dropdownRef}>
+        {/* Brand Logo */}
+        <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0" aria-label="CortexHive Home">
+          <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-xs group-hover:bg-blue-700 transition-colors">
+            <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+              <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" />
+              <circle cx="12" cy="12" r="2.5" fill="currentColor" />
+            </svg>
+          </div>
           <div className="flex flex-col">
-            <span className="text-lg tracking-[0.12em] uppercase text-slate-950 transition-colors flex items-center font-medium">
-              <span className="font-light text-slate-500">CORTEX</span>
-              <span className="font-black text-gradient ml-1">HIVE</span>
+            <span className="text-lg font-extrabold tracking-tight text-[#14243A] flex items-center">
+              <span>CORTEX</span>
+              <span className="text-blue-600 ml-0.5">HIVE</span>
             </span>
-            <span className="text-[7.5px] uppercase tracking-[0.28em] text-slate-400 font-bold -mt-1 font-spaceGrotesk">
-              Digital Solutions Agency
+            <span className="text-[9px] uppercase tracking-[0.2em] text-[#64748B] font-bold -mt-1">
+              Technology Studio
             </span>
           </div>
         </Link>
 
-        {/* Desktop Nav - Generous spacing, clean typography */}
-        <nav className="hidden md:flex items-center gap-8 lg:gap-10">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={`text-xs uppercase tracking-[0.16em] font-bold transition-all duration-300 relative group py-2 ${
-                pathname === link.href ? "text-purple-600" : "text-slate-600 hover:text-slate-950"
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-7">
+          <Link
+            href="/"
+            className={`text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
+              pathname === "/" ? "text-blue-600 font-bold" : "text-[#475569] hover:text-[#14243A]"
+            }`}
+          >
+            Home
+          </Link>
+
+          {/* Websites Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setActiveDropdown("websites")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <button
+              onClick={() => setActiveDropdown(activeDropdown === "websites" ? null : "websites")}
+              className={`inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
+                pathname.includes("website") || pathname === "/pricing"
+                  ? "text-blue-600 font-bold"
+                  : "text-[#475569] hover:text-[#14243A]"
               }`}
             >
-              <span>{link.name}</span>
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-hive-cyan to-hive-purple transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
-        </nav>
+              <span>Websites</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === "websites" ? "rotate-180" : ""}`} />
+            </button>
 
-        {/* Desktop Actions */}
-        <div className="hidden md:flex items-center gap-3.5 flex-shrink-0">
-          {/* WhatsApp Button */}
-          <a
-            href={SITE_CONFIG.getWhatsAppLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-all duration-300 shadow-2xs"
-            title="Chat on WhatsApp"
+            <AnimatePresence>
+              {activeDropdown === "websites" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute top-full left-0 w-80 bg-white rounded-2xl border border-[#E2E8F0] shadow-lg p-2.5 z-50"
+                >
+                  {websiteItems.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F5F8FC] transition-colors group"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-bold text-[#14243A] group-hover:text-blue-600 transition-colors">
+                              {item.name}
+                            </span>
+                            {item.badge && (
+                              <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                {item.badge}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[11px] text-[#64748B] leading-snug mt-0.5 line-clamp-2">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* AI & Automation Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setActiveDropdown("ai")}
+            onMouseLeave={() => setActiveDropdown(null)}
           >
-            <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.531 1.93.814 2.79.815 3.183 0 5.77-2.586 5.77-5.766.002-3.181-2.583-5.766-5.769-5.766zm3.385 8.163c-.144.407-.837.774-1.171.823-.335.05-.776.082-2.222-.516-1.745-.722-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.793 0-.852.449-1.272.608-1.446.16-.175.348-.218.464-.218.116 0 .232.001.333.006.106.005.249-.04.39.299.144.348.492 1.201.536 1.289.043.087.072.19.014.305-.058.116-.087.189-.174.29-.087.102-.183.228-.261.306-.088.087-.179.182-.077.357.101.174.45 1.743 1.968 2.392.203.087.324.076.445-.062.12-.138.514-.6.652-.804.137-.204.275-.171.464-.101.189.07 1.201.566 1.408.669.207.102.345.153.395.239.05.087.05.503-.094.91zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.981-1.396A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.638 0-3.167-.487-4.448-1.326l-.319-.21-2.955.775.789-2.883-.231-.367C3.937 14.887 3.4 13.487 3.4 12c0-4.742 3.858-8.6 8.6-8.6s8.6 3.858 8.6 8.6-3.858 8.6-8.6 8.6z"/>
-            </svg>
-            <span>WhatsApp</span>
-          </a>
+            <button
+              onClick={() => setActiveDropdown(activeDropdown === "ai" ? null : "ai")}
+              className={`inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
+                pathname.includes("ai")
+                  ? "text-blue-600 font-bold"
+                  : "text-[#475569] hover:text-[#14243A]"
+              }`}
+            >
+              <span>AI &amp; Automation</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === "ai" ? "rotate-180" : ""}`} />
+            </button>
 
-          {/* Primary CTA */}
+            <AnimatePresence>
+              {activeDropdown === "ai" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute top-full left-0 w-80 bg-white rounded-2xl border border-[#E2E8F0] shadow-lg p-2.5 z-50"
+                >
+                  {aiItems.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F5F8FC] transition-colors group"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="text-xs font-bold text-[#14243A] group-hover:text-blue-600 transition-colors block">
+                            {item.name}
+                          </span>
+                          <p className="text-[11px] text-[#64748B] leading-snug mt-0.5 line-clamp-2">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Software & SaaS Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setActiveDropdown("software")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <button
+              onClick={() => setActiveDropdown(activeDropdown === "software" ? null : "software")}
+              className={`inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
+                pathname.includes("software") || pathname.includes("saas") || pathname.includes("application")
+                  ? "text-blue-600 font-bold"
+                  : "text-[#475569] hover:text-[#14243A]"
+              }`}
+            >
+              <span>Software &amp; SaaS</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === "software" ? "rotate-180" : ""}`} />
+            </button>
+
+            <AnimatePresence>
+              {activeDropdown === "software" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute top-full left-0 w-84 bg-white rounded-2xl border border-[#E2E8F0] shadow-lg p-2.5 z-50"
+                >
+                  {softwareItems.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F5F8FC] transition-colors group"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="text-xs font-bold text-[#14243A] group-hover:text-blue-600 transition-colors block">
+                            {item.name}
+                          </span>
+                          <p className="text-[11px] text-[#64748B] leading-snug mt-0.5 line-clamp-2">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <Link
+            href="/our-products"
+            className={`text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
+              pathname === "/our-products" || pathname === "/portfolio" ? "text-blue-600 font-bold" : "text-[#475569] hover:text-[#14243A]"
+            }`}
+          >
+            Our Products
+          </Link>
+
+          <Link
+            href="/about"
+            className={`text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
+              pathname === "/about" ? "text-blue-600 font-bold" : "text-[#475569] hover:text-[#14243A]"
+            }`}
+          >
+            About
+          </Link>
+
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs uppercase tracking-[0.14em] font-bold bg-slate-950 text-white hover:bg-purple-700 shadow-sm transition-all duration-300"
+            className={`text-xs font-semibold uppercase tracking-wider transition-colors py-2 ${
+              pathname === "/contact" ? "text-blue-600 font-bold" : "text-[#475569] hover:text-[#14243A]"
+            }`}
           >
-            <span>Get a Quote</span>
+            Contact
+          </Link>
+        </nav>
+
+        {/* Desktop Action Buttons */}
+        <div className="hidden lg:flex items-center gap-3">
+          <Link
+            href="/pricing"
+            className="text-xs font-bold text-[#14243A] hover:text-blue-600 px-3 py-2 transition-colors"
+          >
+            Pricing
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-600 hover:bg-blue-700 text-white shadow-xs hover:shadow-md transition-all active:scale-98"
+          >
+            <span>Start a Project</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -103,56 +383,154 @@ export default function Header() {
         {/* Mobile menu toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-slate-800 hover:text-slate-950 p-2"
-          aria-label="Toggle menu"
+          className="lg:hidden p-2.5 rounded-xl text-[#14243A] hover:bg-[#F5F8FC] transition-colors"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
-      {/* Mobile Nav Drawer */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-white/98 border-b border-slate-200 backdrop-blur-lg overflow-hidden shadow-lg"
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="lg:hidden bg-white border-b border-[#E2E8F0] overflow-hidden shadow-xl"
           >
-            <div className="flex flex-col px-6 py-6 gap-3.5">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between text-base font-semibold text-slate-800 hover:text-purple-600 transition-colors py-2 px-2 active:bg-slate-50 rounded-lg"
-                >
-                  <span>{link.name}</span>
-                </Link>
-              ))}
-
-              <hr className="border-slate-200 my-2" />
-
-              <a
-                href={SITE_CONFIG.getWhatsAppLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm shadow-sm transition-all"
+            <div className="px-5 py-6 space-y-3 max-h-[85vh] overflow-y-auto">
+              <Link
+                href="/"
+                className="block py-2 text-sm font-bold text-[#14243A] hover:text-blue-600 border-b border-slate-100"
               >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.531 1.93.814 2.79.815 3.183 0 5.77-2.586 5.77-5.766.002-3.181-2.583-5.766-5.769-5.766zm3.385 8.163c-.144.407-.837.774-1.171.823-.335.05-.776.082-2.222-.516-1.745-.722-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.793 0-.852.449-1.272.608-1.446.16-.175.348-.218.464-.218.116 0 .232.001.333.006.106.005.249-.04.39.299.144.348.492 1.201.536 1.289.043.087.072.19.014.305-.058.116-.087.189-.174.29-.087.102-.183.228-.261.306-.088.087-.179.182-.077.357.101.174.45 1.743 1.968 2.392.203.087.324.076.445-.062.12-.138.514-.6.652-.804.137-.204.275-.171.464-.101.189.07 1.201.566 1.408.669.207.102.345.153.395.239.05.087.05.503-.094.91zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.981-1.396A9.957 9.957 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.638 0-3.167-.487-4.448-1.326l-.319-.21-2.955.775.789-2.883-.231-.367C3.937 14.887 3.4 13.487 3.4 12c0-4.742 3.858-8.6 8.6-8.6s8.6 3.858 8.6 8.6-3.858 8.6-8.6 8.6z"/>
-                </svg>
-                <span>Chat on WhatsApp</span>
-              </a>
+                Home
+              </Link>
+
+              {/* Mobile Websites Accordion */}
+              <div className="border-b border-slate-100 pb-2">
+                <button
+                  type="button"
+                  onClick={() => setMobileExpanded(mobileExpanded === "websites" ? null : "websites")}
+                  className="w-full flex items-center justify-between py-2 text-sm font-bold text-[#14243A]"
+                >
+                  <span>Websites &amp; Digital Presence</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === "websites" ? "rotate-180 text-blue-600" : ""}`} />
+                </button>
+                {mobileExpanded === "websites" && (
+                  <div className="pl-3 space-y-2 pt-1 pb-2">
+                    {websiteItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block py-1.5 text-xs font-semibold text-[#475569] hover:text-blue-600"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile AI Accordion */}
+              <div className="border-b border-slate-100 pb-2">
+                <button
+                  type="button"
+                  onClick={() => setMobileExpanded(mobileExpanded === "ai" ? null : "ai")}
+                  className="w-full flex items-center justify-between py-2 text-sm font-bold text-[#14243A]"
+                >
+                  <span>AI, Automation &amp; Agents</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === "ai" ? "rotate-180 text-blue-600" : ""}`} />
+                </button>
+                {mobileExpanded === "ai" && (
+                  <div className="pl-3 space-y-2 pt-1 pb-2">
+                    {aiItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block py-1.5 text-xs font-semibold text-[#475569] hover:text-blue-600"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Software Accordion */}
+              <div className="border-b border-slate-100 pb-2">
+                <button
+                  type="button"
+                  onClick={() => setMobileExpanded(mobileExpanded === "software" ? null : "software")}
+                  className="w-full flex items-center justify-between py-2 text-sm font-bold text-[#14243A]"
+                >
+                  <span>Software, SaaS &amp; Products</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileExpanded === "software" ? "rotate-180 text-blue-600" : ""}`} />
+                </button>
+                {mobileExpanded === "software" && (
+                  <div className="pl-3 space-y-2 pt-1 pb-2">
+                    {softwareItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block py-1.5 text-xs font-semibold text-[#475569] hover:text-blue-600"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <Link
+                href="/pricing"
+                className="block py-2 text-sm font-bold text-[#14243A] hover:text-blue-600 border-b border-slate-100"
+              >
+                Website Pricing (From £99)
+              </Link>
+
+              <Link
+                href="/our-products"
+                className="block py-2 text-sm font-bold text-[#14243A] hover:text-blue-600 border-b border-slate-100"
+              >
+                Our Products
+              </Link>
+
+              <Link
+                href="/about"
+                className="block py-2 text-sm font-bold text-[#14243A] hover:text-blue-600 border-b border-slate-100"
+              >
+                About Us
+              </Link>
 
               <Link
                 href="/contact"
-                onClick={() => setIsOpen(false)}
-                className="w-full text-center px-6 py-3 rounded-full bg-slate-950 text-white font-semibold text-sm shadow-sm hover:bg-purple-700 transition-all"
+                className="block py-2 text-sm font-bold text-[#14243A] hover:text-blue-600 border-b border-slate-100"
               >
-                Get a Free Quote
+                Contact
               </Link>
+
+              {/* Action CTAs in Mobile Drawer */}
+              <div className="pt-4 space-y-2.5">
+                <Link
+                  href="/contact"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all"
+                >
+                  <span>Start a Project</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+
+                <a
+                  href={SITE_CONFIG.getWhatsAppLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 font-bold text-xs transition-all"
+                >
+                  <span>Chat on WhatsApp</span>
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

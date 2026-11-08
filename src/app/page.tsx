@@ -1,45 +1,45 @@
 import Hero from "@/components/hero";
-import Services from "@/components/services";
-import HomeTradesSpotlight from "@/components/home-trades-spotlight";
-import HomeAiReceptionistSpotlight from "@/components/home-ai-receptionist-spotlight";
+import ServiceDivisions from "@/components/service-divisions";
 import PricingPackages from "@/components/pricing-packages";
 import Portfolio from "@/components/portfolio";
+import HomeAiReceptionistSpotlight from "@/components/home-ai-receptionist-spotlight";
 import Process from "@/components/process";
 import About from "@/components/about";
 import HomeFaq from "@/components/home-faq";
+import FinalCta from "@/components/final-cta";
 import LeadForm from "@/components/lead-form";
 
 export default function Home() {
   return (
     <>
-      {/* 1. Hero Section with Quick-Path Conversion Strip & Real Product Showcase */}
+      {/* 1. Hero Section (Section 5.1 & 5.2): Clean light modern studio aesthetic, interactive showcase & capabilities */}
       <Hero />
 
-      {/* 2. Services Overview */}
-      <Services />
+      {/* 2. Service Divisions (Section 5.3): The 3 Pillars (Websites from £99, AI & Automation, Software & SaaS) */}
+      <ServiceDivisions />
 
-      {/* 3. Small Business Digital Solutions (£99 Starter Offer & Trades Focus) */}
-      <HomeTradesSpotlight />
-
-      {/* 4. AI Receptionist Introduction (Never Miss a Call 24/7) */}
-      <HomeAiReceptionistSpotlight />
-
-      {/* 5. Transparent Pricing & Instant Package Selector */}
+      {/* 3. Transparent Packages (Section 6 & 7): £99, £349 (Popular), £699, Custom AI/Software + Monthly Care */}
       <PricingPackages />
 
-      {/* 6. Why Choose CortexHive (Values & Disciplines) */}
-      <About />
-
-      {/* 7. How We Work (Discovery to Deployment) */}
-      <Process />
-
-      {/* 8. Selected Portfolio & Real Case Studies */}
+      {/* 4. Proof of Delivery / Our Products (Section 10): AuraPDF, MarkScheme, Rydigo, Skyview, EVTradeShow */}
       <Portfolio />
 
-      {/* 9. Frequently Asked Questions */}
+      {/* 5. AI Receptionist Voice Spotlight (Light theme) */}
+      <HomeAiReceptionistSpotlight />
+
+      {/* 6. 4-Stage Process (Section 15): Discover, Plan, Build, Launch */}
+      <Process />
+
+      {/* 7. Why CortexHive (Section 16): Technology Should Solve Problems. Not Create More. */}
+      <About />
+
+      {/* 8. Frequently Asked Questions */}
       <HomeFaq />
 
-      {/* 10. Contact & Enquiry Section (Fast 30s Mode + 4-Step Wizard + Netlify + WhatsApp) */}
+      {/* 9. Final Call to Action (Section 17): Have an Idea? Let's Make It Work. */}
+      <FinalCta />
+
+      {/* 10. Contact & Project Scoping Form (Section 12): Fast enquiry + Custom Project */}
       <LeadForm />
     </>
   );

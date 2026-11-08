@@ -5,32 +5,32 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 224 71% 4%;
+    --foreground: 215 48% 15%; /* #14243A */
 
     --card: 0 0% 100%;
-    --card-foreground: 224 71% 4%;
+    --card-foreground: 215 48% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
+    --popover-foreground: 215 48% 15%;
 
-    --primary: 263.4 70% 50.4%;
+    --primary: 221 83% 53%; /* #2563EB */
     --primary-foreground: 210 20% 98%;
 
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
+    --secondary: 214 32% 91%; /* #E2E8F0 */
+    --secondary-foreground: 215 48% 15%;
 
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
+    --muted: 216 38% 97%; /* #F5F8FC */
+    --muted-foreground: 215 16% 47%; /* #64748B */
 
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
+    --accent: 210 100% 97%;
+    --accent-foreground: 221 83% 53%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 262.1 83.3% 57.8%;
+    --border: 214 32% 91%; /* #E2E8F0 */
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
 
     --radius: 0.75rem;
   }
@@ -42,90 +42,76 @@
   }
   html {
     scroll-behavior: smooth;
+    background-color: #FFFFFF;
+    color: #475569;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-hive-cyan/20 selection:text-slate-900;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    background-color: #FFFFFF;
+    color: #475569;
+    font-family: var(--font-inter), var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: #14243A;
+    font-family: var(--font-inter), sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #f3f4f6;
+  background: #F5F8FC;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
+  background: #CBD5E1;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+  background: #94A3B8;
 }
 
-/* Custom Premium Utilities */
+/* Light Commercial Design Utilities */
 @layer utilities {
+  .text-brand-heading {
+    color: #14243A;
+  }
+  .text-brand-body {
+    color: #475569;
+  }
+  .text-brand-secondary {
+    color: #64748B;
+  }
+  .bg-brand-secondary {
+    background-color: #F5F8FC;
+  }
+  .bg-brand-alt {
+    background-color: #F8FAFD;
+  }
+  .border-brand-subtle {
+    border-color: #E2E8F0;
+  }
+
   .text-gradient {
-    @apply bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent;
-  }
-  
-  .text-gradient-purple-cyan {
-    @apply bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 bg-clip-text text-transparent;
+    background: linear-gradient(135deg, #2563EB 0%, #38BDF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  .text-gradient-cyan-blue {
-    @apply bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 bg-clip-text text-transparent;
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 50%, #38BDF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  .bg-gradient-hive {
-    @apply bg-gradient-to-br from-hive-cyan/10 via-hive-blue/10 to-hive-purple/10;
+  .shadow-subtle {
+    box-shadow: 0 1px 3px rgba(20, 36, 58, 0.05), 0 10px 25px -5px rgba(20, 36, 58, 0.04);
   }
 
-  .bg-gradient-hive-solid {
-    @apply bg-gradient-to-r from-[#06b6d4] via-[#3b82f6] to-[#a855f7];
+  .shadow-hover {
+    box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08), 0 20px 40px -15px rgba(20, 36, 58, 0.06);
   }
-
-  .glass-panel {
-    @apply bg-white/70 backdrop-blur-md border border-slate-200 shadow-md;
-  }
-
-  .glass-panel-hover {
-    @apply hover:bg-white/95 hover:border-hive-cyan/35 transition-all duration-300;
-  }
-
-  .glow-cyan {
-    box-shadow: 0 4px 20px -2px rgba(6, 182, 212, 0.1);
-  }
-
-  .glow-purple {
-    box-shadow: 0 4px 20px -2px rgba(168, 85, 247, 0.1);
-  }
-
-  .glow-blue {
-    box-shadow: 0 4px 20px -2px rgba(59, 130, 246, 0.1);
-  }
-
-  .border-glow-hover {
-    @apply hover:border-transparent relative after:absolute after:inset-0 after:rounded-[var(--radius)] after:p-[1px] after:bg-gradient-to-r after:from-hive-cyan after:to-hive-purple after:-z-10 after:opacity-0 hover:after:opacity-100 after:transition-opacity after:duration-300;
-  }
-}
-
-/* Floating animated elements background */
-.blob-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.08;
 }

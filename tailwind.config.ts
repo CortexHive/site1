@@ -17,8 +17,11 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        outfit: ["var(--font-outfit)", "sans-serif"],
-        spaceGrotesk: ["var(--font-space-grotesk)", "sans-serif"],
+        sans: ["var(--font-inter)", "var(--font-manrope)", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
+        manrope: ["var(--font-manrope)", "sans-serif"],
+        outfit: ["var(--font-inter)", "sans-serif"],
+        spaceGrotesk: ["var(--font-manrope)", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -26,6 +29,18 @@ const config: Config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        // CortexHive Light Commercial System
+        brand: {
+          blue: "#2563EB",
+          sky: "#38BDF8",
+          heading: "#14243A",
+          body: "#475569",
+          secondary: "#64748B",
+          border: "#E2E8F0",
+          success: "#16A34A",
+          bgSecondary: "#F5F8FC",
+          bgAlt: "#F8FAFD",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -54,13 +69,13 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Custom neon palettes
+        // Brand palette aliases
         hive: {
-          cyan: "#06b6d4",
-          blue: "#3b82f6",
-          purple: "#a855f7",
-          dark: "#030712",
-          card: "#0b0f19",
+          cyan: "#38BDF8",
+          blue: "#2563EB",
+          purple: "#4F46E5",
+          dark: "#14243A",
+          card: "#F8FAFD",
         }
       },
       borderRadius: {
