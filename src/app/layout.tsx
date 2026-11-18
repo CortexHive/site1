@@ -20,26 +20,35 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "CortexHive — AI Systems, Custom Software & Web Engineering Studio UK",
+  title: "CortexHive — Websites, AI Automation & Custom Software Agency UK",
   description:
-    "CortexHive is a UK technology studio engineering bespoke web platforms, autonomous AI agents, workflow automation, and full-stack SaaS software.",
+    "Technology That Moves Your Business Forward. From professional small business websites starting at £99 to 24/7 AI receptionists, workflow automation and custom software development across the UK.",
   metadataBase: new URL("https://cortexhive.co.uk"),
+  alternates: {
+    canonical: "https://cortexhive.co.uk",
+  },
   keywords: [
-    "software engineering studio UK",
-    "AI automation services UK",
-    "custom AI agents UK",
-    "AI voice receptionist UK",
-    "bespoke web development UK",
-    "Next.js development agency UK",
-    "SaaS MVP development UK",
-    "custom software development London",
-    "business process automation",
+    "Website design UK",
+    "Affordable website design for small businesses",
+    "Website designers for builders",
+    "Website design for electricians",
+    "Website design for plumbers",
+    "Business website development",
+    "AI receptionist UK",
+    "AI phone answering for small businesses",
+    "AI automation agency UK",
+    "Business process automation",
+    "AI agents for businesses",
+    "Custom software development UK",
+    "SaaS development company",
+    "Custom web application development",
+    "AI software development",
     "CortexHive",
   ],
   openGraph: {
-    title: "CortexHive — AI Systems, Custom Software & Web Engineering Studio",
+    title: "CortexHive — Websites, AI Automation & Custom Software Agency UK",
     description:
-      "We architect, design, and engineer bespoke web platforms, autonomous AI systems, and production software for ambitious organisations.",
+      "From professional websites to intelligent AI automation and custom software, CortexHive helps UK businesses simplify operations, attract customers and turn ideas into working digital products.",
     url: "https://cortexhive.co.uk",
     siteName: "CortexHive",
     images: [
@@ -47,7 +56,7 @@ export const metadata: Metadata = {
         url: "/logo.png",
         width: 800,
         height: 600,
-        alt: "CortexHive — AI, Web Platforms & Software Engineering",
+        alt: "CortexHive — Websites, AI Automation & Custom Software UK",
       },
     ],
     locale: "en_GB",
@@ -55,9 +64,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CortexHive — AI Systems, Custom Software & Web Engineering Studio",
+    title: "CortexHive — Websites, AI Automation & Custom Software Agency UK",
     description:
-      "We architect, design, and engineer bespoke web platforms, autonomous AI systems, and production software for ambitious organisations.",
+      "Professional websites from £99, 24/7 AI receptionists, business automation and custom software development in the UK.",
     images: ["/logo.png"],
   },
   robots: {
@@ -76,7 +85,7 @@ const jsonLd = {
       url: "https://cortexhive.co.uk",
       logo: "https://cortexhive.co.uk/logo.png",
       description:
-        "UK software and AI engineering studio building bespoke web platforms, autonomous AI agents, workflow automation, and SaaS applications.",
+        "UK digital technology, software development and AI automation agency delivering business websites, 24/7 AI receptionists, workflow automation and custom software.",
       telephone: "+447950501323",
       email: "info@cortexhive.co.uk",
       address: {
@@ -96,39 +105,76 @@ const jsonLd = {
     {
       "@type": "ProfessionalService",
       "@id": "https://cortexhive.co.uk/#service",
-      name: "CortexHive Software & AI Engineering",
+      name: "CortexHive Digital Technology, AI & Software Agency",
       url: "https://cortexhive.co.uk",
       telephone: "+447950501323",
       email: "info@cortexhive.co.uk",
+      areaServed: {
+        "@type": "Country",
+        name: "United Kingdom",
+      },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "CortexHive Engineering Practice Areas",
+        name: "CortexHive Website Packages, AI & Software Services",
         itemListElement: [
           {
             "@type": "Offer",
+            priceCurrency: "GBP",
+            price: "99",
             itemOffered: {
               "@type": "Service",
-              name: "Web Platforms & Digital Architecture",
+              name: "Starter Website Package",
               description:
-                "High-performance Next.js websites, institutional platforms, and conversion-engineered digital experiences.",
+                "1-page mobile-friendly website for small businesses and tradespeople including enquiry form, WhatsApp integration and basic on-page SEO.",
+            },
+          },
+          {
+            "@type": "Offer",
+            priceCurrency: "GBP",
+            price: "349",
+            itemOffered: {
+              "@type": "Service",
+              name: "Business Website Package",
+              description:
+                "Up to 5 custom-designed responsive pages with enquiry forms, WhatsApp integration and on-page SEO setup.",
+            },
+          },
+          {
+            "@type": "Offer",
+            priceCurrency: "GBP",
+            price: "699",
+            itemOffered: {
+              "@type": "Service",
+              name: "Growth Website Package",
+              description:
+                "Up to 10 custom-designed pages including dedicated service pages, case studies layout and enhanced SEO.",
             },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "AI Agents & Workflow Automation",
+              name: "AI Receptionist & 24/7 Call Answering",
               description:
-                "Autonomous voice receptionists, document intelligence pipelines, and custom LLM integrations.",
+                "AI-powered phone answering that collects customer details, qualifies enquiries and sends call summaries.",
             },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Custom Software & SaaS Engineering",
+              name: "AI Business Process Automation & Custom AI Agents",
               description:
-                "Full-stack web applications, multi-role client portals, internal operations dashboards, and SaaS MVPs.",
+                "Workflow automation, automated enquiry handling, document generation and custom AI assistants.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Custom Software & SaaS Development",
+              description:
+                "Bespoke web applications, SaaS platforms, customer portals, management dashboards and API integrations.",
             },
           },
         ],
@@ -151,7 +197,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${manrope.variable} font-sans bg-white text-[#334155] antialiased min-h-screen flex flex-col justify-between selection:bg-slate-900 selection:text-white`}
+        className={`${inter.variable} ${manrope.variable} font-sans bg-white text-[#475569] antialiased min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white overflow-x-hidden`}
       >
         <Header />
         <main className="flex-grow">{children}</main>

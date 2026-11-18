@@ -25,8 +25,12 @@ CRITICAL FORMATTING & STYLE DIRECTIVES:
 
   **4. Custom Software & SaaS MVPs**
   Client portals, admin dashboards, and full-stack web applications.
-- When discussing scoping:
-  * Projects are scoped based on technical requirements and delivered on fixed milestones.
+- When discussing pricing:
+  * Website Packages (starting prices, excluding domain & hosting):
+    - **Starter Website (£99):** 1-page mobile-optimised business website, contact form, WhatsApp button, basic on-page SEO, 1 revision round.
+    - **Business Website (£349):** Up to 5 pages, custom responsive design, lead capture forms, on-page SEO, 2 revision rounds.
+    - **Growth Website (£699):** Up to 10 pages, service landing pages, case studies/portfolio layout, enhanced SEO & Schema setup, 3 revision rounds.
+  * AI Receptionist, AI Automation, Custom AI Agents, SaaS Development & Custom Software Development are scoped and quoted individually following a free consultation.
 - Always be direct, polite, and helpful. Ask at most ONE short qualifying question at a time.
 
 Primary Capabilities:
@@ -279,8 +283,8 @@ function handleFallbackSimulation(messages: MessageItem[]) {
     reply = "We engineer dedicated commercial web platforms and 24/7 AI Voice Receptionists for UK contractors, trades, and local businesses. Would you like to discuss your requirements?";
   } else if (lastMessage.includes("receptionist") || lastMessage.includes("answering") || lastMessage.includes("voice")) {
     reply = "Our **AI Voice Receptionist** answers incoming business calls 24/7 with a natural British voice, answers company FAQs, collects caller details, and texts you instant lead summaries. Would you like to arrange a live demo?";
-  } else if (lastMessage.includes("pricing") || lastMessage.includes("cost") || lastMessage.includes("package") || lastMessage.includes("budget")) {
-    reply = "All CortexHive engagements are structured around clear technical specifications and delivered on fixed milestones with zero hidden retainers.\n\nTell me about what you are looking to build and we will outline a tailored scope.";
+  } else if (lastMessage.includes("pricing") || lastMessage.includes("cost") || lastMessage.includes("package") || lastMessage.includes("budget") || lastMessage.includes("99") || lastMessage.includes("349") || lastMessage.includes("699")) {
+    reply = "Our website packages have clear starting prices:\n- **Starter Website (£99):** 1-page professional site with contact form, WhatsApp button & basic SEO.\n- **Business Website (£349):** Up to 5 pages for growing businesses needing service pages.\n- **Growth Website (£699):** Up to 10 pages with portfolio/case study layouts & enhanced SEO.\n\n**AI Receptionist, AI Automation & Custom Software** are scoped and quoted individually. Which option are you interested in?";
   } else if (lastMessage.includes("service") || lastMessage.includes("what do you do") || lastMessage.includes("capabilities")) {
     reply = "We specialize in:\n1. **Web Platforms** (bespoke high-performance digital architecture)\n2. **Autonomous Voice Receptionists** (24/7 call triage & qualification)\n3. **AI & Workflow Automation** (document pipelines & CRM sync)\n4. **Custom Software & SaaS** (portals, dashboards & MVPs)\n\nWhich of these would you like to explore?";
   } else if (count === 1) {

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ArrowRight,
@@ -267,9 +268,19 @@ export function generateMetadata({ params }: { params: { industry: string } }): 
   const data = INDUSTRIES[params.industry];
   if (!data) return {};
 
+  const url = `https://cortexhive.co.uk/industries/${params.industry}`;
+
   return {
     title: data.title,
     description: data.metaDesc,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: data.title,
+      description: data.metaDesc,
+      url,
+    },
   };
 }
 
@@ -285,6 +296,14 @@ export default function IndustryPage({ params }: { params: { industry: string } 
     <div className="bg-[#FFFFFF] min-h-screen pt-28 pb-16">
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 pb-16 text-center">
+        <nav aria-label="Breadcrumb" className="flex items-center justify-center gap-2 text-xs text-[#64748B] mb-5">
+          <Link href="/" className="hover:text-[#14243A] transition-colors">Home</Link>
+          <span>/</span>
+          <Link href="/services" className="hover:text-[#14243A] transition-colors">Industries</Link>
+          <span>/</span>
+          <span className="text-[#14243A] font-semibold">{data.badge}</span>
+        </nav>
+
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5F8FC] border border-[#E2E8F0] text-xs font-bold text-blue-700 uppercase tracking-widest mb-6">
           <Icon className="w-4 h-4 text-blue-600" />
           <span>{data.badge}</span>

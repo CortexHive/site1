@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import {
-  Layers,
   ArrowRight,
   Code2,
   Database,
@@ -9,231 +8,261 @@ import {
   LayoutDashboard,
   Users,
   Repeat,
+  AlertCircle,
 } from "lucide-react";
 import LeadForm from "@/components/lead-form";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Custom Software Development & SaaS MVP Engineering UK | CortexHive",
+  title: "Custom Software Development UK — Web Apps & Portals | CortexHive",
   description:
-    "We build custom web applications, SaaS MVPs, client portals, admin dashboards and database-driven software for UK businesses and ambitious founders.",
+    "Have an idea? Let's build it. Custom software development, web applications, customer portals, management dashboards and internal business systems in the UK.",
   keywords: [
     "Custom software development UK",
-    "SaaS MVP development",
-    "Web application development agency",
-    "Client portal software",
-    "Admin dashboard development",
-    "Database driven web applications",
-    "Next.js full stack development",
+    "Custom web application development",
+    "AI software development",
+    "Customer portal development UK",
+    "Management dashboard software",
   ],
+  alternates: {
+    canonical: "https://cortexhive.co.uk/software-development",
+  },
+  openGraph: {
+    title: "Custom Software Development UK | CortexHive",
+    description:
+      "Bespoke web applications, customer portals, management dashboards and internal business systems.",
+    url: "https://cortexhive.co.uk/software-development",
+  },
 };
+
+const PROBLEMS = [
+  {
+    title: "Outgrowing Spreadsheets & Manual Trackers",
+    desc: "Running complex operations across disconnected spreadsheets leads to version conflicts, manual errors and poor visibility.",
+  },
+  {
+    title: "Rigid Off-the-Shelf Software",
+    desc: "Generic subscription tools often force you to change how your business works while charging per-seat fees for features you don't use.",
+  },
+  {
+    title: "Need for a Customer or Staff Portal",
+    desc: "Clients and staff expect a clean online portal where they can log in, view updates, upload documents and manage requests.",
+  },
+];
 
 const CAPABILITIES = [
   {
-    icon: Layers,
-    title: "Full-Stack SaaS Products & MVPs",
-    desc: "From initial concept architecture to launch-ready SaaS applications with subscription billing, user management, and scalable cloud infrastructure.",
-  },
-  {
-    icon: LayoutDashboard,
-    title: "Internal Admin Dashboards & Ops Portals",
-    desc: "Bespoke operational dashboards that give business owners and management real-time visibility and control over team operations, jobs, and financial metrics.",
+    icon: Code2,
+    title: "Custom Web Applications",
+    desc: "Tailored browser-based software accessible securely from any desktop, tablet or smartphone without installing desktop programs.",
   },
   {
     icon: Users,
-    title: "Client & Customer Self-Service Portals",
-    desc: "Secure web portals where your clients can submit requests, track project milestones, download invoices, and access reports 24/7.",
+    title: "Customer & Client Portals",
+    desc: "Secure login areas where customers can submit enquiries, track orders or project milestones, and download documents.",
+  },
+  {
+    icon: LayoutDashboard,
+    title: "Management Dashboards",
+    desc: "Centralised operational dashboards giving business owners clear visibility over jobs, enquiries, staff tasks and reporting.",
   },
   {
     icon: Database,
-    title: "Database-Driven Business Systems",
-    desc: "Engineered with PostgreSQL, Prisma ORM, and Supabase for high integrity, reliable backups, multi-tenant isolation, and lightning-fast queries.",
+    title: "Internal Business Systems",
+    desc: "Custom databases and workflow tools built to replace fragile spreadsheets and streamline daily operations.",
   },
   {
     icon: Repeat,
-    title: "Third-Party API & Webhook Integrations",
-    desc: "Seamless connectivity with Stripe, Xero, QuickBooks, Twilio, WhatsApp Cloud API, Slack, Google Workspace, and proprietary enterprise endpoints.",
+    title: "API & System Integrations",
+    desc: "Connect your custom software with payment systems (Stripe), accounting software, email platforms, CRMs and AI services.",
   },
   {
     icon: Lock,
-    title: "Security, Authentication & Role Access (RBAC)",
-    desc: "Enterprise-grade authentication schemas, fine-grained role-based permissions, automated session management, and encrypted data storage.",
+    title: "AI-Powered Applications",
+    desc: "Embed practical AI capabilities — such as document parsing, automated summaries and intelligent search — directly into your software.",
   },
 ];
 
-const CASE_STUDIES = [
+const FAQS = [
   {
-    title: "Rydigoo — UK Driver Platform & AI Utility",
-    tagline: "Social & Operational Toolkit for Private Hire Drivers",
-    desc: "Full-stack web application featuring real-time community communication, automated dispute letter generation, and credential verification.",
+    q: "How are custom software projects priced?",
+    a: "Every custom software project is scoped and quoted individually. After a free discovery consultation, we prepare a clear written specification with fixed milestone deliverables and pricing.",
   },
   {
-    title: "MarkScheme — 11+ EdTech Assessment SaaS",
-    tagline: "Automated Mock Examination & Scoring Engine",
-    desc: "Scalable EdTech platform delivering 250+ timed examination papers, auto-marking algorithms, performance analytics, and parent dashboards.",
+    q: "Can you integrate our custom software with existing tools?",
+    a: "Yes. Where your existing tools provide APIs or webhook connections, we can integrate them directly into your custom application.",
   },
   {
-    title: "AuraPDF — Offline-First Document Software",
-    tagline: "Private Client-Side PDF Productivity Utility",
-    desc: "Zero-server document processing application allowing secure PDF manipulation, digital signatures, and redactions entirely within the browser.",
+    q: "Do you provide ongoing maintenance after launch?",
+    a: "Yes. You own your custom application upon completion, and we offer optional ongoing hosting, security monitoring and feature development support.",
   },
 ];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://cortexhive.co.uk" },
+        { "@type": "ListItem", position: 2, name: "Custom Software Development", item: "https://cortexhive.co.uk/software-development" },
+      ],
+    },
+    {
+      "@type": "Service",
+      name: "Custom Software Development",
+      provider: { "@id": "https://cortexhive.co.uk/#organization" },
+      areaServed: "United Kingdom",
+      description:
+        "Bespoke web applications, customer portals, management dashboards, internal business systems and API integrations.",
+    },
+  ],
+};
 
 export default function SoftwareDevelopmentPage() {
   return (
-    <div className="bg-white min-h-screen text-slate-900 pt-28 pb-20">
-      <div className="max-w-6xl mx-auto px-6 space-y-20">
-        {/* Hero Section */}
-        <div className="text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest shadow-xs">
-            <Code2 className="w-4 h-4 text-purple-600" />
-            <span>Product Engineering • United Kingdom</span>
+    <div className="bg-white min-h-screen text-[#475569] pt-28 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+        {/* Hero */}
+        <div className="text-center max-w-4xl mx-auto space-y-5">
+          <nav aria-label="Breadcrumb" className="flex items-center justify-center gap-2 text-xs text-[#64748B]">
+            <Link href="/" className="hover:text-[#14243A] transition-colors">Home</Link>
+            <span>/</span>
+            <span className="text-[#14243A] font-semibold">Custom Software Development</span>
+          </nav>
+
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5F8FC] border border-[#E2E8F0] text-xs font-bold text-blue-600 uppercase tracking-wider">
+            <Code2 className="w-3.5 h-3.5" />
+            <span>Custom Software Development UK</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-slate-950 font-outfit tracking-tight leading-[1.08]">
-            Software Built for{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
-              Real-World Use.
-            </span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#14243A] tracking-tight leading-[1.1]">
+            Have an Idea? Let&apos;s Build It.
           </h1>
 
-          <p className="text-lg sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
-            We engineer custom web applications, SaaS platforms, internal business management systems and client portals that solve genuine business problems.
+          <p className="text-base sm:text-xl text-[#475569] max-w-3xl mx-auto leading-relaxed">
+            We design and develop custom web applications, customer portals, management dashboards and internal business systems tailored to how your organisation works.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 pt-2">
             <a
               href="#project-form"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow-md hover:shadow-xl transition-all"
+              className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-[#14243A] text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors shadow-xs"
             >
-              <span>Discuss Your Software Project</span>
+              <span>Start Your Project</span>
               <ArrowRight className="w-4 h-4" />
             </a>
-
             <a
               href={SITE_CONFIG.getWhatsAppLink("software")}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-bold text-sm transition-all"
+              className="px-7 py-3.5 rounded-xl bg-white hover:bg-[#F5F8FC] border border-slate-300 text-[#14243A] font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
             >
               <span>Chat on WhatsApp</span>
             </a>
           </div>
         </div>
 
-        {/* Capabilities Grid */}
-        <div className="space-y-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-purple-600">
-              Engineering Scope
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-outfit mt-1">
-              What We Build
+        {/* Problem Statement */}
+        <section className="bg-[#F8FAFD] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] space-y-8">
+          <div className="max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">The Problem</span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] mt-1">
+              When Off-the-Shelf Tools Hold Your Business Back
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 font-medium mt-1">
-              From lean initial MVPs to scalable production platforms, we architect software with modern, reliable stacks.
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {PROBLEMS.map((p) => (
+              <div key={p.title} className="bg-white rounded-2xl p-6 border border-[#E2E8F0] space-y-2">
+                <AlertCircle className="w-5 h-5 text-blue-600" />
+                <h3 className="text-base font-bold text-[#14243A]">{p.title}</h3>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Capabilities */}
+        <section className="space-y-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">What We Build</span>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#14243A] mt-1">
+              Custom Software Capabilities
+            </h2>
+            <p className="text-xs sm:text-sm text-[#475569] mt-2">
+              Every project is scoped and quoted individually around your functional requirements.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {CAPABILITIES.map((cap, i) => {
+            {CAPABILITIES.map((cap) => {
               const Icon = cap.icon;
               return (
                 <div
-                  key={i}
-                  className="p-6 rounded-3xl bg-slate-50 border border-slate-200 hover:border-purple-300 hover:shadow-md transition-all space-y-3 flex flex-col justify-between"
+                  key={cap.title}
+                  className="p-6 rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0] hover:border-blue-300 transition-all space-y-3"
                 >
-                  <div className="space-y-3">
-                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-purple-600 flex items-center justify-center shadow-xs">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-base font-bold text-slate-950 font-outfit">
-                      {cap.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                      {cap.desc}
-                    </p>
+                  <div className="w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] text-blue-600 flex items-center justify-center shadow-2xs">
+                    <Icon className="w-5 h-5" />
                   </div>
+                  <h3 className="text-base font-bold text-[#14243A]">{cap.title}</h3>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{cap.desc}</p>
                 </div>
               );
             })}
           </div>
-        </div>
+        </section>
 
-        {/* Real Proof of Delivery Teaser */}
-        <div className="bg-[#F8FAFD] text-[#14243A] rounded-3xl p-8 sm:p-12 space-y-8 border border-[#E2E8F0]">
-          <div className="max-w-2xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
-              Proven Delivery
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-outfit text-[#14243A]">
-              Real Software in Production
+        {/* Internal Links to Portfolio & SaaS */}
+        <section className="bg-[#F5F8FC] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-2 max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Proven Development</span>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#14243A]">
+              Explore Our Live Products &amp; SaaS Development
             </h2>
-            <p className="text-xs sm:text-sm text-[#64748B]">
-              We don&apos;t just build prototypes; we ship production platforms with active users and rigorous engineering standards.
+            <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
+              See real software built by CortexHive — including MarkScheme, AuraPDF, Rydigo, Skyview and EV Trade Show.
             </p>
           </div>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/our-products"
+              className="px-5 py-3 rounded-xl bg-blue-600 hover:bg-[#14243A] text-white text-xs font-semibold transition-colors"
+            >
+              View Products &amp; Portfolio &rarr;
+            </Link>
+            <Link
+              href="/saas-development"
+              className="px-5 py-3 rounded-xl bg-white hover:bg-blue-50 text-[#14243A] border border-[#E2E8F0] text-xs font-semibold transition-colors"
+            >
+              SaaS Development &rarr;
+            </Link>
+          </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {CASE_STUDIES.map((cs, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-white border border-[#E2E8F0] space-y-3 shadow-2xs">
-                <span className="text-xs text-blue-700 font-bold uppercase tracking-wider block">
-                  {cs.tagline}
-                </span>
-                <h4 className="text-lg font-bold text-[#14243A] font-outfit">
-                  {cs.title}
-                </h4>
-                <p className="text-xs text-[#475569] leading-relaxed">
-                  {cs.desc}
-                </p>
+        {/* FAQs */}
+        <section className="max-w-4xl mx-auto space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] text-center">
+            Custom Software FAQs
+          </h2>
+          <div className="space-y-3">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="p-5 rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0]">
+                <h3 className="text-sm sm:text-base font-bold text-[#14243A] mb-1.5">{faq.q}</h3>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{faq.a}</p>
               </div>
             ))}
           </div>
-
-          <div className="pt-2 text-center">
-            <Link
-              href="/our-products"
-              className="inline-flex items-center gap-2 text-xs font-bold text-blue-700 hover:text-blue-800"
-            >
-              <span>Explore All Verified Portfolio Case Studies</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-
-        {/* Tech Stack Banner */}
-        <div className="p-8 rounded-3xl bg-slate-50 border border-slate-200 text-center space-y-4">
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-            Our Core Technology Stack
-          </span>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {[
-              "Next.js 14",
-              "React 18",
-              "TypeScript",
-              "Node.js",
-              "Python",
-              "PostgreSQL",
-              "Prisma ORM",
-              "Tailwind CSS",
-              "Docker",
-              "Netlify & AWS",
-              "Stripe API",
-              "Twilio",
-            ].map((tech) => (
-              <span
-                key={tech}
-                className="px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-800 shadow-2xs"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
+        </section>
 
         {/* Lead Form */}
-        <div id="project-form" className="pt-6">
-          <LeadForm defaultService="Software Development" />
+        <div id="project-form">
+          <LeadForm defaultService="Custom Software Development" />
         </div>
       </div>
     </div>

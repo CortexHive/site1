@@ -9,79 +9,79 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#F8FAFD] border-t border-[#E2E8F0] pt-16 sm:pt-20 pb-12 relative overflow-hidden text-xs sm:text-sm text-[#475569]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-14">
-          {/* Column 1: Brand & Positioning */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-14">
+          {/* Column 1: Brand & Contact */}
           <div className="lg:col-span-1 space-y-4">
             <Link href="/" className="inline-flex items-center gap-2">
-              <span className="text-xl font-black tracking-tight text-[#14243A]">
+              <span className="text-xl font-extrabold tracking-tight text-[#14243A]">
                 CORTEX<span className="text-blue-600">HIVE</span>
               </span>
             </Link>
             <p className="font-semibold text-xs text-[#14243A]">
-              From Business Problem to Working Product.
+              Technology That Moves Your Business Forward.
             </p>
             <p className="text-xs text-[#64748B] leading-relaxed">
-              We design professional websites, build intelligent AI solutions, and develop custom digital products that help businesses automate operations and grow.
+              We design professional websites, build intelligent AI automation and develop custom software for businesses across the United Kingdom.
             </p>
             <div className="pt-2 space-y-2 text-xs">
               <a
-                href={SITE_CONFIG.getWhatsAppLink()}
+                href={SITE_CONFIG.getWhatsAppLink("consultation")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-emerald-700 hover:text-emerald-800 font-semibold"
               >
-                <MessageSquare className="w-4 h-4 text-emerald-600" />
+                <MessageSquare className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                 <span>WhatsApp: {SITE_CONFIG.phoneDisplay}</span>
               </a>
               <a
                 href={`mailto:${SITE_CONFIG.email}`}
                 className="flex items-center gap-2 text-[#475569] hover:text-[#14243A] font-medium"
               >
-                <Mail className="w-4 h-4 text-[#64748B]" />
+                <Mail className="w-4 h-4 text-[#64748B] flex-shrink-0" />
                 <span>{SITE_CONFIG.email}</span>
               </a>
               <a
                 href={`tel:${SITE_CONFIG.phone}`}
                 className="flex items-center gap-2 text-[#475569] hover:text-[#14243A] font-medium"
               >
-                <Phone className="w-4 h-4 text-[#64748B]" />
+                <Phone className="w-4 h-4 text-[#64748B] flex-shrink-0" />
                 <span>{SITE_CONFIG.phoneDisplay}</span>
               </a>
               <div className="flex items-center gap-2 text-[#64748B] pt-1">
-                <MapPin className="w-4 h-4 text-[#64748B]" />
+                <MapPin className="w-4 h-4 text-[#64748B] flex-shrink-0" />
                 <span>{SITE_CONFIG.location}</span>
               </div>
             </div>
           </div>
 
-          {/* Column 2: Web Platforms */}
+          {/* Column 2: Websites */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-[#14243A] uppercase tracking-wider">Web Platforms</h4>
+            <h3 className="text-xs font-bold text-[#14243A] uppercase tracking-wider">Websites</h3>
             <ul className="space-y-2 text-xs text-[#475569]">
               <li>
                 <Link href="/website-design" className="hover:text-blue-600 transition-colors">
-                  Bespoke Web Platforms
+                  Website Design &amp; Development
                 </Link>
               </li>
               <li>
                 <Link href="/small-business-websites" className="hover:text-blue-600 transition-colors">
-                  Commercial Business Websites
+                  Small Business Websites (From £99)
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="hover:text-blue-600 transition-colors">
+                  Website Packages (£99 / £349 / £699)
                 </Link>
               </li>
               <li>
                 <Link href="/industries/tradespeople" className="hover:text-blue-600 transition-colors">
-                  Trade &amp; Contractor Systems
+                  Websites for Tradespeople
                 </Link>
               </li>
               <li>
-                <Link href="/industries/startups" className="hover:text-blue-600 transition-colors">
-                  Startup Landing Architectures
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-blue-600 transition-colors">
-                  Managed Cloud Infrastructure
+                <Link href="/industries/small-businesses" className="hover:text-blue-600 transition-colors">
+                  Websites for Small Businesses
                 </Link>
               </li>
             </ul>
@@ -89,31 +89,31 @@ export default function Footer() {
 
           {/* Column 3: AI & Automation */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-[#14243A] uppercase tracking-wider">AI &amp; Automation</h4>
+            <h3 className="text-xs font-bold text-[#14243A] uppercase tracking-wider">AI &amp; Automation</h3>
             <ul className="space-y-2 text-xs text-[#475569]">
               <li>
+                <Link href="/ai-receptionist" className="hover:text-blue-600 transition-colors">
+                  24/7 AI Receptionist
+                </Link>
+              </li>
+              <li>
                 <Link href="/ai-automation" className="hover:text-blue-600 transition-colors">
+                  AI Business Automation
+                </Link>
+              </li>
+              <li>
+                <Link href="/ai-agents" className="hover:text-blue-600 transition-colors">
                   Custom AI Agents
                 </Link>
               </li>
               <li>
-                <Link href="/ai-receptionist" className="hover:text-blue-600 transition-colors">
-                  AI Voice &amp; Receptionist
+                <Link href="/ai-automation#document-processing" className="hover:text-blue-600 transition-colors">
+                  Intelligent Document Processing
                 </Link>
               </li>
               <li>
-                <Link href="/ai-automation" className="hover:text-blue-600 transition-colors">
-                  Business Workflow Automation
-                </Link>
-              </li>
-              <li>
-                <Link href="/ai-automation" className="hover:text-blue-600 transition-colors">
-                  Document Intelligence
-                </Link>
-              </li>
-              <li>
-                <Link href="/ai-automation" className="hover:text-blue-600 transition-colors">
-                  Internal AI Knowledge Bases
+                <Link href="/services" className="hover:text-blue-600 transition-colors">
+                  All Digital Services
                 </Link>
               </li>
             </ul>
@@ -121,43 +121,16 @@ export default function Footer() {
 
           {/* Column 4: Software & SaaS */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-[#14243A] uppercase tracking-wider">Software &amp; SaaS</h4>
+            <h3 className="text-xs font-bold text-[#14243A] uppercase tracking-wider">Software &amp; SaaS</h3>
             <ul className="space-y-2 text-xs text-[#475569]">
               <li>
                 <Link href="/software-development" className="hover:text-blue-600 transition-colors">
-                  SaaS MVP Development
+                  Custom Software Development
                 </Link>
               </li>
               <li>
-                <Link href="/software-development" className="hover:text-blue-600 transition-colors">
-                  Custom Web Applications
-                </Link>
-              </li>
-              <li>
-                <Link href="/software-development" className="hover:text-blue-600 transition-colors">
-                  Internal Business Dashboards
-                </Link>
-              </li>
-              <li>
-                <Link href="/software-development" className="hover:text-blue-600 transition-colors">
-                  Client Portals &amp; Logins
-                </Link>
-              </li>
-              <li>
-                <Link href="/software-development" className="hover:text-blue-600 transition-colors">
-                  API &amp; Database Architecture
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 5: Company */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold text-[#14243A] uppercase tracking-wider">Company</h4>
-            <ul className="space-y-2 text-xs text-[#475569]">
-              <li>
-                <Link href="/about" className="hover:text-blue-600 transition-colors">
-                  About CortexHive
+                <Link href="/saas-development" className="hover:text-blue-600 transition-colors">
+                  SaaS Development
                 </Link>
               </li>
               <li>
@@ -166,8 +139,30 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/industries/startups" className="hover:text-blue-600 transition-colors">
+                  Startup MVP Development
+                </Link>
+              </li>
+              <li>
+                <Link href="/portfolio" className="hover:text-blue-600 transition-colors">
+                  Client Case Studies
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 5: Company */}
+          <div className="space-y-3">
+            <h3 className="text-xs font-bold text-[#14243A] uppercase tracking-wider">Company</h3>
+            <ul className="space-y-2 text-xs text-[#475569]">
+              <li>
+                <Link href="/about" className="hover:text-blue-600 transition-colors">
+                  About CortexHive
+                </Link>
+              </li>
+              <li>
                 <Link href="/pricing" className="hover:text-blue-600 transition-colors">
-                  Engagement Models
+                  Pricing &amp; Packages
                 </Link>
               </li>
               <li>
@@ -182,7 +177,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/terms" className="hover:text-blue-600 transition-colors">
-                  Terms of Service
+                  Terms &amp; Conditions
+                </Link>
+              </li>
+              <li>
+                <Link href="/accessibility" className="hover:text-blue-600 transition-colors">
+                  Accessibility Statement
                 </Link>
               </li>
             </ul>
@@ -192,14 +192,18 @@ export default function Footer() {
         {/* Footer Bottom Bar */}
         <div className="border-t border-[#E2E8F0] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#64748B]">
           <div>
-            <p>
-              &copy; {currentYear} CortexHive. All rights reserved.
-            </p>
+            <p>&copy; {currentYear} CortexHive. All rights reserved. Operating across the United Kingdom.</p>
           </div>
-          <div className="flex gap-6 font-medium">
-            <Link href="/privacy" className="hover:text-[#14243A] transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-[#14243A] transition-colors">Terms of Service</Link>
-            <Link href="/accessibility" className="hover:text-[#14243A] transition-colors">Accessibility</Link>
+          <div className="flex flex-wrap justify-center gap-6 font-medium">
+            <Link href="/privacy" className="hover:text-[#14243A] transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-[#14243A] transition-colors">
+              Terms &amp; Conditions
+            </Link>
+            <Link href="/accessibility" className="hover:text-[#14243A] transition-colors">
+              Accessibility
+            </Link>
           </div>
         </div>
       </div>

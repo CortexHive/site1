@@ -15,6 +15,7 @@ import {
   Code2,
   Cpu,
   Terminal,
+  MessageSquare,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/config";
@@ -60,69 +61,72 @@ export default function Header() {
 
   const websiteItems: NavDropdownItem[] = [
     {
-      name: "Bespoke Web Platforms",
+      name: "Website Design & Development",
       href: "/website-design",
-      desc: "High-speed Next.js web architecture engineered for authority and conversion",
-      tag: "Architecture",
+      desc: "Modern, fast-loading websites designed to showcase your business and generate enquiries",
+      tag: "All Businesses",
       icon: Globe,
     },
     {
-      name: "Commercial & Trade Systems",
+      name: "Small Business & Trades Websites",
       href: "/small-business-websites",
-      desc: "Turnkey digital presence and lead capture systems for UK businesses",
+      desc: "Affordable starter, business and growth website packages starting from £99",
+      tag: "From £99",
       icon: Code2,
     },
     {
-      name: "Industry Solutions",
+      name: "Industry Website Solutions",
       href: "/industries/tradespeople",
-      desc: "Sector-specific platforms for trades, clinics, hospitality, and startups",
+      desc: "Tailored websites for tradespeople, salons, hospitality, SMEs and startups",
       icon: Layers,
     },
   ];
 
   const aiItems: NavDropdownItem[] = [
     {
-      name: "AI & Workflow Automation",
-      href: "/ai-automation",
-      desc: "Automated document pipelines, CRM synchronisation, and intelligent triage",
-      tag: "Pipelines",
-      icon: Bot,
-    },
-    {
-      name: "Autonomous Voice Receptionist",
+      name: "AI Receptionist",
       href: "/ai-receptionist",
-      desc: "24/7 conversational British voice AI for inbound call handling and qualification",
-      tag: "Voice AI",
+      desc: "24/7 AI call answering, customer information collection and lead qualification",
+      tag: "24/7 Voice AI",
       icon: PhoneCall,
     },
     {
-      name: "Custom LLM & RAG Systems",
+      name: "AI Business Automation",
       href: "/ai-automation",
-      desc: "Private knowledge bases, vector search, and domain-specific AI agents",
+      desc: "Automate enquiry processing, repetitive admin, document workflows and follow-ups",
+      tag: "Workflows",
+      icon: Bot,
+    },
+    {
+      name: "Custom AI Agents",
+      href: "/ai-agents",
+      desc: "Tailored AI assistants, customer support agents and intelligent document processing",
+      tag: "Custom AI",
       icon: Cpu,
     },
   ];
 
   const softwareItems: NavDropdownItem[] = [
     {
-      name: "Custom Software & SaaS",
+      name: "Custom Software Development",
       href: "/software-development",
-      desc: "Full-stack TypeScript, React, and PostgreSQL application engineering",
-      tag: "Full-Stack",
+      desc: "Bespoke web applications, customer portals, dashboards and internal business systems",
+      tag: "Bespoke",
       icon: Terminal,
     },
     {
-      name: "Proprietary Products & Case Studies",
-      href: "/our-products",
-      desc: "Explore AuraPDF, MarkScheme, Rydigo, Skyview, and live production deployments",
-      tag: "Live Proof",
+      name: "SaaS Development",
+      href: "/saas-development",
+      desc: "End-to-end SaaS platforms, multi-role portals, subscriptions and cloud architecture",
+      tag: "SaaS & MVPs",
       icon: Layers,
     },
     {
-      name: "Engagement & Delivery Models",
-      href: "/pricing",
-      desc: "How we scope, structure, and deliver fixed-milestone software engagements",
-      icon: Code2,
+      name: "Our Products & Portfolio",
+      href: "/our-products",
+      desc: "Explore MarkScheme, AuraPDF, Rydigo, Skyview and EV Trade Show",
+      tag: "Live Proof",
+      icon: Globe,
     },
   ];
 
@@ -130,39 +134,39 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-slate-200/90 py-3 shadow-[0_1px_3px_rgba(15,23,42,0.03)]"
-          : "bg-white/90 backdrop-blur-sm border-b border-slate-200/70 py-4"
+          ? "bg-white/95 backdrop-blur-md border-b border-slate-200/90 py-3 shadow-[0_1px_3px_rgba(15,23,42,0.04)]"
+          : "bg-white/95 backdrop-blur-xs border-b border-slate-200/70 py-3.5"
       }`}
     >
       <div
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-6"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4"
         ref={dropdownRef}
       >
-        {/* Left: Architectural Brand Mark */}
+        {/* Left: Brand Mark */}
         <Link
           href="/"
-          className="flex items-center gap-3 group flex-shrink-0"
+          className="flex items-center gap-2.5 group flex-shrink-0"
           aria-label="CortexHive Home"
         >
-          <div className="w-9 h-9 rounded-lg bg-[#0F172A] flex items-center justify-center text-white border border-slate-800 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors">
+          <div className="w-9 h-9 rounded-lg bg-[#14243A] flex items-center justify-center text-white border border-slate-800 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors">
             <svg className="w-4 h-4 fill-none stroke-current stroke-[2]" viewBox="0 0 24 24">
               <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" />
               <circle cx="12" cy="12" r="2.5" fill="currentColor" />
             </svg>
           </div>
           <div className="flex flex-col">
-            <span className="text-base font-extrabold tracking-[-0.02em] text-[#0F172A] leading-none">
+            <span className="text-base font-extrabold tracking-[-0.02em] text-[#14243A] leading-none">
               CORTEX<span className="text-blue-600">HIVE</span>
             </span>
-            <span className="text-[9px] font-mono uppercase tracking-[0.18em] text-slate-500 mt-1 leading-none">
-              Software &amp; AI Studio
+            <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-500 mt-1 leading-none">
+              Websites, AI &amp; Software
             </span>
           </div>
         </Link>
 
-        {/* Center: Clean, Well-Spaced Navigation */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-          {/* Web Platforms Dropdown */}
+        {/* Center: Clean Navigation */}
+        <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-0.5 xl:gap-1.5">
+          {/* Websites Dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setActiveDropdown("websites")}
@@ -171,16 +175,16 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setActiveDropdown(activeDropdown === "websites" ? null : "websites")}
-              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[13px] font-medium transition-colors ${
-                pathname.includes("website")
-                  ? "text-[#0F172A] bg-slate-100 font-semibold"
-                  : "text-slate-600 hover:text-[#0F172A] hover:bg-slate-50"
+              className={`inline-flex items-center gap-1 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+                pathname.includes("website") || pathname.includes("industries")
+                  ? "text-blue-600 bg-blue-50/60 font-semibold"
+                  : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
               }`}
             >
-              <span>Web Platforms</span>
+              <span>Websites</span>
               <ChevronDown
                 className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
-                  activeDropdown === "websites" ? "rotate-180 text-[#0F172A]" : ""
+                  activeDropdown === "websites" ? "rotate-180 text-blue-600" : ""
                 }`}
               />
             </button>
@@ -203,16 +207,16 @@ export default function Header() {
                           href={item.href}
                           className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors group"
                         >
-                          <div className="w-8 h-8 rounded-md bg-slate-100 text-slate-700 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#0F172A] group-hover:text-white transition-colors">
+                          <div className="w-8 h-8 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                             <Icon className="w-4 h-4" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between gap-2">
-                              <span className="text-xs font-semibold text-[#0F172A]">
+                              <span className="text-xs font-semibold text-[#14243A]">
                                 {item.name}
                               </span>
                               {item.tag && (
-                                <span className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">
+                                <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200/60">
                                   {item.tag}
                                 </span>
                               )}
@@ -239,16 +243,16 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setActiveDropdown(activeDropdown === "ai" ? null : "ai")}
-              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[13px] font-medium transition-colors ${
-                pathname.includes("ai")
-                  ? "text-[#0F172A] bg-slate-100 font-semibold"
-                  : "text-slate-600 hover:text-[#0F172A] hover:bg-slate-50"
+              className={`inline-flex items-center gap-1 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+                pathname.includes("ai-")
+                  ? "text-blue-600 bg-blue-50/60 font-semibold"
+                  : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
               }`}
             >
               <span>AI &amp; Automation</span>
               <ChevronDown
                 className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
-                  activeDropdown === "ai" ? "rotate-180 text-[#0F172A]" : ""
+                  activeDropdown === "ai" ? "rotate-180 text-blue-600" : ""
                 }`}
               />
             </button>
@@ -263,24 +267,24 @@ export default function Header() {
                   className="absolute top-full left-0 pt-2 w-80 z-50"
                 >
                   <div className="bg-white rounded-xl border border-slate-200 shadow-[0_12px_32px_-8px_rgba(15,23,42,0.12)] p-2">
-                    {aiItems.map((item, idx) => {
+                    {aiItems.map((item) => {
                       const Icon = item.icon;
                       return (
                         <Link
-                          key={idx}
+                          key={item.href}
                           href={item.href}
                           className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors group"
                         >
-                          <div className="w-8 h-8 rounded-md bg-slate-100 text-slate-700 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#0F172A] group-hover:text-white transition-colors">
+                          <div className="w-8 h-8 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                             <Icon className="w-4 h-4" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between gap-2">
-                              <span className="text-xs font-semibold text-[#0F172A]">
+                              <span className="text-xs font-semibold text-[#14243A]">
                                 {item.name}
                               </span>
                               {item.tag && (
-                                <span className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-blue-50 text-blue-700">
+                                <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-blue-50 text-blue-700">
                                   {item.tag}
                                 </span>
                               )}
@@ -307,16 +311,16 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setActiveDropdown(activeDropdown === "software" ? null : "software")}
-              className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[13px] font-medium transition-colors ${
-                pathname.includes("software")
-                  ? "text-[#0F172A] bg-slate-100 font-semibold"
-                  : "text-slate-600 hover:text-[#0F172A] hover:bg-slate-50"
+              className={`inline-flex items-center gap-1 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+                pathname.includes("software") || pathname.includes("saas")
+                  ? "text-blue-600 bg-blue-50/60 font-semibold"
+                  : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
               }`}
             >
               <span>Software &amp; SaaS</span>
               <ChevronDown
                 className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
-                  activeDropdown === "software" ? "rotate-180 text-[#0F172A]" : ""
+                  activeDropdown === "software" ? "rotate-180 text-blue-600" : ""
                 }`}
               />
             </button>
@@ -331,24 +335,24 @@ export default function Header() {
                   className="absolute top-full left-0 pt-2 w-80 z-50"
                 >
                   <div className="bg-white rounded-xl border border-slate-200 shadow-[0_12px_32px_-8px_rgba(15,23,42,0.12)] p-2">
-                    {softwareItems.map((item, idx) => {
+                    {softwareItems.map((item) => {
                       const Icon = item.icon;
                       return (
                         <Link
-                          key={idx}
+                          key={item.href}
                           href={item.href}
                           className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors group"
                         >
-                          <div className="w-8 h-8 rounded-md bg-slate-100 text-slate-700 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#0F172A] group-hover:text-white transition-colors">
+                          <div className="w-8 h-8 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                             <Icon className="w-4 h-4" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between gap-2">
-                              <span className="text-xs font-semibold text-[#0F172A]">
+                              <span className="text-xs font-semibold text-[#14243A]">
                                 {item.name}
                               </span>
                               {item.tag && (
-                                <span className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">
+                                <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">
                                   {item.tag}
                                 </span>
                               )}
@@ -368,195 +372,244 @@ export default function Header() {
 
           <Link
             href="/our-products"
-            className={`px-3.5 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+            className={`px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
               pathname === "/our-products" || pathname === "/portfolio"
-                ? "text-[#0F172A] bg-slate-100 font-semibold"
-                : "text-slate-600 hover:text-[#0F172A] hover:bg-slate-50"
+                ? "text-blue-600 bg-blue-50/60 font-semibold"
+                : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
             }`}
           >
-            Products &amp; Work
+            Portfolio
+          </Link>
+
+          <Link
+            href="/pricing"
+            className={`px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+              pathname === "/pricing"
+                ? "text-blue-600 bg-blue-50/60 font-semibold"
+                : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
+            }`}
+          >
+            Pricing
           </Link>
 
           <Link
             href="/about"
-            className={`px-3.5 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+            className={`px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
               pathname === "/about"
-                ? "text-[#0F172A] bg-slate-100 font-semibold"
-                : "text-slate-600 hover:text-[#0F172A] hover:bg-slate-50"
+                ? "text-blue-600 bg-blue-50/60 font-semibold"
+                : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
             }`}
           >
-            Studio
+            About
           </Link>
-        </nav>
 
-        {/* Right: Executive Actions */}
-        <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
           <Link
             href="/contact"
-            className="text-[13px] font-medium text-slate-600 hover:text-[#0F172A] px-3 py-2 transition-colors"
+            className={`px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+              pathname === "/contact"
+                ? "text-blue-600 bg-blue-50/60 font-semibold"
+                : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
+            }`}
           >
             Contact
           </Link>
+        </nav>
+
+        {/* Right: Primary Consultation CTA */}
+        <div className="hidden lg:flex items-center gap-2.5 flex-shrink-0">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold bg-[#0F172A] hover:bg-blue-600 text-white transition-colors shadow-2xs"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-[#14243A] text-white transition-colors shadow-2xs"
           >
-            <span>Start a Project</span>
+            <span>Get a Free Consultation</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile Menu Button */}
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden p-2 rounded-lg text-[#0F172A] hover:bg-slate-100 transition-colors"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          className="lg:hidden p-2.5 rounded-lg text-[#14243A] hover:bg-slate-100 transition-colors"
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isOpen}
         >
           {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Navigation Drawer */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-b border-slate-200 overflow-hidden"
+            className="lg:hidden bg-white border-b border-slate-200 overflow-hidden shadow-lg"
           >
-            <div className="px-4 pt-3 pb-6 space-y-2 max-h-[82vh] overflow-y-auto">
+            <div className="px-4 pt-3 pb-6 space-y-1.5 max-h-[84vh] overflow-y-auto">
               <Link
                 href="/"
-                className="block py-2.5 text-sm font-semibold text-[#0F172A] border-b border-slate-100"
+                className="block py-2.5 px-2 rounded-lg text-sm font-semibold text-[#14243A] hover:bg-slate-50"
               >
                 Home
               </Link>
 
-              {/* Mobile Web Platforms */}
-              <div className="border-b border-slate-100 pb-2">
+              {/* Mobile Websites Accordion */}
+              <div className="border-t border-slate-100 pt-1.5">
                 <button
                   type="button"
                   onClick={() => setMobileExpanded(mobileExpanded === "websites" ? null : "websites")}
-                  className="w-full flex items-center justify-between py-2 text-sm font-semibold text-[#0F172A]"
+                  className="w-full flex items-center justify-between py-2.5 px-2 text-sm font-semibold text-[#14243A]"
                 >
-                  <span>Web Platforms</span>
+                  <span>Websites</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
-                      mobileExpanded === "websites" ? "rotate-180 text-blue-600" : ""
+                      mobileExpanded === "websites" ? "rotate-180 text-blue-600" : "text-slate-400"
                     }`}
                   />
                 </button>
                 {mobileExpanded === "websites" && (
-                  <div className="pl-3 space-y-2 pt-1 pb-2">
-                    {websiteItems.map((item, idx) => (
+                  <div className="pl-3 pr-2 pb-2 space-y-1">
+                    {websiteItems.map((item) => (
                       <Link
-                        key={idx}
+                        key={item.href}
                         href={item.href}
-                        className="block py-1.5 text-xs font-medium text-slate-600 hover:text-[#0F172A]"
+                        className="block py-2 px-3 rounded-lg bg-slate-50 hover:bg-blue-50 text-xs font-semibold text-[#14243A]"
                       >
-                        {item.name}
+                        <div className="flex items-center justify-between">
+                          <span>{item.name}</span>
+                          {item.tag && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                              {item.tag}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-[11px] font-normal text-slate-500 mt-0.5">{item.desc}</p>
                       </Link>
                     ))}
                   </div>
                 )}
               </div>
 
-              {/* Mobile AI */}
-              <div className="border-b border-slate-100 pb-2">
+              {/* Mobile AI & Automation Accordion */}
+              <div className="border-t border-slate-100 pt-1.5">
                 <button
                   type="button"
                   onClick={() => setMobileExpanded(mobileExpanded === "ai" ? null : "ai")}
-                  className="w-full flex items-center justify-between py-2 text-sm font-semibold text-[#0F172A]"
+                  className="w-full flex items-center justify-between py-2.5 px-2 text-sm font-semibold text-[#14243A]"
                 >
                   <span>AI &amp; Automation</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
-                      mobileExpanded === "ai" ? "rotate-180 text-blue-600" : ""
+                      mobileExpanded === "ai" ? "rotate-180 text-blue-600" : "text-slate-400"
                     }`}
                   />
                 </button>
                 {mobileExpanded === "ai" && (
-                  <div className="pl-3 space-y-2 pt-1 pb-2">
-                    {aiItems.map((item, idx) => (
+                  <div className="pl-3 pr-2 pb-2 space-y-1">
+                    {aiItems.map((item) => (
                       <Link
-                        key={idx}
+                        key={item.href}
                         href={item.href}
-                        className="block py-1.5 text-xs font-medium text-slate-600 hover:text-[#0F172A]"
+                        className="block py-2 px-3 rounded-lg bg-slate-50 hover:bg-blue-50 text-xs font-semibold text-[#14243A]"
                       >
-                        {item.name}
+                        <div className="flex items-center justify-between">
+                          <span>{item.name}</span>
+                          {item.tag && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">
+                              {item.tag}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-[11px] font-normal text-slate-500 mt-0.5">{item.desc}</p>
                       </Link>
                     ))}
                   </div>
                 )}
               </div>
 
-              {/* Mobile Software */}
-              <div className="border-b border-slate-100 pb-2">
+              {/* Mobile Software & SaaS Accordion */}
+              <div className="border-t border-slate-100 pt-1.5">
                 <button
                   type="button"
                   onClick={() => setMobileExpanded(mobileExpanded === "software" ? null : "software")}
-                  className="w-full flex items-center justify-between py-2 text-sm font-semibold text-[#0F172A]"
+                  className="w-full flex items-center justify-between py-2.5 px-2 text-sm font-semibold text-[#14243A]"
                 >
                   <span>Software &amp; SaaS</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
-                      mobileExpanded === "software" ? "rotate-180 text-blue-600" : ""
+                      mobileExpanded === "software" ? "rotate-180 text-blue-600" : "text-slate-400"
                     }`}
                   />
                 </button>
                 {mobileExpanded === "software" && (
-                  <div className="pl-3 space-y-2 pt-1 pb-2">
-                    {softwareItems.map((item, idx) => (
+                  <div className="pl-3 pr-2 pb-2 space-y-1">
+                    {softwareItems.map((item) => (
                       <Link
-                        key={idx}
+                        key={item.href}
                         href={item.href}
-                        className="block py-1.5 text-xs font-medium text-slate-600 hover:text-[#0F172A]"
+                        className="block py-2 px-3 rounded-lg bg-slate-50 hover:bg-blue-50 text-xs font-semibold text-[#14243A]"
                       >
-                        {item.name}
+                        <div className="flex items-center justify-between">
+                          <span>{item.name}</span>
+                          {item.tag && (
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-200 text-slate-700">
+                              {item.tag}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-[11px] font-normal text-slate-500 mt-0.5">{item.desc}</p>
                       </Link>
                     ))}
                   </div>
                 )}
               </div>
 
-              <Link
-                href="/our-products"
-                className="block py-2.5 text-sm font-semibold text-[#0F172A] border-b border-slate-100"
-              >
-                Products &amp; Work
-              </Link>
-
-              <Link
-                href="/about"
-                className="block py-2.5 text-sm font-semibold text-[#0F172A] border-b border-slate-100"
-              >
-                Studio
-              </Link>
-
-              <Link
-                href="/contact"
-                className="block py-2.5 text-sm font-semibold text-[#0F172A] border-b border-slate-100"
-              >
-                Contact
-              </Link>
-
-              <div className="pt-3 flex flex-col gap-2.5">
+              <div className="border-t border-slate-100 pt-1.5 space-y-1">
+                <Link
+                  href="/our-products"
+                  className="block py-2.5 px-2 rounded-lg text-sm font-semibold text-[#14243A] hover:bg-slate-50"
+                >
+                  Our Products &amp; Portfolio
+                </Link>
+                <Link
+                  href="/pricing"
+                  className="block py-2.5 px-2 rounded-lg text-sm font-semibold text-[#14243A] hover:bg-slate-50"
+                >
+                  Pricing &amp; Packages
+                </Link>
+                <Link
+                  href="/about"
+                  className="block py-2.5 px-2 rounded-lg text-sm font-semibold text-[#14243A] hover:bg-slate-50"
+                >
+                  About CortexHive
+                </Link>
                 <Link
                   href="/contact"
-                  className="w-full py-3 rounded-lg bg-[#0F172A] text-white text-center text-xs font-semibold"
+                  className="block py-2.5 px-2 rounded-lg text-sm font-semibold text-[#14243A] hover:bg-slate-50"
                 >
-                  Start a Project
+                  Contact Us
+                </Link>
+              </div>
+
+              {/* Mobile Action Buttons */}
+              <div className="pt-4 border-t border-slate-200 grid grid-cols-1 gap-2.5">
+                <Link
+                  href="/contact"
+                  className="w-full py-3.5 px-4 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-xs"
+                >
+                  <span>Get a Free Consultation</span>
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
                 <a
-                  href={SITE_CONFIG.getWhatsAppLink("quote")}
+                  href={SITE_CONFIG.getWhatsAppLink("consultation")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 rounded-lg border border-slate-200 text-[#0F172A] text-center text-xs font-semibold"
+                  className="w-full py-3 px-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 font-semibold text-xs flex items-center justify-center gap-2"
                 >
-                  Direct WhatsApp Inquiry
+                  <MessageSquare className="w-4 h-4 text-emerald-600" />
+                  <span>Chat on WhatsApp ({SITE_CONFIG.phoneDisplay})</span>
                 </a>
               </div>
             </div>

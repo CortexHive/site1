@@ -5,32 +5,61 @@ import { ChevronDown, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 
-const FAQS = [
+export const HOMEPAGE_FAQS = [
   {
-    q: "What types of organisations does CortexHive partner with?",
-    a: "We work with established UK small and medium-sized businesses, independent trades and service providers, professional practices, and technology founders looking to build high-converting web platforms, automate operations with AI, or ship custom software and SaaS products.",
+    q: "How much does a website cost?",
+    a: "Our small business website packages start from £99 for a 1-page Starter Website, £349 for a Business Website (up to 5 pages), and £699 for a Growth Website (up to 10 pages). These are one-off build starting prices. Domain registration, recurring hosting and custom functionality outside the package scope are quoted transparently before work begins.",
   },
   {
-    q: "How are projects scoped and structured?",
-    a: "Every engagement begins with a technical discovery and scoping phase. Once we understand your operational goals and functional requirements, we provide a clear written specification with fixed milestones and transparent deliverables before work commences.",
+    q: "Can you build websites for small businesses?",
+    a: "Yes. We build mobile-friendly, enquiry-focused websites for builders, electricians, plumbers, cleaning companies, handymen, local service providers, startups and small-to-medium businesses across the UK.",
   },
   {
-    q: "How does the AI Voice Receptionist integrate with our existing phone lines?",
-    a: "You keep your existing UK landline or mobile number. We configure standard conditional call forwarding to your dedicated virtual voice agent (powered by Twilio and ElevenLabs). When your team is busy, on site, or out of hours, the AI answers within two rings, conducts a natural British English conversation, qualifies the enquiry, and immediately dispatches a structured summary via WhatsApp, SMS, or email.",
+    q: "Do you provide AI receptionists?",
+    a: "Yes. We configure AI-powered phone receptionists that answer incoming business calls 24/7, speak naturally, collect caller details, qualify enquiries and send call summaries to your phone or email.",
   },
   {
-    q: "What is the typical delivery timeline for a project?",
-    a: "Commercial web platforms are typically engineered and deployed within 1 to 3 weeks. Targeted AI workflow and voice integrations take 1 to 4 weeks, while bespoke full-stack web applications and SaaS MVPs are delivered in 4 to 8 weeks depending on scope.",
+    q: "Can your AI receptionist book appointments?",
+    a: "Where integrated with a compatible digital calendar or booking workflow, the AI receptionist can help check availability, collect preferred appointment times or send callers your direct booking link.",
   },
   {
-    q: "Who owns the source code and intellectual property?",
-    a: "You do. Upon final milestone completion, 100% of your custom codebase, design assets, domain configurations, and intellectual property belong to your business. We do not trap clients in proprietary CMS lock-ins.",
+    q: "Can you build custom SaaS applications?",
+    a: "Yes. We design and develop custom SaaS platforms, multi-user web applications, customer portals and management dashboards — and we also build and operate our own SaaS products such as MarkScheme, AuraPDF and Rydigo.",
   },
   {
-    q: "Do you provide ongoing hosting, security, and post-launch support?",
-    a: "Yes. Following launch, we offer optional managed cloud infrastructure, automated daily backups, SSL and security monitoring, and ongoing engineering support for teams that prefer a hands-off technical partner.",
+    q: "Do you provide ongoing support?",
+    a: "Yes. Once your website or software is launched, you own your custom project assets. We offer optional managed hosting, security updates, content updates and ongoing technical support plans if you prefer hands-off management.",
+  },
+  {
+    q: "How long does a website take?",
+    a: "Turnaround depends on the size of the project and how quickly content is provided. Starter 1-page websites are typically ready within a few working days of receiving your business details, while multi-page Business and Growth websites generally take 1 to 3 weeks.",
+  },
+  {
+    q: "Do you work with businesses throughout the UK?",
+    a: "Yes. We work with sole traders, small businesses, startups and established companies throughout England, Scotland, Wales and Northern Ireland via phone, WhatsApp, video calls and email.",
+  },
+  {
+    q: "Can you integrate with existing business systems?",
+    a: "Yes. We can connect your website, AI workflows or custom software with popular CRM platforms, email services, calendars, payment gateways (such as Stripe) and internal databases where APIs or webhooks are supported.",
+  },
+  {
+    q: "Do you provide custom quotations?",
+    a: "Yes. If your project requires extra pages, bespoke design features, AI workflow automation or custom software development, we provide a free consultation and a clear written quotation tailored to your requirements.",
   },
 ];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: HOMEPAGE_FAQS.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
 
 export default function HomeFaq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -40,56 +69,61 @@ export default function HomeFaq() {
   };
 
   return (
-    <section className="py-20 sm:py-28 bg-[#F8FAFC] border-b border-slate-200">
+    <section id="faq" className="py-20 sm:py-28 bg-[#F5F8FC] border-b border-[#E2E8F0]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left 5 Columns: Editorial Header */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="text-xs font-mono uppercase tracking-[0.18em] text-blue-600 font-semibold">
-              07 // TECHNICAL &amp; COMMERCIAL FAQ
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          {/* Left 4 Columns: Header */}
+          <div className="lg:col-span-4 space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#E2E8F0] text-xs font-bold uppercase tracking-wider text-blue-600">
+              Frequently Asked Questions
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#090D16] tracking-[-0.025em] leading-[1.1]">
-              Common Questions on Scoping &amp; Delivery.
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#14243A] tracking-tight leading-[1.12]">
+              Clear Answers Before You Start.
             </h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Clear answers on how we architect software, integrate AI into existing business workflows, and manage post-launch infrastructure.
+            <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
+              Have a question about website packages, AI receptionists, custom software or how we work? Find straightforward answers here.
             </p>
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="pt-3 flex flex-wrap items-center gap-4">
               <a
-                href={SITE_CONFIG.getWhatsAppLink("quote")}
+                href={SITE_CONFIG.getWhatsAppLink("consultation")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-[#0F172A] transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-[#14243A] transition-colors"
               >
-                <span>Ask via WhatsApp</span>
+                <span>Ask on WhatsApp</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </a>
               <span className="text-slate-300">|</span>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0F172A] hover:text-blue-600 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#14243A] hover:text-blue-600 transition-colors"
               >
-                <span>Contact Engineering</span>
+                <span>Contact Us</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </div>
 
-          {/* Right 7 Columns: Accordion */}
-          <div className="lg:col-span-7 space-y-3">
-            {FAQS.map((faq, i) => {
+          {/* Right 8 Columns: 10 FAQs Accordion */}
+          <div className="lg:col-span-8 space-y-3">
+            {HOMEPAGE_FAQS.map((faq, i) => {
               const isOpen = openIndex === i;
               return (
                 <div
-                  key={i}
-                  className="rounded-xl border border-slate-200 bg-white overflow-hidden transition-all"
+                  key={faq.q}
+                  className="rounded-xl border border-[#E2E8F0] bg-white overflow-hidden shadow-2xs transition-all"
                 >
                   <button
                     type="button"
                     onClick={() => toggle(i)}
-                    className="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-slate-50/70 transition-colors"
+                    aria-expanded={isOpen}
+                    className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 hover:bg-slate-50/70 transition-colors"
                   >
-                    <span className="text-sm sm:text-base font-bold text-[#090D16]">
+                    <span className="text-sm sm:text-base font-bold text-[#14243A]">
                       {faq.q}
                     </span>
                     <ChevronDown
@@ -99,7 +133,7 @@ export default function HomeFaq() {
                     />
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3.5">
+                    <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-[#475569] leading-relaxed border-t border-slate-100 pt-3.5">
                       {faq.a}
                     </div>
                   )}

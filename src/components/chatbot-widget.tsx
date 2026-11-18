@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { MessageSquare, X, Send, Bot, RefreshCw, Sparkles } from "lucide-react";
+import { MessageSquare, X, Send, Bot, RefreshCw } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
+import { SITE_CONFIG } from "@/lib/config";
 
 interface Message {
   id: string;
@@ -12,10 +13,10 @@ interface Message {
 }
 
 const PRESETS = [
-  "What services do you offer?",
-  "How do we get started?",
-  "Chat on WhatsApp",
-  "I'd like to build custom AI tools",
+  "Website packages (£99 / £349 / £699)",
+  "How does the AI Receptionist work?",
+  "Custom software & SaaS development",
+  "Get a free consultation",
 ];
 
 export default function ChatbotWidget() {
@@ -25,7 +26,7 @@ export default function ChatbotWidget() {
       id: "welcome",
       role: "assistant",
       content:
-        "Hello and welcome to **CortexHive**!\n\nI can answer questions about our core capabilities, share real case studies, or help you start a project inquiry.\n\nWhat are you looking to build or automate?",
+        "Hello and welcome to **CortexHive**!\n\nI can answer questions about our website packages, 24/7 AI Receptionist, business automation, or custom software development.\n\nHow can we help your business today?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -34,13 +35,9 @@ export default function ChatbotWidget() {
 
   useEffect(() => {
     if (isOpen) {
-      scrollToBottom();
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages, isOpen]);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
 
   const handleSend = async (textToSend?: string) => {
     const text = textToSend || input;
@@ -72,7 +69,7 @@ export default function ChatbotWidget() {
       if (!res.ok) throw new Error("Network response error");
 
       const data = await res.json();
-      
+
       const assistantMsg: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
@@ -81,13 +78,12 @@ export default function ChatbotWidget() {
 
       setMessages((prev) => [...prev, assistantMsg]);
 
-      // Trigger celebration if a lead has been successfully registered
       if (data.leadSaved) {
         confetti({
-          particleCount: 100,
+          particleCount: 90,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ["#06b6d4", "#3b82f6", "#a855f7"],
+          colors: ["#2563EB", "#38BDF8", "#16A34A"],
         });
       }
     } catch (err) {
@@ -97,7 +93,8 @@ export default function ChatbotWidget() {
         {
           id: (Date.now() + 1).toString(),
           role: "assistant",
-          content: "Sorry, I encountered an error connecting to my database. Please try again or fill out our contact form below.",
+          content:
+            "Sorry, I encountered a connection issue. Please use our enquiry form on the page or message us directly on WhatsApp.",
         },
       ]);
     } finally {
@@ -111,16 +108,17 @@ export default function ChatbotWidget() {
         id: "welcome",
         role: "assistant",
         content:
-          "Hello and welcome to **CortexHive**!\n\nI can answer questions about our core capabilities, share real case studies, or help you start a project inquiry.\n\nWhat are you looking to build or automate?",
+          "Hello and welcome to **CortexHive**!\n\nI can answer questions about our website packages, 24/7 AI Receptionist, business automation, or custom software development.\n\nHow can we help your business today?",
       },
     ]);
   };
 
   const renderMessageContent = (content: string, isUser: boolean) => {
-    // Strip JSON block if present
     const cleaned = content.replace(/```json[\s\S]*?```/g, "").trim();
-    // Split into distinct lines / paragraphs
-    const lines = cleaned.split("\n").map((l) => l.trim()).filter(Boolean);
+    const lines = cleaned
+      .split("\n")
+      .map((l) => l.trim())
+      .filter(Boolean);
 
     return (
       <div className="space-y-2">
@@ -136,7 +134,7 @@ export default function ChatbotWidget() {
                 isItem
                   ? isUser
                     ? "pl-2 border-l border-white/40 my-1"
-                    : "pl-2.5 py-1 px-2.5 my-1.5 rounded-lg bg-white/70 border border-slate-200/60 shadow-xs"
+                    : "pl-2.5 py-1 px-2.5 my-1.5 rounded-lg bg-white border border-slate-200/80"
                   : ""
               }
             >
@@ -145,7 +143,7 @@ export default function ChatbotWidget() {
                   i % 2 === 1 ? (
                     <strong
                       key={i}
-                      className={isUser ? "text-white font-bold" : "text-slate-950 font-bold"}
+                      className={isUser ? "text-white font-bold" : "text-[#14243A] font-bold"}
                     >
                       {chunk}
                     </strong>
@@ -162,41 +160,44 @@ export default function ChatbotWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-5 right-5 z-50">
       <AnimatePresence>
-        {/* Chat window */}
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 100 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 100 }}
-            transition={{ type: "spring", stiffness: 260, damping: 25 }}
-            className="w-[360px] sm:w-[410px] h-[560px] rounded-2xl glass-panel flex flex-col shadow-2xl overflow-hidden border-hive-cyan/20 glow-cyan max-w-[calc(100vw-2rem)]"
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ duration: 0.18 }}
+            className="mb-3 w-[340px] sm:w-[390px] h-[520px] max-h-[calc(100vh-7rem)] max-w-[calc(100vw-2.5rem)] rounded-2xl bg-white flex flex-col shadow-2xl overflow-hidden border border-slate-200"
           >
             {/* Header */}
-            <div className="p-4 bg-gradient-hive-solid flex items-center justify-between border-b border-white/10 shadow-sm">
+            <div className="p-4 bg-[#14243A] flex items-center justify-between border-b border-slate-800">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-white/20 border border-white/30 flex items-center justify-center">
-                  <Bot className="w-5 h-5 text-white animate-pulse" />
+                <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white">
+                  <Bot className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
-                    Hive Concierge <Sparkles className="w-3.5 h-3.5 text-white fill-white animate-pulse" />
+                  <h4 className="text-sm font-bold text-white leading-tight">
+                    CortexHive Assistant
                   </h4>
-                  <span className="text-[10px] text-white/80">AI &amp; Software Studio</span>
+                  <span className="text-[11px] text-slate-300">
+                    Websites, AI &amp; Software Support
+                  </span>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <button
+                  type="button"
                   onClick={handleReset}
-                  className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                  className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
                   title="Reset conversation"
                 >
                   <RefreshCw className="w-4 h-4" />
                 </button>
                 <button
+                  type="button"
                   onClick={() => setIsOpen(false)}
-                  className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                  className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
                   aria-label="Close Chat"
                 >
                   <X className="w-4 h-4" />
@@ -205,23 +206,23 @@ export default function ChatbotWidget() {
             </div>
 
             {/* Quick WhatsApp connect bar */}
-            <div className="bg-emerald-500/10 border-b border-emerald-500/20 px-3.5 py-1.5 flex items-center justify-between text-xs">
-              <span className="text-emerald-700 font-medium flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Fast-track response
+            <div className="bg-emerald-50 border-b border-emerald-200/80 px-4 py-2 flex items-center justify-between text-xs">
+              <span className="text-emerald-800 font-medium flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                Prefer human chat?
               </span>
               <a
-                href="https://wa.me/447950501323?text=Hi%20CortexHive%2C%20I%20would%20like%20to%20discuss%20a%20project."
+                href={SITE_CONFIG.getWhatsAppLink("consultation")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1 hover:underline"
+                className="text-emerald-700 hover:text-emerald-900 font-bold hover:underline"
               >
-                Chat on WhatsApp &rarr;
+                WhatsApp Us &rarr;
               </a>
             </div>
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-[#F8FAFD]">
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -230,8 +231,8 @@ export default function ChatbotWidget() {
                   <div
                     className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm ${
                       msg.role === "user"
-                        ? "bg-gradient-hive-solid text-white rounded-br-none font-medium shadow-sm"
-                        : "bg-slate-100/90 text-slate-800 border border-slate-200/60 rounded-bl-none shadow-xs"
+                        ? "bg-blue-600 text-white rounded-br-xs font-medium shadow-2xs"
+                        : "bg-white text-slate-700 border border-slate-200 rounded-bl-xs shadow-2xs"
                     }`}
                   >
                     {renderMessageContent(msg.content, msg.role === "user")}
@@ -241,24 +242,25 @@ export default function ChatbotWidget() {
 
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-slate-100/90 border border-slate-200/50 rounded-2xl rounded-bl-none px-4 py-3 text-sm text-slate-500 flex items-center gap-2 animate-pulse">
-                    <span className="w-1.5 h-1.5 rounded-full bg-hive-blue animate-bounce" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-hive-blue animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-hive-blue animate-bounce [animation-delay:0.4s]" />
+                  <div className="bg-white border border-slate-200 rounded-2xl rounded-bl-xs px-4 py-3 text-sm text-slate-500 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-bounce" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-bounce [animation-delay:0.2s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-bounce [animation-delay:0.4s]" />
                   </div>
                 </div>
               )}
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Preset prompts (only show when conversation is in early stage and not loading) */}
+            {/* Preset prompts */}
             {messages.length < 5 && !isLoading && (
-              <div className="px-4 py-2 flex flex-wrap gap-1.5 border-t border-slate-100 bg-slate-50/50">
+              <div className="px-3.5 py-2.5 flex flex-wrap gap-1.5 border-t border-slate-200 bg-white">
                 {PRESETS.map((preset, i) => (
                   <button
+                    type="button"
                     key={i}
                     onClick={() => handleSend(preset)}
-                    className="text-[11px] text-slate-600 hover:text-hive-purple bg-slate-100/80 hover:bg-slate-200/80 border border-slate-200/50 rounded-full px-2.5 py-1 transition-all"
+                    className="text-[11px] text-slate-700 hover:text-blue-600 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 rounded-lg px-2.5 py-1 transition-colors font-medium"
                   >
                     {preset}
                   </button>
@@ -272,20 +274,21 @@ export default function ChatbotWidget() {
                 e.preventDefault();
                 handleSend();
               }}
-              className="p-3 border-t border-slate-200 bg-white/80 flex items-center gap-2"
+              className="p-3 border-t border-slate-200 bg-white flex items-center gap-2"
             >
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about our services or start a lead..."
+                placeholder="Ask a question..."
                 disabled={isLoading}
-                className="flex-1 bg-slate-50 hover:bg-slate-100 focus:bg-white border border-slate-200 focus:border-hive-cyan/50 focus:ring-1 focus:ring-hive-cyan/50 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none transition-all"
+                className="flex-1 bg-slate-50 focus:bg-white border border-slate-200 focus:border-blue-600 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none transition-colors"
               />
               <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="p-2.5 rounded-xl bg-gradient-hive-solid hover:shadow-lg hover:shadow-hive-blue/20 text-white disabled:opacity-50 disabled:shadow-none transition-all flex items-center justify-center"
+                className="p-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-40 transition-colors flex items-center justify-center"
+                aria-label="Send message"
               >
                 <Send className="w-4 h-4" />
               </button>
@@ -296,11 +299,12 @@ export default function ChatbotWidget() {
 
       {/* Trigger Bubble Button */}
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 rounded-full bg-gradient-hive-solid text-white flex items-center justify-center shadow-xl hover:shadow-hive-cyan/30 transform hover:scale-105 active:scale-95 transition-all duration-200 border border-white/10"
-        aria-label="Toggle chat concierage"
+        className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#14243A] hover:bg-blue-600 text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 border border-slate-700"
+        aria-label="Toggle CortexHive Assistant"
       >
-        {isOpen ? <X className="w-6 h-6" /> : <MessageSquare className="w-6 h-6" />}
+        {isOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />}
       </button>
     </div>
   );

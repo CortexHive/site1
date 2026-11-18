@@ -2,142 +2,119 @@
 
 import {
   Compass,
-  FileCode2,
-  Cpu,
+  ClipboardList,
+  Code2,
   Rocket,
-  ShieldCheck,
+  ArrowRight,
 } from "lucide-react";
 
-const PROCESS_STAGES = [
+const PROCESS_STEPS = [
   {
-    step: "STAGE 01",
-    name: "Discovery & Scoping",
-    summary:
-      "We analyse your operational challenge, commercial objectives, and user workflows. You receive a clear technical recommendation and fixed milestone roadmap.",
-    clientProvides: "Business objectives, domain context, or existing workflow bottlenecks.",
-    weDeliver: "Written architecture specification, scope of work & fixed milestone schedule.",
+    number: "01",
+    title: "DISCOVER",
+    subtitle: "Understand your goals",
+    desc: "Understand the business, requirements and challenges.",
+    details:
+      "We listen to how your business operates, what your customers need and what you want to achieve — whether that is a new website, an AI receptionist or custom software.",
     icon: Compass,
   },
   {
-    step: "STAGE 02",
-    name: "Architecture & UI Design",
-    summary:
-      "We map out the user interface layouts, relational database schemas, API contracts, and AI pipeline guardrails before full-scale engineering begins.",
-    clientProvides: "Brand assets and sign-off on wireframes and system flows.",
-    weDeliver: "Responsive UI architecture, database schema & integration blueprint.",
-    icon: FileCode2,
+    number: "02",
+    title: "PLAN",
+    subtitle: "Clear scope & pricing",
+    desc: "Recommend the right solution, scope and pricing.",
+    details:
+      "We outline the most suitable package or custom project specification with clear deliverables, revision allowances and upfront pricing before any work starts.",
+    icon: ClipboardList,
   },
   {
-    step: "STAGE 03",
-    name: "Full-Stack Engineering",
-    summary:
-      "We build your system using Next.js, TypeScript, PostgreSQL, and production AI APIs. You review live staging deployments throughout the build.",
-    clientProvides: "Feedback on staging releases and workflow validation.",
-    weDeliver: "Production-grade codebase, automated workflows & quality assurance.",
-    icon: Cpu,
+    number: "03",
+    title: "BUILD",
+    subtitle: "Design, develop & test",
+    desc: "Design, develop and test the solution.",
+    details:
+      "We design the interface, build the functionality, test across mobile and desktop devices, and share progress with you for review and refinement.",
+    icon: Code2,
   },
   {
-    step: "STAGE 04",
-    name: "Deployment & Handover",
-    summary:
-      "We configure cloud infrastructure, SSL, custom domains, analytics, and search indexing, handing over a complete production system with optional care.",
-    clientProvides: "Domain DNS delegation or cloud environment access.",
-    weDeliver: "Live production launch, full source code ownership & team handover.",
+    number: "04",
+    title: "LAUNCH",
+    subtitle: "Deploy & support",
+    desc: "Deploy, hand over and provide agreed support.",
+    details:
+      "We launch your website or software live, verify forms and integrations, hand over your project assets and provide any agreed ongoing hosting or support.",
     icon: Rocket,
   },
 ];
 
 export default function Process() {
+  const scrollToContact = () => {
+    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section id="process" className="py-20 sm:py-28 bg-[#F8FAFC] border-b border-slate-200 relative">
+    <section id="how-it-works" className="py-20 sm:py-28 bg-white border-b border-[#E2E8F0] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Asymmetric Editorial Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end pb-12 mb-12 border-b border-slate-200">
-          <div className="lg:col-span-7 space-y-3">
-            <div className="text-xs font-mono uppercase tracking-[0.18em] text-blue-600 font-semibold">
-              05 // DELIVERY METHODOLOGY
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#090D16] tracking-[-0.025em] leading-[1.1]">
-              From Initial Brief to Production System.
-            </h2>
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F8FC] border border-[#E2E8F0] text-xs font-bold uppercase tracking-wider text-blue-600 mb-3">
+            How It Works
           </div>
-          <div className="lg:col-span-5">
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              A disciplined four-stage engineering protocol designed to ship rapidly, eliminate technical debt, and give you complete visibility at every milestone.
-            </p>
-          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-[#14243A] tracking-tight leading-[1.12]">
+            Simple, Transparent Four-Step Process.
+          </h2>
+          <p className="text-sm sm:text-base text-[#475569] mt-3 leading-relaxed">
+            From your initial enquiry to going live, we keep every step straightforward and well-communicated.
+          </p>
         </div>
 
-        {/* 4 Stages Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch mb-12">
-          {PROCESS_STAGES.map((stage) => {
-            const Icon = stage.icon;
+        {/* Connected 4-Step Timeline Grid */}
+        <div className="relative">
+          {/* Desktop connecting line */}
+          <div className="hidden lg:block absolute top-14 left-12 right-12 h-0.5 bg-[#E2E8F0] z-0" />
 
-            return (
-              <div
-                key={stage.step}
-                className="bg-white rounded-xl border border-slate-200 p-6 sm:p-7 flex flex-col justify-between hover:border-slate-300 transition-colors"
-              >
-                <div>
-                  <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-100">
-                    <span className="text-xs font-mono font-bold text-blue-600 tracking-wider">
-                      {stage.step}
-                    </span>
-                    <div className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center text-[#0F172A]">
-                      <Icon className="w-4 h-4" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+            {PROCESS_STEPS.map((step) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={step.number}
+                  className="bg-[#F8FAFD] rounded-2xl border border-[#E2E8F0] p-6 sm:p-7 flex flex-col justify-between hover:border-blue-300 shadow-subtle transition-all"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-5">
+                      <span className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-blue-600 text-white text-xs font-extrabold tracking-wider">
+                        STEP {step.number}
+                      </span>
+                      <div className="w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center text-blue-600 shadow-2xs">
+                        <Icon className="w-5 h-5" />
+                      </div>
                     </div>
-                  </div>
 
-                  <h3 className="text-lg font-bold text-[#090D16] tracking-tight mb-2.5">
-                    {stage.name}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
-                    {stage.summary}
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-slate-100 space-y-3 text-xs">
-                  <div>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-0.5">
-                      Client Input
-                    </span>
-                    <p className="text-slate-600 leading-relaxed">{stage.clientProvides}</p>
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-blue-600 font-semibold block mb-0.5">
-                      Studio Deliverable
-                    </span>
-                    <p className="text-[#0F172A] font-medium leading-relaxed">{stage.weDeliver}</p>
+                    <h3 className="text-lg font-extrabold text-[#14243A] tracking-tight">
+                      {step.title}
+                    </h3>
+                    <p className="text-xs font-semibold text-blue-600 mt-0.5 mb-2.5">
+                      {step.desc}
+                    </p>
+                    <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
+                      {step.details}
+                    </p>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
-        {/* IP Ownership Bar */}
-        <div className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-lg bg-slate-100 text-[#0F172A] flex items-center justify-center flex-shrink-0 mt-0.5">
-              <ShieldCheck className="w-5 h-5 text-blue-600" />
-            </div>
-            <div>
-              <h3 className="text-base font-bold text-[#090D16]">
-                100% Intellectual Property &amp; Source Code Ownership
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                Upon project completion, full ownership of custom source code, repositories, and domain configurations transfers directly to your organisation. Zero vendor lock-in.
-              </p>
-            </div>
-          </div>
-
+        {/* Bottom CTA */}
+        <div className="mt-10 text-center">
           <button
             type="button"
-            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-6 py-3 rounded-lg bg-[#0F172A] hover:bg-blue-600 text-white text-xs font-semibold transition-colors whitespace-nowrap"
+            onClick={scrollToContact}
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-[#14243A] text-white text-xs sm:text-sm font-semibold transition-colors shadow-xs"
           >
-            Initiate Discovery
+            <span>Start Step 1: Book a Free Consultation</span>
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </div>

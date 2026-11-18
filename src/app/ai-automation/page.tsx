@@ -1,179 +1,278 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import {
   Bot,
   ArrowRight,
-  CheckCircle2,
-  Cpu,
   Workflow,
   MailCheck,
-  FileSpreadsheet,
-  Layers,
+  FileText,
+  Bell,
+  HelpCircle,
+  ClipboardCheck,
+  MessageSquare,
+  AlertCircle,
 } from "lucide-react";
 import LeadForm from "@/components/lead-form";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "AI Business Automation & Intelligent Workflows UK | CortexHive",
+  title: "AI Automation Agency UK — Business Process Automation | CortexHive",
   description:
-    "Practical AI business automation for UK companies. Automate customer enquiry handling, document processing, email workflows, CRM pipelines and business tasks with custom AI pipelines.",
+    "Make your business work smarter with practical AI automation. Automate enquiry processing, customer replies, document generation and repetitive admin across your UK business.",
   keywords: [
-    "AI automation UK",
+    "AI automation agency UK",
     "Business process automation",
     "AI enquiry handling",
-    "Automated customer support UK",
-    "Document processing AI",
-    "Intelligent workflow automation",
-    "CRM automation UK",
+    "Workflow automation UK",
+    "Automated business workflows",
   ],
+  alternates: {
+    canonical: "https://cortexhive.co.uk/ai-automation",
+  },
+  openGraph: {
+    title: "AI Automation Agency UK — Business Process Automation | CortexHive",
+    description:
+      "Automate enquiry processing, repetitive administration, document generation and business notifications.",
+    url: "https://cortexhive.co.uk/ai-automation",
+  },
 };
 
-const AUTOMATION_SOLUTIONS = [
+const PROBLEMS = [
   {
-    icon: Bot,
-    title: "Automated Customer Enquiry Handling & Triage",
-    desc: "Automatically categorize inbound business leads from your website, WhatsApp, and emails, routing high-urgency enquiries to the right person with pre-extracted customer details.",
+    title: "Hours Lost to Manual Data Entry",
+    desc: "Copying customer details between emails, spreadsheets, quotes and job sheets wastes valuable working time every week.",
   },
+  {
+    title: "Slow Enquiry Follow-Ups",
+    desc: "When new enquiries sit unread in an inbox for hours, prospective customers often move on to a faster competitor.",
+  },
+  {
+    title: "Disconnected Business Tools",
+    desc: "Using separate tools for website forms, emails, bookings and invoicing without automation creates errors and missed tasks.",
+  },
+];
+
+const AUTOMATION_CAPABILITIES = [
   {
     icon: MailCheck,
-    title: "Automated Email & Communication Workflows",
-    desc: "Draft context-aware follow-up emails, quote confirmations, status notifications, and customer onboarding communications without manual copy-pasting.",
+    title: "Automatically Processing Enquiries",
+    desc: "Capture incoming enquiries from your website and email, extract customer requirements and log them into your system automatically.",
   },
   {
-    icon: FileSpreadsheet,
-    title: "Document Intelligence & OCR Data Extraction",
-    desc: "Extract structured data from supplier invoices, receipts, engineering certificates, survey reports, and PDF contracts straight into your database or accounting software.",
+    icon: HelpCircle,
+    title: "Responding to Customer Questions",
+    desc: "Send immediate, helpful responses to routine customer questions about services, coverage areas and next steps.",
+  },
+  {
+    icon: FileText,
+    title: "Generating Documents",
+    desc: "Prepare standard quotes, job sheets, onboarding packs and structured business documents automatically from simple form inputs.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Managing Repetitive Administration",
+    desc: "Automate recurring back-office tasks such as data entry, record updates, status checklists and weekly summaries.",
   },
   {
     icon: Workflow,
-    title: "Cross-Platform CRM & Pipeline Synchronization",
-    desc: "Connect your website forms, calendar bookings, WhatsApp chats, and internal tools into unified pipelines across HubSpot, Pipedrive, Airtable, or custom PostgreSQL databases.",
+    title: "Connecting Different Business Applications",
+    desc: "Integrate your website, CRM, calendar, email and accounting tools so information updates across your systems automatically.",
   },
   {
-    icon: Cpu,
-    title: "Custom Internal Business Knowledge Assistants",
-    desc: "Empower your staff to query company handbooks, pricing sheets, technical regulations, and past job documentation in natural language using private vector search (RAG).",
+    icon: Bell,
+    title: "Automated Notifications & Follow-Ups",
+    desc: "Trigger timely SMS, WhatsApp or email reminders for quotes, appointments and customer follow-ups where configured.",
   },
   {
-    icon: Layers,
-    title: "Automated Operational Reporting",
-    desc: "Consolidate weekly numbers, sales updates, job completions, and field reports into concise executive summaries sent directly to Slack, Teams, or your email.",
+    icon: MessageSquare,
+    title: "AI-Powered Customer Support",
+    desc: "Deploy helpful website and messaging assistants trained on your business information to support customers 24/7.",
   },
 ];
 
-const PRINCIPLES = [
-  "Measurable ROI over superficial novelty: We only build automations that measurably save hours or generate revenue.",
-  "Human-in-the-loop safeguards: Crucial business decisions and high-value customer communications include approval gates where needed.",
-  "Security & strict data isolation: Your proprietary company data is never exposed to public training pools.",
-  "Seamless integration with existing tools: No need to replace your existing software—we connect what you already use via APIs and webhooks.",
+const FAQS = [
+  {
+    q: "Do we need to replace our existing software to use AI automation?",
+    a: "No. In most cases we connect the tools you already use — such as your website forms, email, Google Workspace, Microsoft 365, CRM or accounting software.",
+  },
+  {
+    q: "Is AI automation suitable for small businesses?",
+    a: "Yes. Even simple automations — such as instant enquiry acknowledgements, quote follow-ups and automated lead logging — save small business owners several hours every week.",
+  },
+  {
+    q: "How much does an AI automation project cost?",
+    a: "Automation projects are scoped and quoted individually based on the workflows and applications involved. We provide a free consultation and fixed written quotation before starting.",
+  },
+  {
+    q: "What is the difference between AI Automation and Custom AI Agents?",
+    a: "AI Automation focuses on streamlining step-by-step business workflows and connecting applications, while Custom AI Agents act as intelligent assistants that can converse with customers or analyse complex documents.",
+  },
 ];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://cortexhive.co.uk" },
+        { "@type": "ListItem", position: 2, name: "AI Automation", item: "https://cortexhive.co.uk/ai-automation" },
+      ],
+    },
+    {
+      "@type": "Service",
+      name: "AI Business Process Automation",
+      provider: { "@id": "https://cortexhive.co.uk/#organization" },
+      areaServed: "United Kingdom",
+      description:
+        "Business process automation and AI workflows for enquiry handling, document generation, application integration and customer follow-ups.",
+    },
+  ],
+};
 
 export default function AiAutomationPage() {
   return (
-    <div className="bg-white min-h-screen text-slate-900 pt-28 pb-20">
-      <div className="max-w-6xl mx-auto px-6 space-y-20">
-        {/* Hero Section */}
-        <div className="text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-xs font-bold text-purple-700 uppercase tracking-widest shadow-xs">
-            <Bot className="w-4 h-4 text-purple-600" />
-            <span>Intelligent Operations • United Kingdom</span>
+    <div className="bg-white min-h-screen text-[#475569] pt-28 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+        {/* Hero */}
+        <div className="text-center max-w-4xl mx-auto space-y-5">
+          <nav aria-label="Breadcrumb" className="flex items-center justify-center gap-2 text-xs text-[#64748B]">
+            <Link href="/" className="hover:text-[#14243A] transition-colors">Home</Link>
+            <span>/</span>
+            <span className="text-[#14243A] font-semibold">AI Automation</span>
+          </nav>
+
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5F8FC] border border-[#E2E8F0] text-xs font-bold text-blue-600 uppercase tracking-wider">
+            <Bot className="w-3.5 h-3.5" />
+            <span>Business Process Automation UK</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-slate-950 font-outfit tracking-tight leading-[1.08]">
-            Turn Repetitive Tasks into{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
-              Intelligent Workflows.
-            </span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#14243A] tracking-tight leading-[1.1]">
+            Make Your Business Work Smarter.
           </h1>
 
-          <p className="text-lg sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
-            We build practical AI automations that handle customer enquiries, process documents, sync databases, and streamline operations so your team can focus on growth.
+          <p className="text-base sm:text-xl text-[#475569] max-w-3xl mx-auto leading-relaxed">
+            Reduce repetitive admin, speed up customer responses and connect your everyday business tools with practical AI workflow automation.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 pt-2">
             <a
               href="#quote-form"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm shadow-md hover:shadow-xl transition-all"
+              className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-[#14243A] text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors shadow-xs"
             >
-              <span>Automate Your Business</span>
+              <span>Discuss Your Automation Project</span>
               <ArrowRight className="w-4 h-4" />
             </a>
-
             <a
               href={SITE_CONFIG.getWhatsAppLink("ai-automation")}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-bold text-sm transition-all"
+              className="px-7 py-3.5 rounded-xl bg-white hover:bg-[#F5F8FC] border border-slate-300 text-[#14243A] font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
             >
-              <span>Discuss via WhatsApp</span>
+              <span>Chat on WhatsApp</span>
             </a>
           </div>
         </div>
 
-        {/* Practical Solutions */}
-        <div className="space-y-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-purple-600">
-              Core Capabilities
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-outfit mt-1">
-              Practical AI Workflows for Real Business Challenges
+        {/* Problem Statement */}
+        <section className="bg-[#F8FAFD] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] space-y-8">
+          <div className="max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">The Problem</span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] mt-1">
+              Repetitive Admin Slows Down Growing Businesses
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 font-medium mt-1">
-              Zero generic gimmicks. Every system is built around operational bottlenecks that cost your business time and money.
-            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {PROBLEMS.map((p) => (
+              <div key={p.title} className="bg-white rounded-2xl p-6 border border-[#E2E8F0] space-y-2">
+                <AlertCircle className="w-5 h-5 text-blue-600" />
+                <h3 className="text-base font-bold text-[#14243A]">{p.title}</h3>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Practical Automation Examples */}
+        <section id="document-processing" className="space-y-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">What We Automate</span>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#14243A] mt-1">
+              Practical Automation Examples
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {AUTOMATION_SOLUTIONS.map((sol, i) => {
+            {AUTOMATION_CAPABILITIES.map((sol, idx) => {
               const Icon = sol.icon;
               return (
                 <div
-                  key={i}
-                  className="p-6 rounded-3xl bg-slate-50 border border-slate-200 hover:border-purple-300 hover:shadow-md transition-all space-y-3 flex flex-col justify-between"
+                  key={sol.title}
+                  className={`p-6 rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0] hover:border-blue-300 transition-all space-y-3 ${
+                    idx === 6 ? "md:col-span-2 lg:col-span-3" : ""
+                  }`}
                 >
-                  <div className="space-y-3">
-                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-purple-600 flex items-center justify-center shadow-xs">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-base font-bold text-slate-950 font-outfit">
-                      {sol.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                      {sol.desc}
-                    </p>
+                  <div className="w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] text-blue-600 flex items-center justify-center shadow-2xs">
+                    <Icon className="w-5 h-5" />
                   </div>
+                  <h3 className="text-base font-bold text-[#14243A]">{sol.title}</h3>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{sol.desc}</p>
                 </div>
               );
             })}
           </div>
-        </div>
+        </section>
 
-        {/* Business Discipline & Principles */}
-        <div className="bg-[#F8FAFD] text-[#14243A] rounded-3xl p-8 sm:p-12 space-y-6 border border-[#E2E8F0]">
-          <div className="max-w-2xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
-              Our AI Engineering Philosophy
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-outfit text-[#14243A]">
-              We Don&apos;t Just Talk About AI. We Build Working Pipelines.
+        {/* Related AI Services */}
+        <section className="bg-[#F5F8FC] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-2 max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Related AI Solutions</span>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#14243A]">
+              Looking for 24/7 Phone Answering or Custom AI Agents?
             </h2>
+            <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
+              Explore our dedicated pages for AI voice receptionists and custom AI assistants trained on your business knowledge.
+            </p>
           </div>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/ai-receptionist"
+              className="px-5 py-3 rounded-xl bg-white hover:bg-blue-50 text-[#14243A] border border-[#E2E8F0] text-xs font-semibold transition-colors"
+            >
+              Explore AI Receptionist &rarr;
+            </Link>
+            <Link
+              href="/ai-agents"
+              className="px-5 py-3 rounded-xl bg-blue-600 hover:bg-[#14243A] text-white text-xs font-semibold transition-colors"
+            >
+              Explore Custom AI Agents &rarr;
+            </Link>
+          </div>
+        </section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-            {PRINCIPLES.map((pr, i) => (
-              <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-[#E2E8F0]">
-                <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                <span className="text-xs sm:text-sm text-[#475569] leading-relaxed font-medium">
-                  {pr}
-                </span>
+        {/* FAQs */}
+        <section className="max-w-4xl mx-auto space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] text-center">
+            AI Automation FAQs
+          </h2>
+          <div className="space-y-3">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="p-5 rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0]">
+                <h3 className="text-sm sm:text-base font-bold text-[#14243A] mb-1.5">{faq.q}</h3>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{faq.a}</p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
         {/* Lead Form */}
-        <div id="quote-form" className="pt-6">
-          <LeadForm defaultService="AI Automation" />
+        <div id="quote-form">
+          <LeadForm defaultService="AI Business Automation" />
         </div>
       </div>
     </div>

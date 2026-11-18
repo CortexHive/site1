@@ -2,259 +2,330 @@ import { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
-  CheckCircle2,
   Smartphone,
   Gauge,
   Search,
   Code2,
   ShieldCheck,
   Palette,
+  Globe,
+  AlertCircle,
 } from "lucide-react";
 import LeadForm from "@/components/lead-form";
-import { SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Bespoke Web Platform Design & Development UK | CortexHive",
+  title: "Website Design & Development Agency UK | CortexHive",
   description:
-    "High-performance website engineering and digital platforms for UK companies, contractors, startups, and SMEs. Built for search visibility and client conversion.",
+    "Professional website design and development for UK small businesses, tradespeople, startups and established companies. Mobile-first websites starting from £99.",
   keywords: [
     "Website design UK",
-    "Web development agency UK",
-    "Bespoke business websites",
-    "Next.js website development",
-    "Conversion rate optimization UK",
+    "Business website development",
+    "Affordable website design for small businesses",
+    "Website designers for builders",
+    "Website design for electricians",
+    "Website design for plumbers",
   ],
+  alternates: {
+    canonical: "https://cortexhive.co.uk/website-design",
+  },
+  openGraph: {
+    title: "Website Design & Development Agency UK | CortexHive",
+    description:
+      "Mobile-first, fast-loading business websites designed to attract customers and generate enquiries across the UK.",
+    url: "https://cortexhive.co.uk/website-design",
+  },
 };
 
-const PILLARS = [
+const PROBLEMS = [
+  {
+    title: "Outdated or Non-Existent Website",
+    desc: "Potential customers search online before calling. Without a credible website, enquiries go straight to competitors.",
+  },
+  {
+    title: "Poor Mobile Experience",
+    desc: "Most local searches happen on smartphones. Slow, clunky pages with tiny text cause visitors to leave within seconds.",
+  },
+  {
+    title: "No Clear Path to Enquire",
+    desc: "Websites that hide contact details or lack simple enquiry forms and WhatsApp links fail to turn visitors into paying customers.",
+  },
+];
+
+const BENEFITS_AND_FEATURES = [
   {
     icon: Smartphone,
-    title: "100% Mobile & Tablet Responsive",
-    desc: "Over 68% of commercial searches happen on smartphones. Every layout is crafted to load smoothly on iOS and Android devices.",
+    title: "Mobile-First Responsive Layouts",
+    desc: "Every page is designed to look sharp and work effortlessly across mobile phones, tablets and desktop computers.",
   },
   {
     icon: Gauge,
-    title: "High Performance & Fast Loading",
-    desc: "Built with modern Next.js and Tailwind CSS with sub-second page loads that keep bounce rates low and Google Core Web Vitals green.",
+    title: "Fast-Loading Performance",
+    desc: "Built using clean, modern web technology for quick page loads and smooth browsing on mobile connections.",
   },
   {
     icon: Search,
-    title: "UK Search Engine Optimisation (SEO)",
-    desc: "Clean semantic HTML, structured metadata, local schema, fast sitemaps, and optimized copy to help your business rank on Google Search.",
+    title: "UK On-Page SEO Foundations",
+    desc: "Structured headings, page titles, meta descriptions, clean URLs and XML sitemaps to support Google Search visibility.",
   },
   {
     icon: Code2,
-    title: "Multi-Channel Lead Capture",
-    desc: "Native Netlify Forms, direct WhatsApp chat pills, click-to-call buttons, and automated email lead alerts delivered straight to your inbox.",
+    title: "Enquiry Forms & WhatsApp Integration",
+    desc: "Direct enquiry forms, click-to-call phone links and optional WhatsApp chat buttons so customers can reach you easily.",
   },
   {
     icon: Palette,
-    title: "Clear Conversion Hierarchy",
-    desc: "Thoughtful visual design that guides visitors from their immediate problem to your proof of capability and straightforward call to action.",
+    title: "Professional Brand Presentation",
+    desc: "Clean typography, structured service descriptions and modern layouts that establish immediate trust.",
   },
   {
     icon: ShieldCheck,
-    title: "Security & Clean Code Discipline",
-    desc: "Type-safe TypeScript, strict validation, SSL encryption, spam honeypots, and clean architecture without bloated third-party plugin vulnerabilities.",
+    title: "Transparent Ownership & Support",
+    desc: "Clear package scopes, upfront revision allowances and optional ongoing hosting and maintenance plans.",
   },
 ];
 
-const PACKAGES = [
+const USE_CASES = [
   {
-    name: "Focused Web Platform",
-    scope: "Scoped Fixed Milestone",
-    tagline: "Ideal for trades, local services, and standalone product launches.",
-    popular: false,
-    features: [
-      "Responsive conversion-focused layout",
-      "Executive business overview & services breakdown",
-      "Direct WhatsApp and click-to-call integration",
-      "Interactive enquiry and lead capture form",
-      "Technical on-page SEO & Schema.org tags",
-      "Fast milestone delivery in 3–5 business days",
-      "100% source code and asset ownership",
-    ],
-    ctaText: "Scope Focused Platform",
-    href: "#quote-form",
+    group: "Trades & Home Services",
+    examples: "Builders, electricians, plumbers, window cleaners, handymen, roofers and cleaning companies needing local enquiries.",
+    link: "/small-business-websites",
+    linkLabel: "Explore Small Business Websites",
   },
   {
-    name: "Commercial Web Platform",
-    scope: "Milestone Scoped Build",
-    tagline: "For established businesses needing dedicated service silos and case studies.",
-    popular: true,
-    features: [
-      "4–8 custom designed responsive pages",
-      "Dedicated service & practice area landing architectures",
-      "Client case studies & verified work gallery",
-      "Comprehensive Google Search Console & XML sitemap",
-      "Advanced enquiry capture with lead notification routing",
-      "Sub-second edge caching on Cloudflare/Vercel",
-      "Analytics & conversion tracking integration",
-    ],
-    ctaText: "Scope Commercial Platform",
-    href: "#quote-form",
+    group: "Local & Professional Businesses",
+    examples: "Salons, clinics, restaurants, consultants and service companies needing multi-page service showcases and booking links.",
+    link: "/pricing",
+    linkLabel: "Compare £99 / £349 / £699 Packages",
   },
   {
-    name: "Custom Web Application & Portal",
-    scope: "Full-Stack Engineering",
-    tagline: "For startups, platforms, member portals, and database-driven web software.",
-    popular: false,
-    features: [
-      "Full-stack Next.js, TypeScript & PostgreSQL",
-      "Secure user authentication & client portals",
-      "Admin management dashboards & analytics",
-      "AI API and third-party webhook integrations",
-      "Stripe / GoCardless subscription billing rails",
-      "Automated CI/CD deployment & testing pipelines",
-      "Ongoing engineering care & SLA support",
-    ],
-    ctaText: "Discuss Web Application",
-    href: "/software-development",
+    group: "Startups & Growing Companies",
+    examples: "Organisations launching new products or requiring custom web platforms integrated with AI or software portals.",
+    link: "/software-development",
+    linkLabel: "Explore Custom Web Applications",
   },
 ];
+
+const PROCESS_STEPS = [
+  { step: "1. Discover", desc: "We review your business services, target customers and branding requirements." },
+  { step: "2. Plan", desc: "We confirm the right website package (£99, £349, £699 or custom scope) and page structure." },
+  { step: "3. Build", desc: "We design and build your mobile-friendly website and share a preview for your feedback." },
+  { step: "4. Launch", desc: "We connect your domain, test all enquiry forms and publish your new website live." },
+];
+
+const FAQS = [
+  {
+    q: "How much does a business website cost?",
+    a: "Our Starter Website is £99 (1 page), our Business Website is £349 (up to 5 pages), and our Growth Website is £699 (up to 10 pages). These are starting build prices. Domain registration and recurring hosting are separate.",
+  },
+  {
+    q: "Will my website work properly on mobile phones?",
+    a: "Yes. Every website we build is mobile-first and tested across smartphone, tablet and desktop screen sizes.",
+  },
+  {
+    q: "How many revisions are included?",
+    a: "The Starter Website includes 1 revision round, the Business Website includes up to 2 revision rounds, and the Growth Website includes up to 3 revision rounds before launch.",
+  },
+  {
+    q: "Can I add an AI Receptionist or automation later?",
+    a: "Yes. You can start with a website and add 24/7 AI call answering or workflow automation whenever your business is ready.",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://cortexhive.co.uk" },
+        { "@type": "ListItem", position: 2, name: "Website Design & Development", item: "https://cortexhive.co.uk/website-design" },
+      ],
+    },
+    {
+      "@type": "Service",
+      name: "Website Design and Development",
+      provider: { "@id": "https://cortexhive.co.uk/#organization" },
+      areaServed: "United Kingdom",
+      description:
+        "Professional mobile-friendly website design and development for UK small businesses, tradespeople and growing companies.",
+    },
+  ],
+};
 
 export default function WebsiteDesignPage() {
   return (
-    <div className="bg-white min-h-screen text-slate-900 pt-24 sm:pt-28 pb-16 sm:pb-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-16 sm:space-y-20">
-        {/* Hero Section */}
-        <div className="text-center max-w-4xl mx-auto space-y-5 sm:space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-50 border border-slate-200 text-xs font-mono uppercase tracking-[0.16em] text-blue-600 font-semibold">
-            WEB ARCHITECTURE &amp; DESIGN
+    <div className="bg-white min-h-screen text-[#475569] pt-28 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+        {/* Breadcrumb & Hero */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="lg:col-span-7 space-y-5">
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-[#64748B]">
+              <Link href="/" className="hover:text-[#14243A] transition-colors">Home</Link>
+              <span>/</span>
+              <span className="text-[#14243A] font-semibold">Website Design &amp; Development</span>
+            </nav>
+
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F8FC] border border-[#E2E8F0] text-xs font-bold uppercase tracking-wider text-blue-600">
+              <Globe className="w-3.5 h-3.5" />
+              <span>Website Design &amp; Development UK</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-[#14243A] tracking-tight leading-[1.1]">
+              Professional Websites Built to Turn Visitors Into Enquiries.
+            </h1>
+
+            <p className="text-base sm:text-lg text-[#475569] leading-relaxed">
+              Whether you need an affordable £99 starter website for your trade business or a multi-page company platform, we design fast, mobile-friendly websites that present your services clearly and make it easy for customers to contact you.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+              <a
+                href="#quote-form"
+                className="px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-[#14243A] text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors shadow-xs"
+              >
+                <span>Get a Free Website Consultation</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <Link
+                href="/pricing"
+                className="px-6 py-3.5 rounded-xl bg-white hover:bg-[#F5F8FC] border border-slate-300 text-[#14243A] font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
+              >
+                <span>Compare Packages (£99 / £349 / £699)</span>
+              </Link>
+            </div>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#090D16] tracking-tight leading-[1.12]">
-            Web Platforms Built to Turn Visitors into Clients.
-          </h1>
-
-          <p className="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            From focused commercial platforms for UK contractors to high-performance web systems for established companies, we engineer web experiences that command authority and generate qualified enquiries.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 pt-2">
-            <a
-              href="#quote-form"
-              className="px-8 py-3.5 rounded-lg bg-[#0F172A] hover:bg-blue-600 text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors shadow-2xs"
-            >
-              <span>Discuss a Web Project</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
-
-            <Link
-              href="/small-business-websites"
-              className="px-8 py-3.5 rounded-lg bg-white hover:bg-slate-50 border border-slate-300 text-[#0F172A] font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
-            >
-              <span>Commercial &amp; Trade Systems</span>
-            </Link>
-
-            <a
-              href={SITE_CONFIG.getWhatsAppLink("website")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3.5 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-200 text-[#0F172A] font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
-            >
-              <span>WhatsApp Consultation</span>
-            </a>
+          {/* Visual Website Architecture Preview */}
+          <div className="lg:col-span-5">
+            <div className="rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0] p-5 sm:p-6 shadow-subtle space-y-4">
+              <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+                <span className="text-xs font-bold text-[#14243A]">Website Conversion Blueprint</span>
+                <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Mobile-First
+                </span>
+              </div>
+              <div className="space-y-2.5">
+                {[
+                  { title: "Clear Value Proposition Hero", desc: "Immediately shows what you do, where you work & how to enquire" },
+                  { title: "Structured Services Breakdown", desc: "Dedicated sections or pages for each service you offer" },
+                  { title: "Instant Contact & WhatsApp", desc: "Click-to-call, WhatsApp chat & direct email enquiry forms" },
+                  { title: "On-Page SEO Structure", desc: "Clean headings, meta tags & sitemap ready for Google Search" },
+                ].map((block) => (
+                  <div key={block.title} className="p-3.5 rounded-xl bg-white border border-[#E2E8F0]">
+                    <div className="text-xs font-bold text-[#14243A]">{block.title}</div>
+                    <div className="text-[11px] text-[#64748B] mt-0.5">{block.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* 6 Value Pillars Grid */}
-        <div className="space-y-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#090D16]">
-              Engineered for Speed, Authority &amp; Conversion
+        {/* Problem Statement */}
+        <section className="bg-[#F8FAFD] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] space-y-8">
+          <div className="max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">The Problem</span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] mt-1">
+              Why Many Small Business Websites Fail to Generate Enquiries
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">
-              Every platform is custom-built on modern frameworks with zero bloated page builders.
-            </p>
           </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {PROBLEMS.map((prob) => (
+              <div key={prob.title} className="bg-white rounded-2xl p-6 border border-[#E2E8F0] space-y-2">
+                <AlertCircle className="w-5 h-5 text-blue-600" />
+                <h3 className="text-base font-bold text-[#14243A]">{prob.title}</h3>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{prob.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
+        {/* Benefits & Features */}
+        <section className="space-y-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Benefits &amp; Features</span>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#14243A] mt-1">
+              Everything Your Business Website Needs
+            </h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PILLARS.map((p, i) => {
-              const Icon = p.icon;
+            {BENEFITS_AND_FEATURES.map((item) => {
+              const Icon = item.icon;
               return (
-                <div
-                  key={i}
-                  className="p-6 rounded-xl bg-[#F8FAFC] border border-slate-200 hover:border-slate-300 transition-colors space-y-3"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-white border border-slate-200 text-[#0F172A] flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-blue-600" />
+                <div key={item.title} className="p-6 rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0] space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] text-blue-600 flex items-center justify-center">
+                    <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-base font-bold text-[#090D16]">
-                    {p.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {p.desc}
-                  </p>
+                  <h3 className="text-base font-bold text-[#14243A]">{item.title}</h3>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{item.desc}</p>
                 </div>
               );
             })}
           </div>
-        </div>
+        </section>
 
-        {/* Scopes Grid */}
-        <div className="space-y-8">
+        {/* Realistic Use Cases & Internal Links */}
+        <section className="space-y-8">
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#090D16]">
-              Structured Web Practice Scopes
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Who We Help</span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] mt-1">
+              Website Solutions for Every Stage of Business
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 mt-1">
-              Predictable fixed-scope delivery tailored to your commercial stage.
-            </p>
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-            {PACKAGES.map((pkg, i) => (
-              <div
-                key={i}
-                className={`rounded-xl p-7 flex flex-col justify-between transition-all ${
-                  pkg.popular
-                    ? "bg-[#F8FAFC] border-2 border-[#0F172A] shadow-md"
-                    : "bg-white border border-slate-200 hover:border-slate-300"
-                }`}
-              >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {USE_CASES.map((uc) => (
+              <div key={uc.group} className="p-6 rounded-2xl bg-white border border-[#E2E8F0] shadow-subtle flex flex-col justify-between space-y-4">
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-[#090D16]">
-                      {pkg.name}
-                    </h3>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold">
-                      {pkg.scope}
-                    </span>
-                  </div>
-
-                  <p className="text-xs text-slate-600 mb-6 leading-relaxed">
-                    {pkg.tagline}
-                  </p>
-
-                  <ul className="space-y-2.5 mb-8">
-                    {pkg.features.map((feat, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 flex-shrink-0 mt-0.5" />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <h3 className="text-lg font-bold text-[#14243A] mb-2">{uc.group}</h3>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{uc.examples}</p>
                 </div>
-
-                <a
-                  href={pkg.href}
-                  className={`w-full py-3 px-4 rounded-lg text-xs font-semibold text-center transition-colors ${
-                    pkg.popular
-                      ? "bg-blue-600 hover:bg-[#0F172A] text-white"
-                      : "bg-[#0F172A] hover:bg-blue-600 text-white"
-                  }`}
-                >
-                  {pkg.ctaText}
-                </a>
+                <Link href={uc.link} className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-[#14243A]">
+                  <span>{uc.linkLabel}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Lead Form */}
-        <div id="quote-form" className="pt-6">
-          <LeadForm defaultService="Web Platform & Design" />
+        {/* 4-Step Process */}
+        <section className="bg-[#F5F8FC] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] text-center">
+            How We Build Your Website
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {PROCESS_STEPS.map((p) => (
+              <div key={p.step} className="bg-white rounded-2xl p-5 border border-[#E2E8F0] space-y-2">
+                <div className="text-sm font-extrabold text-blue-600">{p.step}</div>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* FAQs */}
+        <section className="max-w-4xl mx-auto space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] text-center">
+            Website Design FAQs
+          </h2>
+          <div className="space-y-3">
+            {FAQS.map((f) => (
+              <div key={f.q} className="p-5 rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0]">
+                <h3 className="text-sm sm:text-base font-bold text-[#14243A] mb-1.5">{f.q}</h3>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{f.a}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Form */}
+        <div id="quote-form">
+          <LeadForm defaultService="Business Website (£349)" />
         </div>
       </div>
     </div>

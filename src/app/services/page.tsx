@@ -5,24 +5,26 @@ import {
   Bot,
   Layers,
   PhoneCall,
-  Sparkles,
+  Cpu,
+  Code2,
   ArrowRight,
   CheckCircle2,
-  Wrench,
 } from "lucide-react";
 import LeadForm from "@/components/lead-form";
 
 export const metadata: Metadata = {
-  title: "Engineering Services & Practice Areas | CortexHive",
+  title: "Our Digital Services — Websites, AI & Software UK | CortexHive",
   description:
-    "Explore CortexHive practice areas: bespoke web platforms, autonomous AI voice receptionists, workflow automation, and custom software engineering.",
-  keywords: [
-    "software engineering studio UK",
-    "web platform development UK",
-    "AI receptionist UK",
-    "AI automation UK",
-    "custom software development",
-  ],
+    "Explore CortexHive digital services: Website Design & Development (from £99), 24/7 AI Receptionist, AI Business Automation, Custom AI Agents, SaaS Development and Custom Software.",
+  alternates: {
+    canonical: "https://cortexhive.co.uk/services",
+  },
+  openGraph: {
+    title: "Our Digital Services — Websites, AI & Software UK | CortexHive",
+    description:
+      "Website packages from £99, 24/7 AI phone answering, business automation and custom software development.",
+    url: "https://cortexhive.co.uk/services",
+  },
 };
 
 const ALL_SERVICES = [
@@ -30,163 +32,179 @@ const ALL_SERVICES = [
     id: "website-design",
     number: "01",
     icon: Globe,
-    title: "Bespoke Web Platforms",
-    badge: "Architecture",
-    tagline: "Web platforms engineered for authority and measurable client acquisition.",
-    desc: "Bespoke corporate websites, high-converting landing architectures, and platform redesigns optimized for Google search and mobile devices.",
-    scope: "Fixed Milestone Scope",
+    title: "Website Design & Development",
+    badge: "From £99",
+    tagline: "Professional, mobile-friendly websites built to generate customer enquiries.",
+    desc: "Choose from our Starter (£99), Business (£349) and Growth (£699) website packages or request a custom quotation for larger company sites.",
+    pricingText: "Packages from £99",
     href: "/website-design",
     highlights: [
-      "Mobile-first responsive architecture",
-      "Sub-second loading speeds (Next.js 14)",
-      "UK SEO structure & Schema.org graph",
-      "WhatsApp & Netlify form lead capture",
-    ],
-  },
-  {
-    id: "small-business-websites",
-    number: "02",
-    icon: Wrench,
-    title: "Commercial & Trade Web Systems",
-    badge: "Turnkey",
-    tagline: "Establish an authentic digital presence without slow agency bureaucracy.",
-    desc: "A dedicated professional web platform for builders, plumbers, electricians, handymen, and commercial service contractors with direct communication integrations.",
-    scope: "Rapid 3-5 Day Delivery",
-    href: "/small-business-websites",
-    highlights: [
-      "Engineered for your specific trade",
-      "One-click WhatsApp & phone buttons",
-      "Interactive customer enquiry form",
-      "Local Google Search optimization",
+      "Mobile-first responsive design",
+      "Enquiry forms & WhatsApp integration",
+      "Basic on-page SEO setup",
+      "Fast-loading modern pages",
     ],
   },
   {
     id: "ai-receptionist",
-    number: "03",
+    number: "02",
     icon: PhoneCall,
-    title: "Autonomous Voice Receptionists",
+    title: "AI Receptionist",
     badge: "24/7 Voice AI",
-    tagline: "Never miss another customer enquiry or urgent business call.",
-    desc: "An intelligent conversational voice assistant that answers incoming calls 24/7, answers business FAQs, qualifies customer enquiries, and texts you the lead.",
-    scope: "Tailored Telephony Integration",
+    tagline: "Never miss another business opportunity while you're busy.",
+    desc: "An AI receptionist that answers incoming calls 24/7, speaks naturally, collects customer information, qualifies leads and sends call summaries.",
+    pricingText: "Custom pricing",
     href: "/ai-receptionist",
     highlights: [
-      "Natural British English conversational voice",
-      "24/7 availability for emergency calls",
-      "Instant SMS, WhatsApp & CRM summaries",
-      "Seamless call forwarding on existing UK lines",
+      "24/7 AI call answering",
+      "Natural British English voice",
+      "Customer details & lead qualification",
+      "Call summaries & notifications",
     ],
   },
   {
     id: "ai-automation",
-    number: "04",
+    number: "03",
     icon: Bot,
-    title: "AI & Workflow Automation",
-    badge: "Operations",
-    tagline: "Turn repetitive business processes into intelligent workflows.",
-    desc: "Automate manual customer triage, email follow-ups, document extraction, invoice parsing, and CRM updates across your existing business software.",
-    scope: "Workflow Engineering",
+    title: "AI Business Automation",
+    badge: "Workflows",
+    tagline: "Make your business work smarter and reduce repetitive admin.",
+    desc: "Automate incoming enquiry processing, customer replies, document generation, application integrations and routine follow-ups.",
+    pricingText: "Custom pricing",
     href: "/ai-automation",
     highlights: [
-      "Inbound enquiry auto-triage",
-      "Document data extraction (PDF / Invoices)",
-      "CRM & spreadsheet synchronization",
-      "Private internal knowledge bases (RAG)",
+      "Automated enquiry processing",
+      "Document generation & data extraction",
+      "Connecting business applications",
+      "Automated notifications & follow-ups",
+    ],
+  },
+  {
+    id: "ai-agents",
+    number: "04",
+    icon: Cpu,
+    title: "Custom AI Agents",
+    badge: "Custom AI",
+    tagline: "Intelligent AI assistants trained on your business information.",
+    desc: "Deploy custom AI agents for 24/7 customer support, lead qualification, intelligent document processing and internal staff knowledge assistance.",
+    pricingText: "Custom pricing",
+    href: "/ai-agents",
+    highlights: [
+      "AI-powered customer support",
+      "Intelligent document processing",
+      "Private company knowledge assistants",
+      "Strict business guardrails",
+    ],
+  },
+  {
+    id: "saas-development",
+    number: "05",
+    icon: Layers,
+    title: "SaaS Development",
+    badge: "SaaS & MVPs",
+    tagline: "Turn your software product idea into a working subscription platform.",
+    desc: "End-to-end SaaS MVP and platform development with multi-user accounts, role-based dashboards, relational databases and Stripe subscription billing.",
+    pricingText: "Custom pricing",
+    href: "/saas-development",
+    highlights: [
+      "SaaS MVP & platform engineering",
+      "Multi-role user authentication",
+      "Subscription & billing integration",
+      "Scalable cloud database design",
     ],
   },
   {
     id: "software-development",
-    number: "05",
-    icon: Layers,
-    title: "Custom Software & SaaS MVPs",
-    badge: "Full-Stack",
-    tagline: "Turn your software requirements into a working digital product.",
-    desc: "Full-stack web applications, SaaS platforms, internal management systems, and client portals built for real-world reliability and scalability.",
-    scope: "Milestone Engineering",
+    number: "06",
+    icon: Code2,
+    title: "Custom Software Development",
+    badge: "Bespoke",
+    tagline: "Bespoke web applications and portals built around your workflow.",
+    desc: "Custom web applications, customer portals, management dashboards, internal business systems and API integrations scoped to your exact needs.",
+    pricingText: "Custom pricing",
     href: "/software-development",
     highlights: [
-      "TypeScript, Next.js, & PostgreSQL",
-      "Client portals & admin dashboards",
-      "Stripe / payment gateway integration",
-      "Strict data privacy & clean code",
-    ],
-  },
-  {
-    id: "creative-studio",
-    number: "06",
-    icon: Sparkles,
-    title: "UI/UX & Interface Design Systems",
-    badge: "Design",
-    tagline: "Cohesive visual identity and user interface architecture.",
-    desc: "Complete visual design systems, user experience wireframes, high-converting digital assets, and modern interface design for tech and service companies.",
-    scope: "Design System Delivery",
-    href: "/creative-studio",
-    highlights: [
-      "Modern UI/UX interface systems",
-      "Brand identity & logo assets",
-      "High-converting landing page layouts",
-      "Responsive interactive prototypes",
+      "Custom web applications",
+      "Customer & staff portals",
+      "Management dashboards",
+      "API & system integrations",
     ],
   },
 ];
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://cortexhive.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Services", item: "https://cortexhive.co.uk/services" },
+  ],
+};
+
 export default function ServicesPage() {
   return (
-    <div className="bg-white min-h-screen text-slate-900 pt-28 pb-20">
-      <div className="max-w-6xl mx-auto px-6 space-y-20">
-        {/* Hero Section */}
-        <div className="text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-50 border border-slate-200 text-xs font-mono uppercase tracking-[0.16em] text-blue-600 font-semibold">
-            ENGINEERING CAPABILITIES
+    <div className="bg-white min-h-screen text-[#475569] pt-28 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        {/* Hero */}
+        <div className="text-center max-w-4xl mx-auto space-y-5">
+          <nav aria-label="Breadcrumb" className="flex items-center justify-center gap-2 text-xs text-[#64748B]">
+            <Link href="/" className="hover:text-[#14243A] transition-colors">Home</Link>
+            <span>/</span>
+            <span className="text-[#14243A] font-semibold">Services</span>
+          </nav>
+
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F8FC] border border-[#E2E8F0] text-xs font-bold uppercase tracking-wider text-blue-600">
+            Our Services
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-[#090D16] tracking-tight leading-[1.1]">
-            Digital Solutions That Solve Real Business Problems.
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#14243A] tracking-tight leading-[1.1]">
+            Websites, AI &amp; Custom Software Built for Your Business.
           </h1>
 
-          <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            From establishing a commanding web platform to automating manual operations with AI voice agents and building custom SaaS software, explore our practice areas.
+          <p className="text-base sm:text-xl text-[#475569] max-w-3xl mx-auto leading-relaxed">
+            Explore our six core services below — from affordable small business website packages to 24/7 AI call answering, workflow automation and custom software development.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* 6 Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {ALL_SERVICES.map((s) => {
             const Icon = s.icon;
             return (
               <div
                 key={s.id}
-                className="p-8 rounded-xl bg-[#F8FAFC] border border-slate-200 flex flex-col justify-between hover:border-slate-300 transition-colors"
+                className="p-6 sm:p-8 rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0] flex flex-col justify-between hover:border-blue-300 shadow-subtle transition-all"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono text-slate-400 font-semibold">
-                      {s.number}
-                    </span>
-                    <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-white border border-slate-200 text-slate-700">
+                    <div className="w-11 h-11 rounded-xl bg-white border border-[#E2E8F0] text-blue-600 flex items-center justify-center shadow-2xs">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white border border-[#E2E8F0] text-[#14243A]">
                       {s.badge}
                     </span>
                   </div>
 
-                  <div className="w-10 h-10 rounded-lg bg-white border border-slate-200 text-[#0F172A] flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-blue-600" />
-                  </div>
-
-                  <h3 className="text-xl font-bold text-[#090D16]">
+                  <h2 className="text-xl font-extrabold text-[#14243A]">
                     {s.title}
-                  </h3>
+                  </h2>
 
                   <p className="text-xs font-semibold text-blue-600">
                     {s.tagline}
                   </p>
 
-                  <p className="text-xs text-slate-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
                     {s.desc}
                   </p>
 
-                  <div className="pt-2 space-y-2 border-t border-slate-200/80">
-                    {s.highlights.map((h, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
+                  <div className="pt-3 space-y-2 border-t border-slate-200/80">
+                    {s.highlights.map((h) => (
+                      <div key={h} className="flex items-center gap-2 text-xs text-[#475569]">
                         <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
                         <span>{h}</span>
                       </div>
@@ -194,13 +212,13 @@ export default function ServicesPage() {
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-slate-200/80 mt-6 flex items-center justify-between">
-                  <span className="text-xs font-mono text-slate-500 font-medium">{s.scope}</span>
+                <div className="pt-5 border-t border-slate-200/80 mt-6 flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#14243A]">{s.pricingText}</span>
                   <Link
                     href={s.href}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0F172A] hover:text-blue-600 transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-[#14243A] transition-colors"
                   >
-                    <span>View details</span>
+                    <span>Explore Service</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
@@ -210,7 +228,7 @@ export default function ServicesPage() {
         </div>
 
         {/* Lead Form */}
-        <div id="contact" className="pt-6">
+        <div id="contact" className="pt-4">
           <LeadForm />
         </div>
       </div>

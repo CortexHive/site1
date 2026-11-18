@@ -1,45 +1,55 @@
+import { Metadata } from "next";
 import Hero from "@/components/hero";
-import ServiceDivisions from "@/components/service-divisions";
 import PricingPackages from "@/components/pricing-packages";
-import Portfolio from "@/components/portfolio";
 import HomeAiReceptionistSpotlight from "@/components/home-ai-receptionist-spotlight";
-import Process from "@/components/process";
+import ServiceDivisions from "@/components/service-divisions";
+import Portfolio from "@/components/portfolio";
 import About from "@/components/about";
+import Process from "@/components/process";
 import HomeFaq from "@/components/home-faq";
 import FinalCta from "@/components/final-cta";
 import LeadForm from "@/components/lead-form";
 
+export const metadata: Metadata = {
+  title: "CortexHive — Websites, AI Automation & Custom Software Agency UK",
+  description:
+    "From professional websites starting at £99 to 24/7 AI receptionists, business automation and custom software development, CortexHive helps UK businesses grow.",
+  alternates: {
+    canonical: "https://cortexhive.co.uk",
+  },
+};
+
 export default function Home() {
   return (
     <>
-      {/* 1. Hero Section (Section 5.1 & 5.2): Clean light modern studio aesthetic, interactive showcase & capabilities */}
+      {/* Sections 1 & 2: Hero + Trust & Core Capabilities */}
       <Hero />
 
-      {/* 2. Service Divisions: The 3 Core Practice Areas (Web Platforms, AI & Automation, Software & SaaS) */}
-      <ServiceDivisions />
-
-      {/* 3. Engagement Models: Fixed-Scope Delivery, Applied AI Implementation, Full-Stack Product Engineering */}
+      {/* Section 3: Website Design for Small Businesses (£99 / £349 / £699) */}
       <PricingPackages />
 
-      {/* 4. Proof of Delivery / Our Products (Section 10): AuraPDF, MarkScheme, Rydigo, Skyview, EVTradeShow */}
-      <Portfolio />
-
-      {/* 5. AI Receptionist Voice Spotlight (Light theme) */}
+      {/* Section 4: AI Receptionist */}
       <HomeAiReceptionistSpotlight />
 
-      {/* 6. 4-Stage Process (Section 15): Discover, Plan, Build, Launch */}
-      <Process />
+      {/* Sections 5 & 6: AI Automation + Custom Software & SaaS Development */}
+      <ServiceDivisions />
 
-      {/* 7. Why CortexHive (Section 16): Technology Should Solve Problems. Not Create More. */}
+      {/* Section 7: Our Products & Portfolio (MarkScheme, AuraPDF, Rydigo, Skyview, EV Trade Show) */}
+      <Portfolio />
+
+      {/* Section 8: Why Choose CortexHive */}
       <About />
 
-      {/* 8. Frequently Asked Questions */}
+      {/* Section 9: How It Works (Discover, Plan, Build, Launch) */}
+      <Process />
+
+      {/* Section 10: FAQ */}
       <HomeFaq />
 
-      {/* 9. Final Call to Action (Section 17): Have an Idea? Let's Make It Work. */}
+      {/* Section 11: Final CTA */}
       <FinalCta />
 
-      {/* 10. Contact & Project Scoping Form (Section 12): Fast enquiry + Custom Project */}
+      {/* Consultation & Enquiry Form */}
       <LeadForm />
     </>
   );

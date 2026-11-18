@@ -1,79 +1,101 @@
-"use client";
-
+import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ShieldCheck } from "lucide-react";
 
+export const metadata: Metadata = {
+  title: "Privacy Policy | CortexHive UK",
+  description:
+    "Privacy Policy and UK GDPR data protection information for CortexHive (cortexhive.co.uk).",
+  alternates: {
+    canonical: "https://cortexhive.co.uk/privacy",
+  },
+};
+
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 py-32 px-6">
-      <div className="max-w-3xl mx-auto bg-white border border-slate-200/80 rounded-2xl p-8 sm:p-12 shadow-sm space-y-8">
+    <div className="min-h-screen bg-[#F8FAFD] text-[#475569] pt-28 pb-20 px-4 sm:px-6">
+      <div className="max-w-3xl mx-auto bg-white border border-[#E2E8F0] rounded-2xl p-6 sm:p-10 shadow-subtle space-y-8">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-hive-cyan hover:text-hive-blue text-xs uppercase tracking-wider font-bold mb-2 transition-colors"
+          className="inline-flex items-center gap-2 text-blue-600 hover:text-[#14243A] text-xs uppercase tracking-wider font-bold transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Home</span>
         </Link>
 
-        <div className="space-y-2 border-b border-slate-200 pb-6">
+        <div className="space-y-2 border-b border-[#E2E8F0] pb-6">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>GDPR &amp; UK Data Protection</span>
+            <span>UK GDPR &amp; Data Protection</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-slate-950 font-outfit tracking-tight">Privacy Policy</h1>
-          <p className="text-slate-500 text-xs">Last updated: September 2026</p>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#14243A] tracking-tight">
+            Privacy Policy
+          </h1>
+          <p className="text-[#64748B] text-xs">Last updated: November 2026</p>
         </div>
 
-        <div className="space-y-6 text-sm text-slate-600 leading-relaxed">
+        <div className="space-y-6 text-xs sm:text-sm text-[#475569] leading-relaxed">
           <section className="space-y-2">
-            <h2 className="text-base font-bold text-slate-900 uppercase tracking-wide">1. Business Identity &amp; Data Controller</h2>
+            <h2 className="text-base font-bold text-[#14243A]">1. Business Identity &amp; Data Controller</h2>
             <p>
-              CortexHive operates in the United Kingdom. We act as the data controller for personal information collected through this website (<span className="text-slate-900 font-mono text-xs">cortexhive.co.uk</span>) and our direct client project communications.
+              CortexHive operates in the United Kingdom and acts as the data controller for personal information collected through this website (<span className="text-[#14243A] font-semibold">cortexhive.co.uk</span>) and our direct client communications.
             </p>
             <p>
-              For inquiries regarding personal data or privacy matters, contact: <a href="mailto:info@cortexhive.co.uk" className="text-hive-blue font-semibold hover:underline">info@cortexhive.co.uk</a>.
+              For enquiries regarding personal data or privacy matters, contact:{" "}
+              <a href="mailto:info@cortexhive.co.uk" className="text-blue-600 font-semibold hover:underline">
+                info@cortexhive.co.uk
+              </a>
+              .
             </p>
           </section>
 
           <section className="space-y-2">
-            <h2 className="text-base font-bold text-slate-900 uppercase tracking-wide">2. Information We Collect</h2>
+            <h2 className="text-base font-bold text-[#14243A]">2. Information We Collect</h2>
             <p>
-              We collect details submitted voluntarily through our project inquiry wizard, contact form, or direct email correspondence:
+              We collect details submitted voluntarily through our enquiry forms, AI assistant or direct email/telephone correspondence:
             </p>
-            <ul className="list-disc list-inside space-y-1 pl-2 text-slate-600">
-              <li>Full Name and business email address</li>
-              <li>Company / organization name and website URL</li>
-              <li>Project scope, technical requirements, timeline, and budget parameters</li>
-              <li>Technical usage logs (IP address, browser user-agent) via secure hosting for reliability and abuse prevention</li>
+            <ul className="list-disc list-inside space-y-1 pl-2">
+              <li>Your name, business name, email address and optional telephone number</li>
+              <li>Service required, project description and optional budget range</li>
+              <li>Standard technical server logs (IP address, browser type) strictly for security, reliability and spam prevention</li>
             </ul>
           </section>
 
           <section className="space-y-2">
-            <h2 className="text-base font-bold text-slate-900 uppercase tracking-wide">3. How We Use Information</h2>
-            <p>
-              We use information strictly for:
-            </p>
-            <ul className="list-disc list-inside space-y-1 pl-2 text-slate-600">
-              <li>Assessing project feasibility, scoping technical architecture, and preparing commercial proposals</li>
-              <li>Direct client correspondence regarding project deliverables and milestones</li>
-              <li>Preventing automated spam, security exploits, or API misuse</li>
+            <h2 className="text-base font-bold text-[#14243A]">3. How We Use Information</h2>
+            <p>We use your information strictly to:</p>
+            <ul className="list-disc list-inside space-y-1 pl-2">
+              <li>Respond to your enquiry, prepare project proposals and deliver requested services</li>
+              <li>Communicate with you regarding project milestones and support</li>
+              <li>Maintain security and prevent automated spam or abuse</li>
             </ul>
-            <p className="font-semibold text-slate-800">
-              We never sell, rent, or trade your contact details or project briefs to third-party brokers or advertisers.
+            <p className="font-semibold text-[#14243A]">
+              We never sell, rent or trade your personal contact details to third-party marketing lists.
             </p>
           </section>
 
           <section className="space-y-2">
-            <h2 className="text-base font-bold text-slate-900 uppercase tracking-wide">4. Data Storage &amp; Sub-processors</h2>
+            <h2 className="text-base font-bold text-[#14243A]">4. Data Storage &amp; Sub-Processors</h2>
             <p>
-              We utilize trusted cloud infrastructure to securely process information, including UK/EU-compliant hosting providers, transactional email relays (Resend / Mailjet), and transactional database systems. Data is encrypted in transit using standard TLS.
+              We use reputable cloud hosting, form delivery services (such as Netlify Forms and transactional email providers) and database systems with TLS encryption in transit to process enquiries securely.
             </p>
           </section>
 
           <section className="space-y-2">
-            <h2 className="text-base font-bold text-slate-900 uppercase tracking-wide">5. Your Rights Under UK GDPR</h2>
+            <h2 className="text-base font-bold text-[#14243A]">5. Cookies &amp; Analytics</h2>
             <p>
-              Under UK Data Protection legislation and GDPR, you have the right to request access to, rectification of, or erasure of your personal data held by CortexHive. To exercise these rights, email us at <a href="mailto:info@cortexhive.co.uk" className="text-hive-blue font-semibold hover:underline">info@cortexhive.co.uk</a>.
+              Our website uses essential functional storage to operate interactive forms and layout preferences. We do not use intrusive cross-site advertising trackers.
+            </p>
+          </section>
+
+          <section className="space-y-2">
+            <h2 className="text-base font-bold text-[#14243A]">6. Your Rights Under UK GDPR</h2>
+            <p>
+              Under UK data protection law, you have the right to request access to, correction of, or deletion of your personal data held by CortexHive. To exercise these rights, please email{" "}
+              <a href="mailto:info@cortexhive.co.uk" className="text-blue-600 font-semibold hover:underline">
+                info@cortexhive.co.uk
+              </a>
+              .
             </p>
           </section>
         </div>

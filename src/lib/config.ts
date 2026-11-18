@@ -3,9 +3,9 @@
 
 export const SITE_CONFIG = {
   name: "CortexHive",
-  tagline: "From Business Problem to Working Product.",
+  tagline: "Technology That Moves Your Business Forward.",
   description:
-    "CortexHive is a UK software, AI automation, and digital product engineering studio building production web platforms, autonomous AI workflows, and custom software.",
+    "From professional websites to intelligent AI automation and custom software, CortexHive helps UK businesses simplify operations, attract customers and turn ideas into working digital products.",
   url: "https://cortexhive.co.uk",
   email: "info@cortexhive.co.uk",
 
@@ -19,29 +19,35 @@ export const SITE_CONFIG = {
   whatsappUrl: "https://wa.me/447950501323",
 
   // Location
-  location: "London, United Kingdom",
+  location: "United Kingdom",
   country: "United Kingdom",
 
   // Core Propositions
   propositions: {
-    getOnline: "Bespoke web platforms and high-conversion digital experiences.",
-    neverMissACall: "Autonomous AI voice agents and 24/7 intelligent call triage.",
-    workSmarter: "Production AI workflows, SaaS platforms, and custom software engineering.",
+    getOnline: "Websites built for business growth.",
+    neverMissACall: "AI that works around the clock.",
+    workSmarter: "Software designed around your needs.",
   },
 
   // Pre-filled WhatsApp message generators
   getWhatsAppLink: (context?: string) => {
-    let text = "Hello CortexHive, I would like to discuss a software or digital project.";
-    if (context === "website" || context === "small-business-99" || context === "small-business-50") {
-      text = "Hello CortexHive, I would like to discuss a website or web platform project for my business.";
+    let text = "Hello CortexHive, I would like to discuss a project for my business.";
+    if (context === "starter-99" || context === "small-business-99") {
+      text = "Hello CortexHive, I am interested in the £99 Starter Website package for my business.";
+    } else if (context === "business-349") {
+      text = "Hello CortexHive, I am interested in the £349 Business Website package.";
+    } else if (context === "growth-699") {
+      text = "Hello CortexHive, I am interested in the £699 Growth Website package.";
+    } else if (context === "website") {
+      text = "Hello CortexHive, I would like to discuss a website project for my business.";
     } else if (context === "ai-receptionist") {
-      text = "Hello CortexHive, I would like to enquire about your AI Voice Agent & Receptionist system.";
-    } else if (context === "ai-automation") {
-      text = "Hello CortexHive, I would like to discuss custom AI automation and workflow integration.";
-    } else if (context === "software") {
-      text = "Hello CortexHive, I have a custom software or SaaS application project to scope.";
-    } else if (context === "quote") {
-      text = "Hello CortexHive, I would like to request a technical consultation and project proposal.";
+      text = "Hello CortexHive, I would like to enquire about your AI Receptionist service.";
+    } else if (context === "ai-automation" || context === "ai-agents") {
+      text = "Hello CortexHive, I would like to discuss AI automation for my business.";
+    } else if (context === "software" || context === "saas") {
+      text = "Hello CortexHive, I have a custom software or SaaS project to discuss.";
+    } else if (context === "quote" || context === "consultation") {
+      text = "Hello CortexHive, I would like to request a free consultation.";
     }
     return `https://wa.me/447950501323?text=${encodeURIComponent(text)}`;
   },

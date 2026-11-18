@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import {
   PhoneCall,
   Bot,
@@ -10,265 +11,297 @@ import {
   MessageSquare,
   Zap,
   Layers,
+  AlertCircle,
 } from "lucide-react";
 import AiReceptionistForm from "@/components/ai-receptionist-form";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "AI Receptionist & 24/7 Business Call Answering — UK | CortexHive",
+  title: "AI Receptionist & 24/7 Business Phone Answering UK | CortexHive",
   description:
-    "Never miss another business enquiry. Our conversational AI receptionist answers your business calls, qualifies leads, takes messages, and sends instant summaries to your phone.",
+    "Never miss another business opportunity. Our AI receptionist answers incoming UK business calls 24/7, understands customer enquiries, collects contact details and sends call summaries.",
   keywords: [
     "AI receptionist UK",
-    "AI virtual receptionist",
+    "AI phone answering for small businesses",
     "Automated call answering UK",
     "AI phone answering for trades",
-    "Virtual call assistant for plumbers",
-    "AI phone agent small business",
-    "Twilio ElevenLabs receptionist UK",
+    "Virtual receptionist UK",
   ],
+  alternates: {
+    canonical: "https://cortexhive.co.uk/ai-receptionist",
+  },
+  openGraph: {
+    title: "AI Receptionist & 24/7 Business Phone Answering UK | CortexHive",
+    description:
+      "Your AI receptionist answers incoming calls, collects customer details and helps manage bookings while you work.",
+    url: "https://cortexhive.co.uk/ai-receptionist",
+  },
 };
+
+const PROBLEMS = [
+  {
+    title: "Missing Calls While Working",
+    desc: "When you are on a job site, in a meeting or driving, unanswered calls often result in customers calling the next business on Google.",
+  },
+  {
+    title: "Evening & Weekend Enquiries",
+    desc: "Many customers call outside normal working hours. Voicemail rarely captures leads because most callers hang up without leaving a message.",
+  },
+  {
+    title: "Constant Interruptions",
+    desc: "Stopping work repeatedly to answer routine questions about pricing, service areas or availability slows down your day.",
+  },
+];
 
 const FEATURES = [
   {
-    icon: PhoneCall,
-    title: "AI-Powered Incoming Call Answering",
-    desc: "Answers incoming calls within 2 rings with zero busy signals, handling multiple customer callers simultaneously.",
+    icon: Clock,
+    title: "1. 24/7 AI Call Answering",
+    desc: "Answers incoming calls whenever you are busy, on site or closed for the evening so customers always speak to a polite assistant.",
   },
   {
     icon: Mic,
-    title: "Natural Conversational Voice",
-    desc: "Built with cutting-edge natural neural speech synthesis (ElevenLabs integration-ready), speaking naturally and professionally in clean British English accents.",
-  },
-  {
-    icon: Clock,
-    title: "24/7 Availability Where Configured",
-    desc: "Capture evening, weekend, and holiday emergency calls when you are on a job site, driving, or closed for the day.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Custom Business Greetings & FAQs",
-    desc: "Greets callers with your exact trading name, answers opening hours, service areas, and pricing questions accurately.",
+    title: "2. Natural Voice Conversations",
+    desc: "Speaks naturally and politely in clear British English, greeting callers with your exact business name.",
   },
   {
     icon: ShieldCheck,
-    title: "Lead Qualification & Contact Capture",
-    desc: "Collects the caller's name, telephone number, job location, and specific service requirement before qualifying intent.",
-  },
-  {
-    icon: Zap,
-    title: "Instant SMS & Email Notifications",
-    desc: "Sends full call transcripts, lead summaries, and callback alerts straight to your smartphone via SMS or email immediately after the call finishes.",
-  },
-  {
-    icon: Calendar,
-    title: "Callback Requests & Appointment Scheduling",
-    desc: "Logs preferred callback times or books appointment slots directly into your digital calendar where configured.",
+    title: "3. Customer Information Collection",
+    desc: "Collects the caller's full name, telephone number, postcode and enquiry details accurately.",
   },
   {
     icon: Layers,
-    title: "Seamless Phone System Integration",
-    desc: "Works alongside your existing UK mobile, landline, or VoIP numbers using simple call-forwarding or dedicated virtual lines (Twilio integration-ready).",
+    title: "4. Lead Qualification",
+    desc: "Asks the key questions your business needs — such as job type, location or urgency — to help you prioritise callbacks.",
+  },
+  {
+    icon: Calendar,
+    title: "5. Appointment Booking Where Integrated",
+    desc: "Can log preferred callback times or connect with compatible digital calendars and booking links where configured.",
+  },
+  {
+    icon: Zap,
+    title: "6. Call Summaries",
+    desc: "Prepares a clear written summary of every conversation so you can see who called and what they need at a glance.",
+  },
+  {
+    icon: MessageSquare,
+    title: "7. WhatsApp Notifications Where Configured",
+    desc: "Sends lead notifications and call summaries to your email, SMS or WhatsApp where configured.",
+  },
+  {
+    icon: Bot,
+    title: "8. Business-Specific Conversation Handling",
+    desc: "Trained on your services, coverage areas, opening hours and frequently asked questions.",
   },
 ];
 
 const INDUSTRIES = [
-  { name: "Builders & Contractors", desc: "Never lose a lucrative extension quote while working on scaffold or operating machinery." },
-  { name: "Plumbers & Heating Engineers", desc: "Instantly capture emergency boiler breakdowns and water leaks 24 hours a day." },
-  { name: "Electricians", desc: "Answer customer inquiries and schedule inspection visits while on site." },
-  { name: "Cleaning Companies", desc: "Triage domestic and commercial cleaning quotes and collect customer property sizes." },
-  { name: "Property Maintenance", desc: "Log tenant repair requests and dispatch contractor alerts effortlessly." },
-  { name: "Salons & Aesthetics", desc: "Take appointment requests and treatment queries without interrupting client sessions." },
-  { name: "Consultants & Agencies", desc: "Professional corporate greetings and structured client inquiry intake." },
-  { name: "Local Independent Businesses", desc: "Compete with larger firms by having an articulate voice assistant on duty around the clock." },
+  { name: "Builders & Contractors", desc: "Capture extension, renovation and quote enquiries while working on site." },
+  { name: "Plumbers & Heating Engineers", desc: "Take boiler breakdown and repair enquiries 24 hours a day." },
+  { name: "Electricians", desc: "Log domestic and commercial electrical enquiries without stopping work." },
+  { name: "Window & Commercial Cleaning", desc: "Collect property details, postcodes and cleaning frequency requests automatically." },
+  { name: "Handymen & Property Maintenance", desc: "Record repair details and tenant requests around the clock." },
+  { name: "Salons, Clinics & Aesthetics", desc: "Answer treatment questions and appointment enquiries while with clients." },
+  { name: "Professional Services", desc: "Provide a polite, structured call intake experience for new client enquiries." },
+  { name: "Small & Medium UK Businesses", desc: "Ensure every caller is looked after during peak periods or out of hours." },
 ];
+
+const FAQS = [
+  {
+    q: "Do I need a new phone number to use the AI Receptionist?",
+    a: "No. You can keep your existing UK mobile or landline number and use standard conditional call forwarding when you are busy or unavailable, or we can set up a dedicated UK virtual number.",
+  },
+  {
+    q: "Can the AI receptionist book appointments?",
+    a: "Where integrated with a compatible digital calendar or booking workflow, the AI receptionist can collect preferred appointment times, check availability or send callers your booking link.",
+  },
+  {
+    q: "How are setup and ongoing usage priced?",
+    a: "Each AI receptionist is scoped and quoted based on your business call workflows and required integrations. Third-party calendar integrations, telephony call minutes and ongoing AI service usage costs may be charged separately.",
+  },
+  {
+    q: "Can I combine the AI Receptionist with a new business website?",
+    a: "Yes. Many UK businesses pair our website packages (starting from £99) with an AI Receptionist so both online visitors and phone callers are captured.",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://cortexhive.co.uk" },
+        { "@type": "ListItem", position: 2, name: "AI Receptionist", item: "https://cortexhive.co.uk/ai-receptionist" },
+      ],
+    },
+    {
+      "@type": "Service",
+      name: "AI Receptionist & 24/7 Business Call Answering",
+      provider: { "@id": "https://cortexhive.co.uk/#organization" },
+      areaServed: "United Kingdom",
+      description:
+        "AI-powered phone answering service that answers incoming UK business calls, collects customer details, qualifies leads and sends call summaries.",
+    },
+  ],
+};
 
 export default function AiReceptionistPage() {
   return (
-    <div className="bg-white min-h-screen text-slate-900 pt-28 pb-20">
-      <div className="max-w-6xl mx-auto px-6 space-y-20">
-        {/* Hero Section */}
-        <div className="text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-50 border border-cyan-200 text-xs font-bold text-cyan-800 uppercase tracking-widest shadow-xs">
-            <Bot className="w-4 h-4 text-cyan-600" />
-            <span>AI Voice &amp; Telephony Solutions for UK Business</span>
+    <div className="bg-white min-h-screen text-[#475569] pt-28 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+        {/* Hero */}
+        <div className="text-center max-w-4xl mx-auto space-y-5">
+          <nav aria-label="Breadcrumb" className="flex items-center justify-center gap-2 text-xs text-[#64748B]">
+            <Link href="/" className="hover:text-[#14243A] transition-colors">Home</Link>
+            <span>/</span>
+            <span className="text-[#14243A] font-semibold">AI Receptionist</span>
+          </nav>
+
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F5F8FC] border border-[#E2E8F0] text-xs font-bold text-blue-600 uppercase tracking-wider">
+            <PhoneCall className="w-3.5 h-3.5" />
+            <span>24/7 AI Call Answering UK</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-slate-950 font-outfit tracking-tight leading-[1.08]">
-            Never Miss Another{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-purple-600">
-              Business Enquiry.
-            </span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#14243A] tracking-tight leading-[1.1]">
+            Never Miss Another Business Opportunity.
           </h1>
 
-          <p className="text-lg sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
-            An AI-powered receptionist that answers your business calls, captures leads and helps you stay connected with customers – even when you&apos;re busy.
+          <p className="text-base sm:text-xl text-[#475569] max-w-3xl mx-auto leading-relaxed">
+            Your AI receptionist can answer incoming calls, understand customer enquiries, collect information and help manage bookings, even when you&apos;re busy.
           </p>
 
-          {/* Integration Status Pill */}
-          <div className="pt-2">
-            <div className="inline-flex flex-wrap items-center justify-center gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600 font-medium">
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Twilio Telephony &amp; ElevenLabs Integration-Ready</span>
-              </span>
-              <span className="text-slate-300">•</span>
-              <span>Works with any UK Mobile or Landline Number</span>
-            </div>
-          </div>
-
-          {/* Hero CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 pt-2">
             <a
               href="#demo-form"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-sm shadow-md hover:shadow-xl transition-all"
+              className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-[#14243A] text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors shadow-xs"
             >
-              <span>Request a Demo</span>
+              <span>Request an AI Receptionist Consultation</span>
               <ArrowRight className="w-4 h-4" />
             </a>
-
             <a
               href={SITE_CONFIG.getWhatsAppLink("ai-receptionist")}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 font-bold text-sm transition-all"
+              className="px-7 py-3.5 rounded-xl bg-white hover:bg-[#F5F8FC] border border-slate-300 text-[#14243A] font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
             >
-              <span>Talk to Us on WhatsApp</span>
-            </a>
-
-            <a
-              href={`tel:${SITE_CONFIG.phone}`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full border border-slate-300 hover:border-slate-400 text-slate-800 font-bold text-sm transition-all"
-            >
-              <PhoneCall className="w-4 h-4 text-cyan-600" />
-              <span>Call Us: {SITE_CONFIG.phoneDisplay}</span>
+              <span>Ask on WhatsApp</span>
             </a>
           </div>
         </div>
 
-        {/* Feature Grid */}
-        <div className="space-y-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-cyan-600">
-              Complete Call Architecture
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-outfit mt-1">
-              Engineered For Practical Business Operations
+        {/* Problem Statement */}
+        <section className="bg-[#F8FAFD] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] space-y-8">
+          <div className="max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">The Problem</span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] mt-1">
+              Every Unanswered Call Can Be a Lost Customer
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 font-medium mt-1">
-              Features and availability are configured precisely to your business workflow and operating hours.
-            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {PROBLEMS.map((p) => (
+              <div key={p.title} className="bg-white rounded-2xl p-6 border border-[#E2E8F0] space-y-2">
+                <AlertCircle className="w-5 h-5 text-blue-600" />
+                <h3 className="text-base font-bold text-[#14243A]">{p.title}</h3>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 8 Practical Capabilities */}
+        <section className="space-y-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Practical Capabilities</span>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#14243A] mt-1">
+              What Your AI Receptionist Can Do
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {FEATURES.map((f, i) => {
+            {FEATURES.map((f) => {
               const Icon = f.icon;
               return (
                 <div
-                  key={i}
-                  className="p-6 rounded-3xl bg-slate-50 border border-slate-200 hover:border-cyan-400 hover:shadow-md transition-all flex flex-col justify-between"
+                  key={f.title}
+                  className="p-6 rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0] hover:border-blue-300 transition-all space-y-3"
                 >
-                  <div className="space-y-3">
-                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-cyan-600 flex items-center justify-center shadow-xs">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-base font-bold text-slate-950 font-outfit">
-                      {f.title}
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                      {f.desc}
-                    </p>
+                  <div className="w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] text-blue-600 flex items-center justify-center shadow-2xs">
+                    <Icon className="w-5 h-5" />
                   </div>
+                  <h3 className="text-base font-bold text-[#14243A]">{f.title}</h3>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{f.desc}</p>
                 </div>
               );
             })}
           </div>
-        </div>
 
-        {/* Suitable Industries */}
-        <div className="bg-[#F8FAFD] text-[#14243A] rounded-3xl p-8 sm:p-12 space-y-8 border border-[#E2E8F0]">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">
-              Industry Focus
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-outfit text-[#14243A]">
-              Who Benefits Most from an AI Receptionist?
-            </h2>
-            <p className="text-xs sm:text-sm text-[#64748B]">
-              Every missed call is a missed customer who dials the next competitor on Google. Keep your business responsive 24/7.
-            </p>
+          <div className="p-5 rounded-2xl bg-[#F5F8FC] border border-[#E2E8F0] text-xs sm:text-sm text-[#475569] leading-relaxed">
+            <strong className="text-[#14243A]">Important Information on Integrations &amp; Usage Costs:</strong> AI receptionist setups are tailored to your business workflow. External calendar integrations, telephony call minutes and ongoing AI voice usage costs may be charged separately depending on your configuration and monthly call volume.
           </div>
+        </section>
 
+        {/* Who It Helps */}
+        <section className="bg-[#F8FAFD] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] space-y-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Use Cases</span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] mt-1">
+              Who Benefits From an AI Receptionist?
+            </h2>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {INDUSTRIES.map((ind, i) => (
-              <div
-                key={i}
-                className="p-5 rounded-2xl bg-white border border-[#E2E8F0] space-y-2 shadow-2xs"
-              >
-                <h4 className="text-sm font-bold text-[#14243A] font-outfit flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-blue-600" />
-                  <span>{ind.name}</span>
-                </h4>
-                <p className="text-xs text-[#475569] leading-relaxed">
-                  {ind.desc}
-                </p>
+            {INDUSTRIES.map((ind) => (
+              <div key={ind.name} className="p-5 rounded-2xl bg-white border border-[#E2E8F0] space-y-1.5">
+                <h3 className="text-sm font-bold text-[#14243A]">{ind.name}</h3>
+                <p className="text-xs text-[#475569] leading-relaxed">{ind.desc}</p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* How It Works Step-by-Step */}
-        <div className="space-y-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-cyan-600">
-              Simple 3-Step Setup
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-outfit mt-1">
-              How the AI Receptionist Works
-            </h2>
+        {/* How It Works */}
+        <section className="space-y-8">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] text-center">
+            How Setup Works
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+            {[
+              { step: "1. Discover", desc: "We learn your business services, greeting style, common caller questions and coverage areas." },
+              { step: "2. Plan", desc: "We design your call script, qualification questions and notification preferences." },
+              { step: "3. Build", desc: "We configure your AI voice assistant and test call flows thoroughly." },
+              { step: "4. Launch", desc: "Connect your existing phone line via call forwarding or use a dedicated number." },
+            ].map((s) => (
+              <div key={s.step} className="p-6 rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0] space-y-2">
+                <div className="text-sm font-extrabold text-blue-600">{s.step}</div>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-3xl bg-slate-50 border border-slate-200 space-y-3">
-              <span className="text-2xl font-black text-cyan-600 font-outfit">01</span>
-              <h3 className="text-lg font-bold text-slate-950">Customer Dials Your Line</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Calls to your existing UK business number or dedicated line route instantly to the AI agent whenever you are busy or closed.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-slate-50 border border-slate-200 space-y-3">
-              <span className="text-2xl font-black text-cyan-600 font-outfit">02</span>
-              <h3 className="text-lg font-bold text-slate-950">Natural Voice Conversation</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                The receptionist speaks politely with your business greeting, answers questions, checks postcode availability, and logs the caller&apos;s details.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-slate-50 border border-slate-200 space-y-3">
-              <span className="text-2xl font-black text-cyan-600 font-outfit">03</span>
-              <h3 className="text-lg font-bold text-slate-950">Instant Notification to You</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                You receive a summary text or email within 30 seconds with caller name, number, problem summary, and callback urgency.
-              </p>
-            </div>
+        {/* FAQs */}
+        <section className="max-w-4xl mx-auto space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] text-center">
+            AI Receptionist FAQs
+          </h2>
+          <div className="space-y-3">
+            {FAQS.map((faq) => (
+              <div key={faq.q} className="p-5 rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0]">
+                <h3 className="text-sm sm:text-base font-bold text-[#14243A] mb-1.5">{faq.q}</h3>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{faq.a}</p>
+              </div>
+            ))}
           </div>
-        </div>
+        </section>
 
-        {/* Demo Request Form Section */}
-        <div id="demo-form" className="pt-6">
-          <div className="text-center max-w-xl mx-auto mb-8">
-            <span className="text-xs font-bold uppercase tracking-wider text-cyan-600">
-              Interactive Scoping
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-950 font-outfit mt-1">
-              Configure Your AI Receptionist
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 font-medium mt-1">
-              Tell us your business type and call needs. We will configure a live voice preview for your company.
-            </p>
-          </div>
-
+        {/* Enquiry Form */}
+        <div id="demo-form" className="pt-4">
           <AiReceptionistForm />
         </div>
       </div>
