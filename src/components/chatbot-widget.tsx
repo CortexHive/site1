@@ -5,6 +5,7 @@ import { MessageSquare, X, Send, Bot, RefreshCw } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { SITE_CONFIG } from "@/lib/config";
+import { openConsultationModal } from "./consultation-modal";
 
 interface Message {
   id: string;
@@ -259,8 +260,15 @@ export default function ChatbotWidget() {
                   <button
                     type="button"
                     key={i}
-                    onClick={() => handleSend(preset)}
-                    className="text-[11px] text-slate-700 hover:text-blue-600 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 rounded-lg px-2.5 py-1 transition-colors font-medium"
+                    onClick={() => {
+                      if (preset === "Get a free consultation") {
+                        setIsOpen(false);
+                        openConsultationModal();
+                      } else {
+                        handleSend(preset);
+                      }
+                    }}
+                    className="text-[11px] text-slate-700 hover:text-blue-600 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 rounded-lg px-2.5 py-1 transition-colors font-medium cursor-pointer"
                   >
                     {preset}
                   </button>

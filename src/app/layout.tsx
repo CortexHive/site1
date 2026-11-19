@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import ChatbotWidget from "@/components/chatbot-widget";
 import ScrollToTop from "@/components/scroll-to-top";
 import FloatingWhatsApp from "@/components/floating-whatsapp";
+import ConsultationModal from "@/components/consultation-modal";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -202,6 +203,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
+        <ConsultationModal />
         <ChatbotWidget />
         <FloatingWhatsApp />
         <ScrollToTop />

@@ -11,6 +11,7 @@ import {
   Building2,
   Cpu,
 } from "lucide-react";
+import { openConsultationModal } from "./consultation-modal";
 
 type ServiceCategory = "websites" | "ai" | "software";
 
@@ -126,8 +127,8 @@ export default function Hero() {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-1">
                 <button
                   type="button"
-                  onClick={() => scrollTo("#contact")}
-                  className="px-6 py-3.5 rounded-lg bg-[#14243A] hover:bg-blue-600 text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2.5 transition-colors"
+                  onClick={() => openConsultationModal()}
+                  className="px-6 py-3.5 rounded-lg bg-[#14243A] hover:bg-blue-600 text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2.5 transition-colors cursor-pointer"
                 >
                   <span>Get a Free Consultation</span>
                   <ArrowRight className="w-4 h-4" />

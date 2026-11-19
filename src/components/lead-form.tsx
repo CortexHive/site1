@@ -10,9 +10,11 @@ import {
   Mail,
   Phone,
   MessageSquare,
+  Calendar,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { SITE_CONFIG } from "@/lib/config";
+import ConsultationBookingCard from "./consultation-booking-card";
 
 export type ProjectEnquiryData = {
   name: string;
@@ -60,6 +62,7 @@ export const BUDGET_OPTIONS = [
 ];
 
 export default function LeadForm({ defaultService }: { defaultService?: string }) {
+  const [activeTab, setActiveTab] = useState<"consultation" | "brief">("consultation");
   const [formData, setFormData] = useState<ProjectEnquiryData>({
     ...INITIAL_DATA,
     serviceRequired: defaultService || INITIAL_DATA.serviceRequired,
@@ -77,6 +80,7 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
           serviceRequired: customEvent.detail.serviceRequired || prev.serviceRequired,
           budget: customEvent.detail.budget || prev.budget,
         }));
+        setActiveTab("brief");
         setError(null);
       }
     };
@@ -240,7 +244,42 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
 
         {/* Form Card */}
         <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-[#E2E8F0] shadow-subtle max-w-3xl mx-auto">
-          {isSubmitted ? (
+          {/* Tab Selector */}
+          <div className="flex items-center justify-center mb-6 sm:mb-8">
+            <div className="inline-flex p-1 rounded-xl bg-slate-100 border border-slate-200 w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() => setActiveTab("consultation")}
+                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold transition-all ${
+                  activeTab === "consultation"
+                    ? "bg-white text-[#14243A] shadow-xs"
+                    : "text-slate-600 hover:text-[#14243A]"
+                }`}
+              >
+                <Calendar className="w-3.5 h-3.5 text-blue-600" />
+                <span>Book Free Consultation</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab("brief")}
+                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold transition-all ${
+                  activeTab === "brief"
+                    ? "bg-white text-[#14243A] shadow-xs"
+                    : "text-slate-600 hover:text-[#14243A]"
+                }`}
+              >
+                <Mail className="w-3.5 h-3.5 text-blue-600" />
+                <span>Send Written Enquiry</span>
+              </button>
+            </div>
+          </div>
+
+          {activeTab === "consultation" ? (
+            <ConsultationBookingCard
+              defaultService={defaultService || formData.serviceRequired}
+              embedded
+            />
+          ) : isSubmitted ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}

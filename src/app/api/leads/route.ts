@@ -135,15 +135,21 @@ export async function POST(req: Request) {
       callVolume,
       currentPhoneSystem,
       aiFeatures,
+      consultationDate,
+      consultationTime,
+      service,
       source = "form",
     } = body;
 
     const leadName = name || contactPerson;
     const leadCompany = company || businessName || "";
-    const leadService = projectType || serviceRequired || "General Enquiry";
-    const leadBrief = brief || requirements || notes || "No additional brief provided";
-    const leadBudget = budget || "Standard / Disclosed in Discovery";
-    const leadTimeline = timeline || "Standard";
+    const leadService = service || projectType || serviceRequired || "Free Consultation";
+    const baseBrief = brief || requirements || notes || "Free consultation request";
+    const leadBrief = consultationDate && consultationTime
+      ? `[Consultation Requested: ${consultationDate} at ${consultationTime}]\n${baseBrief}`
+      : baseBrief;
+    const leadBudget = budget || (consultationDate ? "Free Consultation (15-min)" : "Standard / Disclosed in Discovery");
+    const leadTimeline = timeline || (consultationDate ? `${consultationDate} (${consultationTime || "TBD"})` : "Standard");
 
     // Server-side validation
     if (!leadName || !email) {

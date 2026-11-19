@@ -3,17 +3,9 @@
 import Link from "next/link";
 import { ArrowRight, MessageSquare, Phone } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
+import { openConsultationModal } from "./consultation-modal";
 
 export default function FinalCta() {
-  const scrollToContact = () => {
-    const el = document.querySelector("#contact");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.location.href = "/contact";
-    }
-  };
-
   return (
     <section className="py-16 sm:py-24 bg-white border-b border-[#E2E8F0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,8 +25,8 @@ export default function FinalCta() {
           <div className="lg:col-span-5 flex flex-col gap-3">
             <button
               type="button"
-              onClick={scrollToContact}
-              className="w-full px-6 py-4 rounded-lg bg-[#14243A] hover:bg-blue-600 text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-between transition-colors"
+              onClick={() => openConsultationModal()}
+              className="w-full px-6 py-4 rounded-lg bg-[#14243A] hover:bg-blue-600 text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-between transition-colors cursor-pointer"
             >
               <span>Request a Free Consultation</span>
               <ArrowRight className="w-4 h-4" />

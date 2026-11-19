@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/config";
+import { openConsultationModal } from "./consultation-modal";
 
 interface NavDropdownItem {
   name: string;
@@ -424,13 +425,14 @@ export default function Header() {
 
         {/* Right: Primary Consultation CTA */}
         <div className="hidden lg:flex items-center gap-2.5 flex-shrink-0">
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-[#14243A] text-white transition-colors shadow-2xs"
+          <button
+            type="button"
+            onClick={() => openConsultationModal()}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-[#14243A] text-white transition-colors shadow-2xs cursor-pointer"
           >
             <span>Get a Free Consultation</span>
             <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -602,13 +604,17 @@ export default function Header() {
 
               {/* Mobile Action Buttons */}
               <div className="pt-4 border-t border-slate-200 grid grid-cols-1 gap-2.5">
-                <Link
-                  href="/contact"
-                  className="w-full py-3.5 px-4 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-xs"
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsOpen(false);
+                    openConsultationModal();
+                  }}
+                  className="w-full py-3.5 px-4 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-xs cursor-pointer"
                 >
                   <span>Get a Free Consultation</span>
                   <ArrowRight className="w-4 h-4" />
-                </Link>
+                </button>
                 <a
                   href={SITE_CONFIG.getWhatsAppLink("consultation")}
                   target="_blank"
