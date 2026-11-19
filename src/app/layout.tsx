@@ -147,7 +147,7 @@ const jsonLd = {
               "@type": "Service",
               name: "Growth Website Package",
               description:
-                "Up to 10 custom-designed pages including dedicated service pages, case studies layout and enhanced SEO.",
+                "Up to 8 pages with advanced custom design, responsive layout, one agreed advanced feature or integration, basic on-page SEO and deployment assistance.",
             },
           },
           {

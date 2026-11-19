@@ -122,6 +122,13 @@ export default function Header() {
       icon: Layers,
     },
     {
+      name: "White-Label Software Solutions",
+      href: "/white-label-software",
+      desc: "Rebrandable digital platforms, browser-based tools and document solutions",
+      tag: "White-Label",
+      icon: Code2,
+    },
+    {
       name: "Our Products & Portfolio",
       href: "/our-products",
       desc: "Explore MarkScheme, AuraPDF, Rydigo, Skyview and EV Trade Show",

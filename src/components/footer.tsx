@@ -134,6 +134,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/white-label-software" className="hover:text-blue-600 transition-colors">
+                  White-Label Software Solutions
+                </Link>
+              </li>
+              <li>
                 <Link href="/our-products" className="hover:text-blue-600 transition-colors">
                   Our Products &amp; Portfolio
                 </Link>

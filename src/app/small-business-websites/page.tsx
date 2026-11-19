@@ -57,7 +57,7 @@ const FAQS = [
   },
   {
     q: "What if I need more than 1 page?",
-    a: "You can choose our Business Website package (£349 for up to 5 pages) or Growth Website package (£699 for up to 10 pages), or request a custom quotation for specific requirements.",
+    a: "You can choose our Business Website package (£349 for up to 5 pages) or Growth Website package (£699 for up to 8 pages), or request a custom quotation for specific requirements.",
   },
   {
     q: "Can I add an AI Receptionist to answer my calls while I'm working?",

@@ -5,20 +5,86 @@ import Link from "next/link";
 import {
   ArrowRight,
   Globe,
-  Bot,
-  Layers,
-  Code2,
   PhoneCall,
-  CheckCircle2,
-  ExternalLink,
-  Workflow,
-  Sparkles,
+  Layers,
+  Check,
+  Building2,
+  Cpu,
 } from "lucide-react";
 
-type ShowcaseTab = "websites" | "ai" | "software";
+type ServiceCategory = "websites" | "ai" | "software";
+
+const SERVICE_SELECTOR_CONTENT: Record<
+  ServiceCategory,
+  {
+    index: string;
+    label: string;
+    eyebrow: string;
+    title: string;
+    description: string;
+    highlights: string[];
+    metaLabel: string;
+    metaValue: string;
+    href: string;
+    linkLabel: string;
+  }
+> = {
+  websites: {
+    index: "01",
+    label: "Websites",
+    eyebrow: "Website Development",
+    title: "Modern websites designed to win local & commercial enquiries.",
+    description:
+      "Fast, mobile-optimised websites built for UK small businesses, tradespeople and established companies — with clear enquiry pathways and on-page SEO.",
+    highlights: [
+      "Starter (1-page) from £99, Business (up to 5 pages) from £349",
+      "Growth (up to 8 pages) from £699 & custom web builds",
+      "Mobile-first layouts, enquiry forms & WhatsApp integration",
+    ],
+    metaLabel: "Starting Packages",
+    metaValue: "£99 / £349 / £699",
+    href: "/website-design",
+    linkLabel: "Explore Website Packages",
+  },
+  ai: {
+    index: "02",
+    label: "AI & Voice",
+    eyebrow: "AI Systems & Automation",
+    title: "AI receptionists and workflow automation that work around the clock.",
+    description:
+      "Answer incoming calls outside working hours, qualify leads, automate repetitive administration and connect your everyday business tools.",
+    highlights: [
+      "AI receptionists that answer calls & capture customer details",
+      "Automated enquiry handling, follow-ups & document workflows",
+      "Custom AI agents tailored to your services and business rules",
+    ],
+    metaLabel: "Engagement",
+    metaValue: "Tailored Setup & Scope",
+    href: "/ai-receptionist",
+    linkLabel: "Explore AI Receptionist",
+  },
+  software: {
+    index: "03",
+    label: "Software & SaaS",
+    eyebrow: "Custom Product Engineering",
+    title: "Bespoke web applications, portals and SaaS platforms built to last.",
+    description:
+      "Turn operational requirements or new product ideas into maintainable, full-stack software — backed by our experience building MarkScheme, AuraPDF and Rydigo.",
+    highlights: [
+      "Custom SaaS platforms, MVPs & subscription billing",
+      "Customer portals, management dashboards & API integrations",
+      "White-label & browser-based digital tools",
+    ],
+    metaLabel: "Delivery",
+    metaValue: "Individually Scoped",
+    href: "/software-development",
+    linkLabel: "Explore Software Development",
+  },
+};
 
 export default function Hero() {
-  const [activeTab, setActiveTab] = useState<ShowcaseTab>("websites");
+  const [activeCategory, setActiveCategory] = useState<ServiceCategory>("websites");
+  const current = SERVICE_SELECTOR_CONTENT[activeCategory];
 
   const scrollTo = (selector: string) => {
     const el = document.querySelector(selector);
@@ -30,27 +96,28 @@ export default function Hero() {
   return (
     <>
       {/* SECTION 1 — HERO */}
-      <section className="relative bg-white pt-28 sm:pt-36 pb-16 sm:pb-24 border-b border-slate-200 overflow-hidden">
-        {/* Subtle dot grid background */}
-        <div className="absolute inset-0 bg-[radial-gradient(#E2E8F0_1px,transparent_1px)] [background-size:28px_28px] opacity-45 pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-            {/* Left 7 Columns: Core Messaging & CTAs */}
-            <div className="lg:col-span-7 space-y-6 sm:space-y-7">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F5F8FC] border border-[#E2E8F0]">
-                <span className="w-2 h-2 rounded-full bg-blue-600" />
-                <span className="text-xs font-semibold text-[#14243A] tracking-wide">
-                  UK Digital Technology, AI Automation &amp; Software Agency
+      <section className="relative bg-white pt-28 sm:pt-36 pb-16 sm:pb-24 border-b border-[#E2E8F0]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-start">
+            {/* Left 7 Columns: Editorial Headline & Primary Actions */}
+            <div className="lg:col-span-7 space-y-6 sm:space-y-8 pt-1">
+              {/* Understated Studio Badge */}
+              <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-md bg-[#F8FAFD] border border-[#E2E8F0]">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#14243A]">
+                  UK-Based Digital Solutions Studio
                 </span>
               </div>
 
-              <div className="space-y-4">
-                <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-extrabold text-[#14243A] tracking-[-0.03em] leading-[1.08]">
-                  Technology That Moves Your{" "}
-                  <span className="text-blue-600">Business Forward.</span>
+              {/* Commanding Headline */}
+              <div className="space-y-5">
+                <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-[#14243A] tracking-[-0.03em] leading-[1.06]">
+                  Technology That Moves{" "}
+                  <span className="block sm:inline text-blue-600">
+                    Your Business Forward.
+                  </span>
                 </h1>
-                <p className="text-base sm:text-lg lg:text-xl text-[#475569] leading-relaxed max-w-2xl font-normal">
+                <p className="text-base sm:text-lg lg:text-[19px] text-[#475569] leading-[1.65] max-w-2xl font-normal">
                   From professional websites to intelligent AI automation and custom software, CortexHive helps businesses simplify operations, attract customers and turn ideas into working digital products.
                 </p>
               </div>
@@ -60,7 +127,7 @@ export default function Hero() {
                 <button
                   type="button"
                   onClick={() => scrollTo("#contact")}
-                  className="px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-[#14243A] text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2.5 transition-colors shadow-sm"
+                  className="px-6 py-3.5 rounded-lg bg-[#14243A] hover:bg-blue-600 text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2.5 transition-colors"
                 >
                   <span>Get a Free Consultation</span>
                   <ArrowRight className="w-4 h-4" />
@@ -68,252 +135,130 @@ export default function Hero() {
 
                 <button
                   type="button"
-                  onClick={() => scrollTo("#capabilities")}
-                  className="px-6 py-3.5 rounded-xl bg-white hover:bg-[#F5F8FC] text-[#14243A] border border-slate-300 font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
+                  onClick={() => scrollTo("#services")}
+                  className="px-6 py-3.5 rounded-lg bg-white hover:bg-[#F8FAFD] text-[#14243A] border border-slate-300 font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
                 >
                   <span>Explore Our Services</span>
                 </button>
               </div>
 
-              {/* Three Short Supporting Statements */}
-              <div className="pt-5 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5 max-w-2xl">
-                <div className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-xs sm:text-sm font-semibold text-[#14243A] leading-snug">
-                    Websites built for business growth.
+              {/* Subtle 3-Column Capability Summary */}
+              <div className="pt-6 border-t border-[#E2E8F0] grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-2xl">
+                <div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-blue-600 block mb-1">
+                    01 / Websites
                   </span>
+                  <p className="text-xs sm:text-sm font-semibold text-[#14243A] leading-snug">
+                    Built for enquiries and clear business credibility.
+                  </p>
                 </div>
-
-                <div className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-xs sm:text-sm font-semibold text-[#14243A] leading-snug">
-                    AI that works around the clock.
+                <div className="sm:border-l sm:border-[#E2E8F0] sm:pl-5">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-blue-600 block mb-1">
+                    02 / AI &amp; Voice
                   </span>
+                  <p className="text-xs sm:text-sm font-semibold text-[#14243A] leading-snug">
+                    Call answering and practical workflow automation.
+                  </p>
                 </div>
-
-                <div className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-xs sm:text-sm font-semibold text-[#14243A] leading-snug">
-                    Software designed around your needs.
+                <div className="sm:border-l sm:border-[#E2E8F0] sm:pl-5">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-blue-600 block mb-1">
+                    03 / Software
                   </span>
+                  <p className="text-xs sm:text-sm font-semibold text-[#14243A] leading-snug">
+                    Custom applications, portals and SaaS platforms.
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Right 5 Columns: Interactive Solution Showcase Visual */}
+            {/* Right 5 Columns: Bespoke Agency Service Selector (Non-Dashboard Editorial Style) */}
             <div className="lg:col-span-5 w-full">
-              <div className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFD] shadow-[0_14px_40px_-14px_rgba(20,36,58,0.08)] overflow-hidden">
-                {/* Panel Header */}
-                <div className="px-5 py-3.5 bg-white border-b border-[#E2E8F0] flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-blue-600" />
-                    <span className="text-xs font-bold text-[#14243A]">
-                      CortexHive Digital Solutions
+              <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFD] overflow-hidden">
+                {/* Editorial Selector Tabs */}
+                <div
+                  role="tablist"
+                  aria-label="CortexHive Service Categories"
+                  className="grid grid-cols-3 bg-white border-b border-[#E2E8F0]"
+                >
+                  {(["websites", "ai", "software"] as ServiceCategory[]).map((key) => {
+                    const item = SERVICE_SELECTOR_CONTENT[key];
+                    const isActive = activeCategory === key;
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        role="tab"
+                        aria-selected={isActive}
+                        onClick={() => setActiveCategory(key)}
+                        className={`py-4 px-3 text-left transition-colors relative border-r last:border-r-0 border-[#E2E8F0] ${
+                          isActive
+                            ? "bg-[#F8FAFD] text-[#14243A]"
+                            : "bg-white text-[#64748B] hover:text-[#14243A] hover:bg-slate-50/70"
+                        }`}
+                      >
+                        <span
+                          className={`block text-[10px] font-semibold tracking-wider mb-0.5 ${
+                            isActive ? "text-blue-600" : "text-slate-400"
+                          }`}
+                        >
+                          {item.index}
+                        </span>
+                        <span className="block text-xs font-bold tracking-tight">
+                          {item.label}
+                        </span>
+                        {isActive && (
+                          <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600" />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Selected Capability Editorial Content */}
+                <div className="p-6 sm:p-7 space-y-6">
+                  <div className="space-y-2.5">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-600 block">
+                      {current.eyebrow}
                     </span>
+                    <h2 className="text-lg sm:text-xl font-bold text-[#14243A] leading-snug tracking-tight">
+                      {current.title}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
+                      {current.description}
+                    </p>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    UK Agency
-                  </span>
-                </div>
 
-                {/* 3-Tab Switcher */}
-                <div className="grid grid-cols-3 border-b border-[#E2E8F0] bg-slate-100/80 p-1 gap-1">
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab("websites")}
-                    className={`py-2 px-2 rounded-lg text-[11px] sm:text-xs font-semibold transition-all text-center ${
-                      activeTab === "websites"
-                        ? "bg-white text-[#14243A] shadow-2xs border border-slate-200/80"
-                        : "text-slate-600 hover:text-[#14243A]"
-                    }`}
-                  >
-                    Websites
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab("ai")}
-                    className={`py-2 px-2 rounded-lg text-[11px] sm:text-xs font-semibold transition-all text-center ${
-                      activeTab === "ai"
-                        ? "bg-white text-[#14243A] shadow-2xs border border-slate-200/80"
-                        : "text-slate-600 hover:text-[#14243A]"
-                    }`}
-                  >
-                    AI &amp; Voice
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab("software")}
-                    className={`py-2 px-2 rounded-lg text-[11px] sm:text-xs font-semibold transition-all text-center ${
-                      activeTab === "software"
-                        ? "bg-white text-[#14243A] shadow-2xs border border-slate-200/80"
-                        : "text-slate-600 hover:text-[#14243A]"
-                    }`}
-                  >
-                    Software &amp; SaaS
-                  </button>
-                </div>
+                  {/* Clean Highlights List */}
+                  <ul className="space-y-2.5 pt-1 border-t border-[#E2E8F0]">
+                    {current.highlights.map((point) => (
+                      <li
+                        key={point}
+                        className="flex items-start gap-2.5 text-xs sm:text-sm text-[#14243A] pt-2 first:pt-3"
+                      >
+                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                {/* Tab Content */}
-                <div className="p-5 space-y-4">
-                  {activeTab === "websites" && (
-                    <div className="space-y-3.5">
-                      <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] space-y-2">
-                        <div className="flex items-center justify-between">
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600">
-                            Small Business &amp; Commercial Websites
-                          </span>
-                          <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                            From £99
-                          </span>
-                        </div>
-                        <h2 className="text-sm font-bold text-[#14243A]">
-                          Designed to Turn Visitors Into Customer Enquiries
-                        </h2>
-                        <p className="text-xs text-[#475569] leading-relaxed">
-                          Mobile-friendly websites for tradespeople, local service providers, startups and growing UK companies — complete with enquiry forms, WhatsApp chat and on-page SEO.
-                        </p>
-                      </div>
-
-                      <div className="grid grid-cols-3 gap-2">
-                        <Link
-                          href="/pricing#starter"
-                          className="p-3 rounded-xl bg-white border border-[#E2E8F0] hover:border-blue-300 transition-colors text-center"
-                        >
-                          <div className="text-[10px] font-semibold text-slate-500 uppercase">Starter</div>
-                          <div className="text-sm font-extrabold text-[#14243A] mt-0.5">£99</div>
-                          <div className="text-[10px] text-slate-500">1 Page</div>
-                        </Link>
-                        <Link
-                          href="/pricing#business"
-                          className="p-3 rounded-xl bg-blue-50/60 border border-blue-200 hover:border-blue-400 transition-colors text-center"
-                        >
-                          <div className="text-[10px] font-bold text-blue-700 uppercase">Business</div>
-                          <div className="text-sm font-extrabold text-[#14243A] mt-0.5">£349</div>
-                          <div className="text-[10px] text-blue-700">Up to 5 Pages</div>
-                        </Link>
-                        <Link
-                          href="/pricing#growth"
-                          className="p-3 rounded-xl bg-white border border-[#E2E8F0] hover:border-blue-300 transition-colors text-center"
-                        >
-                          <div className="text-[10px] font-semibold text-slate-500 uppercase">Growth</div>
-                          <div className="text-sm font-extrabold text-[#14243A] mt-0.5">£699</div>
-                          <div className="text-[10px] text-slate-500">Up to 10 Pages</div>
-                        </Link>
-                      </div>
+                  {/* Footer Meta & Link */}
+                  <div className="pt-5 border-t border-[#E2E8F0] flex items-center justify-between gap-4">
+                    <div>
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#64748B] block">
+                        {current.metaLabel}
+                      </span>
+                      <span className="text-xs sm:text-sm font-bold text-[#14243A]">
+                        {current.metaValue}
+                      </span>
                     </div>
-                  )}
 
-                  {activeTab === "ai" && (
-                    <div className="space-y-3">
-                      <div className="bg-white p-4 rounded-xl border border-[#E2E8F0]">
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 flex items-center gap-1.5">
-                            <PhoneCall className="w-3.5 h-3.5" />
-                            24/7 AI Receptionist
-                          </span>
-                          <span className="text-[10px] font-semibold text-slate-500">UK Phone Lines</span>
-                        </div>
-                        <h3 className="text-sm font-bold text-[#14243A]">
-                          Answers Calls &amp; Captures Leads While You Work
-                        </h3>
-                        <p className="text-xs text-[#475569] mt-1 leading-relaxed">
-                          Handles incoming customer calls politely, collects contact details and job information, and sends instant call summaries to your phone.
-                        </p>
-                      </div>
-
-                      <div className="bg-white p-4 rounded-xl border border-[#E2E8F0]">
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 flex items-center gap-1.5">
-                            <Workflow className="w-3.5 h-3.5" />
-                            Business Workflow Automation
-                          </span>
-                          <span className="text-[10px] font-semibold text-slate-500">Custom Scoped</span>
-                        </div>
-                        <h3 className="text-sm font-bold text-[#14243A]">
-                          Eliminate Repetitive Admin Tasks
-                        </h3>
-                        <p className="text-xs text-[#475569] mt-1 leading-relaxed">
-                          Automate enquiry follow-ups, document generation, invoice data extraction and app integrations across your business.
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {activeTab === "software" && (
-                    <div className="space-y-2.5">
-                      <div className="text-xs font-semibold text-[#14243A] px-1">
-                        Verified Products &amp; Platforms Built by CortexHive:
-                      </div>
-                      {[
-                        {
-                          name: "MarkScheme",
-                          badge: "Owned Product",
-                          desc: "11+ exam platform with 250+ practice & mock papers.",
-                          url: "https://www.markscheme.co.uk/",
-                        },
-                        {
-                          name: "AuraPDF",
-                          badge: "Owned Product",
-                          desc: "Privacy-first PDF & document software utility.",
-                        },
-                        {
-                          name: "Rydigo",
-                          badge: "Owned Product",
-                          desc: "Digital community & tools platform for private hire drivers.",
-                        },
-                        {
-                          name: "Skyview",
-                          badge: "Client Project",
-                          desc: "Course discovery & consultation platform for Skyview.",
-                          url: "https://skyview.org.uk/",
-                        },
-                      ].map((prod) => (
-                        <div
-                          key={prod.name}
-                          className="p-3 rounded-xl bg-white border border-[#E2E8F0] flex items-start justify-between gap-2"
-                        >
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <span className="text-xs font-bold text-[#14243A]">{prod.name}</span>
-                              <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700">
-                                {prod.badge}
-                              </span>
-                            </div>
-                            <p className="text-[11px] text-[#475569] mt-0.5">{prod.desc}</p>
-                          </div>
-                          {prod.url && (
-                            <a
-                              href={prod.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-slate-400 hover:text-blue-600 p-1"
-                              title={`Visit ${prod.name}`}
-                            >
-                              <ExternalLink className="w-3.5 h-3.5" />
-                            </a>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Showcase Footer */}
-                  <div className="pt-2 border-t border-[#E2E8F0] flex items-center justify-between text-xs">
                     <Link
-                      href="/our-products"
-                      className="font-semibold text-slate-600 hover:text-[#14243A] transition-colors"
+                      href={current.href}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-[#14243A] transition-colors"
                     >
-                      View Portfolio &rarr;
-                    </Link>
-                    <button
-                      type="button"
-                      onClick={() => scrollTo("#contact")}
-                      className="font-semibold text-blue-600 hover:text-[#14243A] inline-flex items-center gap-1 transition-colors"
-                    >
-                      <span>Request a Free Quote</span>
+                      <span>{current.linkLabel}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -322,105 +267,123 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* SECTION 2 — TRUST AND CAPABILITIES */}
-      <section id="capabilities" className="py-14 sm:py-20 bg-[#F5F8FC] border-b border-[#E2E8F0]">
+      {/* SECTION 2 — TWO DISTINCT CUSTOMER PATHWAYS */}
+      <section id="pathways" className="py-16 sm:py-24 bg-[#F5F8FC] border-b border-[#E2E8F0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-600 block mb-2">
-              Core Capabilities
+          <div className="max-w-2xl mb-10 sm:mb-12">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-blue-600 block mb-2">
+              How We Help
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#14243A] tracking-tight">
-              Practical Digital Solutions Under One Roof
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#14243A] tracking-tight leading-[1.12]">
+              Two Focused Pathways for UK Businesses.
             </h2>
-            <p className="text-xs sm:text-base text-[#475569] mt-2 leading-relaxed">
-              Whether you are a local business looking to win more enquiries or an organisation building custom software, we deliver solutions tailored to your goals.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-            <Link
-              href="/website-design"
-              className="group bg-white rounded-2xl p-6 border border-[#E2E8F0] hover:border-blue-300 shadow-subtle hover:shadow-hover transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                  <Globe className="w-5 h-5" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+            {/* Pathway A — Small Businesses */}
+            <div className="bg-white rounded-2xl border border-[#E2E8F0] p-7 sm:p-9 flex flex-col justify-between shadow-subtle">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-600">
+                    Pathway 01 — Small Businesses &amp; Trades
+                  </span>
+                  <div className="w-9 h-9 rounded-lg bg-[#F5F8FC] border border-[#E2E8F0] text-[#14243A] flex items-center justify-center">
+                    <Building2 className="w-4 h-4 text-blue-600" />
+                  </div>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-[#14243A] group-hover:text-blue-600 transition-colors">
-                  Website Development
-                </h3>
-                <p className="text-xs sm:text-sm text-[#475569] mt-2 leading-relaxed">
-                  Fast, mobile-friendly websites for small businesses, tradespeople and established companies designed to generate customer enquiries.
-                </p>
-              </div>
-              <div className="mt-5 pt-3 border-t border-slate-100 inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600">
-                <span>Explore Websites</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </div>
-            </Link>
 
-            <Link
-              href="/ai-automation"
-              className="group bg-white rounded-2xl p-6 border border-[#E2E8F0] hover:border-blue-300 shadow-subtle hover:shadow-hover transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                  <Bot className="w-5 h-5" />
+                <div className="space-y-3">
+                  <h3 className="text-2xl sm:text-[26px] font-extrabold text-[#14243A] tracking-tight leading-snug">
+                    Helping UK Businesses Get Online, Win Customers and Work Smarter.
+                  </h3>
+                  <p className="text-sm text-[#475569] leading-relaxed">
+                    Professional business websites and intelligent AI receptionists designed to help you capture more enquiries and simplify everyday operations.
+                  </p>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-[#14243A] group-hover:text-blue-600 transition-colors">
-                  AI Automation
-                </h3>
-                <p className="text-xs sm:text-sm text-[#475569] mt-2 leading-relaxed">
-                  24/7 AI phone answering, automated enquiry handling, document processing and connected workflows that save hours of manual admin.
-                </p>
-              </div>
-              <div className="mt-5 pt-3 border-t border-slate-100 inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600">
-                <span>Explore AI Solutions</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </div>
-            </Link>
 
-            <Link
-              href="/software-development"
-              className="group bg-white rounded-2xl p-6 border border-[#E2E8F0] hover:border-blue-300 shadow-subtle hover:shadow-hover transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                  <Code2 className="w-5 h-5" />
+                {/* Clean Sector Matrix */}
+                <div className="p-4 rounded-xl bg-[#F8FAFD] border border-[#E2E8F0] space-y-2.5">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B] block">
+                    Built for Practical Businesses
+                  </span>
+                  <div className="grid grid-cols-2 gap-y-1.5 gap-x-3 text-xs font-medium text-[#14243A]">
+                    <span className="flex items-center gap-2"><Globe className="w-3.5 h-3.5 text-blue-600" /> Builders &amp; Trades</span>
+                    <span className="flex items-center gap-2"><PhoneCall className="w-3.5 h-3.5 text-blue-600" /> Plumbers &amp; Electricians</span>
+                    <span className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Window &amp; Commercial Cleaners</span>
+                    <span className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Local Service Providers</span>
+                  </div>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-[#14243A] group-hover:text-blue-600 transition-colors">
-                  Custom Software
-                </h3>
-                <p className="text-xs sm:text-sm text-[#475569] mt-2 leading-relaxed">
-                  Bespoke web applications, customer portals, management dashboards and internal systems built around your exact business workflow.
-                </p>
               </div>
-              <div className="mt-5 pt-3 border-t border-slate-100 inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600">
-                <span>Explore Custom Software</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </div>
-            </Link>
 
-            <Link
-              href="/saas-development"
-              className="group bg-white rounded-2xl p-6 border border-[#E2E8F0] hover:border-blue-300 shadow-subtle hover:shadow-hover transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                  <Layers className="w-5 h-5" />
+              <div className="pt-6 mt-6 border-t border-slate-100 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <Link
+                  href="/pricing"
+                  className="px-5 py-3 rounded-lg bg-blue-600 hover:bg-[#14243A] text-white text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors"
+                >
+                  <span>Explore Website Packages</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/ai-receptionist"
+                  className="px-5 py-3 rounded-lg bg-white hover:bg-[#F5F8FC] text-[#14243A] border border-slate-300 text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors"
+                >
+                  <span>Explore AI Receptionists</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Pathway B — Software and AI Clients */}
+            <div className="bg-white rounded-2xl border border-[#E2E8F0] p-7 sm:p-9 flex flex-col justify-between shadow-subtle">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#14243A]">
+                    Pathway 02 — Custom AI &amp; Software Clients
+                  </span>
+                  <div className="w-9 h-9 rounded-lg bg-[#F5F8FC] border border-[#E2E8F0] text-[#14243A] flex items-center justify-center">
+                    <Cpu className="w-4 h-4 text-blue-600" />
+                  </div>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-[#14243A] group-hover:text-blue-600 transition-colors">
-                  SaaS Development
-                </h3>
-                <p className="text-xs sm:text-sm text-[#475569] mt-2 leading-relaxed">
-                  End-to-end SaaS platforms, multi-user dashboards, subscription billing integrations and MVPs for founders and growing companies.
-                </p>
+
+                <div className="space-y-3">
+                  <h3 className="text-2xl sm:text-[26px] font-extrabold text-[#14243A] tracking-tight leading-snug">
+                    Turn Your Ideas Into Powerful Digital Products.
+                  </h3>
+                  <p className="text-sm text-[#475569] leading-relaxed">
+                    From intelligent AI systems to complete SaaS platforms, we design and develop technology around your business requirements.
+                  </p>
+                </div>
+
+                {/* Clean Product Capability Matrix */}
+                <div className="p-4 rounded-xl bg-[#F8FAFD] border border-[#E2E8F0] space-y-2.5">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B] block">
+                    Tailored Engineering Scope
+                  </span>
+                  <div className="grid grid-cols-2 gap-y-1.5 gap-x-3 text-xs font-medium text-[#14243A]">
+                    <span className="flex items-center gap-2"><Layers className="w-3.5 h-3.5 text-blue-600" /> Custom SaaS Platforms</span>
+                    <span className="flex items-center gap-2"><Cpu className="w-3.5 h-3.5 text-blue-600" /> AI Agents &amp; Automation</span>
+                    <span className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Dashboards &amp; Portals</span>
+                    <span className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> API &amp; Document Systems</span>
+                  </div>
+                </div>
               </div>
-              <div className="mt-5 pt-3 border-t border-slate-100 inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600">
-                <span>Explore SaaS Development</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+
+              <div className="pt-6 mt-6 border-t border-slate-100 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => scrollTo("#contact")}
+                  className="px-5 py-3 rounded-lg bg-[#14243A] hover:bg-blue-600 text-white text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors"
+                >
+                  <span>Discuss Your Project</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <Link
+                  href="/our-products"
+                  className="px-5 py-3 rounded-lg bg-white hover:bg-[#F5F8FC] text-[#14243A] border border-slate-300 text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors"
+                >
+                  <span>View Our Products</span>
+                </Link>
               </div>
-            </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -7,44 +7,44 @@ import { SITE_CONFIG } from "@/lib/config";
 
 export const HOMEPAGE_FAQS = [
   {
-    q: "How much does a website cost?",
-    a: "Our small business website packages start from £99 for a 1-page Starter Website, £349 for a Business Website (up to 5 pages), and £699 for a Growth Website (up to 10 pages). These are one-off build starting prices. Domain registration, recurring hosting and custom functionality outside the package scope are quoted transparently before work begins.",
+    q: "How much do your website packages cost and what is included?",
+    a: "We offer three clear starting packages: Starter (£99) for a 1-page landing page with up to 5 sections, responsive design, contact details, social links and basic on-page SEO; Business (£349) for up to 5 custom pages with an enquiry form and mobile/tablet optimisation; and Growth (£699) for up to 8 pages with advanced custom design, one agreed advanced feature or integration and deployment assistance.",
   },
   {
-    q: "Can you build websites for small businesses?",
-    a: "Yes. We build mobile-friendly, enquiry-focused websites for builders, electricians, plumbers, cleaning companies, handymen, local service providers, startups and small-to-medium businesses across the UK.",
+    q: "Are domain names and website hosting included in the package prices?",
+    a: "No. Website package prices are one-off build fees. Domain registration (such as .co.uk or .com) and recurring cloud hosting are separate so you retain direct ownership of your domain and hosting choices. We can assist with setup or provide optional managed hosting.",
   },
   {
-    q: "Do you provide AI receptionists?",
-    a: "Yes. We configure AI-powered phone receptionists that answer incoming business calls 24/7, speak naturally, collect caller details, qualify enquiries and send call summaries to your phone or email.",
+    q: "Do you offer ongoing website maintenance and support?",
+    a: "Yes. After launch, you can manage the site yourself or choose an agreed ongoing maintenance and support option covering updates, security checks, backups and content changes.",
   },
   {
-    q: "Can your AI receptionist book appointments?",
-    a: "Where integrated with a compatible digital calendar or booking workflow, the AI receptionist can help check availability, collect preferred appointment times or send callers your direct booking link.",
+    q: "How is the AI Receptionist priced, and are there ongoing AI or phone usage charges?",
+    a: "AI Receptionist implementation is quoted based on your business call script, routing rules and any calendar or system integrations. Ongoing AI voice processing and telephone network usage charges apply separately based on actual call minutes and are explained transparently before setup.",
   },
   {
-    q: "Can you build custom SaaS applications?",
-    a: "Yes. We design and develop custom SaaS platforms, multi-user web applications, customer portals and management dashboards — and we also build and operate our own SaaS products such as MarkScheme, AuraPDF and Rydigo.",
+    q: "How is custom software, SaaS or AI automation priced?",
+    a: "Custom software, SaaS platforms, white-label solutions and workflow automations are scoped and quoted individually following a free consultation. You receive a written breakdown of deliverables and milestones before development starts.",
   },
   {
-    q: "Do you provide ongoing support?",
-    a: "Yes. Once your website or software is launched, you own your custom project assets. We offer optional managed hosting, security updates, content updates and ongoing technical support plans if you prefer hands-off management.",
+    q: "What are the typical project timelines?",
+    a: "Once we receive your business details and content, Starter websites are typically ready in 3 to 5 working days, Business websites in 1 to 2 weeks, and Growth websites in 2 to 3 weeks. Custom software and AI projects are scheduled around agreed milestone dates.",
   },
   {
-    q: "How long does a website take?",
-    a: "Turnaround depends on the size of the project and how quickly content is provided. Starter 1-page websites are typically ready within a few working days of receiving your business details, while multi-page Business and Growth websites generally take 1 to 3 weeks.",
+    q: "Who owns the source code upon completion?",
+    a: "For custom client websites and software builds, ownership of your client-specific custom code and project deliverables transfers to your business upon receipt of full payment for the agreed scope.",
   },
   {
-    q: "Do you work with businesses throughout the UK?",
-    a: "Yes. We work with sole traders, small businesses, startups and established companies throughout England, Scotland, Wales and Northern Ireland via phone, WhatsApp, video calls and email.",
+    q: "Can you integrate with existing business systems and tools?",
+    a: "Yes. Where your existing CRM, email service, booking calendar, payment provider (such as Stripe) or internal software provides APIs or webhooks, we can integrate them cleanly into your website or custom application.",
   },
   {
-    q: "Can you integrate with existing business systems?",
-    a: "Yes. We can connect your website, AI workflows or custom software with popular CRM platforms, email services, calendars, payment gateways (such as Stripe) and internal databases where APIs or webhooks are supported.",
+    q: "How many revisions are included with website packages?",
+    a: "To keep pricing fair and transparent, the Starter package includes 1 revision round, the Business package includes up to 2 revision rounds, and the Growth package includes up to 3 revision rounds prior to launch. Additional revisions are quoted upfront.",
   },
   {
-    q: "Do you provide custom quotations?",
-    a: "Yes. If your project requires extra pages, bespoke design features, AI workflow automation or custom software development, we provide a free consultation and a clear written quotation tailored to your requirements.",
+    q: "Do you work with businesses across the entire UK?",
+    a: "Yes. CortexHive supports small businesses, tradespeople, startups and established companies throughout the United Kingdom via video calls, telephone, email and WhatsApp.",
   },
 ];
 
@@ -76,16 +76,16 @@ export default function HomeFaq() {
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          {/* Left 4 Columns: Header */}
+          {/* Left 4 Columns */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#E2E8F0] text-xs font-bold uppercase tracking-wider text-blue-600">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-blue-600 block">
               Frequently Asked Questions
-            </div>
+            </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#14243A] tracking-tight leading-[1.12]">
-              Clear Answers Before You Start.
+              Straightforward Answers Before You Begin.
             </h2>
             <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
-              Have a question about website packages, AI receptionists, custom software or how we work? Find straightforward answers here.
+              Clear information on website packages, hosting, domains, AI receptionist usage charges, custom software timelines and ongoing support.
             </p>
             <div className="pt-3 flex flex-wrap items-center gap-4">
               <a
@@ -108,14 +108,14 @@ export default function HomeFaq() {
             </div>
           </div>
 
-          {/* Right 8 Columns: 10 FAQs Accordion */}
+          {/* Right 8 Columns */}
           <div className="lg:col-span-8 space-y-3">
             {HOMEPAGE_FAQS.map((faq, i) => {
               const isOpen = openIndex === i;
               return (
                 <div
                   key={faq.q}
-                  className="rounded-xl border border-[#E2E8F0] bg-white overflow-hidden shadow-2xs transition-all"
+                  className="rounded-xl border border-[#E2E8F0] bg-white overflow-hidden transition-all"
                 >
                   <button
                     type="button"

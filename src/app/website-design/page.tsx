@@ -9,125 +9,120 @@ import {
   ShieldCheck,
   Palette,
   Globe,
-  AlertCircle,
+  ExternalLink,
+  Check,
 } from "lucide-react";
+import PricingPackages from "@/components/pricing-packages";
 import LeadForm from "@/components/lead-form";
 
 export const metadata: Metadata = {
-  title: "Website Design & Development Agency UK | CortexHive",
+  title: "Website Design & Development UK — Packages From £99 | CortexHive",
   description:
-    "Professional website design and development for UK small businesses, tradespeople, startups and established companies. Mobile-first websites starting from £99.",
+    "Affordable, professional website design and development for UK small businesses, tradespeople and growing companies. Starter (£99), Business (£349) and Growth (£699) packages.",
   keywords: [
     "Website design UK",
+    "Small business website design UK",
+    "Affordable business website design",
+    "Website design for tradespeople",
     "Business website development",
-    "Affordable website design for small businesses",
-    "Website designers for builders",
-    "Website design for electricians",
-    "Website design for plumbers",
   ],
   alternates: {
     canonical: "https://cortexhive.co.uk/website-design",
   },
   openGraph: {
-    title: "Website Design & Development Agency UK | CortexHive",
+    title: "Website Design & Development UK — Packages From £99 | CortexHive",
     description:
-      "Mobile-first, fast-loading business websites designed to attract customers and generate enquiries across the UK.",
+      "Compare Starter (£99), Business (£349) and Growth (£699) website packages built for UK businesses.",
     url: "https://cortexhive.co.uk/website-design",
   },
 };
 
-const PROBLEMS = [
-  {
-    title: "Outdated or Non-Existent Website",
-    desc: "Potential customers search online before calling. Without a credible website, enquiries go straight to competitors.",
-  },
-  {
-    title: "Poor Mobile Experience",
-    desc: "Most local searches happen on smartphones. Slow, clunky pages with tiny text cause visitors to leave within seconds.",
-  },
-  {
-    title: "No Clear Path to Enquire",
-    desc: "Websites that hide contact details or lack simple enquiry forms and WhatsApp links fail to turn visitors into paying customers.",
-  },
+const TARGET_CUSTOMERS = [
+  "Builders & Construction Companies",
+  "Electricians & Plumbers",
+  "Window Cleaners & Cleaning Businesses",
+  "Independent Tradespeople & Local Services",
+  "Startups & New UK Businesses",
+  "Established SMEs & Consultancies",
 ];
 
-const BENEFITS_AND_FEATURES = [
+const WEBSITE_SERVICES = [
+  {
+    icon: Globe,
+    title: "Business Websites",
+    desc: "Structured multi-page websites that showcase your services clearly and establish credibility with UK customers.",
+  },
   {
     icon: Smartphone,
-    title: "Mobile-First Responsive Layouts",
-    desc: "Every page is designed to look sharp and work effortlessly across mobile phones, tablets and desktop computers.",
-  },
-  {
-    icon: Gauge,
-    title: "Fast-Loading Performance",
-    desc: "Built using clean, modern web technology for quick page loads and smooth browsing on mobile connections.",
-  },
-  {
-    icon: Search,
-    title: "UK On-Page SEO Foundations",
-    desc: "Structured headings, page titles, meta descriptions, clean URLs and XML sitemaps to support Google Search visibility.",
-  },
-  {
-    icon: Code2,
-    title: "Enquiry Forms & WhatsApp Integration",
-    desc: "Direct enquiry forms, click-to-call phone links and optional WhatsApp chat buttons so customers can reach you easily.",
+    title: "Landing Pages",
+    desc: "Focused, fast-loading one-page websites designed to get small businesses and trades online quickly from £99.",
   },
   {
     icon: Palette,
-    title: "Professional Brand Presentation",
-    desc: "Clean typography, structured service descriptions and modern layouts that establish immediate trust.",
+    title: "Website Redesigns",
+    desc: "Modernise slow or outdated sites into clean, mobile-friendly platforms that convert visitors into enquiries.",
   },
   {
-    icon: ShieldCheck,
-    title: "Transparent Ownership & Support",
-    desc: "Clear package scopes, upfront revision allowances and optional ongoing hosting and maintenance plans.",
+    icon: Code2,
+    title: "E-Commerce & Custom Web Apps",
+    desc: "Online storefronts, interactive quote tools and custom browser-based applications scoped to your requirements.",
+  },
+  {
+    icon: Search,
+    title: "On-Page SEO Foundations",
+    desc: "Clean headings, unique titles, meta descriptions, XML sitemaps and structured data to support Google Search.",
+  },
+  {
+    icon: Gauge,
+    title: "Mobile & Speed Optimisation",
+    desc: "Deliberately designed for phones, tablets and desktops so visitors can read, call or message you effortlessly.",
   },
 ];
 
-const USE_CASES = [
+const PORTFOLIO_HIGHLIGHTS = [
   {
-    group: "Trades & Home Services",
-    examples: "Builders, electricians, plumbers, window cleaners, handymen, roofers and cleaning companies needing local enquiries.",
-    link: "/small-business-websites",
-    linkLabel: "Explore Small Business Websites",
+    name: "Skyview",
+    type: "Client Website",
+    url: "https://skyview.org.uk/",
+    desc: "Structured client web platform designed for programme discovery and applicant enquiry capture.",
   },
   {
-    group: "Local & Professional Businesses",
-    examples: "Salons, clinics, restaurants, consultants and service companies needing multi-page service showcases and booking links.",
-    link: "/pricing",
-    linkLabel: "Compare £99 / £349 / £699 Packages",
+    name: "MarkScheme",
+    type: "Owned EdTech Platform",
+    url: "https://www.markscheme.co.uk/",
+    desc: "11+ examination preparation platform delivering 250+ practice and mock examination papers.",
   },
   {
-    group: "Startups & Growing Companies",
-    examples: "Organisations launching new products or requiring custom web platforms integrated with AI or software portals.",
-    link: "/software-development",
-    linkLabel: "Explore Custom Web Applications",
+    name: "EV Trade Show",
+    type: "Digital Directory Platform",
+    url: "https://evtradeshow.com/",
+    desc: "Searchable international directory of electric vehicle exhibitions, conferences and industry events.",
   },
 ];
 
 const PROCESS_STEPS = [
-  { step: "1. Discover", desc: "We review your business services, target customers and branding requirements." },
-  { step: "2. Plan", desc: "We confirm the right website package (£99, £349, £699 or custom scope) and page structure." },
-  { step: "3. Build", desc: "We design and build your mobile-friendly website and share a preview for your feedback." },
-  { step: "4. Launch", desc: "We connect your domain, test all enquiry forms and publish your new website live." },
+  { step: "1. Discover", desc: "We understand your business, services, target customers and goals." },
+  { step: "2. Plan", desc: "We agree the right package (£99, £349, £699 or custom scope), page list and deliverables." },
+  { step: "3. Build", desc: "We design, develop and test your website across mobile, tablet and desktop." },
+  { step: "4. Launch", desc: "We assist with deployment, verify all contact links and provide agreed support." },
 ];
 
 const FAQS = [
   {
-    q: "How much does a business website cost?",
-    a: "Our Starter Website is £99 (1 page), our Business Website is £349 (up to 5 pages), and our Growth Website is £699 (up to 10 pages). These are starting build prices. Domain registration and recurring hosting are separate.",
+    q: "What are the starting prices for your website packages?",
+    a: "Our Starter one-page landing page starts at £99 (up to 5 content sections), our Business website starts at £349 (up to 5 pages), and our Growth website starts at £699 (up to 8 pages with one agreed advanced feature or integration).",
   },
   {
-    q: "Will my website work properly on mobile phones?",
-    a: "Yes. Every website we build is mobile-first and tested across smartphone, tablet and desktop screen sizes.",
+    q: "What is excluded from the starting package prices?",
+    a: "Domain name registration (e.g. .co.uk), recurring cloud hosting, ongoing maintenance plans, paid third-party subscriptions and additional pages or revisions beyond the agreed allowance are quoted separately.",
   },
   {
-    q: "How many revisions are included?",
-    a: "The Starter Website includes 1 revision round, the Business Website includes up to 2 revision rounds, and the Growth Website includes up to 3 revision rounds before launch.",
+    q: "How long does it take to build a website?",
+    a: "Once we receive your business information and content, Starter websites typically take 3–5 working days, Business websites 1–2 weeks, and Growth websites 2–3 weeks.",
   },
   {
-    q: "Can I add an AI Receptionist or automation later?",
-    a: "Yes. You can start with a website and add 24/7 AI call answering or workflow automation whenever your business is ready.",
+    q: "Can you build a more advanced or custom website?",
+    a: "Yes. If you need e-commerce, more than 8 pages, custom integrations or a bespoke web application, request a custom quote and we will prepare a clear written proposal.",
   },
 ];
 
@@ -143,11 +138,11 @@ const jsonLd = {
     },
     {
       "@type": "Service",
-      name: "Website Design and Development",
+      name: "Website Design and Development UK",
       provider: { "@id": "https://cortexhive.co.uk/#organization" },
       areaServed: "United Kingdom",
       description:
-        "Professional mobile-friendly website design and development for UK small businesses, tradespeople and growing companies.",
+        "Website design and development packages for UK small businesses, tradespeople and growing companies starting from £99.",
     },
   ],
 };
@@ -160,149 +155,150 @@ export default function WebsiteDesignPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
-        {/* Breadcrumb & Hero */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        {/* Hero */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 space-y-5">
             <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-[#64748B]">
               <Link href="/" className="hover:text-[#14243A] transition-colors">Home</Link>
               <span>/</span>
-              <span className="text-[#14243A] font-semibold">Website Design &amp; Development</span>
+              <span className="text-[#14243A] font-semibold">Website Development</span>
             </nav>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F8FC] border border-[#E2E8F0] text-xs font-bold uppercase tracking-wider text-blue-600">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#F8FAFD] border border-[#E2E8F0] text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-600">
               <Globe className="w-3.5 h-3.5" />
               <span>Website Design &amp; Development UK</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-[#14243A] tracking-tight leading-[1.1]">
-              Professional Websites Built to Turn Visitors Into Enquiries.
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-[#14243A] tracking-tight leading-[1.08]">
+              Professional Websites Designed to Win Customers Online.
             </h1>
 
             <p className="text-base sm:text-lg text-[#475569] leading-relaxed">
-              Whether you need an affordable £99 starter website for your trade business or a multi-page company platform, we design fast, mobile-friendly websites that present your services clearly and make it easy for customers to contact you.
+              We build fast, mobile-friendly websites in plain English with transparent pricing — helping UK tradespeople, small businesses and growing companies present their services professionally and generate more enquiries.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-1">
               <a
-                href="#quote-form"
-                className="px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-[#14243A] text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors shadow-xs"
+                href="#website-packages"
+                className="px-6 py-3.5 rounded-lg bg-[#14243A] hover:bg-blue-600 text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
               >
-                <span>Get a Free Website Consultation</span>
+                <span>Explore Packages (£99 / £349 / £699)</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
-              <Link
-                href="/pricing"
-                className="px-6 py-3.5 rounded-xl bg-white hover:bg-[#F5F8FC] border border-slate-300 text-[#14243A] font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
+              <a
+                href="#quote-form"
+                className="px-6 py-3.5 rounded-lg bg-white hover:bg-[#F8FAFD] border border-slate-300 text-[#14243A] font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
               >
-                <span>Compare Packages (£99 / £349 / £699)</span>
-              </Link>
+                <span>Get a Website Quote</span>
+              </a>
             </div>
           </div>
 
-          {/* Visual Website Architecture Preview */}
+          {/* Target Customers Panel */}
           <div className="lg:col-span-5">
-            <div className="rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0] p-5 sm:p-6 shadow-subtle space-y-4">
-              <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
-                <span className="text-xs font-bold text-[#14243A]">Website Conversion Blueprint</span>
-                <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                  Mobile-First
-                </span>
-              </div>
-              <div className="space-y-2.5">
-                {[
-                  { title: "Clear Value Proposition Hero", desc: "Immediately shows what you do, where you work & how to enquire" },
-                  { title: "Structured Services Breakdown", desc: "Dedicated sections or pages for each service you offer" },
-                  { title: "Instant Contact & WhatsApp", desc: "Click-to-call, WhatsApp chat & direct email enquiry forms" },
-                  { title: "On-Page SEO Structure", desc: "Clean headings, meta tags & sitemap ready for Google Search" },
-                ].map((block) => (
-                  <div key={block.title} className="p-3.5 rounded-xl bg-white border border-[#E2E8F0]">
-                    <div className="text-xs font-bold text-[#14243A]">{block.title}</div>
-                    <div className="text-[11px] text-[#64748B] mt-0.5">{block.desc}</div>
-                  </div>
+            <div className="rounded-xl bg-[#F8FAFD] border border-[#E2E8F0] p-6 sm:p-7 space-y-4">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-600 block">
+                Who We Build Websites For
+              </span>
+              <h2 className="text-lg font-bold text-[#14243A]">
+                Tailored for UK Businesses of Every Size
+              </h2>
+              <ul className="space-y-2.5 pt-1">
+                {TARGET_CUSTOMERS.map((cust) => (
+                  <li key={cust} className="flex items-center gap-2.5 text-xs sm:text-sm text-[#14243A] font-medium">
+                    <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                    <span>{cust}</span>
+                  </li>
                 ))}
+              </ul>
+              <div className="pt-3 border-t border-[#E2E8F0] flex items-center gap-2 text-xs text-[#64748B]">
+                <ShieldCheck className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <span>Clear deliverables • Honest timelines • UK support</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Problem Statement */}
-        <section className="bg-[#F8FAFD] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] space-y-8">
-          <div className="max-w-2xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">The Problem</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] mt-1">
-              Why Many Small Business Websites Fail to Generate Enquiries
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {PROBLEMS.map((prob) => (
-              <div key={prob.title} className="bg-white rounded-2xl p-6 border border-[#E2E8F0] space-y-2">
-                <AlertCircle className="w-5 h-5 text-blue-600" />
-                <h3 className="text-base font-bold text-[#14243A]">{prob.title}</h3>
-                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{prob.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Benefits & Features */}
+        {/* Website Services Grid */}
         <section className="space-y-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Benefits &amp; Features</span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#14243A] mt-1">
-              Everything Your Business Website Needs
+          <div className="max-w-2xl">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-600">Services</span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] mt-1">
+              Everything You Need for a Dependable Online Presence
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {BENEFITS_AND_FEATURES.map((item) => {
-              const Icon = item.icon;
+            {WEBSITE_SERVICES.map((svc) => {
+              const Icon = svc.icon;
               return (
-                <div key={item.title} className="p-6 rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0] space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] text-blue-600 flex items-center justify-center">
+                <div key={svc.title} className="p-6 rounded-xl bg-[#F8FAFD] border border-[#E2E8F0] space-y-3">
+                  <div className="w-10 h-10 rounded-lg bg-white border border-[#E2E8F0] text-blue-600 flex items-center justify-center">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-base font-bold text-[#14243A]">{item.title}</h3>
-                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{item.desc}</p>
+                  <h3 className="text-base font-bold text-[#14243A]">{svc.title}</h3>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{svc.desc}</p>
                 </div>
               );
             })}
           </div>
         </section>
+      </div>
 
-        {/* Realistic Use Cases & Internal Links */}
-        <section className="space-y-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Who We Help</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] mt-1">
-              Website Solutions for Every Stage of Business
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {USE_CASES.map((uc) => (
-              <div key={uc.group} className="p-6 rounded-2xl bg-white border border-[#E2E8F0] shadow-subtle flex flex-col justify-between space-y-4">
-                <div>
-                  <h3 className="text-lg font-bold text-[#14243A] mb-2">{uc.group}</h3>
-                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{uc.examples}</p>
-                </div>
-                <Link href={uc.link} className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-[#14243A]">
-                  <span>{uc.linkLabel}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+      {/* Three Pricing Packages (£99 / £349 / £699) */}
+      <div className="mt-16">
+        <PricingPackages />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 pt-16">
+        {/* Development Process */}
+        <section className="bg-[#F5F8FC] rounded-2xl p-6 sm:p-10 border border-[#E2E8F0] space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] text-center">
+            Our 4-Stage Website Process
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {PROCESS_STEPS.map((p) => (
+              <div key={p.step} className="bg-white rounded-xl p-5 border border-[#E2E8F0] space-y-2">
+                <div className="text-sm font-extrabold text-blue-600">{p.step}</div>
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{p.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* 4-Step Process */}
-        <section className="bg-[#F5F8FC] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] space-y-6">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] text-center">
-            How We Build Your Website
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {PROCESS_STEPS.map((p) => (
-              <div key={p.step} className="bg-white rounded-2xl p-5 border border-[#E2E8F0] space-y-2">
-                <div className="text-sm font-extrabold text-blue-600">{p.step}</div>
-                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{p.desc}</p>
+        {/* Genuine Portfolio Examples */}
+        <section className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-600">Genuine Examples</span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] mt-1">
+                Live Websites &amp; Digital Platforms Built by CortexHive
+              </h2>
+            </div>
+            <Link href="/our-products" className="text-xs sm:text-sm font-semibold text-blue-600 hover:text-[#14243A] inline-flex items-center gap-1.5">
+              <span>View Full Portfolio</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {PORTFOLIO_HIGHLIGHTS.map((item) => (
+              <div key={item.name} className="p-6 rounded-xl bg-white border border-[#E2E8F0] flex flex-col justify-between space-y-4">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-[#F5F8FC] text-[#475569] border border-[#E2E8F0]">
+                      {item.type}
+                    </span>
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-[#14243A]" aria-label={`Visit ${item.name}`}>
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </div>
+                  <h3 className="text-lg font-bold text-[#14243A]">{item.name}</h3>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{item.desc}</p>
+                </div>
+                <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-blue-600 hover:text-[#14243A] inline-flex items-center gap-1">
+                  <span>Visit Live Site</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
               </div>
             ))}
           </div>
@@ -311,11 +307,11 @@ export default function WebsiteDesignPage() {
         {/* FAQs */}
         <section className="max-w-4xl mx-auto space-y-6">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A] text-center">
-            Website Design FAQs
+            Website Development FAQs
           </h2>
           <div className="space-y-3">
             {FAQS.map((f) => (
-              <div key={f.q} className="p-5 rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0]">
+              <div key={f.q} className="p-5 rounded-xl bg-[#F8FAFD] border border-[#E2E8F0]">
                 <h3 className="text-sm sm:text-base font-bold text-[#14243A] mb-1.5">{f.q}</h3>
                 <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">{f.a}</p>
               </div>
@@ -323,7 +319,7 @@ export default function WebsiteDesignPage() {
           </div>
         </section>
 
-        {/* Form */}
+        {/* Enquiry Form */}
         <div id="quote-form">
           <LeadForm defaultService="Business Website (£349)" />
         </div>

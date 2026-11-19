@@ -39,15 +39,15 @@ const COMPARISON_ROWS = [
   },
   {
     feature: "Number of Pages",
-    starter: "1 Page (Structured Sections)",
+    starter: "1 Page (Up to 5 Sections)",
     business: "Up to 5 Pages",
-    growth: "Up to 10 Pages",
+    growth: "Up to 8 Pages",
   },
   {
     feature: "Design Approach",
-    starter: "Clean Professional Layout",
-    business: "Brand-Tailored Multi-Page UI",
-    growth: "Bespoke Multi-Page & Service Layouts",
+    starter: "Responsive Landing Page",
+    business: "Professional Custom Design",
+    growth: "Advanced Custom Design",
   },
   {
     feature: "Mobile Optimisation",
@@ -56,16 +56,16 @@ const COMPARISON_ROWS = [
     growth: true,
   },
   {
-    feature: "Contact Functionality",
-    starter: "Enquiry Form, Phone & WhatsApp",
-    business: "Multi-Page Forms, Phone & WhatsApp",
-    growth: "Multi-Step Quote Form, Booking Links & WhatsApp",
+    feature: "Contact & Key Functionality",
+    starter: "Contact Info & Social Links",
+    business: "Contact / Enquiry Form & Social Media Integration",
+    growth: "Enquiry Forms + One Agreed Advanced Feature or Integration",
   },
   {
     feature: "Basic On-Page SEO",
-    starter: "Titles, Meta Descriptions & Headings",
-    business: "On-Page SEO, XML Sitemap & Search Console Readiness",
-    growth: "Enhanced On-Page SEO, Sitemap & Structured Schema",
+    starter: "Basic On-Page SEO Structure",
+    business: "Basic On-Page SEO",
+    growth: "Basic On-Page SEO & Deployment Assistance",
   },
   {
     feature: "Revision Allowance",
@@ -128,6 +128,13 @@ const CUSTOM_SERVICES = [
     icon: Code2,
     href: "/software-development",
     desc: "Bespoke web applications, customer portals, management dashboards and internal business systems built to your exact specification.",
+  },
+  {
+    title: "White-Label Software Solutions",
+    pricing: "Custom pricing",
+    icon: Layers,
+    href: "/white-label-software",
+    desc: "Rebrandable digital platforms, browser-based tools and document processing solutions built for UK agencies and partner businesses.",
   },
 ];
 
