@@ -49,6 +49,20 @@ export const metadata: Metadata = {
       "From professional websites to intelligent AI automation and custom software, CortexHive helps UK businesses simplify operations, attract customers and turn ideas into working digital products.",
     url: "https://cortexhive.co.uk",
     siteName: "CortexHive",
+    images: [
+      {
+        url: "/logo.png",
+        width: 600,
+        height: 600,
+        alt: "CortexHive Logo",
+      },
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "CortexHive Logo",
+      },
+    ],
     locale: "en_GB",
     type: "website",
   },
@@ -57,6 +71,7 @@ export const metadata: Metadata = {
     title: "CortexHive — Websites, AI Automation & Custom Software Agency UK",
     description:
       "Professional websites from £99, 24/7 AI receptionists, business automation and custom software development in the UK.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
