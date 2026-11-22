@@ -140,10 +140,10 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-t-2 border-t-blue-600 transition-all duration-200 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-slate-200/90 py-3 shadow-[0_1px_3px_rgba(15,23,42,0.04)]"
-          : "bg-white/95 backdrop-blur-xs border-b border-slate-200/70 py-3.5"
+          ? "bg-white/98 backdrop-blur-md border-b border-slate-200 py-2.5 shadow-[0_4px_16px_rgba(15,23,42,0.07)]"
+          : "bg-white/98 backdrop-blur-md border-b border-slate-200 py-3 shadow-[0_2px_10px_rgba(15,23,42,0.04)]"
       }`}
     >
       <div
@@ -172,8 +172,11 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Center: Clean Navigation */}
-        <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-0.5 xl:gap-1.5">
+        {/* Center: High-Visibility Structured Navigation Rail */}
+        <nav
+          aria-label="Main Navigation"
+          className="hidden lg:flex items-center gap-0.5 xl:gap-1 bg-[#F4F7FB] border border-slate-200/90 rounded-xl p-1"
+        >
           {/* Websites Dropdown */}
           <div
             className="relative"
@@ -183,16 +186,16 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setActiveDropdown(activeDropdown === "websites" ? null : "websites")}
-              className={`inline-flex items-center gap-1 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
-                pathname.includes("website") || pathname.includes("industries")
-                  ? "text-blue-600 bg-blue-50/60 font-semibold"
-                  : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all cursor-pointer ${
+                pathname.includes("website") || pathname.includes("industries") || activeDropdown === "websites"
+                  ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
+                  : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
               }`}
             >
               <span>Websites</span>
               <ChevronDown
-                className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
-                  activeDropdown === "websites" ? "rotate-180 text-blue-600" : ""
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  activeDropdown === "websites" ? "rotate-180 text-blue-600" : "text-slate-600"
                 }`}
               />
             </button>
@@ -251,16 +254,16 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setActiveDropdown(activeDropdown === "ai" ? null : "ai")}
-              className={`inline-flex items-center gap-1 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
-                pathname.includes("ai-")
-                  ? "text-blue-600 bg-blue-50/60 font-semibold"
-                  : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all cursor-pointer ${
+                pathname.includes("ai-") || activeDropdown === "ai"
+                  ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
+                  : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
               }`}
             >
               <span>AI &amp; Automation</span>
               <ChevronDown
-                className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
-                  activeDropdown === "ai" ? "rotate-180 text-blue-600" : ""
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  activeDropdown === "ai" ? "rotate-180 text-blue-600" : "text-slate-600"
                 }`}
               />
             </button>
@@ -319,16 +322,16 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setActiveDropdown(activeDropdown === "software" ? null : "software")}
-              className={`inline-flex items-center gap-1 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
-                pathname.includes("software") || pathname.includes("saas")
-                  ? "text-blue-600 bg-blue-50/60 font-semibold"
-                  : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all cursor-pointer ${
+                pathname.includes("software") || pathname.includes("saas") || activeDropdown === "software"
+                  ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
+                  : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
               }`}
             >
               <span>Software &amp; SaaS</span>
               <ChevronDown
-                className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
-                  activeDropdown === "software" ? "rotate-180 text-blue-600" : ""
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  activeDropdown === "software" ? "rotate-180 text-blue-600" : "text-slate-600"
                 }`}
               />
             </button>
@@ -380,10 +383,10 @@ export default function Header() {
 
           <Link
             href="/our-products"
-            className={`px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+            className={`px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all ${
               pathname === "/our-products" || pathname === "/portfolio"
-                ? "text-blue-600 bg-blue-50/60 font-semibold"
-                : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
+                ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
+                : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
             }`}
           >
             Portfolio
@@ -391,10 +394,10 @@ export default function Header() {
 
           <Link
             href="/pricing"
-            className={`px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+            className={`px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all ${
               pathname === "/pricing"
-                ? "text-blue-600 bg-blue-50/60 font-semibold"
-                : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
+                ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
+                : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
             }`}
           >
             Pricing
@@ -402,10 +405,10 @@ export default function Header() {
 
           <Link
             href="/about"
-            className={`px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+            className={`px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all ${
               pathname === "/about"
-                ? "text-blue-600 bg-blue-50/60 font-semibold"
-                : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
+                ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
+                : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
             }`}
           >
             About
@@ -413,10 +416,10 @@ export default function Header() {
 
           <Link
             href="/contact"
-            className={`px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+            className={`px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all ${
               pathname === "/contact"
-                ? "text-blue-600 bg-blue-50/60 font-semibold"
-                : "text-slate-700 hover:text-[#14243A] hover:bg-slate-50"
+                ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
+                : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
             }`}
           >
             Contact
@@ -428,7 +431,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => openConsultationModal()}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-[#14243A] text-white transition-colors shadow-2xs cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold bg-blue-600 hover:bg-[#14243A] text-white transition-colors shadow-sm cursor-pointer"
           >
             <span>Get a Free Consultation</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -439,11 +442,21 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden p-2.5 rounded-lg text-[#14243A] hover:bg-slate-100 transition-colors"
+          className="lg:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#F4F7FB] border border-slate-200 text-[#14243A] hover:bg-slate-100 text-xs font-semibold transition-colors cursor-pointer"
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isOpen}
         >
-          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          {isOpen ? (
+            <>
+              <X className="w-4 h-4" />
+              <span>Close</span>
+            </>
+          ) : (
+            <>
+              <Menu className="w-4 h-4" />
+              <span>Menu</span>
+            </>
+          )}
         </button>
       </div>
 
