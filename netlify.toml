@@ -1,3 +1,21 @@
 [build]
   command = "npm run build"
   publish = ".next"
+
+# Canonical domain redirect (www -> apex) so Google never splits indexing
+[[redirects]]
+  from = "https://www.cortexhive.co.uk/*"
+  to = "https://cortexhive.co.uk/:splat"
+  status = 301
+  force = true
+
+# Prevent Google from indexing internal API or Netlify form detector endpoints
+[[headers]]
+  for = "/__forms.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

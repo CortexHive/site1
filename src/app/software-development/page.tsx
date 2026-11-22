@@ -14,7 +14,7 @@ import LeadForm from "@/components/lead-form";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Custom Software Development UK — Web Apps & Portals | CortexHive",
+  title: "Custom Software & Web App Development UK | CortexHive",
   description:
     "Have an idea? Let's build it. Custom software development, web applications, customer portals, management dashboards and internal business systems in the UK.",
   keywords: [

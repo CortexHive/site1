@@ -18,7 +18,7 @@ import AiReceptionistDemo from "@/components/ai-receptionist-demo";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "AI Receptionist & 24/7 Business Phone Answering UK | CortexHive",
+  title: "24/7 AI Receptionist & Call Answering UK | CortexHive",
   description:
     "Never miss another business opportunity. Our AI receptionist answers incoming UK business calls 24/7, understands customer enquiries, collects contact details and sends call summaries.",
   keywords: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     canonical: "https://cortexhive.co.uk/ai-receptionist",
   },
   openGraph: {
-    title: "AI Receptionist & 24/7 Business Phone Answering UK | CortexHive",
+    title: "24/7 AI Receptionist & Call Answering UK | CortexHive",
     description:
       "Your AI receptionist answers incoming calls, collects customer details and helps manage bookings while you work.",
     url: "https://cortexhive.co.uk/ai-receptionist",

@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About CortexHive — UK Websites, AI Automation & Software Agency",
+  title: "About CortexHive — UK Websites, AI & Software Studio",
   description:
     "CortexHive is a UK digital technology agency helping small businesses, tradespeople, startups and growing companies with professional websites, AI automation and custom software.",
   alternates: {

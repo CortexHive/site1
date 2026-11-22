@@ -11,11 +11,20 @@ import FinalCta from "@/components/final-cta";
 import LeadForm from "@/components/lead-form";
 
 export const metadata: Metadata = {
-  title: "CortexHive — Websites, AI Automation & Custom Software Agency UK",
+  title: "CortexHive — Websites, AI & Software UK",
   description:
-    "From professional websites starting at £99 to 24/7 AI receptionists, business automation and custom software development, CortexHive helps UK businesses grow.",
+    "UK websites from £99, 24/7 AI receptionists & custom software. Book a free consultation.",
   alternates: {
     canonical: "https://cortexhive.co.uk",
+  },
+  openGraph: {
+    title: "CortexHive — Websites, AI & Software UK",
+    description:
+      "UK websites from £99, 24/7 AI receptionists & custom software. Book a free consultation.",
+    url: "https://cortexhive.co.uk",
+    siteName: "CortexHive",
+    locale: "en_GB",
+    type: "website",
   },
 };
 

@@ -16,7 +16,7 @@ import PricingPackages from "@/components/pricing-packages";
 import LeadForm from "@/components/lead-form";
 
 export const metadata: Metadata = {
-  title: "Website Design & Development UK — Packages From £99 | CortexHive",
+  title: "UK Website Design & Development (From £99) | CortexHive",
   description:
     "Affordable, professional website design and development for UK small businesses, tradespeople and growing companies. Starter (£99), Business (£349) and Growth (£699) packages.",
   keywords: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     canonical: "https://cortexhive.co.uk/website-design",
   },
   openGraph: {
-    title: "Website Design & Development UK — Packages From £99 | CortexHive",
+    title: "UK Website Design & Development (From £99) | CortexHive",
     description:
       "Compare Starter (£99), Business (£349) and Growth (£699) website packages built for UK businesses.",
     url: "https://cortexhive.co.uk/website-design",

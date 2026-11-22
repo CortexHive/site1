@@ -15,7 +15,7 @@ import LeadForm from "@/components/lead-form";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Affordable Small Business & Trades Websites (From £99) | CortexHive UK",
+  title: "Small Business & Trades Websites (From £99) | CortexHive",
   description:
     "Affordable website design for UK small businesses, builders, plumbers, electricians, window cleaners, handymen and local service providers. Packages starting from £99.",
   keywords: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     canonical: "https://cortexhive.co.uk/small-business-websites",
   },
   openGraph: {
-    title: "Affordable Small Business & Trades Websites (From £99) | CortexHive UK",
+    title: "Small Business & Trades Websites (From £99) | CortexHive",
     description:
       "Get a professional, mobile-friendly website without the expensive agency price tag. Packages from £99.",
     url: "https://cortexhive.co.uk/small-business-websites",

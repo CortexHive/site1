@@ -15,7 +15,7 @@ import LeadForm from "@/components/lead-form";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "White-Label Software Solutions UK — Rebrandable Digital Platforms | CortexHive",
+  title: "White-Label Software & Digital Tools UK | CortexHive",
   description:
     "Commission rebrandable white-label software, browser-based utilities, client portals and document processing platforms built for UK agencies, consultancies and partner businesses.",
   keywords: [

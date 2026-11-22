@@ -16,7 +16,7 @@ import LeadForm from "@/components/lead-form";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "AI Automation Agency UK — Business Process Automation | CortexHive",
+  title: "AI Business Automation Agency UK | CortexHive",
   description:
     "Make your business work smarter with practical AI automation. Automate enquiry processing, customer replies, document generation and repetitive admin across your UK business.",
   keywords: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     canonical: "https://cortexhive.co.uk/ai-automation",
   },
   openGraph: {
-    title: "AI Automation Agency UK — Business Process Automation | CortexHive",
+    title: "AI Business Automation Agency UK | CortexHive",
     description:
       "Automate enquiry processing, repetitive administration, document generation and business notifications.",
     url: "https://cortexhive.co.uk/ai-automation",

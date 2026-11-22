@@ -13,14 +13,14 @@ import {
 import LeadForm from "@/components/lead-form";
 
 export const metadata: Metadata = {
-  title: "Our Digital Services — Websites, AI & Software UK | CortexHive",
+  title: "Websites, AI & Custom Software Services | CortexHive UK",
   description:
     "Explore CortexHive digital services: Website Design & Development (from £99), 24/7 AI Receptionist, AI Business Automation, Custom AI Agents, SaaS Development and Custom Software.",
   alternates: {
     canonical: "https://cortexhive.co.uk/services",
   },
   openGraph: {
-    title: "Our Digital Services — Websites, AI & Software UK | CortexHive",
+    title: "Websites, AI & Custom Software Services | CortexHive UK",
     description:
       "Website packages from £99, 24/7 AI phone answering, business automation and custom software development.",
     url: "https://cortexhive.co.uk/services",
