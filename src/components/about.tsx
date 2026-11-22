@@ -96,17 +96,48 @@ export default function About() {
           })}
         </div>
 
+        {/* Client Delivery Guarantees */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {[
+            { label: "Written Scope First", value: "Fixed Quotes, No Surprises" },
+            { label: "Full Ownership", value: "You Own Your Domain & Code" },
+            { label: "UK Communication", value: "Direct WhatsApp, Phone & Email" },
+            { label: "Fast Response", value: "Replies Within 24 Hours" },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              className="bg-white border border-[#E2E8F0] rounded-xl px-5 py-4"
+            >
+              <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 block">
+                {stat.label}
+              </span>
+              <span className="text-xs sm:text-sm font-bold text-[#14243A] mt-0.5 block">
+                {stat.value}
+              </span>
+            </div>
+          ))}
+        </div>
+
         <div className="bg-white border border-[#E2E8F0] rounded-xl p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-xs sm:text-sm text-[#475569] max-w-2xl">
-            Want to learn more about how CortexHive operates and our UK delivery model?
+            Want to learn more about how CortexHive operates, or read our practical guides for UK small businesses?
           </p>
-          <Link
-            href="/about"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-blue-600 hover:text-[#14243A] transition-colors flex-shrink-0"
-          >
-            <span>About CortexHive</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex flex-wrap items-center gap-4 flex-shrink-0">
+            <Link
+              href="/guides"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#14243A] hover:text-blue-600 transition-colors"
+            >
+              <span>UK Business Guides</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-blue-600 hover:text-[#14243A] transition-colors"
+            >
+              <span>About CortexHive</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

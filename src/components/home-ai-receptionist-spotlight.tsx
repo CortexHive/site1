@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import {
   PhoneCall,
@@ -9,6 +8,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
+import AiReceptionistDemo from "./ai-receptionist-demo";
 
 const CAPABILITIES = [
   "AI answers incoming calls when you are busy or unavailable",
@@ -29,47 +29,7 @@ const TARGET_SECTORS = [
   "Appointment-Based Businesses",
 ];
 
-const EXAMPLE_SCENARIOS = [
-  {
-    id: "trades",
-    label: "Trades & Heating",
-    business: "Example Heating & Plumbing",
-    callerMsg:
-      "Hi, our boiler has lost pressure and we need an engineer in Manchester as soon as possible.",
-    aiResponse:
-      "Thank you for calling. I can log this enquiry for our engineer right away. Could I take your full name, postcode, and best callback number?",
-    summaryDispatch:
-      "Call summary generated and sent to supported email/WhatsApp: Boiler pressure fault — M20 postcode — Caller contact details recorded.",
-  },
-  {
-    id: "cleaning",
-    label: "Cleaning & Window",
-    business: "Example Window & Cleaning Services",
-    callerMsg:
-      "Hello, do you cover regular window and gutter cleaning for 3-bedroom homes in Leeds?",
-    aiResponse:
-      "Yes, we cover residential window and gutter cleaning across Leeds. May I take your name, postcode and mobile number so we can send you a quote?",
-    summaryDispatch:
-      "Call summary generated: Residential window & gutter clean enquiry (Leeds) — Contact details captured for quotation.",
-  },
-  {
-    id: "appointments",
-    label: "Appointment Businesses",
-    business: "Example Clinic & Salon",
-    callerMsg:
-      "Good afternoon, I'd like to enquire about booking an appointment next Thursday.",
-    aiResponse:
-      "Good afternoon. I'd be happy to help log your appointment request. Could I take your name, preferred time on Thursday, and mobile number?",
-    summaryDispatch:
-      "Call summary generated: Thursday appointment request logged and routed to business team.",
-  },
-];
-
 export default function HomeAiReceptionistSpotlight() {
-  const [activeId, setActiveId] = useState("trades");
-  const scenario =
-    EXAMPLE_SCENARIOS.find((s) => s.id === activeId) || EXAMPLE_SCENARIOS[0];
-
   return (
     <section
       id="ai-receptionist"
@@ -152,81 +112,9 @@ export default function HomeAiReceptionistSpotlight() {
             </div>
           </div>
 
-          {/* Right 5 Columns: Illustrative Call Scenario Panel */}
+          {/* Right 5 Columns: Interactive Playable AI Receptionist Call Demo */}
           <div className="lg:col-span-5">
-            <div className="rounded-xl border border-[#E2E8F0] bg-white overflow-hidden shadow-subtle">
-              <div className="px-5 py-4 border-b border-[#E2E8F0] flex items-center justify-between gap-2 bg-[#F8FAFD]">
-                <div>
-                  <h3 className="text-xs sm:text-sm font-bold text-[#14243A]">
-                    Example Call Handling Scenarios
-                  </h3>
-                  <span className="text-[11px] text-[#64748B] block">
-                    Illustrative conversation walkthrough
-                  </span>
-                </div>
-                <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-white border border-[#E2E8F0] text-[#475569]">
-                  Example Only
-                </span>
-              </div>
-
-              {/* Scenario Selector Tabs */}
-              <div className="grid grid-cols-3 border-b border-[#E2E8F0] bg-white">
-                {EXAMPLE_SCENARIOS.map((scen) => {
-                  const isActive = activeId === scen.id;
-                  return (
-                    <button
-                      key={scen.id}
-                      type="button"
-                      onClick={() => setActiveId(scen.id)}
-                      className={`py-3 px-2 text-[11px] font-semibold text-center transition-colors relative border-r last:border-r-0 border-[#E2E8F0] ${
-                        isActive
-                          ? "bg-[#F8FAFD] text-blue-600"
-                          : "text-[#64748B] hover:text-[#14243A]"
-                      }`}
-                    >
-                      {scen.label}
-                      {isActive && (
-                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600" />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Conversation Transcript */}
-              <div className="p-5 sm:p-6 space-y-4 text-xs">
-                <div className="p-3.5 rounded-lg bg-[#F8FAFD] border border-[#E2E8F0] text-[#475569]">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#64748B] block mb-1">
-                    Incoming Caller
-                  </span>
-                  &ldquo;{scenario.callerMsg}&rdquo;
-                </div>
-
-                <div className="p-3.5 rounded-lg bg-white border-l-2 border-l-blue-600 border border-[#E2E8F0] text-[#14243A]">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 block mb-1">
-                    AI Receptionist ({scenario.business})
-                  </span>
-                  &ldquo;{scenario.aiResponse}&rdquo;
-                </div>
-
-                <div className="p-3.5 rounded-lg bg-[#F5F8FC] border border-[#E2E8F0] text-[#14243A] text-[11px] leading-relaxed">
-                  <span className="font-bold text-blue-700 block mb-0.5">
-                    Post-Call Summary &amp; Routing
-                  </span>
-                  {scenario.summaryDispatch}
-                </div>
-
-                <div className="pt-3 border-t border-[#E2E8F0] flex items-center justify-between text-[11px] text-[#64748B]">
-                  <span>Tailored to your business script</span>
-                  <Link
-                    href="/ai-receptionist#demo-form"
-                    className="font-semibold text-blue-600 hover:text-[#14243A]"
-                  >
-                    Request Implementation Info &rarr;
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <AiReceptionistDemo />
           </div>
         </div>
       </div>

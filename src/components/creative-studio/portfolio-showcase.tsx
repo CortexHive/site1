@@ -56,7 +56,7 @@ export default function PortfolioShowcase() {
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-100">
               <Image
-                src="/creative-showcase.png"
+                src="/creative-showcase.webp"
                 alt="Cortex Hive Creative Capabilities Showcase"
                 fill
                 className="object-cover group-hover:scale-103 transition-transform duration-500"

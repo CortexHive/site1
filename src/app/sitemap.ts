@@ -1,8 +1,24 @@
 import { MetadataRoute } from "next";
+import { BUSINESS_GUIDES } from "@/lib/guides";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://cortexhive.co.uk";
   const now = new Date();
+
+  const guideEntries: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/guides`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    ...BUSINESS_GUIDES.map((guide) => ({
+      url: `${baseUrl}/guides/${guide.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+  ];
 
   return [
     {
@@ -149,5 +165,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    ...guideEntries,
   ];
 }

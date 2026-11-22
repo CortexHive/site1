@@ -14,6 +14,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import AiReceptionistForm from "@/components/ai-receptionist-form";
+import AiReceptionistDemo from "@/components/ai-receptionist-demo";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
@@ -195,6 +196,22 @@ export default function AiReceptionistPage() {
             </a>
           </div>
         </div>
+
+        {/* Interactive Live Audio Demo */}
+        <section className="max-w-3xl mx-auto space-y-4">
+          <div className="text-center space-y-1.5">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
+              Hear It In Action
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14243A]">
+              Play an Interactive UK Call Handling Demo
+            </h2>
+            <p className="text-xs sm:text-sm text-[#475569]">
+              Choose a business type and press play to hear how our AI receptionist answers, qualifies leads, and sends an instant summary.
+            </p>
+          </div>
+          <AiReceptionistDemo />
+        </section>
 
         {/* Problem Statement */}
         <section className="bg-[#F8FAFD] rounded-3xl p-6 sm:p-10 border border-[#E2E8F0] space-y-8">

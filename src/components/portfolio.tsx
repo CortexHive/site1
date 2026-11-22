@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ExternalLink,
@@ -283,7 +284,6 @@ export default function Portfolio() {
         {/* Portfolio Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredProjects.map((project) => {
-            const Icon = project.icon;
             const isOwned = project.classification === "OWNED PRODUCT";
             const isClient = project.classification === "CLIENT PROJECT";
 
@@ -294,42 +294,27 @@ export default function Portfolio() {
               >
                 <div>
                   {/* Application Interface Visual Preview Header */}
-                  <div className="bg-[#F8FAFD] border-b border-[#E2E8F0] p-4 sm:p-5">
-                    <div className="rounded-xl bg-white border border-slate-200/90 p-3.5 shadow-2xs space-y-3">
-                      <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-slate-100">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <div className="w-7 h-7 rounded-lg bg-[#14243A] text-white flex items-center justify-center flex-shrink-0">
-                            <Icon className="w-3.5 h-3.5" />
-                          </div>
-                          <span className="text-[11px] font-bold text-[#14243A] truncate">
-                            {project.interfacePreview.headerTitle}
+                  <div className="bg-[#F8FAFD] border-b border-[#E2E8F0] p-3 sm:p-4">
+                    <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-slate-200/90 bg-white shadow-2xs">
+                      <Image
+                        src={`/projects/${project.id}.webp`}
+                        alt={`${project.title} — ${project.tagline}`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="mt-3 grid grid-cols-2 gap-2">
+                      {project.interfacePreview.metrics.map((m) => (
+                        <div key={m.label} className="px-2.5 py-2 rounded-lg bg-white border border-slate-200/80 flex items-center justify-between gap-2">
+                          <span className="text-[10px] font-semibold uppercase text-[#64748B] truncate">
+                            {m.label}
+                          </span>
+                          <span className="text-[11px] font-bold text-[#14243A] whitespace-nowrap">
+                            {m.value}
                           </span>
                         </div>
-                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 whitespace-nowrap">
-                          {project.interfacePreview.badge}
-                        </span>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-2">
-                        {project.interfacePreview.metrics.map((m) => (
-                          <div key={m.label} className="p-2 rounded-lg bg-[#F5F8FC] border border-slate-200/60">
-                            <div className="text-[9px] font-semibold uppercase text-[#64748B]">
-                              {m.label}
-                            </div>
-                            <div className="text-xs font-bold text-[#14243A] mt-0.5">
-                              {m.value}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="space-y-1">
-                        {project.interfacePreview.uiLines.map((line, idx) => (
-                          <div key={idx} className="text-[11px] text-[#475569] font-medium truncate">
-                            {line}
-                          </div>
-                        ))}
-                      </div>
+                      ))}
                     </div>
                   </div>
 

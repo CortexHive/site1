@@ -13,10 +13,21 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-14">
           {/* Column 1: Brand & Contact */}
           <div className="lg:col-span-1 space-y-4">
-            <Link href="/" className="inline-flex items-center gap-2">
-              <span className="text-xl font-extrabold tracking-tight text-[#14243A]">
-                CORTEX<span className="text-blue-600">HIVE</span>
-              </span>
+            <Link href="/" className="inline-flex items-center gap-2.5 group" aria-label="CortexHive Home">
+              <div className="w-9 h-9 rounded-lg bg-[#14243A] flex items-center justify-center text-white border border-slate-800 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors flex-shrink-0">
+                <svg className="w-4 h-4 fill-none stroke-current stroke-[2]" viewBox="0 0 24 24">
+                  <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" />
+                  <circle cx="12" cy="12" r="2.5" fill="currentColor" />
+                </svg>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-base font-extrabold tracking-[-0.02em] text-[#14243A] leading-none">
+                  CORTEX<span className="text-blue-600">HIVE</span>
+                </span>
+                <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-500 mt-1 leading-none">
+                  Websites, AI &amp; Software
+                </span>
+              </div>
             </Link>
             <p className="font-semibold text-xs text-[#14243A]">
               Technology That Moves Your Business Forward.
@@ -168,6 +179,11 @@ export default function Footer() {
               <li>
                 <Link href="/pricing" className="hover:text-blue-600 transition-colors">
                   Pricing &amp; Packages
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides" className="hover:text-blue-600 transition-colors">
+                  UK Business Guides
                 </Link>
               </li>
               <li>

@@ -32,7 +32,7 @@ export default function BottomCTA() {
           {/* Background Image backdrop */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             <Image
-              src="/cta-bg.png"
+              src="/cta-bg.webp"
               alt="Interactive CTA Background"
               fill
               className="object-cover opacity-35 group-hover:scale-102 transition-transform duration-700"
