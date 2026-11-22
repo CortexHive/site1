@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { openConsultationModal } from "./consultation-modal";
 import SectorDemoModal from "./sector-demo-modal";
+import Pathway2SolutionModal from "./pathway2-solution-modal";
 
 type ServiceCategory = "websites" | "ai" | "software";
 
@@ -88,6 +89,7 @@ const SERVICE_SELECTOR_CONTENT: Record<
 export default function Hero() {
   const [activeCategory, setActiveCategory] = useState<ServiceCategory>("websites");
   const [activeSectorDemo, setActiveSectorDemo] = useState<string | null>(null);
+  const [activePathway2Demo, setActivePathway2Demo] = useState<string | null>(null);
   const current = SERVICE_SELECTOR_CONTENT[activeCategory];
 
   const scrollTo = (selector: string) => {
@@ -384,16 +386,43 @@ export default function Hero() {
                   </p>
                 </div>
 
-                {/* Clean Product Capability Matrix */}
+                {/* Interactive 3D Workflow Explainer Matrix */}
                 <div className="p-4 rounded-xl bg-[#F8FAFD] border border-[#E2E8F0] space-y-2.5">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B] block">
-                    Tailored Engineering Scope
-                  </span>
-                  <div className="grid grid-cols-2 gap-y-1.5 gap-x-3 text-xs font-medium text-[#14243A]">
-                    <span className="flex items-center gap-2"><Layers className="w-3.5 h-3.5 text-blue-600" /> Custom SaaS Platforms</span>
-                    <span className="flex items-center gap-2"><Cpu className="w-3.5 h-3.5 text-blue-600" /> AI Agents &amp; Automation</span>
-                    <span className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Dashboards &amp; Portals</span>
-                    <span className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> API &amp; Document Systems</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
+                      Tailored Engineering Scope
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-blue-600">
+                      <Box className="w-3 h-3" />
+                      Click to view 3D workflow
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {[
+                      { slug: "custom-saas", label: "Custom SaaS Platforms", icon: Layers },
+                      { slug: "ai-agents", label: "AI Agents & Automation", icon: Cpu },
+                      { slug: "dashboards-portals", label: "Dashboards & Portals", icon: Check },
+                      { slug: "api-document-systems", label: "API & Document Systems", icon: Check },
+                    ].map((sol) => {
+                      const SolIcon = sol.icon;
+                      return (
+                        <button
+                          key={sol.slug}
+                          type="button"
+                          onClick={() => setActivePathway2Demo(sol.slug)}
+                          className="group flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg bg-white hover:bg-blue-50/70 border border-[#E2E8F0] hover:border-blue-300 text-left transition-all cursor-pointer"
+                        >
+                          <span className="flex items-center gap-2 text-xs font-semibold text-[#14243A] group-hover:text-blue-700 min-w-0">
+                            <SolIcon className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
+                            <span className="truncate">{sol.label}</span>
+                          </span>
+                          <span className="text-[10px] font-bold text-blue-600 whitespace-nowrap flex items-center gap-0.5 flex-shrink-0">
+                            3D Flow
+                            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -423,6 +452,12 @@ export default function Hero() {
       <SectorDemoModal
         sectorSlug={activeSectorDemo}
         onClose={() => setActiveSectorDemo(null)}
+      />
+
+      {/* Interactive 3D Custom AI & Software Workflow Modal */}
+      <Pathway2SolutionModal
+        solutionSlug={activePathway2Demo}
+        onClose={() => setActivePathway2Demo(null)}
       />
     </>
   );

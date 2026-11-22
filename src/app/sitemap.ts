@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { BUSINESS_GUIDES } from "@/lib/guides";
 import { SECTOR_DEMOS } from "@/lib/sector-demos";
+import { PATHWAY2_SOLUTIONS } from "@/lib/pathway2-solutions";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://cortexhive.co.uk";
@@ -12,6 +13,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
     priority: 0.85,
   }));
+
+  const solutionEntries: MetadataRoute.Sitemap = PATHWAY2_SOLUTIONS.map(
+    (sol) => ({
+      url: `${baseUrl}/solutions/${sol.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    })
+  );
 
   const guideEntries: MetadataRoute.Sitemap = [
     {
@@ -175,5 +185,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...guideEntries,
     ...demoEntries,
+    ...solutionEntries,
   ];
 }

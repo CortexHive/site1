@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Monitor,
@@ -270,78 +271,116 @@ export default function Sector3dShowcase({
                   </div>
                 </div>
 
-                {/* 2. Website Hero & Services Block */}
+                {/* 2. Realistic Full-Website Header + Photo Hero & Services Block */}
                 <div
                   onClick={() => setActiveFeature("website")}
-                  className={`p-3.5 sm:p-4 rounded-xl bg-white border transition-all cursor-pointer space-y-3 ${highlightRing(
+                  className={`rounded-xl bg-white border overflow-hidden transition-all cursor-pointer ${highlightRing(
                     "website"
                   )}`}
                 >
-                  <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-100">
-                    <div>
-                      <div className="text-xs font-extrabold text-[#14243A] leading-tight">
-                        {sector.sampleBrand}
-                      </div>
-                      <div className="text-[10px] text-slate-500 flex items-center gap-1 mt-0.5">
-                        <MapPin className="w-2.5 h-2.5 text-blue-600" />
-                        <span>{sector.sampleLocation}</span>
+                  {/* Realistic Sample Site Navbar */}
+                  <div className="px-3.5 py-2.5 bg-white border-b border-slate-100 flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span
+                        className={`w-6 h-6 rounded-md ${sector.accentBgClass} text-white text-[10px] font-extrabold flex items-center justify-center flex-shrink-0`}
+                      >
+                        {sector.sampleBrand.slice(0, 1)}
+                      </span>
+                      <div className="min-w-0">
+                        <div className="text-[11px] font-extrabold text-[#14243A] leading-tight truncate">
+                          {sector.sampleBrand}
+                        </div>
+                        <div className="text-[9px] text-slate-500 flex items-center gap-1 truncate">
+                          <MapPin className="w-2.5 h-2.5 text-blue-600 flex-shrink-0" />
+                          <span className="truncate">{sector.sampleLocation}</span>
+                        </div>
                       </div>
                     </div>
+
+                    {device === "desktop" && (
+                      <div className="hidden sm:flex items-center gap-3 text-[10px] font-semibold text-slate-500">
+                        <span>Services</span>
+                        <span>Areas</span>
+                        <span>Reviews</span>
+                      </div>
+                    )}
+
                     <span
-                      className={`text-[9px] font-bold text-white px-2 py-1 rounded-md ${sector.accentBgClass} whitespace-nowrap`}
+                      className={`text-[9px] font-bold text-white px-2.5 py-1 rounded-md ${sector.accentBgClass} whitespace-nowrap flex-shrink-0`}
                     >
                       {sector.samplePhone}
                     </span>
                   </div>
 
-                  <div>
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-blue-600">
-                      {sector.heroBadge}
-                    </span>
-                    <h4
-                      className={`font-extrabold text-[#14243A] leading-snug mt-0.5 ${
-                        device === "mobile" ? "text-sm" : "text-base sm:text-lg"
+                  {/* Photorealistic Sector Hero Banner */}
+                  <div className="relative h-40 sm:h-48 w-full overflow-hidden bg-slate-900">
+                    <Image
+                      src={`/demos/${sector.slug}.webp`}
+                      alt={`${sector.sampleBrand} — ${sector.sectorName} sample website hero`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 55vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/90 via-[#0F172A]/65 to-[#0F172A]/20" />
+
+                    <div className="relative z-10 h-full p-4 flex flex-col justify-between text-white">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-white/15 backdrop-blur-xs border border-white/25 text-white">
+                          {sector.heroBadge}
+                        </span>
+                        <span className="text-[9px] font-bold px-2 py-0.5 rounded bg-emerald-500/90 text-white">
+                          Free Quotes
+                        </span>
+                      </div>
+
+                      <div className="max-w-md space-y-1">
+                        <h4
+                          className={`font-extrabold text-white leading-tight drop-shadow-xs ${
+                            device === "mobile" ? "text-sm" : "text-base sm:text-lg"
+                          }`}
+                        >
+                          {sector.heroTitle}
+                        </h4>
+                        <p className="text-[10px] sm:text-[11px] text-slate-200 leading-snug line-clamp-2">
+                          {sector.heroSubtitle}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Services Grid + Trust Strip */}
+                  <div className="p-3.5 space-y-3 bg-white">
+                    <div
+                      className={`grid gap-2 ${
+                        device === "mobile" ? "grid-cols-1" : "grid-cols-2"
                       }`}
                     >
-                      {sector.heroTitle}
-                    </h4>
-                    <p className="text-[11px] text-[#475569] mt-1 leading-relaxed">
-                      {sector.heroSubtitle}
-                    </p>
-                  </div>
-
-                  {/* Sample Services Grid */}
-                  <div
-                    className={`grid gap-2 ${
-                      device === "mobile" ? "grid-cols-1" : "grid-cols-2"
-                    }`}
-                  >
-                    {sector.sampleServices.map((srv) => (
-                      <div
-                        key={srv.name}
-                        className="p-2 rounded-lg bg-[#F8FAFD] border border-slate-200/70"
-                      >
-                        <div className="text-[11px] font-bold text-[#14243A]">
-                          {srv.name}
+                      {sector.sampleServices.map((srv) => (
+                        <div
+                          key={srv.name}
+                          className="p-2.5 rounded-lg bg-[#F8FAFD] border border-slate-200/80"
+                        >
+                          <div className="text-[11px] font-bold text-[#14243A]">
+                            {srv.name}
+                          </div>
+                          <div className="text-[10px] text-slate-500 leading-snug mt-0.5">
+                            {srv.desc}
+                          </div>
                         </div>
-                        <div className="text-[10px] text-slate-500 leading-snug">
-                          {srv.desc}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
 
-                  {/* Trust Badges */}
-                  <div className="flex flex-wrap gap-1.5 pt-0.5">
-                    {sector.trustPoints.map((tp) => (
-                      <span
-                        key={tp}
-                        className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-[#14243A]"
-                      >
-                        <CheckCircle2 className="w-2.5 h-2.5 text-blue-600" />
-                        {tp}
-                      </span>
-                    ))}
+                    <div className="flex flex-wrap gap-1.5 pt-0.5">
+                      {sector.trustPoints.map((tp) => (
+                        <span
+                          key={tp}
+                          className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-[#14243A]"
+                        >
+                          <CheckCircle2 className="w-2.5 h-2.5 text-blue-600" />
+                          {tp}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
