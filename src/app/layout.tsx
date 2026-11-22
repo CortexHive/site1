@@ -25,9 +25,6 @@ export const metadata: Metadata = {
   description:
     "Technology That Moves Your Business Forward. From professional small business websites starting at £99 to 24/7 AI receptionists, workflow automation and custom software development across the UK.",
   metadataBase: new URL("https://cortexhive.co.uk"),
-  alternates: {
-    canonical: "https://cortexhive.co.uk",
-  },
   keywords: [
     "Website design UK",
     "Affordable website design for small businesses",
@@ -52,14 +49,6 @@ export const metadata: Metadata = {
       "From professional websites to intelligent AI automation and custom software, CortexHive helps UK businesses simplify operations, attract customers and turn ideas into working digital products.",
     url: "https://cortexhive.co.uk",
     siteName: "CortexHive",
-    images: [
-      {
-        url: "/logo.png",
-        width: 800,
-        height: 600,
-        alt: "CortexHive — Websites, AI Automation & Custom Software UK",
-      },
-    ],
     locale: "en_GB",
     type: "website",
   },
@@ -68,12 +57,25 @@ export const metadata: Metadata = {
     title: "CortexHive — Websites, AI Automation & Custom Software Agency UK",
     description:
       "Professional websites from £99, 24/7 AI receptionists, business automation and custom software development in the UK.",
-    images: ["/logo.png"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+        verification: {
+          google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+        },
+      }
+    : {}),
 };
 
 const jsonLd = {
@@ -84,7 +86,13 @@ const jsonLd = {
       "@id": "https://cortexhive.co.uk/#organization",
       name: "CortexHive",
       url: "https://cortexhive.co.uk",
-      logo: "https://cortexhive.co.uk/logo.png",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://cortexhive.co.uk/logo.png",
+        width: 512,
+        height: 512,
+      },
+      image: "https://cortexhive.co.uk/og-image.png",
       description:
         "UK digital technology, software development and AI automation agency delivering business websites, 24/7 AI receptionists, workflow automation and custom software.",
       telephone: "+447950501323",
@@ -108,6 +116,8 @@ const jsonLd = {
       "@id": "https://cortexhive.co.uk/#service",
       name: "CortexHive Digital Technology, AI & Software Agency",
       url: "https://cortexhive.co.uk",
+      image: "https://cortexhive.co.uk/og-image.png",
+      priceRange: "£99 - £5000+",
       telephone: "+447950501323",
       email: "info@cortexhive.co.uk",
       areaServed: {
