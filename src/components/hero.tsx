@@ -10,8 +10,10 @@ import {
   Check,
   Building2,
   Cpu,
+  Box,
 } from "lucide-react";
 import { openConsultationModal } from "./consultation-modal";
+import SectorDemoModal from "./sector-demo-modal";
 
 type ServiceCategory = "websites" | "ai" | "software";
 
@@ -85,6 +87,7 @@ const SERVICE_SELECTOR_CONTENT: Record<
 
 export default function Hero() {
   const [activeCategory, setActiveCategory] = useState<ServiceCategory>("websites");
+  const [activeSectorDemo, setActiveSectorDemo] = useState<string | null>(null);
   const current = SERVICE_SELECTOR_CONTENT[activeCategory];
 
   const scrollTo = (selector: string) => {
@@ -302,16 +305,43 @@ export default function Hero() {
                   </p>
                 </div>
 
-                {/* Clean Sector Matrix */}
+                {/* Interactive 3D Sector Demo Matrix */}
                 <div className="p-4 rounded-xl bg-[#F8FAFD] border border-[#E2E8F0] space-y-2.5">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B] block">
-                    Built for Practical Businesses
-                  </span>
-                  <div className="grid grid-cols-2 gap-y-1.5 gap-x-3 text-xs font-medium text-[#14243A]">
-                    <span className="flex items-center gap-2"><Globe className="w-3.5 h-3.5 text-blue-600" /> Builders &amp; Trades</span>
-                    <span className="flex items-center gap-2"><PhoneCall className="w-3.5 h-3.5 text-blue-600" /> Plumbers &amp; Electricians</span>
-                    <span className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Window &amp; Commercial Cleaners</span>
-                    <span className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-blue-600" /> Local Service Providers</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
+                      Built for Practical Businesses
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-blue-600">
+                      <Box className="w-3 h-3" />
+                      Click to view 3D sample
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {[
+                      { slug: "builders-trades", label: "Builders & Trades", icon: Globe },
+                      { slug: "plumbers-electricians", label: "Plumbers & Electricians", icon: PhoneCall },
+                      { slug: "window-cleaners", label: "Window & Commercial Cleaners", icon: Check },
+                      { slug: "local-services", label: "Local Service Providers", icon: Check },
+                    ].map((sector) => {
+                      const SectorIcon = sector.icon;
+                      return (
+                        <button
+                          key={sector.slug}
+                          type="button"
+                          onClick={() => setActiveSectorDemo(sector.slug)}
+                          className="group flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg bg-white hover:bg-blue-50/70 border border-[#E2E8F0] hover:border-blue-300 text-left transition-all cursor-pointer"
+                        >
+                          <span className="flex items-center gap-2 text-xs font-semibold text-[#14243A] group-hover:text-blue-700 min-w-0">
+                            <SectorIcon className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
+                            <span className="truncate">{sector.label}</span>
+                          </span>
+                          <span className="text-[10px] font-bold text-blue-600 whitespace-nowrap flex items-center gap-0.5 flex-shrink-0">
+                            3D Demo
+                            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -388,6 +418,12 @@ export default function Hero() {
           </div>
         </div>
       </section>
+
+      {/* Interactive 3D Sector Sample Webpage Modal */}
+      <SectorDemoModal
+        sectorSlug={activeSectorDemo}
+        onClose={() => setActiveSectorDemo(null)}
+      />
     </>
   );
 }

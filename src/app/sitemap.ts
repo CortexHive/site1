@@ -1,9 +1,17 @@
 import { MetadataRoute } from "next";
 import { BUSINESS_GUIDES } from "@/lib/guides";
+import { SECTOR_DEMOS } from "@/lib/sector-demos";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://cortexhive.co.uk";
   const now = new Date();
+
+  const demoEntries: MetadataRoute.Sitemap = SECTOR_DEMOS.map((demo) => ({
+    url: `${baseUrl}/demos/${demo.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }));
 
   const guideEntries: MetadataRoute.Sitemap = [
     {
@@ -166,5 +174,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     ...guideEntries,
+    ...demoEntries,
   ];
 }

@@ -25,11 +25,11 @@ export default function Home() {
       {/* Sections 1 & 2: Hero + Trust & Core Capabilities */}
       <Hero />
 
-      {/* Section 3: Website Design for Small Businesses (£99 / £349 / £699) */}
-      <PricingPackages />
-
-      {/* Section 4: AI Receptionist */}
+      {/* Section 3: AI Receptionist */}
       <HomeAiReceptionistSpotlight />
+
+      {/* Section 4: Website Design for Small Businesses (£99 / £349 / £699) */}
+      <PricingPackages />
 
       {/* Sections 5 & 6: AI Automation + Custom Software & SaaS Development */}
       <ServiceDivisions />
