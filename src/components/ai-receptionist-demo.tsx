@@ -17,6 +17,7 @@ import { openConsultationModal } from "./consultation-modal";
 interface CallLine {
   speaker: "ai" | "caller";
   text: string;
+  audioSrc: string;
 }
 
 interface DemoScenario {
@@ -41,27 +42,32 @@ const DEMO_SCENARIOS: DemoScenario[] = [
     label: "Plumbing & Heating",
     businessName: "Example Heating & Plumbing",
     callerLabel: "Incoming UK Mobile • 07xxx xxx412",
-    duration: "0:28",
+    duration: "0:42",
     lines: [
       {
         speaker: "ai",
         text: "Good afternoon, thanks for calling Example Heating and Plumbing. Our engineers are currently on site — I'm the AI receptionist and can log your job right away. How can I help?",
+        audioSrc: "/audio/ai-demo/trades-0.mp3",
       },
       {
         speaker: "caller",
         text: "Hi, our combi boiler has lost pressure and we have no hot water in Didsbury, Manchester. Can someone come out today?",
+        audioSrc: "/audio/ai-demo/trades-1.mp3",
       },
       {
         speaker: "ai",
         text: "I can flag that as an urgent boiler callout for our engineer straight away. Could I take your name, postcode, and the best number to reach you on?",
+        audioSrc: "/audio/ai-demo/trades-2.mp3",
       },
       {
         speaker: "caller",
         text: "Sure, it's David Patel, postcode M20 2RN, and you can call me back on this mobile number.",
+        audioSrc: "/audio/ai-demo/trades-3.mp3",
       },
       {
         speaker: "ai",
         text: "Thank you David. I've sent your details to our engineer now and they will call you back shortly with today's earliest slot.",
+        audioSrc: "/audio/ai-demo/trades-4.mp3",
       },
     ],
     summary: {
@@ -77,27 +83,32 @@ const DEMO_SCENARIOS: DemoScenario[] = [
     label: "Window & Cleaning",
     businessName: "Example Exterior Cleaning",
     callerLabel: "Incoming UK Landline • 0113 xxx 890",
-    duration: "0:24",
+    duration: "0:38",
     lines: [
       {
         speaker: "ai",
         text: "Hello, thank you for calling Example Exterior Cleaning. Our team is out on a round at the moment, how can I assist you today?",
+        audioSrc: "/audio/ai-demo/cleaning-0.mp3",
       },
       {
         speaker: "caller",
         text: "Hi, do you cover regular window and gutter cleaning for a 3-bedroom semi in Headingley, Leeds?",
+        audioSrc: "/audio/ai-demo/cleaning-1.mp3",
       },
       {
         speaker: "ai",
         text: "Yes, we cover Headingley every fortnight. If you share your name, postcode, and mobile number, I'll pass this over for a quick written quote today.",
+        audioSrc: "/audio/ai-demo/cleaning-2.mp3",
       },
       {
         speaker: "caller",
         text: "Great, I'm Claire Davies, postcode LS6 3AA, and my mobile is 07700 900123.",
+        audioSrc: "/audio/ai-demo/cleaning-3.mp3",
       },
       {
         speaker: "ai",
         text: "Lovely, thanks Claire. Your quote request is logged and the team will message you on WhatsApp later today.",
+        audioSrc: "/audio/ai-demo/cleaning-4.mp3",
       },
     ],
     summary: {
@@ -113,27 +124,32 @@ const DEMO_SCENARIOS: DemoScenario[] = [
     label: "Clinic & Salon",
     businessName: "Example Dental & Aesthetics",
     callerLabel: "Incoming UK Mobile • 07xxx xxx904",
-    duration: "0:22",
+    duration: "0:34",
     lines: [
       {
         speaker: "ai",
         text: "Good afternoon, Example Clinic. Our reception desk is assisting another patient — I can take your booking request right now. What would you like to arrange?",
+        audioSrc: "/audio/ai-demo/appointments-0.mp3",
       },
       {
         speaker: "caller",
         text: "Hi, I'd like to book an initial consultation next Thursday afternoon if you have any availability.",
+        audioSrc: "/audio/ai-demo/appointments-1.mp3",
       },
       {
         speaker: "ai",
         text: "Of course. We have afternoon slots available next Thursday. May I take your full name and mobile number so we can confirm your appointment?",
+        audioSrc: "/audio/ai-demo/appointments-2.mp3",
       },
       {
         speaker: "caller",
         text: "It's Hannah Brooks, and this number is best for a confirmation text.",
+        audioSrc: "/audio/ai-demo/appointments-3.mp3",
       },
       {
         speaker: "ai",
         text: "Thanks Hannah. I've logged your Thursday afternoon request and our team will text your confirmation shortly.",
+        audioSrc: "/audio/ai-demo/appointments-4.mp3",
       },
     ],
     summary: {
@@ -153,8 +169,11 @@ export default function AiReceptionistDemo() {
   const [activeLineIdx, setActiveLineIdx] = useState<number>(-1);
   const [completed, setCompleted] = useState<boolean>(false);
 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const playingRef = useRef<boolean>(false);
+  const mutedRef = useRef<boolean>(false);
+  const lineRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const scenario =
     DEMO_SCENARIOS.find((s) => s.id === activeId) || DEMO_SCENARIOS[0];
@@ -167,8 +186,11 @@ export default function AiReceptionistDemo() {
       clearTimeout(timerRef.current);
       timerRef.current = null;
     }
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
+    if (audioRef.current) {
+      audioRef.current.onended = null;
+      audioRef.current.onerror = null;
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
     }
   };
 
@@ -178,13 +200,29 @@ export default function AiReceptionistDemo() {
     };
   }, []);
 
+  useEffect(() => {
+    mutedRef.current = isMuted;
+    if (audioRef.current) {
+      audioRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
+
+  useEffect(() => {
+    if (activeLineIdx >= 0 && lineRefs.current[activeLineIdx]) {
+      lineRefs.current[activeLineIdx]?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  }, [activeLineIdx]);
+
   const handleSelectScenario = (id: string) => {
     stopPlayback();
     setCompleted(false);
     setActiveId(id);
   };
 
-  const playLine = (index: number, currentScenario: DemoScenario, muted: boolean) => {
+  const playLine = (index: number, currentScenario: DemoScenario) => {
     if (!playingRef.current) return;
 
     if (index >= currentScenario.lines.length) {
@@ -198,58 +236,41 @@ export default function AiReceptionistDemo() {
     setActiveLineIdx(index);
     const line = currentScenario.lines[index];
 
-    const canSpeak =
-      !muted &&
-      typeof window !== "undefined" &&
-      "speechSynthesis" in window &&
-      typeof SpeechSynthesisUtterance !== "undefined";
-
-    if (canSpeak) {
-      try {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(line.text);
-        utterance.lang = "en-GB";
-
-        const voices = window.speechSynthesis.getVoices();
-        const ukVoices = voices.filter((v) =>
-          v.lang.toLowerCase().startsWith("en-gb")
-        );
-        if (ukVoices.length > 0) {
-          utterance.voice =
-            line.speaker === "ai"
-              ? ukVoices[0]
-              : ukVoices[ukVoices.length > 1 ? 1 : 0];
-        }
-
-        utterance.rate = line.speaker === "ai" ? 1.03 : 0.98;
-        utterance.pitch = line.speaker === "ai" ? 1.08 : 0.92;
-
-        utterance.onend = () => {
-          if (!playingRef.current) return;
-          timerRef.current = setTimeout(() => {
-            playLine(index + 1, currentScenario, muted);
-          }, 350);
-        };
-
-        utterance.onerror = () => {
-          if (!playingRef.current) return;
-          timerRef.current = setTimeout(() => {
-            playLine(index + 1, currentScenario, muted);
-          }, 2600);
-        };
-
-        window.speechSynthesis.speak(utterance);
-        return;
-      } catch {
-        // Fallback to timed transcript below
-      }
+    if (!audioRef.current) {
+      audioRef.current = new Audio();
+      audioRef.current.preload = "auto";
     }
 
-    // Visual timed fallback when muted or speechSynthesis unavailable
-    const readTimeMs = Math.max(2200, Math.min(4500, line.text.length * 38));
-    timerRef.current = setTimeout(() => {
-      playLine(index + 1, currentScenario, muted);
-    }, readTimeMs);
+    const audio = audioRef.current;
+    audio.muted = mutedRef.current;
+    audio.src = line.audioSrc;
+
+    const advance = () => {
+      if (!playingRef.current) return;
+      timerRef.current = setTimeout(() => {
+        playLine(index + 1, currentScenario);
+      }, 320);
+    };
+
+    audio.onended = advance;
+    audio.onerror = () => {
+      if (!playingRef.current) return;
+      const fallbackMs = Math.max(2200, Math.min(4500, line.text.length * 38));
+      timerRef.current = setTimeout(() => {
+        playLine(index + 1, currentScenario);
+      }, fallbackMs);
+    };
+
+    const playPromise = audio.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {
+        if (!playingRef.current) return;
+        const fallbackMs = Math.max(2200, Math.min(4500, line.text.length * 38));
+        timerRef.current = setTimeout(() => {
+          playLine(index + 1, currentScenario);
+        }, fallbackMs);
+      });
+    }
   };
 
   const handleTogglePlay = () => {
@@ -260,7 +281,7 @@ export default function AiReceptionistDemo() {
     setCompleted(false);
     setIsPlaying(true);
     playingRef.current = true;
-    playLine(0, scenario, isMuted);
+    playLine(0, scenario);
   };
 
   return (
@@ -272,8 +293,13 @@ export default function AiReceptionistDemo() {
             <PhoneCall className="w-4 h-4 text-blue-300" />
           </div>
           <div className="min-w-0">
-            <div className="text-xs font-bold tracking-tight truncate">
-              Interactive AI Call Demo
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold tracking-tight truncate">
+                Realistic UK AI Call Demo
+              </span>
+              <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 whitespace-nowrap">
+                Studio Voice
+              </span>
             </div>
             <div className="text-[10px] text-slate-300 truncate">
               {scenario.businessName} • {scenario.callerLabel}
@@ -285,7 +311,7 @@ export default function AiReceptionistDemo() {
           type="button"
           onClick={() => setIsMuted((prev) => !prev)}
           aria-label={isMuted ? "Unmute audio demo" : "Mute audio demo"}
-          className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors flex-shrink-0"
+          className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors flex-shrink-0 cursor-pointer"
           title={isMuted ? "Unmute voice audio" : "Mute voice audio"}
         >
           {isMuted ? (
@@ -305,7 +331,7 @@ export default function AiReceptionistDemo() {
               key={item.id}
               type="button"
               onClick={() => handleSelectScenario(item.id)}
-              className={`py-2.5 px-2 text-[11px] font-semibold transition-colors border-r last:border-r-0 border-[#E2E8F0] ${
+              className={`py-2.5 px-2 text-[11px] font-semibold transition-colors border-r last:border-r-0 border-[#E2E8F0] cursor-pointer ${
                 isActive
                   ? "bg-white text-blue-600 border-b-2 border-b-blue-600"
                   : "text-[#64748B] hover:text-[#14243A]"
@@ -336,7 +362,7 @@ export default function AiReceptionistDemo() {
           ) : (
             <>
               <Play className="w-3.5 h-3.5 fill-current" />
-              <span>Play Live Audio Demo</span>
+              <span>Play Realistic Call Demo</span>
             </>
           )}
         </button>
@@ -360,7 +386,7 @@ export default function AiReceptionistDemo() {
             ))}
           </div>
           <span className="text-[11px] font-semibold text-[#64748B]">
-            {isPlaying ? "Live..." : scenario.duration}
+            {isPlaying ? "Playing..." : scenario.duration}
           </span>
         </div>
       </div>
@@ -375,6 +401,9 @@ export default function AiReceptionistDemo() {
           return (
             <div
               key={idx}
+              ref={(el) => {
+                lineRefs.current[idx] = el;
+              }}
               className={`p-3 rounded-xl border text-xs leading-relaxed transition-all duration-200 ${
                 isCurrent
                   ? isAi
