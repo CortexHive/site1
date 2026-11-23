@@ -105,8 +105,8 @@ export const SECTOR_DEMOS: SectorDemoConfig[] = [
   },
   {
     slug: "plumbers-electricians",
-    sectorName: "Plumbers & Electricians",
-    shortLabel: "Plumbers & Electricians",
+    sectorName: "Plumbing & Electrical",
+    shortLabel: "Plumbing & Electrical",
     accentHex: "#0284C7",
     accentBgClass: "bg-sky-600",
     accentTextClass: "text-sky-600",
@@ -169,8 +169,8 @@ export const SECTOR_DEMOS: SectorDemoConfig[] = [
   },
   {
     slug: "window-cleaners",
-    sectorName: "Window & Commercial Cleaners",
-    shortLabel: "Window & Cleaners",
+    sectorName: "Window Cleaning",
+    shortLabel: "Window Cleaning",
     accentHex: "#0D9488",
     accentBgClass: "bg-teal-600",
     accentTextClass: "text-teal-600",
@@ -233,7 +233,7 @@ export const SECTOR_DEMOS: SectorDemoConfig[] = [
   },
   {
     slug: "local-services",
-    sectorName: "Local Service Providers",
+    sectorName: "Local Services",
     shortLabel: "Local Services",
     accentHex: "#4F46E5",
     accentBgClass: "bg-indigo-600",

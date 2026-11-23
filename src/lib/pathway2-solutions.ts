@@ -88,7 +88,7 @@ export const PATHWAY2_SOLUTIONS: Pathway2Solution[] = [
   {
     slug: "ai-agents",
     title: "AI Agents & Automation",
-    shortLabel: "AI & Automation",
+    shortLabel: "AI Agents",
     eyebrow: "Practical AI & Workflow Engineering",
     headline: "Intelligent Agents & Automations That Remove Repetitive Admin.",
     summary:
@@ -146,7 +146,7 @@ export const PATHWAY2_SOLUTIONS: Pathway2Solution[] = [
   {
     slug: "dashboards-portals",
     title: "Dashboards & Portals",
-    shortLabel: "Dashboards & Portals",
+    shortLabel: "Dashboards",
     eyebrow: "Operational Control & Client Portals",
     headline: "Real-Time Management Dashboards & Self-Service Client Portals.",
     summary:
@@ -204,7 +204,7 @@ export const PATHWAY2_SOLUTIONS: Pathway2Solution[] = [
   {
     slug: "api-document-systems",
     title: "API & Document Systems",
-    shortLabel: "API & Documents",
+    shortLabel: "API Integrations",
     eyebrow: "Integrations & Privacy-First Document Tools",
     headline: "Reliable API Integrations & Browser-Based Document Workflows.",
     summary:

@@ -313,17 +313,21 @@ export default function Hero() {
                     <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
                       Built for Practical Businesses
                     </span>
-                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-blue-600">
-                      <Box className="w-3 h-3" />
-                      Click to view 3D sample
-                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setActiveSectorDemo("builders-trades")}
+                      className="inline-flex items-center gap-1 text-[11px] font-bold text-blue-600 hover:text-[#14243A] transition-colors cursor-pointer"
+                    >
+                      <Box className="w-3.5 h-3.5" />
+                      <span>Click to view 3D demo</span>
+                    </button>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {[
                       { slug: "builders-trades", label: "Builders & Trades", icon: Globe },
-                      { slug: "plumbers-electricians", label: "Plumbers & Electricians", icon: PhoneCall },
-                      { slug: "window-cleaners", label: "Window & Commercial Cleaners", icon: Check },
-                      { slug: "local-services", label: "Local Service Providers", icon: Check },
+                      { slug: "plumbers-electricians", label: "Plumbing & Electrical", icon: PhoneCall },
+                      { slug: "window-cleaners", label: "Window Cleaning", icon: Check },
+                      { slug: "local-services", label: "Local Services", icon: Check },
                     ].map((sector) => {
                       const SectorIcon = sector.icon;
                       return (
@@ -331,16 +335,13 @@ export default function Hero() {
                           key={sector.slug}
                           type="button"
                           onClick={() => setActiveSectorDemo(sector.slug)}
-                          className="group flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg bg-white hover:bg-blue-50/70 border border-[#E2E8F0] hover:border-blue-300 text-left transition-all cursor-pointer"
+                          className="group flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-lg bg-white hover:bg-blue-50/70 border border-[#E2E8F0] hover:border-blue-300 text-left transition-all cursor-pointer"
                         >
-                          <span className="flex items-center gap-2 text-xs font-semibold text-[#14243A] group-hover:text-blue-700 min-w-0">
+                          <span className="flex items-center gap-2 text-xs font-semibold text-[#14243A] group-hover:text-blue-700 whitespace-nowrap">
                             <SectorIcon className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
-                            <span className="truncate">{sector.label}</span>
+                            <span>{sector.label}</span>
                           </span>
-                          <span className="text-[10px] font-bold text-blue-600 whitespace-nowrap flex items-center gap-0.5 flex-shrink-0">
-                            3D Demo
-                            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                          </span>
+                          <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
                         </button>
                       );
                     })}
@@ -392,17 +393,21 @@ export default function Hero() {
                     <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
                       Tailored Engineering Scope
                     </span>
-                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-blue-600">
-                      <Box className="w-3 h-3" />
-                      Click to view 3D workflow
-                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setActivePathway2Demo("custom-saas")}
+                      className="inline-flex items-center gap-1 text-[11px] font-bold text-blue-600 hover:text-[#14243A] transition-colors cursor-pointer"
+                    >
+                      <Box className="w-3.5 h-3.5" />
+                      <span>Click to view 3D demo</span>
+                    </button>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {[
-                      { slug: "custom-saas", label: "Custom SaaS Platforms", icon: Layers },
-                      { slug: "ai-agents", label: "AI Agents & Automation", icon: Cpu },
-                      { slug: "dashboards-portals", label: "Dashboards & Portals", icon: Check },
-                      { slug: "api-document-systems", label: "API & Document Systems", icon: Check },
+                      { slug: "custom-saas", label: "Custom SaaS", icon: Layers },
+                      { slug: "ai-agents", label: "AI Agents", icon: Cpu },
+                      { slug: "dashboards-portals", label: "Dashboards", icon: Check },
+                      { slug: "api-document-systems", label: "API Integrations", icon: Check },
                     ].map((sol) => {
                       const SolIcon = sol.icon;
                       return (
@@ -410,16 +415,13 @@ export default function Hero() {
                           key={sol.slug}
                           type="button"
                           onClick={() => setActivePathway2Demo(sol.slug)}
-                          className="group flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg bg-white hover:bg-blue-50/70 border border-[#E2E8F0] hover:border-blue-300 text-left transition-all cursor-pointer"
+                          className="group flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-lg bg-white hover:bg-blue-50/70 border border-[#E2E8F0] hover:border-blue-300 text-left transition-all cursor-pointer"
                         >
-                          <span className="flex items-center gap-2 text-xs font-semibold text-[#14243A] group-hover:text-blue-700 min-w-0">
+                          <span className="flex items-center gap-2 text-xs font-semibold text-[#14243A] group-hover:text-blue-700 whitespace-nowrap">
                             <SolIcon className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
-                            <span className="truncate">{sol.label}</span>
+                            <span>{sol.label}</span>
                           </span>
-                          <span className="text-[10px] font-bold text-blue-600 whitespace-nowrap flex items-center gap-0.5 flex-shrink-0">
-                            3D Flow
-                            <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                          </span>
+                          <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
                         </button>
                       );
                     })}

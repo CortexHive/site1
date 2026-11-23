@@ -21,6 +21,33 @@ import {
 } from "@/lib/pathway2-solutions";
 import { openConsultationModal } from "./consultation-modal";
 
+const HOTSPOT_POSITIONS: Record<string, { left: string; top: string }[]> = {
+  "custom-saas": [
+    { left: "18%", top: "48%" },
+    { left: "48%", top: "40%" },
+    { left: "69%", top: "27%" },
+    { left: "82%", top: "55%" },
+  ],
+  "ai-agents": [
+    { left: "20%", top: "36%" },
+    { left: "50%", top: "46%" },
+    { left: "78%", top: "32%" },
+    { left: "74%", top: "66%" },
+  ],
+  "dashboards-portals": [
+    { left: "22%", top: "54%" },
+    { left: "46%", top: "32%" },
+    { left: "66%", top: "48%" },
+    { left: "82%", top: "30%" },
+  ],
+  "api-document-systems": [
+    { left: "19%", top: "52%" },
+    { left: "47%", top: "38%" },
+    { left: "63%", top: "56%" },
+    { left: "82%", top: "40%" },
+  ],
+};
+
 interface Pathway2BlueprintShowcaseProps {
   initialSlug?: string;
   showSwitcher?: boolean;
@@ -52,6 +79,9 @@ export default function Pathway2BlueprintShowcase({
   const currentStage =
     solution.workflowStages[activeStageIdx] || solution.workflowStages[0];
 
+  const stageHotspots =
+    HOTSPOT_POSITIONS[solution.slug] || HOTSPOT_POSITIONS["custom-saas"];
+
   useEffect(() => {
     if (!isPlaying) return;
     const interval = setInterval(() => {
@@ -63,7 +93,7 @@ export default function Pathway2BlueprintShowcase({
         }
         return next;
       });
-    }, 2400);
+    }, 2600);
     return () => clearInterval(interval);
   }, [isPlaying, solution.workflowStages.length]);
 
@@ -116,7 +146,7 @@ export default function Pathway2BlueprintShowcase({
                     : "bg-[#F8FAFD] text-[#475569] hover:text-[#14243A] border border-[#E2E8F0]"
                 }`}
               >
-                {item.title}
+                {item.shortLabel}
               </button>
             );
           })}
@@ -125,7 +155,7 @@ export default function Pathway2BlueprintShowcase({
 
       {/* Main Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-        {/* LEFT 7 COLS: 3D Isometric Explainer Graphic + Animated 4-Step Workflow */}
+        {/* LEFT 7 COLS: 3D Isometric Explainer Graphic with Interactive Callout Pins */}
         <div className="lg:col-span-7 space-y-4">
           {/* Top Bar */}
           <div className="flex flex-wrap items-center justify-between gap-2 bg-[#F8FAFD] border border-[#E2E8F0] rounded-xl px-4 py-2.5">
@@ -150,12 +180,12 @@ export default function Pathway2BlueprintShowcase({
                 ) : (
                   <>
                     <Play className="w-3 h-3 fill-current" />
-                    <span>Play 4-Step Workflow</span>
+                    <span>Play 4-Step Walkthrough</span>
                   </>
                 )}
               </button>
               <span className="text-[11px] font-semibold text-[#64748B] hidden sm:inline">
-                3D Architecture Explainer
+                Click any pin (01–04) on the 3D diagram
               </span>
             </div>
 
@@ -190,7 +220,7 @@ export default function Pathway2BlueprintShowcase({
             </div>
           </div>
 
-          {/* 3D Isometric Graphic Frame */}
+          {/* 3D Isometric Graphic Frame with Interactive Callout Pins */}
           <div
             ref={stageRef}
             onMouseMove={handleMouseMove}
@@ -213,8 +243,44 @@ export default function Pathway2BlueprintShowcase({
                 className="object-cover"
               />
 
-              {/* Subtle Floating Active Step Pill Overlay */}
-              <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-xl px-3.5 py-2.5 shadow-md flex items-center justify-between gap-3">
+              {/* Interactive Numbered Callout Pins Directly on the 3D Graphic */}
+              {solution.workflowStages.map((stage, idx) => {
+                const pos = stageHotspots[idx] || { left: "50%", top: "50%" };
+                const isActive = idx === activeStageIdx;
+                return (
+                  <button
+                    key={stage.step}
+                    type="button"
+                    onClick={() => {
+                      setIsPlaying(false);
+                      setActiveStageIdx(idx);
+                    }}
+                    style={{ left: pos.left, top: pos.top }}
+                    aria-label={`Inspect Step ${stage.step}: ${stage.title}`}
+                    className={`absolute -translate-x-1/2 -translate-y-1/2 z-10 flex items-center gap-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                      isActive
+                        ? "bg-[#14243A] text-white px-3 py-1.5 shadow-lg ring-4 ring-blue-500/35 scale-105"
+                        : "bg-white/95 text-[#14243A] hover:bg-blue-600 hover:text-white px-2.5 py-1 shadow-md border border-slate-200"
+                    }`}
+                  >
+                    <span
+                      className={`w-5 h-5 rounded-full text-[10px] font-extrabold flex items-center justify-center flex-shrink-0 ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "bg-blue-50 text-blue-700"
+                      }`}
+                    >
+                      {stage.step}
+                    </span>
+                    <span className="text-[10px] sm:text-[11px] font-bold whitespace-nowrap hidden sm:inline">
+                      {stage.title}
+                    </span>
+                  </button>
+                );
+              })}
+
+              {/* Plain-English Active Step Banner */}
+              <div className="absolute bottom-3 left-3 right-3 z-10 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-xl px-3.5 py-2.5 shadow-md flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2.5 min-w-0">
                   <span className="w-7 h-7 rounded-lg bg-[#14243A] text-white text-[11px] font-extrabold flex items-center justify-center flex-shrink-0">
                     {currentStage.step}
@@ -223,7 +289,7 @@ export default function Pathway2BlueprintShowcase({
                     <div className="text-xs font-extrabold text-[#14243A] truncate">
                       {currentStage.title} — {currentStage.subtitle}
                     </div>
-                    <div className="text-[11px] text-[#475569] truncate">
+                    <div className="text-[11px] text-[#475569] line-clamp-1">
                       {currentStage.detail}
                     </div>
                   </div>
@@ -284,12 +350,15 @@ export default function Pathway2BlueprintShowcase({
             })}
           </div>
 
-          {/* Active Stage Full Explanation */}
-          <div className="p-4 rounded-xl bg-blue-50/50 border border-blue-200/80 flex items-start gap-3">
+          {/* Active Stage Full Plain-English Explanation */}
+          <div className="p-4 rounded-xl bg-blue-50/60 border border-blue-200/80 flex items-start gap-3">
             <Sparkles className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-            <div className="space-y-0.5">
+            <div className="space-y-1">
               <div className="text-xs font-bold text-[#14243A]">
-                Step {currentStage.step}: {currentStage.title} ({currentStage.outputBadge})
+                How Step {currentStage.step} Works: {currentStage.title}{" "}
+                <span className="text-blue-700 font-semibold">
+                  ({currentStage.outputBadge})
+                </span>
               </div>
               <p className="text-xs text-[#475569] leading-relaxed">
                 {currentStage.detail}
