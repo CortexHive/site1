@@ -183,17 +183,18 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-24 bg-[#F8FAFD] border-t border-[#E2E8F0] relative">
+    <section id="contact" className="py-16 sm:py-24 bg-[#F4F7FB] border-t border-[#DCE6F2] relative">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-blue-700 uppercase tracking-wider mb-3">
+          <span className="font-mono text-[11px] font-medium text-[#143A6B] uppercase tracking-[0.14em] mb-3 block">
             Start Your Project
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#14243A] tracking-tight mb-3">
-            Request a Free Consultation or Quote.
+          </span>
+          <h2 className="font-extrabold tracking-[-0.03em] text-3xl sm:text-4xl lg:text-[42px] font-normal text-[#0A1628] tracking-[-0.02em] leading-[1.08] mb-3">
+            Request a Free{" "}
+            <span className="italic text-[#143A6B]">Consultation or Quote.</span>
           </h2>
-          <p className="text-[#475569] text-xs sm:text-base leading-relaxed">
+          <p className="text-[#33475F] text-xs sm:text-base leading-relaxed">
             Tell us a little about your business and what you need. We review every enquiry and reply within 24 hours with clear next steps.
           </p>
         </div>
@@ -204,71 +205,71 @@ export default function LeadForm({ defaultService }: { defaultService?: string }
             href={SITE_CONFIG.getWhatsAppLink("consultation")}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-4 rounded-2xl bg-white hover:bg-emerald-50/50 border border-[#E2E8F0] hover:border-emerald-300 transition-all flex items-center gap-3 shadow-2xs"
+            className="p-4 rounded-md bg-white hover:bg-[#EDF3FA]/70 border border-[#DCE6F2] hover:border-[#143A6B]/40 transition-all flex items-center gap-3"
           >
-            <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center flex-shrink-0">
-              <MessageSquare className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-md bg-[#143A6B] text-white flex items-center justify-center flex-shrink-0">
+              <MessageSquare className="w-4 h-4" />
             </div>
             <div className="min-w-0">
-              <div className="text-xs font-bold text-[#14243A]">WhatsApp Us</div>
-              <div className="text-[11px] text-[#64748B] truncate">{SITE_CONFIG.phoneDisplay}</div>
+              <div className="text-xs font-semibold text-[#0A1628]">WhatsApp Us</div>
+              <div className="font-mono text-[11px] text-[#61758F] truncate">{SITE_CONFIG.phoneDisplay}</div>
             </div>
           </a>
 
           <a
             href={`tel:${SITE_CONFIG.phone}`}
-            className="p-4 rounded-2xl bg-white hover:bg-blue-50/50 border border-[#E2E8F0] hover:border-blue-300 transition-all flex items-center gap-3 shadow-2xs"
+            className="p-4 rounded-md bg-white hover:bg-[#EDF3FA]/70 border border-[#DCE6F2] hover:border-[#143A6B]/40 transition-all flex items-center gap-3"
           >
-            <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center flex-shrink-0">
-              <Phone className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-md bg-[#143A6B] text-white flex items-center justify-center flex-shrink-0">
+              <Phone className="w-4 h-4" />
             </div>
             <div className="min-w-0">
-              <div className="text-xs font-bold text-[#14243A]">Call Us</div>
-              <div className="text-[11px] text-[#64748B] truncate">{SITE_CONFIG.phoneDisplay}</div>
+              <div className="text-xs font-semibold text-[#0A1628]">Call Us</div>
+              <div className="font-mono text-[11px] text-[#61758F] truncate">{SITE_CONFIG.phoneDisplay}</div>
             </div>
           </a>
 
           <a
             href={`mailto:${SITE_CONFIG.email}?subject=Project%20Enquiry%20-%20CortexHive`}
-            className="p-4 rounded-2xl bg-white hover:bg-blue-50/50 border border-[#E2E8F0] hover:border-blue-300 transition-all flex items-center gap-3 shadow-2xs"
+            className="p-4 rounded-md bg-white hover:bg-[#EDF3FA]/70 border border-[#DCE6F2] hover:border-[#143A6B]/35 transition-all flex items-center gap-3"
           >
-            <div className="w-10 h-10 rounded-xl bg-[#14243A] text-white flex items-center justify-center flex-shrink-0">
-              <Mail className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-md bg-[#08182E] text-white flex items-center justify-center flex-shrink-0">
+              <Mail className="w-4 h-4" />
             </div>
             <div className="min-w-0">
-              <div className="text-xs font-bold text-[#14243A]">Email Us</div>
-              <div className="text-[11px] text-[#64748B] truncate">{SITE_CONFIG.email}</div>
+              <div className="text-xs font-semibold text-[#0A1628]">Email Us</div>
+              <div className="font-mono text-[11px] text-[#61758F] truncate">{SITE_CONFIG.email}</div>
             </div>
           </a>
         </div>
 
         {/* Form Card */}
-        <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 border border-[#E2E8F0] shadow-subtle max-w-3xl mx-auto">
+        <div className="bg-white rounded-md p-5 sm:p-8 md:p-10 border border-[#DCE6F2] shadow-subtle max-w-3xl mx-auto">
           {/* Tab Selector */}
           <div className="flex items-center justify-center mb-6 sm:mb-8">
-            <div className="inline-flex p-1 rounded-xl bg-slate-100 border border-slate-200 w-full sm:w-auto">
+            <div className="inline-flex p-1 rounded-md bg-[#EDF3FA] border border-[#DCE6F2] w-full sm:w-auto">
               <button
                 type="button"
                 onClick={() => setActiveTab("consultation")}
-                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold transition-all ${
+                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-sm text-xs font-medium transition-all cursor-pointer ${
                   activeTab === "consultation"
-                    ? "bg-white text-[#14243A] shadow-xs"
-                    : "text-slate-600 hover:text-[#14243A]"
+                    ? "bg-white text-[#0A1628] shadow-2xs"
+                    : "text-[#33475F] hover:text-[#0A1628]"
                 }`}
               >
-                <Calendar className="w-3.5 h-3.5 text-blue-600" />
+                <Calendar className="w-3.5 h-3.5 text-[#143A6B]" />
                 <span>Book Free Consultation</span>
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab("brief")}
-                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold transition-all ${
+                className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-sm text-xs font-medium transition-all cursor-pointer ${
                   activeTab === "brief"
-                    ? "bg-white text-[#14243A] shadow-xs"
-                    : "text-slate-600 hover:text-[#14243A]"
+                    ? "bg-white text-[#0A1628] shadow-2xs"
+                    : "text-[#33475F] hover:text-[#0A1628]"
                 }`}
               >
-                <Mail className="w-3.5 h-3.5 text-blue-600" />
+                <Mail className="w-3.5 h-3.5 text-[#143A6B]" />
                 <span>Send Written Enquiry</span>
               </button>
             </div>

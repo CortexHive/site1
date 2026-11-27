@@ -1,119 +1,116 @@
 "use client";
 
-import {
-  Compass,
-  ClipboardList,
-  Code2,
-  Rocket,
-  ArrowRight,
-} from "lucide-react";
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import { ArrowRight } from "lucide-react";
+import { openConsultationModal } from "./consultation-modal";
+import { PROCESS_EXPLAINER_STEPS } from "./process-3d-explainer";
 
-const PROCESS_STEPS = [
-  {
-    number: "01",
-    title: "DISCOVER",
-    subtitle: "Understand your goals",
-    desc: "Understand the business, requirements and challenges.",
-    details:
-      "We listen to how your business operates, what your customers need and what you want to achieve — whether that is a new website, an AI receptionist or custom software.",
-    icon: Compass,
-  },
-  {
-    number: "02",
-    title: "PLAN",
-    subtitle: "Clear scope & pricing",
-    desc: "Recommend the right solution, scope and pricing.",
-    details:
-      "We outline the most suitable package or custom project specification with clear deliverables, revision allowances and upfront pricing before any work starts.",
-    icon: ClipboardList,
-  },
-  {
-    number: "03",
-    title: "BUILD",
-    subtitle: "Design, develop & test",
-    desc: "Design, develop and test the solution.",
-    details:
-      "We design the interface, build the functionality, test across mobile and desktop devices, and share progress with you for review and refinement.",
-    icon: Code2,
-  },
-  {
-    number: "04",
-    title: "LAUNCH",
-    subtitle: "Deploy & support",
-    desc: "Deploy, hand over and provide agreed support.",
-    details:
-      "We launch your website or software live, verify forms and integrations, hand over your project assets and provide any agreed ongoing hosting or support.",
-    icon: Rocket,
-  },
-];
+const Process3DExplainer = dynamic(() => import("./process-3d-explainer"), {
+  ssr: false,
+  loading: () => (
+    <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-[#07162B] via-[#0E2A4F] to-[#040D1B] border border-[#143A6B]/30 shadow-editorial h-[480px] flex flex-col items-center justify-center gap-3 text-blue-100/80">
+      <div className="w-9 h-9 rounded-full border-2 border-[#C69B3A]/40 border-t-[#C69B3A] animate-spin" />
+      <span className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-[#F4E3B2]">
+        Loading 3D Process Explainer...
+      </span>
+    </div>
+  ),
+});
 
 export default function Process() {
-  const scrollToContact = () => {
-    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section id="how-it-works" className="py-20 sm:py-28 bg-white border-b border-[#E2E8F0] relative">
+    <section
+      id="how-it-works"
+      className="py-20 sm:py-28 bg-white border-b border-[#DCE6F2]"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F8FC] border border-[#E2E8F0] text-xs font-bold uppercase tracking-wider text-blue-600 mb-3">
-            How It Works
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end pb-10 mb-12 border-b border-[#DCE6F2]">
+          <div className="lg:col-span-7 space-y-3">
+            <div className="inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-[#143A6B]">
+              <span className="w-6 h-[2px] bg-[#C69B3A]" />
+              <span>How We Work</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-[#0A1628] tracking-[-0.03em] leading-[1.08]">
+              Four deliberate steps from{" "}
+              <span className="text-[#143A6B]">brief to launch.</span>
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-[#14243A] tracking-tight leading-[1.12]">
-            Simple, Transparent Four-Step Process.
-          </h2>
-          <p className="text-sm sm:text-base text-[#475569] mt-3 leading-relaxed">
-            From your initial enquiry to going live, we keep every step straightforward and well-communicated.
-          </p>
+          <div className="lg:col-span-5">
+            <p className="text-sm sm:text-[15px] text-[#33475F] leading-relaxed">
+              From your initial consultation to going live, every milestone is clear, documented, and communicated directly with our UK team.
+            </p>
+          </div>
         </div>
 
-        {/* Connected 4-Step Timeline Grid */}
-        <div className="relative">
-          {/* Desktop connecting line */}
-          <div className="hidden lg:block absolute top-14 left-12 right-12 h-0.5 bg-[#E2E8F0] z-0" />
+        {/* Interactive 3D Explainer + Synced 4-Step Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          <div className="lg:col-span-7">
+            <Process3DExplainer
+              activeStep={activeStep}
+              onStepChange={setActiveStep}
+            />
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-            {PROCESS_STEPS.map((step) => {
-              const Icon = step.icon;
+          <div className="lg:col-span-5 space-y-3">
+            {PROCESS_EXPLAINER_STEPS.map((step, idx) => {
+              const isSelected = activeStep === idx;
               return (
-                <div
+                <button
                   key={step.number}
-                  className="bg-[#F8FAFD] rounded-2xl border border-[#E2E8F0] p-6 sm:p-7 flex flex-col justify-between hover:border-blue-300 shadow-subtle transition-all"
+                  type="button"
+                  onClick={() => setActiveStep(idx)}
+                  className={`w-full text-left rounded-2xl p-5 border transition-all cursor-pointer ${
+                    isSelected
+                      ? "bg-[#F4F7FB] border-[#143A6B]/40 shadow-subtle"
+                      : "bg-white border-[#DCE6F2] hover:border-[#143A6B]/25 hover:bg-[#F4F7FB]/50"
+                  }`}
                 >
-                  <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <span className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-blue-600 text-white text-xs font-extrabold tracking-wider">
-                        STEP {step.number}
-                      </span>
-                      <div className="w-10 h-10 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center text-blue-600 shadow-2xs">
-                        <Icon className="w-5 h-5" />
+                  <div className="flex items-start gap-4">
+                    <span
+                      className={`w-10 h-10 rounded-xl font-mono text-xs font-bold flex items-center justify-center flex-shrink-0 transition-colors ${
+                        isSelected
+                          ? "bg-[#143A6B] text-white"
+                          : "bg-[#EDF3FA] text-[#143A6B]"
+                      }`}
+                    >
+                      {step.number}
+                    </span>
+                    <div className="min-w-0 space-y-1">
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-base font-bold text-[#0A1628]">
+                          {step.title}
+                        </h3>
+                        {isSelected && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#C69B3A]" />
+                        )}
                       </div>
+                      <p className="font-mono text-[11px] font-semibold text-[#C69B3A]">
+                        {step.subtitle}
+                      </p>
+                      <p className="text-xs sm:text-[13.5px] text-[#33475F] leading-relaxed pt-0.5">
+                        {step.details}
+                      </p>
                     </div>
-
-                    <h3 className="text-lg font-extrabold text-[#14243A] tracking-tight">
-                      {step.title}
-                    </h3>
-                    <p className="text-xs font-semibold text-blue-600 mt-0.5 mb-2.5">
-                      {step.desc}
-                    </p>
-                    <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
-                      {step.details}
-                    </p>
                   </div>
-                </div>
+                </button>
               );
             })}
           </div>
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-10 text-center">
+        <div className="mt-14 pt-8 border-t border-[#DCE6F2] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <p className="text-xs sm:text-sm text-[#33475F]">
+            Ready to start Step 01 with a free, no-obligation 15-minute consultation?
+          </p>
           <button
             type="button"
-            onClick={scrollToContact}
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-[#14243A] text-white text-xs sm:text-sm font-semibold transition-colors shadow-xs"
+            onClick={() => openConsultationModal()}
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#143A6B] hover:bg-[#1D4ED8] text-white text-xs sm:text-sm font-semibold shadow-subtle transition-colors cursor-pointer"
           >
-            <span>Start Step 1: Book a Free Consultation</span>
+            <span>Book a Free Consultation</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

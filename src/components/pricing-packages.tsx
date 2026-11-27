@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Check, ArrowRight, Info } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const WEBSITE_PACKAGES = [
@@ -102,47 +102,49 @@ export default function PricingPackages() {
   };
 
   return (
-    <section id="website-packages" className="py-20 sm:py-28 bg-white border-b border-[#E2E8F0]">
+    <section id="website-packages" className="py-20 sm:py-28 bg-white border-b border-[#DCE6F2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Editorial Section Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end pb-10 mb-12 border-b border-[#E2E8F0]">
-          <div className="lg:col-span-7 space-y-2.5">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-blue-600 block">
-              Website Pricing
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#14243A] tracking-tight leading-[1.1]">
-              Transparent Website Packages for UK Businesses.
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end pb-10 mb-12 border-b border-[#DCE6F2]">
+          <div className="lg:col-span-7 space-y-3">
+            <div className="inline-flex items-center gap-3 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-[#143A6B]">
+              <span className="w-6 h-[1px] bg-[#143A6B]" />
+              <span>Website Packages</span>
+            </div>
+            <h2 className="font-extrabold tracking-[-0.03em] text-3xl sm:text-4xl lg:text-[46px] font-normal text-[#0A1628] leading-[1.08]">
+              Transparent starting prices.{" "}
+              <em className="italic text-[#143A6B]">No retainers.</em>
             </h2>
           </div>
           <div className="lg:col-span-5">
-            <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
-              Clear starting prices with defined page limits, revision allowances and delivery estimates. No hidden retainers or vague agency estimates.
+            <p className="text-sm sm:text-[15px] text-[#33475F] leading-relaxed">
+              Clear one-off build fees with defined page limits, revision rounds, and delivery estimates. Custom AI, SaaS, and software builds are quoted separately on a written specification.
             </p>
           </div>
         </div>
 
-        {/* 3 Pricing Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch mb-10">
+        {/* Restrained Architectural 3-Column Studio Ledger */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 border border-[#143A6B]/22 rounded-md overflow-hidden bg-white mb-12 divide-y lg:divide-y-0 lg:divide-x divide-[#DCE6F2]">
           {WEBSITE_PACKAGES.map((pkg) => (
             <div
               key={pkg.id}
               id={pkg.id}
-              className={`rounded-2xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-200 ${
+              className={`p-8 sm:p-10 flex flex-col justify-between relative transition-colors ${
                 pkg.featured
-                  ? "bg-[#F8FAFD] border-2 border-blue-600 shadow-subtle"
-                  : "bg-white border border-[#E2E8F0] hover:border-slate-300"
+                  ? "bg-[#F4F7FB] shadow-[inset_0_3px_0_#1B3B53]"
+                  : "bg-white"
               }`}
             >
               <div>
-                <div className="flex items-center justify-between gap-2 pb-4 mb-5 border-b border-[#E2E8F0]">
-                  <h3 className="text-base font-extrabold uppercase tracking-wider text-[#14243A]">
+                <div className="flex items-center justify-between gap-2 pb-4 mb-6 border-b border-[#DCE6F2]">
+                  <h3 className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-[#0A1628]">
                     {pkg.name}
                   </h3>
                   <span
-                    className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-md ${
+                    className={`font-mono text-[10px] font-medium px-2 py-1 rounded-sm ${
                       pkg.featured
-                        ? "bg-blue-600 text-white"
-                        : "bg-[#F5F8FC] text-[#475569] border border-[#E2E8F0]"
+                        ? "bg-[#143A6B] text-white"
+                        : "bg-[#EDF3FA] text-[#33475F]"
                     }`}
                   >
                     {pkg.badge}
@@ -150,75 +152,85 @@ export default function PricingPackages() {
                 </div>
 
                 {/* Price */}
-                <div className="mb-4">
+                <div className="mb-2">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-xs font-semibold uppercase text-[#64748B]">From</span>
-                    <span className="text-4xl sm:text-5xl font-extrabold text-[#14243A] tracking-tight">
+                    <span className="font-mono text-[11px] font-medium uppercase tracking-wider text-[#61758F]">
+                      From
+                    </span>
+                    <span className="font-extrabold tracking-[-0.03em] text-5xl sm:text-[56px] font-normal text-[#0A1628] leading-none">
                       {pkg.price}
                     </span>
                   </div>
-                  <span className="text-xs text-[#64748B] block mt-1">{pkg.priceNote}</span>
+                  <span className="font-mono text-[11px] text-[#61758F] block mt-2">
+                    {pkg.priceNote}
+                  </span>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed mb-5">
+                <p className="text-xs sm:text-sm text-[#33475F] leading-relaxed my-5">
                   {pkg.tagline}
                 </p>
 
-                {/* Key Parameters Strip */}
-                <div className="p-3.5 rounded-xl bg-white border border-[#E2E8F0] space-y-1.5 text-xs mb-6">
+                {/* Key Parameters — Hairline Ledger Rows */}
+                <div className="border-y border-[#DCE6F2] py-3 space-y-1.5 text-xs mb-6">
                   <div className="flex justify-between gap-2">
-                    <span className="text-[#64748B]">Scope:</span>
-                    <span className="font-semibold text-[#14243A] text-right">{pkg.pageLimit}</span>
+                    <span className="text-[#61758F]">Scope</span>
+                    <span className="font-semibold text-[#0A1628] text-right">
+                      {pkg.pageLimit}
+                    </span>
                   </div>
                   <div className="flex justify-between gap-2">
-                    <span className="text-[#64748B]">Revisions:</span>
-                    <span className="font-semibold text-[#14243A] text-right">{pkg.revisions}</span>
+                    <span className="text-[#61758F]">Revisions</span>
+                    <span className="font-semibold text-[#0A1628] text-right">
+                      {pkg.revisions}
+                    </span>
                   </div>
                   <div className="flex justify-between gap-2">
-                    <span className="text-[#64748B]">Est. Delivery:</span>
-                    <span className="font-semibold text-blue-600 text-right">{pkg.delivery}</span>
+                    <span className="text-[#61758F]">Delivery</span>
+                    <span className="font-semibold text-[#143A6B] text-right">
+                      {pkg.delivery}
+                    </span>
                   </div>
                 </div>
 
                 {/* Deliverables */}
-                <div className="text-[11px] font-bold uppercase tracking-wider text-[#14243A] mb-3">
+                <div className="font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-[#61758F] mb-3">
                   Included Deliverables
                 </div>
-                <ul className="space-y-2.5 mb-6">
+                <ul className="space-y-2.5 mb-7">
                   {pkg.deliverables.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-2.5 text-xs sm:text-sm text-[#475569] leading-snug"
+                      className="flex items-baseline gap-2.5 text-xs sm:text-[13.5px] text-[#33475F] leading-snug"
                     >
-                      <Check className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-[#143A6B] font-semibold select-none">—</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="pt-5 border-t border-[#E2E8F0] space-y-3.5">
-                <p className="text-[11px] text-[#64748B] leading-relaxed">
+              <div className="pt-5 border-t border-[#DCE6F2] space-y-3.5">
+                <p className="text-[11px] text-[#61758F] leading-relaxed">
                   {pkg.exclusions}
                 </p>
 
                 <button
                   type="button"
                   onClick={() => handleSelectPackage(pkg.serviceRequired, pkg.budget)}
-                  className={`w-full py-3.5 px-4 rounded-lg text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors ${
+                  className={`w-full py-3.5 px-4 rounded text-xs sm:text-[13.5px] font-semibold inline-flex items-center justify-center gap-2 transition-colors cursor-pointer ${
                     pkg.featured
-                      ? "bg-blue-600 hover:bg-[#14243A] text-white"
-                      : "bg-[#14243A] hover:bg-blue-600 text-white"
+                      ? "bg-[#143A6B] hover:bg-[#08182E] text-white"
+                      : "bg-[#08182E] hover:bg-[#143A6B] text-white"
                   }`}
                 >
                   <span>Get a Website Quote</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
-                <div className="flex items-center justify-between px-1 text-xs">
+                <div className="flex items-center justify-between px-0.5 text-xs">
                   <Link
                     href="/pricing"
-                    className="text-[#475569] hover:text-blue-600 font-medium transition-colors"
+                    className="text-[#33475F] hover:text-[#0A1628] font-medium transition-colors"
                   >
                     Full comparison
                   </Link>
@@ -226,7 +238,7 @@ export default function PricingPackages() {
                     href={SITE_CONFIG.getWhatsAppLink(pkg.whatsappContext)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-emerald-700 hover:text-emerald-800 font-semibold transition-colors"
+                    className="text-[#143A6B] hover:underline font-semibold transition-colors"
                   >
                     WhatsApp &rarr;
                   </a>
@@ -236,36 +248,71 @@ export default function PricingPackages() {
           ))}
         </div>
 
-        {/* Exclusions & Custom Quote Bar */}
-        <div className="rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0] p-6 sm:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-          <div className="flex items-start gap-3.5 max-w-3xl">
-            <div className="w-9 h-9 rounded-lg bg-white border border-[#E2E8F0] text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <Info className="w-4 h-4" />
-            </div>
-            <div className="space-y-1">
-              <h3 className="text-sm sm:text-base font-bold text-[#14243A]">
-                Need something more advanced? Request a custom quote.
-              </h3>
-              <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
-                Package prices are starting build fees for the stated page and revision limits. Domain registration, recurring hosting, ongoing maintenance and third-party services are quoted separately so you always have full control and transparency.
-              </p>
-            </div>
-          </div>
+        {/* Luxury Bespoke Software & AI Commission Banner */}
+        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#08182E] via-[#0F2D56] to-[#051122] border border-[#C69B3A]/30 shadow-editorial">
+          {/* Top Brushed Gold Accent Hairline */}
+          <div
+            aria-hidden="true"
+            className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent opacity-80"
+          />
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 flex-shrink-0 w-full lg:w-auto">
-            <Link
-              href="/pricing"
-              className="px-5 py-3 rounded-lg bg-white hover:bg-slate-50 text-[#14243A] border border-slate-300 text-xs font-semibold text-center transition-colors"
-            >
-              Compare Full Pricing
-            </Link>
-            <button
-              type="button"
-              onClick={() => handleSelectPackage("Custom Website / Redesign", "Not sure / Please advise")}
-              className="px-5 py-3 rounded-lg bg-blue-600 hover:bg-[#14243A] text-white text-xs font-semibold text-center transition-colors"
-            >
-              Request a Custom Quote
-            </button>
+          {/* Subtle Studio Ambient Glow */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.22)_0%,rgba(212,175,55,0.12)_45%,transparent_72%)]"
+          />
+
+          <div className="relative z-10 p-7 sm:p-9 lg:p-11 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8 space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.07] border border-[#C69B3A]/35 font-mono text-[10px] font-semibold uppercase tracking-[0.15em] text-[#F4E3B2]">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37]" />
+                <span>Bespoke Engineering &amp; Enterprise Commissions</span>
+              </div>
+
+              <h3 className="text-xl sm:text-2xl lg:text-[26px] font-extrabold text-white tracking-[-0.025em] leading-[1.18]">
+                Commissioning custom software, AI agents or a{" "}
+                <span className="text-[#D4AF37]">SaaS platform?</span>
+              </h3>
+
+              <p className="text-xs sm:text-[14.5px] text-blue-100/80 leading-relaxed max-w-2xl">
+                Package prices cover the stated website scopes. Domain registration, recurring hosting, ongoing support and custom AI or SaaS builds are quoted transparently on a written specification before work begins.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                {[
+                  "Written Specification",
+                  "Fixed Milestone Quotes",
+                  "100% Client-Owned Code",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 font-mono text-[10.5px] font-medium text-blue-100/85"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+                    <span>{item}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-4 flex flex-col gap-3">
+              <button
+                type="button"
+                onClick={() => handleSelectPackage("Custom Website / Redesign", "Not sure / Please advise")}
+                className="w-full px-6 py-3.5 rounded-xl bg-[#C69B3A] hover:bg-[#B5892E] text-white text-xs sm:text-[13.5px] font-bold inline-flex items-center justify-between shadow-subtle transition-colors cursor-pointer"
+              >
+                <span>Request a Custom Quote</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <Link
+                href="/pricing"
+                className="w-full px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white text-xs sm:text-[13px] font-semibold inline-flex items-center justify-between transition-colors"
+              >
+                <span>Compare Full Pricing</span>
+                <ArrowRight className="w-4 h-4 text-[#D4AF37]" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -17,11 +17,9 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)", "var(--font-manrope)", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-        inter: ["var(--font-inter)", "sans-serif"],
-        manrope: ["var(--font-manrope)", "sans-serif"],
-        outfit: ["var(--font-inter)", "sans-serif"],
-        spaceGrotesk: ["var(--font-manrope)", "sans-serif"],
+        sans: ["var(--font-sans)", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        serif: ["var(--font-sans)", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",

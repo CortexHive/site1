@@ -140,10 +140,10 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 border-t-2 border-t-blue-600 transition-all duration-200 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b border-[#DCE6F2] transition-all duration-200 ${
         isScrolled
-          ? "bg-white/98 backdrop-blur-md border-b border-slate-200 py-2.5 shadow-[0_4px_16px_rgba(15,23,42,0.07)]"
-          : "bg-white/98 backdrop-blur-md border-b border-slate-200 py-3 shadow-[0_2px_10px_rgba(15,23,42,0.04)]"
+          ? "bg-white/95 backdrop-blur-md py-3 shadow-[0_6px_24px_-12px_rgba(22,24,26,0.12)]"
+          : "bg-[#F4F7FB]/92 backdrop-blur-md py-3.5"
       }`}
     >
       <div
@@ -153,29 +153,29 @@ export default function Header() {
         {/* Left: Brand Mark */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 group flex-shrink-0"
+          className="flex items-center gap-3 group flex-shrink-0"
           aria-label="CortexHive Home"
         >
-          <div className="w-9 h-9 rounded-lg bg-[#14243A] flex items-center justify-center text-white border border-slate-800 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors">
+          <div className="w-9 h-9 rounded-md bg-[#08182E] flex items-center justify-center text-white group-hover:bg-[#143A6B] transition-colors">
             <svg className="w-4 h-4 fill-none stroke-current stroke-[2]" viewBox="0 0 24 24">
               <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" />
               <circle cx="12" cy="12" r="2.5" fill="currentColor" />
             </svg>
           </div>
           <div className="flex flex-col">
-            <span className="text-base font-extrabold tracking-[-0.02em] text-[#14243A] leading-none">
-              CORTEX<span className="text-blue-600">HIVE</span>
+            <span className="text-[15px] font-bold tracking-[0.04em] text-[#0A1628] leading-none">
+              CORTEX<span className="text-[#143A6B]">HIVE</span>
             </span>
-            <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-500 mt-1 leading-none">
+            <span className="font-mono text-[9px] font-medium uppercase tracking-[0.14em] text-[#61758F] mt-1 leading-none">
               Websites, AI &amp; Software
             </span>
           </div>
         </Link>
 
-        {/* Center: High-Visibility Structured Navigation Rail */}
+        {/* Center: Clean Editorial Studio Navigation */}
         <nav
           aria-label="Main Navigation"
-          className="hidden lg:flex items-center gap-0.5 xl:gap-1 bg-[#F4F7FB] border border-slate-200/90 rounded-xl p-1"
+          className="hidden lg:flex items-center gap-1 xl:gap-2"
         >
           {/* Websites Dropdown */}
           <div
@@ -186,16 +186,16 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setActiveDropdown(activeDropdown === "websites" ? null : "websites")}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all cursor-pointer ${
+              className={`inline-flex items-center gap-1 px-3 py-2 rounded text-[13.5px] font-medium transition-colors cursor-pointer ${
                 pathname.includes("website") || pathname.includes("industries") || activeDropdown === "websites"
-                  ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
-                  : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
+                  ? "text-[#143A6B] font-semibold bg-[#EDF3FA]/70"
+                  : "text-[#0A1628] hover:text-[#143A6B] hover:bg-[#EDF3FA]/50"
               }`}
             >
               <span>Websites</span>
               <ChevronDown
                 className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  activeDropdown === "websites" ? "rotate-180 text-blue-600" : "text-slate-600"
+                  activeDropdown === "websites" ? "rotate-180 text-[#143A6B]" : "text-[#61758F]"
                 }`}
               />
             </button>
@@ -209,30 +209,30 @@ export default function Header() {
                   transition={{ duration: 0.14 }}
                   className="absolute top-full left-0 pt-2 w-80 z-50"
                 >
-                  <div className="bg-white rounded-xl border border-slate-200 shadow-[0_12px_32px_-8px_rgba(15,23,42,0.12)] p-2">
+                  <div className="bg-white rounded-md border border-[#DCE6F2] shadow-[0_20px_44px_-16px_rgba(22,24,26,0.16)] p-2">
                     {websiteItems.map((item) => {
                       const Icon = item.icon;
                       return (
                         <Link
                           key={item.href}
                           href={item.href}
-                          className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors group"
+                          className="flex items-start gap-3 p-3 rounded hover:bg-[#F4F7FB] transition-colors group"
                         >
-                          <div className="w-8 h-8 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                          <div className="w-8 h-8 rounded bg-[#EDF3FA] text-[#143A6B] flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#143A6B] group-hover:text-white transition-colors">
                             <Icon className="w-4 h-4" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between gap-2">
-                              <span className="text-xs font-semibold text-[#14243A]">
+                              <span className="text-xs font-semibold text-[#0A1628]">
                                 {item.name}
                               </span>
                               {item.tag && (
-                                <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                                <span className="font-mono text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-sm bg-[#EDF3FA] text-[#143A6B] border border-[#143A6B]/20">
                                   {item.tag}
                                 </span>
                               )}
                             </div>
-                            <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
+                            <p className="text-[11px] text-[#33475F] leading-relaxed mt-0.5">
                               {item.desc}
                             </p>
                           </div>
@@ -254,16 +254,16 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setActiveDropdown(activeDropdown === "ai" ? null : "ai")}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all cursor-pointer ${
+              className={`inline-flex items-center gap-1 px-3 py-2 rounded text-[13.5px] font-medium transition-colors cursor-pointer ${
                 pathname.includes("ai-") || activeDropdown === "ai"
-                  ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
-                  : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
+                  ? "text-[#143A6B] font-semibold bg-[#EDF3FA]/70"
+                  : "text-[#0A1628] hover:text-[#143A6B] hover:bg-[#EDF3FA]/50"
               }`}
             >
               <span>AI &amp; Automation</span>
               <ChevronDown
                 className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  activeDropdown === "ai" ? "rotate-180 text-blue-600" : "text-slate-600"
+                  activeDropdown === "ai" ? "rotate-180 text-[#143A6B]" : "text-[#61758F]"
                 }`}
               />
             </button>
@@ -277,30 +277,30 @@ export default function Header() {
                   transition={{ duration: 0.14 }}
                   className="absolute top-full left-0 pt-2 w-80 z-50"
                 >
-                  <div className="bg-white rounded-xl border border-slate-200 shadow-[0_12px_32px_-8px_rgba(15,23,42,0.12)] p-2">
+                  <div className="bg-white rounded-md border border-[#DCE6F2] shadow-[0_20px_44px_-16px_rgba(22,24,26,0.16)] p-2">
                     {aiItems.map((item) => {
                       const Icon = item.icon;
                       return (
                         <Link
                           key={item.href}
                           href={item.href}
-                          className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors group"
+                          className="flex items-start gap-3 p-3 rounded hover:bg-[#F4F7FB] transition-colors group"
                         >
-                          <div className="w-8 h-8 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                          <div className="w-8 h-8 rounded bg-[#EDF3FA] text-[#143A6B] flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#143A6B] group-hover:text-white transition-colors">
                             <Icon className="w-4 h-4" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between gap-2">
-                              <span className="text-xs font-semibold text-[#14243A]">
+                              <span className="text-xs font-semibold text-[#0A1628]">
                                 {item.name}
                               </span>
                               {item.tag && (
-                                <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-blue-50 text-blue-700">
+                                <span className="font-mono text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-sm bg-[#E8EFF4] text-[#143A6B]">
                                   {item.tag}
                                 </span>
                               )}
                             </div>
-                            <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
+                            <p className="text-[11px] text-[#33475F] leading-relaxed mt-0.5">
                               {item.desc}
                             </p>
                           </div>
@@ -322,16 +322,16 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setActiveDropdown(activeDropdown === "software" ? null : "software")}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all cursor-pointer ${
+              className={`inline-flex items-center gap-1 px-3 py-2 rounded text-[13.5px] font-medium transition-colors cursor-pointer ${
                 pathname.includes("software") || pathname.includes("saas") || activeDropdown === "software"
-                  ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
-                  : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
+                  ? "text-[#143A6B] font-semibold bg-[#EDF3FA]/70"
+                  : "text-[#0A1628] hover:text-[#143A6B] hover:bg-[#EDF3FA]/50"
               }`}
             >
               <span>Software &amp; SaaS</span>
               <ChevronDown
                 className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  activeDropdown === "software" ? "rotate-180 text-blue-600" : "text-slate-600"
+                  activeDropdown === "software" ? "rotate-180 text-[#143A6B]" : "text-[#61758F]"
                 }`}
               />
             </button>
@@ -345,30 +345,30 @@ export default function Header() {
                   transition={{ duration: 0.14 }}
                   className="absolute top-full left-0 pt-2 w-80 z-50"
                 >
-                  <div className="bg-white rounded-xl border border-slate-200 shadow-[0_12px_32px_-8px_rgba(15,23,42,0.12)] p-2">
+                  <div className="bg-white rounded-md border border-[#DCE6F2] shadow-[0_20px_44px_-16px_rgba(22,24,26,0.16)] p-2">
                     {softwareItems.map((item) => {
                       const Icon = item.icon;
                       return (
                         <Link
                           key={item.href}
                           href={item.href}
-                          className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors group"
+                          className="flex items-start gap-3 p-3 rounded hover:bg-[#F4F7FB] transition-colors group"
                         >
-                          <div className="w-8 h-8 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                          <div className="w-8 h-8 rounded bg-[#EDF3FA] text-[#143A6B] flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#143A6B] group-hover:text-white transition-colors">
                             <Icon className="w-4 h-4" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between gap-2">
-                              <span className="text-xs font-semibold text-[#14243A]">
+                              <span className="text-xs font-semibold text-[#0A1628]">
                                 {item.name}
                               </span>
                               {item.tag && (
-                                <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">
+                                <span className="font-mono text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-sm bg-[#EDF3FA] text-[#33475F]">
                                   {item.tag}
                                 </span>
                               )}
                             </div>
-                            <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
+                            <p className="text-[11px] text-[#33475F] leading-relaxed mt-0.5">
                               {item.desc}
                             </p>
                           </div>
@@ -383,10 +383,10 @@ export default function Header() {
 
           <Link
             href="/our-products"
-            className={`px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all ${
+            className={`px-3 py-2 rounded text-[13.5px] font-medium transition-colors ${
               pathname === "/our-products" || pathname === "/portfolio"
-                ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
-                : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
+                ? "text-[#143A6B] font-semibold bg-[#EDF3FA]/70"
+                : "text-[#0A1628] hover:text-[#143A6B] hover:bg-[#EDF3FA]/50"
             }`}
           >
             Portfolio
@@ -394,10 +394,10 @@ export default function Header() {
 
           <Link
             href="/pricing"
-            className={`px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all ${
+            className={`px-3 py-2 rounded text-[13.5px] font-medium transition-colors ${
               pathname === "/pricing"
-                ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
-                : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
+                ? "text-[#143A6B] font-semibold bg-[#EDF3FA]/70"
+                : "text-[#0A1628] hover:text-[#143A6B] hover:bg-[#EDF3FA]/50"
             }`}
           >
             Pricing
@@ -405,10 +405,10 @@ export default function Header() {
 
           <Link
             href="/about"
-            className={`px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all ${
+            className={`px-3 py-2 rounded text-[13.5px] font-medium transition-colors ${
               pathname === "/about"
-                ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
-                : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
+                ? "text-[#143A6B] font-semibold bg-[#EDF3FA]/70"
+                : "text-[#0A1628] hover:text-[#143A6B] hover:bg-[#EDF3FA]/50"
             }`}
           >
             About
@@ -416,10 +416,10 @@ export default function Header() {
 
           <Link
             href="/contact"
-            className={`px-3 py-1.5 rounded-lg text-[13px] font-semibold transition-all ${
+            className={`px-3 py-2 rounded text-[13.5px] font-medium transition-colors ${
               pathname === "/contact"
-                ? "text-blue-600 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/80"
-                : "text-[#14243A] hover:text-blue-600 hover:bg-white hover:shadow-[0_1px_3px_rgba(15,23,42,0.06)]"
+                ? "text-[#143A6B] font-semibold bg-[#EDF3FA]/70"
+                : "text-[#0A1628] hover:text-[#143A6B] hover:bg-[#EDF3FA]/50"
             }`}
           >
             Contact
@@ -431,9 +431,9 @@ export default function Header() {
           <button
             type="button"
             onClick={() => openConsultationModal()}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[13px] font-semibold bg-blue-600 hover:bg-[#14243A] text-white transition-colors shadow-sm cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-semibold bg-[#C69B3A] hover:bg-[#B5892E] text-white shadow-2xs transition-colors cursor-pointer"
           >
-            <span>Get a Free Consultation</span>
+            <span>Book Consultation</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -442,7 +442,7 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#F4F7FB] border border-slate-200 text-[#14243A] hover:bg-slate-100 text-xs font-semibold transition-colors cursor-pointer"
+          className="lg:hidden inline-flex items-center gap-1.5 px-3 py-2 rounded bg-white border border-[#DCE6F2] text-[#0A1628] hover:bg-[#EDF3FA] text-xs font-semibold transition-colors cursor-pointer"
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isOpen}
         >
@@ -467,7 +467,7 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-b border-slate-200 overflow-hidden shadow-lg"
+            className="lg:hidden bg-white border-b border-[#DCE6F2] overflow-hidden shadow-lg"
           >
             <div className="px-4 pt-3 pb-6 space-y-1.5 max-h-[84vh] overflow-y-auto">
               <Link
@@ -616,25 +616,25 @@ export default function Header() {
               </div>
 
               {/* Mobile Action Buttons */}
-              <div className="pt-4 border-t border-slate-200 grid grid-cols-1 gap-2.5">
+              <div className="pt-4 border-t border-[#DCE6F2] grid grid-cols-1 gap-2.5">
                 <button
                   type="button"
                   onClick={() => {
                     setIsOpen(false);
                     openConsultationModal();
                   }}
-                  className="w-full py-3.5 px-4 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+                  className="w-full py-3.5 px-4 rounded bg-[#08182E] hover:bg-[#143A6B] text-white font-semibold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
-                  <span>Get a Free Consultation</span>
+                  <span>Book Consultation</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <a
                   href={SITE_CONFIG.getWhatsAppLink("consultation")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 px-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 font-semibold text-xs flex items-center justify-center gap-2"
+                  className="w-full py-3 px-4 rounded bg-[#EDF3FA] border border-[#143A6B]/25 text-[#143A6B] font-semibold text-xs flex items-center justify-center gap-2"
                 >
-                  <MessageSquare className="w-4 h-4 text-emerald-600" />
+                  <MessageSquare className="w-4 h-4 text-[#143A6B]" />
                   <span>Chat on WhatsApp ({SITE_CONFIG.phoneDisplay})</span>
                 </a>
               </div>

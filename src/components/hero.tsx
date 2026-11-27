@@ -1,96 +1,31 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Globe,
-  PhoneCall,
-  Layers,
-  Check,
-  Building2,
-  Cpu,
-  Box,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { openConsultationModal } from "./consultation-modal";
 import SectorDemoModal from "./sector-demo-modal";
 import Pathway2SolutionModal from "./pathway2-solution-modal";
+import { HERO_EXPLAINER_CHAPTERS } from "./hero-3d-explainer";
 
-type ServiceCategory = "websites" | "ai" | "software";
-
-const SERVICE_SELECTOR_CONTENT: Record<
-  ServiceCategory,
-  {
-    index: string;
-    label: string;
-    eyebrow: string;
-    title: string;
-    description: string;
-    highlights: string[];
-    metaLabel: string;
-    metaValue: string;
-    href: string;
-    linkLabel: string;
-  }
-> = {
-  websites: {
-    index: "01",
-    label: "Websites",
-    eyebrow: "Website Development",
-    title: "Modern websites designed to win local & commercial enquiries.",
-    description:
-      "Fast, mobile-optimised websites built for UK small businesses, tradespeople and established companies — with clear enquiry pathways and on-page SEO.",
-    highlights: [
-      "Starter (1-page) from £99, Business (up to 5 pages) from £349",
-      "Growth (up to 8 pages) from £699 & custom web builds",
-      "Mobile-first layouts, enquiry forms & WhatsApp integration",
-    ],
-    metaLabel: "Starting Packages",
-    metaValue: "£99 / £349 / £699",
-    href: "/website-design",
-    linkLabel: "Explore Website Packages",
-  },
-  ai: {
-    index: "02",
-    label: "AI & Voice",
-    eyebrow: "AI Systems & Automation",
-    title: "AI receptionists and workflow automation that work around the clock.",
-    description:
-      "Answer incoming calls outside working hours, qualify leads, automate repetitive administration and connect your everyday business tools.",
-    highlights: [
-      "AI receptionists that answer calls & capture customer details",
-      "Automated enquiry handling, follow-ups & document workflows",
-      "Custom AI agents tailored to your services and business rules",
-    ],
-    metaLabel: "Engagement",
-    metaValue: "Tailored Setup & Scope",
-    href: "/ai-receptionist",
-    linkLabel: "Explore AI Receptionist",
-  },
-  software: {
-    index: "03",
-    label: "Software & SaaS",
-    eyebrow: "Custom Product Engineering",
-    title: "Bespoke web applications, portals and SaaS platforms built to last.",
-    description:
-      "Turn operational requirements or new product ideas into maintainable, full-stack software — backed by our experience building MarkScheme, AuraPDF and Rydigo.",
-    highlights: [
-      "Custom SaaS platforms, MVPs & subscription billing",
-      "Customer portals, management dashboards & API integrations",
-      "White-label & browser-based digital tools",
-    ],
-    metaLabel: "Delivery",
-    metaValue: "Individually Scoped",
-    href: "/software-development",
-    linkLabel: "Explore Software Development",
-  },
-};
+const Hero3DExplainer = dynamic(() => import("./hero-3d-explainer"), {
+  ssr: false,
+  loading: () => (
+    <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-[#07162B] via-[#0E2A4F] to-[#040D1B] border border-[#0A1628]/15 shadow-editorial h-[520px] sm:h-[560px] flex flex-col items-center justify-center text-blue-100/80 gap-3">
+      <div className="w-10 h-10 rounded-full border-2 border-[#C69B3A]/40 border-t-[#C69B3A] animate-spin" />
+      <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#F4E3B2]">
+        Loading 3D Studio Explainer...
+      </span>
+    </div>
+  ),
+});
 
 export default function Hero() {
-  const [activeCategory, setActiveCategory] = useState<ServiceCategory>("websites");
+  const [activeChapter, setActiveChapter] = useState<number>(0);
   const [activeSectorDemo, setActiveSectorDemo] = useState<string | null>(null);
   const [activePathway2Demo, setActivePathway2Demo] = useState<string | null>(null);
-  const current = SERVICE_SELECTOR_CONTENT[activeCategory];
 
   const scrollTo = (selector: string) => {
     const el = document.querySelector(selector);
@@ -101,348 +36,264 @@ export default function Hero() {
 
   return (
     <>
-      {/* SECTION 1 — HERO */}
-      <section className="relative bg-white pt-28 sm:pt-36 pb-16 sm:pb-24 border-b border-[#E2E8F0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-start">
-            {/* Left 7 Columns: Editorial Headline & Primary Actions */}
-            <div className="lg:col-span-7 space-y-6 sm:space-y-8 pt-1">
-              {/* Understated Studio Badge */}
-              <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-md bg-[#F8FAFD] border border-[#E2E8F0]">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
-                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#14243A]">
-                  UK-Based Digital Solutions Studio
-                </span>
+      {/* SECTION 1 — CINEMATIC PURE WHITE + EMERALD & GOLD HERO */}
+      <section className="relative bg-white pt-28 sm:pt-36 pb-16 sm:pb-24 border-b border-[#DCE6F2] overflow-hidden">
+        {/* Whisper-light studio radial aura (keeps background luminous pure white) */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-24 right-0 w-[680px] h-[680px] rounded-full bg-[radial-gradient(circle,rgba(20,58,107,0.07)_0%,rgba(198,155,58,0.05)_45%,transparent_72%)]"
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            {/* Left 6 Columns: Bold Modern Display Sans & Interactive 3-Discipline Bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+              className="lg:col-span-6"
+            >
+              {/* Prestige British Studio Badge */}
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#EDF3FA] border border-[#143A6B]/15 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[#143A6B] mb-6">
+                <span className="w-2 h-2 rounded-full bg-[#C69B3A]" />
+                <span>UK Digital Product &amp; AI Studio</span>
               </div>
 
-              {/* Commanding Headline */}
-              <div className="space-y-5">
-                <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-[#14243A] tracking-[-0.03em] leading-[1.06]">
-                  Technology That Moves{" "}
-                  <span className="block sm:inline text-blue-600">
-                    Your Business Forward.
-                  </span>
-                </h1>
-                <p className="text-base sm:text-lg lg:text-[19px] text-[#475569] leading-[1.65] max-w-2xl font-normal">
-                  From professional websites to intelligent AI automation and custom software, CortexHive helps businesses simplify operations, attract customers and turn ideas into working digital products.
-                </p>
-              </div>
+              {/* Confident Modern Display Headline */}
+              <h1 className="text-[42px] sm:text-[54px] lg:text-[62px] font-extrabold text-[#0A1628] tracking-[-0.035em] leading-[1.04] mb-6">
+                Technology that moves your{" "}
+                <span className="text-[#C69B3A]">business</span> forward.
+              </h1>
 
-              {/* Primary & Secondary CTAs */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-1">
+              {/* Grounded Studio Copy */}
+              <p className="text-base sm:text-[17.5px] text-[#33475F] leading-[1.65] max-w-[520px] mb-8">
+                We design dependable websites, build practical AI voice receptionists, and engineer custom software for UK trades, growing SMEs, and ambitious founders.
+              </p>
+
+              {/* High-Contrast Emerald & Crisp White Actions */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-10">
                 <button
                   type="button"
                   onClick={() => openConsultationModal()}
-                  className="px-6 py-3.5 rounded-lg bg-[#14243A] hover:bg-blue-600 text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2.5 transition-colors cursor-pointer"
+                  className="px-6 py-3.5 rounded-full bg-[#143A6B] hover:bg-[#1D4ED8] text-white font-semibold text-sm inline-flex items-center justify-center gap-2.5 shadow-subtle transition-all cursor-pointer"
                 >
-                  <span>Get a Free Consultation</span>
+                  <span>Book a Free Consultation</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
                 <button
                   type="button"
-                  onClick={() => scrollTo("#services")}
-                  className="px-6 py-3.5 rounded-lg bg-white hover:bg-[#F8FAFD] text-[#14243A] border border-slate-300 font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors"
+                  onClick={() => scrollTo("#portfolio")}
+                  className="px-6 py-3.5 rounded-full bg-white hover:bg-[#F4F7FB] text-[#0A1628] border border-[#0A1628]/15 hover:border-[#143A6B]/40 font-semibold text-sm inline-flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
-                  <span>Explore Our Services</span>
+                  <span>Explore Our Work</span>
                 </button>
               </div>
 
-              {/* Subtle 3-Column Capability Summary */}
-              <div className="pt-6 border-t border-[#E2E8F0] grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-2xl">
-                <div>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-blue-600 block mb-1">
-                    01 / Websites
-                  </span>
-                  <p className="text-xs sm:text-sm font-semibold text-[#14243A] leading-snug">
-                    Built for enquiries and clear business credibility.
-                  </p>
-                </div>
-                <div className="sm:border-l sm:border-[#E2E8F0] sm:pl-5">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-blue-600 block mb-1">
-                    02 / AI &amp; Voice
-                  </span>
-                  <p className="text-xs sm:text-sm font-semibold text-[#14243A] leading-snug">
-                    Call answering and practical workflow automation.
-                  </p>
-                </div>
-                <div className="sm:border-l sm:border-[#E2E8F0] sm:pl-5">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-blue-600 block mb-1">
-                    03 / Software
-                  </span>
-                  <p className="text-xs sm:text-sm font-semibold text-[#14243A] leading-snug">
-                    Custom applications, portals and SaaS platforms.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right 5 Columns: Bespoke Agency Service Selector (Non-Dashboard Editorial Style) */}
-            <div className="lg:col-span-5 w-full">
-              <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFD] overflow-hidden">
-                {/* Editorial Selector Tabs */}
-                <div
-                  role="tablist"
-                  aria-label="CortexHive Service Categories"
-                  className="grid grid-cols-3 bg-white border-b border-[#E2E8F0]"
-                >
-                  {(["websites", "ai", "software"] as ServiceCategory[]).map((key) => {
-                    const item = SERVICE_SELECTOR_CONTENT[key];
-                    const isActive = activeCategory === key;
-                    return (
-                      <button
-                        key={key}
-                        type="button"
-                        role="tab"
-                        aria-selected={isActive}
-                        onClick={() => setActiveCategory(key)}
-                        className={`py-4 px-3 text-left transition-colors relative border-r last:border-r-0 border-[#E2E8F0] ${
-                          isActive
-                            ? "bg-[#F8FAFD] text-[#14243A]"
-                            : "bg-white text-[#64748B] hover:text-[#14243A] hover:bg-slate-50/70"
-                        }`}
-                      >
+              {/* 3 Interactive Capability Pillars Synced with the 3D Explainer */}
+              <div className="pt-6 border-t border-[#DCE6F2] grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                {HERO_EXPLAINER_CHAPTERS.map((chapter, idx) => {
+                  const isSelected = activeChapter === idx;
+                  return (
+                    <button
+                      key={chapter.id}
+                      type="button"
+                      onClick={() => setActiveChapter(idx)}
+                      className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer ${
+                        isSelected
+                          ? "bg-[#F4F7FB] border-[#143A6B]/35 shadow-2xs"
+                          : "bg-white border-transparent hover:border-[#DCE6F2] hover:bg-[#F4F7FB]/50"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
                         <span
-                          className={`block text-[10px] font-semibold tracking-wider mb-0.5 ${
-                            isActive ? "text-blue-600" : "text-slate-400"
+                          className={`font-mono text-[10px] font-semibold tracking-[0.12em] uppercase ${
+                            isSelected ? "text-[#143A6B]" : "text-[#C69B3A]"
                           }`}
                         >
-                          {item.index}
+                          {chapter.tag}
                         </span>
-                        <span className="block text-xs font-bold tracking-tight">
-                          {item.label}
-                        </span>
-                        {isActive && (
-                          <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600" />
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Selected Capability Editorial Content */}
-                <div className="p-6 sm:p-7 space-y-6">
-                  <div className="space-y-2.5">
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-600 block">
-                      {current.eyebrow}
-                    </span>
-                    <h2 className="text-lg sm:text-xl font-bold text-[#14243A] leading-snug tracking-tight">
-                      {current.title}
-                    </h2>
-                    <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
-                      {current.description}
-                    </p>
-                  </div>
-
-                  {/* Clean Highlights List */}
-                  <ul className="space-y-2.5 pt-1 border-t border-[#E2E8F0]">
-                    {current.highlights.map((point) => (
-                      <li
-                        key={point}
-                        className="flex items-start gap-2.5 text-xs sm:text-sm text-[#14243A] pt-2 first:pt-3"
-                      >
-                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Footer Meta & Link */}
-                  <div className="pt-5 border-t border-[#E2E8F0] flex items-center justify-between gap-4">
-                    <div>
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#64748B] block">
-                        {current.metaLabel}
-                      </span>
-                      <span className="text-xs sm:text-sm font-bold text-[#14243A]">
-                        {current.metaValue}
-                      </span>
-                    </div>
-
-                    <Link
-                      href={current.href}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-[#14243A] transition-colors"
-                    >
-                      <span>{current.linkLabel}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-                </div>
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full ${
+                            isSelected ? "bg-[#143A6B]" : "bg-[#B9CDE3]"
+                          }`}
+                        />
+                      </div>
+                      <div className="text-[13.5px] font-bold text-[#0A1628] mb-1">
+                        {chapter.title}
+                      </div>
+                      <p className="text-[11.5px] text-[#3F5570] leading-relaxed">
+                        {chapter.description}
+                      </p>
+                    </button>
+                  );
+                })}
               </div>
-            </div>
+            </motion.div>
+
+            {/* Right 6 Columns: Real-Time Interactive 3D Explainer Reel */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: "easeOut", delay: 0.08 }}
+              className="lg:col-span-6"
+            >
+              <Hero3DExplainer
+                activeChapter={activeChapter}
+                onChapterChange={setActiveChapter}
+              />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2 — TWO DISTINCT CUSTOMER PATHWAYS */}
-      <section id="pathways" className="py-16 sm:py-24 bg-[#F5F8FC] border-b border-[#E2E8F0]">
+      {/* SECTION 2 — TWO CLEAR PATHWAYS (GALLERY PEARL BAND + CRISP WHITE CARDS) */}
+      <section className="bg-[#F4F7FB] border-b border-[#DCE6F2] py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-10 sm:mb-12">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-blue-600 block mb-2">
-              How We Help
-            </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#14243A] tracking-tight leading-[1.12]">
-              Two Focused Pathways for UK Businesses.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
-            {/* Pathway A — Small Businesses */}
-            <div className="bg-white rounded-2xl border border-[#E2E8F0] p-7 sm:p-9 flex flex-col justify-between shadow-subtle">
-              <div className="space-y-5">
-                <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-blue-600">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Pathway 01 — Small Businesses & Trades */}
+            <div className="bg-white rounded-2xl border border-[#DCE6F2] shadow-subtle p-7 sm:p-10 flex flex-col justify-between gap-8">
+              <div>
+                <div className="flex items-baseline justify-between gap-4 mb-4">
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[#143A6B]">
                     Pathway 01 — Small Businesses &amp; Trades
                   </span>
-                  <div className="w-9 h-9 rounded-lg bg-[#F5F8FC] border border-[#E2E8F0] text-[#14243A] flex items-center justify-center">
-                    <Building2 className="w-4 h-4 text-blue-600" />
-                  </div>
+                  <span className="text-[36px] font-extrabold text-[#C69B3A]/30 leading-none select-none">
+                    01
+                  </span>
                 </div>
+
+                <h2 className="text-2xl sm:text-[32px] font-extrabold text-[#0A1628] tracking-[-0.025em] leading-[1.14] mb-3.5">
+                  Get online credibly, answer every call, and win more local work.
+                </h2>
+
+                <p className="text-[15px] text-[#33475F] leading-relaxed max-w-[470px] mb-7">
+                  Built for UK builders, plumbers, electricians, cleaners, and local service businesses that want reliable technology without agency jargon.
+                </p>
 
                 <div className="space-y-3">
-                  <h3 className="text-2xl sm:text-[26px] font-extrabold text-[#14243A] tracking-tight leading-snug">
-                    Helping UK Businesses Get Online, Win Customers and Work Smarter.
-                  </h3>
-                  <p className="text-sm text-[#475569] leading-relaxed">
-                    Professional business websites and intelligent AI receptionists designed to help you capture more enquiries and simplify everyday operations.
-                  </p>
-                </div>
-
-                {/* Interactive 3D Sector Demo Matrix */}
-                <div className="p-4 rounded-xl bg-[#F8FAFD] border border-[#E2E8F0] space-y-2.5">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
+                    <span className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-[#61758F]">
                       Built for Practical Businesses
                     </span>
                     <button
                       type="button"
                       onClick={() => setActiveSectorDemo("builders-trades")}
-                      className="inline-flex items-center gap-1 text-[11px] font-bold text-blue-600 hover:text-[#14243A] transition-colors cursor-pointer"
+                      className="font-mono text-[11px] font-semibold text-[#143A6B] hover:text-[#C69B3A] inline-flex items-center gap-1 transition-colors cursor-pointer"
                     >
-                      <Box className="w-3.5 h-3.5" />
                       <span>Click to view 3D demo</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {[
-                      { slug: "builders-trades", label: "Builders & Trades", icon: Globe },
-                      { slug: "plumbers-electricians", label: "Plumbing & Electrical", icon: PhoneCall },
-                      { slug: "window-cleaners", label: "Window Cleaning", icon: Check },
-                      { slug: "local-services", label: "Local Services", icon: Check },
-                    ].map((sector) => {
-                      const SectorIcon = sector.icon;
-                      return (
-                        <button
-                          key={sector.slug}
-                          type="button"
-                          onClick={() => setActiveSectorDemo(sector.slug)}
-                          className="group flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-lg bg-white hover:bg-blue-50/70 border border-[#E2E8F0] hover:border-blue-300 text-left transition-all cursor-pointer"
-                        >
-                          <span className="flex items-center gap-2 text-xs font-semibold text-[#14243A] group-hover:text-blue-700 whitespace-nowrap">
-                            <SectorIcon className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
-                            <span>{sector.label}</span>
-                          </span>
-                          <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
-                        </button>
-                      );
-                    })}
+                      { slug: "builders-trades", label: "Builders & Trades" },
+                      { slug: "plumbers-electricians", label: "Plumbing & Electrical" },
+                      { slug: "window-cleaners", label: "Window Cleaning" },
+                      { slug: "local-services", label: "Local Services" },
+                    ].map((sector) => (
+                      <button
+                        key={sector.slug}
+                        type="button"
+                        onClick={() => setActiveSectorDemo(sector.slug)}
+                        className="group bg-[#F4F7FB] hover:bg-[#143A6B] border border-[#DCE6F2] hover:border-[#143A6B] rounded-xl px-4 py-3 flex items-center justify-between text-[13.5px] font-semibold text-[#0A1628] hover:text-white transition-colors cursor-pointer"
+                      >
+                        <span className="whitespace-nowrap">{sector.label}</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-[#C69B3A] group-hover:text-white transition-colors flex-shrink-0" />
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-slate-100 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <div className="pt-6 border-t border-[#DCE6F2] flex flex-wrap items-center gap-7">
                 <Link
                   href="/pricing"
-                  className="px-5 py-3 rounded-lg bg-blue-600 hover:bg-[#14243A] text-white text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors"
+                  className="text-[13.5px] font-bold text-[#143A6B] hover:text-[#C69B3A] transition-colors inline-flex items-center gap-1.5"
                 >
                   <span>Explore Website Packages</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
                 <Link
                   href="/ai-receptionist"
-                  className="px-5 py-3 rounded-lg bg-white hover:bg-[#F5F8FC] text-[#14243A] border border-slate-300 text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors"
+                  className="text-[13.5px] font-semibold text-[#33475F] hover:text-[#0A1628] transition-colors"
                 >
-                  <span>Explore AI Receptionists</span>
+                  AI Receptionist Service
                 </Link>
               </div>
             </div>
 
-            {/* Pathway B — Software and AI Clients */}
-            <div className="bg-white rounded-2xl border border-[#E2E8F0] p-7 sm:p-9 flex flex-col justify-between shadow-subtle">
-              <div className="space-y-5">
-                <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#14243A]">
+            {/* Pathway 02 — Custom AI & Software Clients */}
+            <div className="bg-white rounded-2xl border border-[#DCE6F2] shadow-subtle p-7 sm:p-10 flex flex-col justify-between gap-8">
+              <div>
+                <div className="flex items-baseline justify-between gap-4 mb-4">
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[#C69B3A]">
                     Pathway 02 — Custom AI &amp; Software Clients
                   </span>
-                  <div className="w-9 h-9 rounded-lg bg-[#F5F8FC] border border-[#E2E8F0] text-[#14243A] flex items-center justify-center">
-                    <Cpu className="w-4 h-4 text-blue-600" />
-                  </div>
+                  <span className="text-[36px] font-extrabold text-[#143A6B]/20 leading-none select-none">
+                    02
+                  </span>
                 </div>
+
+                <h2 className="text-2xl sm:text-[32px] font-extrabold text-[#0A1628] tracking-[-0.025em] leading-[1.14] mb-3.5">
+                  Turn operational bottlenecks or product ideas into working software.
+                </h2>
+
+                <p className="text-[15px] text-[#33475F] leading-relaxed max-w-[470px] mb-7">
+                  Full-stack SaaS platforms, intelligent agents, client portals, and document systems engineered around your exact business rules.
+                </p>
 
                 <div className="space-y-3">
-                  <h3 className="text-2xl sm:text-[26px] font-extrabold text-[#14243A] tracking-tight leading-snug">
-                    Turn Your Ideas Into Powerful Digital Products.
-                  </h3>
-                  <p className="text-sm text-[#475569] leading-relaxed">
-                    From intelligent AI systems to complete SaaS platforms, we design and develop technology around your business requirements.
-                  </p>
-                </div>
-
-                {/* Interactive 3D Workflow Explainer Matrix */}
-                <div className="p-4 rounded-xl bg-[#F8FAFD] border border-[#E2E8F0] space-y-2.5">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#64748B]">
+                    <span className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-[#61758F]">
                       Tailored Engineering Scope
                     </span>
                     <button
                       type="button"
                       onClick={() => setActivePathway2Demo("custom-saas")}
-                      className="inline-flex items-center gap-1 text-[11px] font-bold text-blue-600 hover:text-[#14243A] transition-colors cursor-pointer"
+                      className="font-mono text-[11px] font-semibold text-[#143A6B] hover:text-[#C69B3A] inline-flex items-center gap-1 transition-colors cursor-pointer"
                     >
-                      <Box className="w-3.5 h-3.5" />
                       <span>Click to view 3D demo</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {[
-                      { slug: "custom-saas", label: "Custom SaaS", icon: Layers },
-                      { slug: "ai-agents", label: "AI Agents", icon: Cpu },
-                      { slug: "dashboards-portals", label: "Dashboards", icon: Check },
-                      { slug: "api-document-systems", label: "API Integrations", icon: Check },
-                    ].map((sol) => {
-                      const SolIcon = sol.icon;
-                      return (
-                        <button
-                          key={sol.slug}
-                          type="button"
-                          onClick={() => setActivePathway2Demo(sol.slug)}
-                          className="group flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-lg bg-white hover:bg-blue-50/70 border border-[#E2E8F0] hover:border-blue-300 text-left transition-all cursor-pointer"
-                        >
-                          <span className="flex items-center gap-2 text-xs font-semibold text-[#14243A] group-hover:text-blue-700 whitespace-nowrap">
-                            <SolIcon className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
-                            <span>{sol.label}</span>
-                          </span>
-                          <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
-                        </button>
-                      );
-                    })}
+                      { slug: "custom-saas", label: "Custom SaaS" },
+                      { slug: "ai-agents", label: "AI Agents" },
+                      { slug: "dashboards-portals", label: "Dashboards" },
+                      { slug: "api-document-systems", label: "API Integrations" },
+                    ].map((sol) => (
+                      <button
+                        key={sol.slug}
+                        type="button"
+                        onClick={() => setActivePathway2Demo(sol.slug)}
+                        className="group bg-[#F4F7FB] hover:bg-[#08182E] border border-[#DCE6F2] hover:border-[#08182E] rounded-xl px-4 py-3 flex items-center justify-between text-[13.5px] font-semibold text-[#0A1628] hover:text-white transition-colors cursor-pointer"
+                      >
+                        <span className="whitespace-nowrap">{sol.label}</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-[#C69B3A] group-hover:text-white transition-colors flex-shrink-0" />
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-slate-100 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <div className="pt-6 border-t border-[#DCE6F2] flex flex-wrap items-center gap-7">
                 <button
                   type="button"
-                  onClick={() => scrollTo("#contact")}
-                  className="px-5 py-3 rounded-lg bg-[#14243A] hover:bg-blue-600 text-white text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors"
+                  onClick={() => openConsultationModal("Custom Software / SaaS")}
+                  className="text-[13.5px] font-bold text-[#143A6B] hover:text-[#C69B3A] transition-colors inline-flex items-center gap-1.5 cursor-pointer"
                 >
                   <span>Discuss Your Project</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
                 <Link
                   href="/our-products"
-                  className="px-5 py-3 rounded-lg bg-white hover:bg-[#F5F8FC] text-[#14243A] border border-slate-300 text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors"
+                  className="text-[13.5px] font-semibold text-[#33475F] hover:text-[#0A1628] transition-colors"
                 >
-                  <span>View Our Products</span>
+                  View Owned Products
                 </Link>
               </div>
             </div>

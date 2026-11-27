@@ -1,156 +1,244 @@
 "use client";
 
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import Link from "next/link";
-import {
-  Globe,
-  Bot,
-  Layers,
-  Wrench,
-  ArrowRight,
-  Check,
-} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-const SERVICE_CATEGORIES = [
+const DigitalExperiences3DVideo = dynamic(
+  () => import("./digital-experiences-3d-video"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full min-h-[340px] sm:min-h-[420px] bg-gradient-to-br from-[#07162B] via-[#0E2A4F] to-[#040D1B] flex flex-col items-center justify-center gap-3 text-blue-100/80">
+        <div className="w-9 h-9 rounded-full border-2 border-[#C69B3A]/40 border-t-[#C69B3A] animate-spin" />
+        <span className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-[#F4E3B2]">
+          Loading 3D Digital Experiences...
+        </span>
+      </div>
+    ),
+  }
+);
+
+const STAGE_DISCIPLINES = [
   {
     code: "01",
-    title: "Website Development",
-    benefit:
-      "Establish a credible online presence that loads fast on every device and turns local or commercial visitors into direct enquiries.",
-    icon: Globe,
-    href: "/website-design",
-    ctaLabel: "Explore Website Development",
-    items: [
-      { name: "Business websites", desc: "Structured multi-page websites built around your services and brand." },
-      { name: "Landing pages", desc: "Focused conversion pages designed for campaigns or starter presence." },
-      { name: "E-commerce", desc: "Clean online storefronts with secure checkout and product management." },
-      { name: "Custom web applications", desc: "Interactive browser-based tools tailored to specific customer workflows." },
-      { name: "Website redesigns", desc: "Modernise outdated websites for better speed, mobile usability and trust." },
+    shortLabel: "Digital Experiences",
+    eyebrow: "Websites, Applications & Design Systems",
+    title: "Websites & digital products crafted for clarity and genuine enquiries.",
+    summary:
+      "Fast, mobile-first business websites, landing pages, e-commerce storefronts, and redesigns designed with editorial restraint so local and commercial visitors turn into direct conversations.",
+    image: "/luxury/service-digital.webp",
+    imageAlt:
+      "Interactive 3D showcase representing CortexHive digital experiences",
+    use3DVideo: true,
+    specs: [
+      "Business Websites (From £99)",
+      "Conversion Landing Pages",
+      "E-Commerce & Web Apps",
+      "Core Web Vitals & UK SEO",
     ],
+    primaryCta: { label: "Explore Website Design", href: "/website-design" },
+    secondaryCta: { label: "View Website Packages", href: "/pricing" },
   },
   {
     code: "02",
-    title: "AI and Automation",
-    benefit:
-      "Capture calls after hours, eliminate repetitive administrative tasks and connect your everyday tools so your team works smarter.",
-    icon: Bot,
-    href: "/ai-automation",
-    ctaLabel: "Explore AI & Automation",
-    items: [
-      { name: "AI receptionists", desc: "Handle incoming calls, answer questions and capture caller details." },
-      { name: "Custom AI agents", desc: "Assistants trained on your business information for support and triage." },
-      { name: "Workflow automation", desc: "Automate lead routing, notifications and routine follow-ups." },
-      { name: "Document automation", desc: "Extract information from documents and generate standard paperwork faster." },
-      { name: "AI integrations", desc: "Embed practical AI features directly into your existing tools and apps." },
-      { name: "Business process automation", desc: "Connect forms, email, CRMs and spreadsheets without manual re-typing." },
+    shortLabel: "Artificial Intelligence",
+    eyebrow: "Voice AI, Agents & Workflow Automation",
+    title: "Practical AI systems that answer calls and cut out repetitive admin.",
+    summary:
+      "24/7 UK AI phone receptionists, custom business agents, document processing, and connected workflows that capture leads reliably without disrupting your team.",
+    image: "/luxury/service-ai.webp",
+    imageAlt:
+      "3D visual representing CortexHive voice AI and business automation workflows",
+    use3DVideo: false,
+    specs: [
+      "24/7 UK AI Phone Receptionist",
+      "Custom Business AI Agents",
+      "Document & Invoice Automation",
+      "WhatsApp & CRM Lead Routing",
     ],
+    primaryCta: { label: "Explore AI Receptionist", href: "/ai-receptionist" },
+    secondaryCta: { label: "AI Automation Services", href: "/ai-automation" },
   },
   {
     code: "03",
-    title: "Software and SaaS",
-    benefit:
-      "Turn operational requirements or new product ideas into maintainable, scalable software built around your exact user roles.",
-    icon: Layers,
-    href: "/saas-development",
-    ctaLabel: "Explore Software & SaaS",
-    items: [
-      { name: "SaaS development", desc: "Subscription-ready digital products from initial MVP to full platform." },
-      { name: "Custom dashboards", desc: "Clear management visibility over jobs, enquiries, users and reporting." },
-      { name: "Membership platforms", desc: "Gated content, subscriber accounts and recurring billing workflows." },
-      { name: "Customer portals", desc: "Self-service portals for clients to view progress, upload files and manage requests." },
-      { name: "Education platforms", desc: "Online assessment, learning and exam preparation systems (like MarkScheme)." },
-      { name: "API integrations", desc: "Reliable data connections with Stripe, calendars, CRMs and third-party services." },
+    shortLabel: "Software Engineering",
+    eyebrow: "Custom SaaS, Portals & API Architecture",
+    title: "Scalable custom software & SaaS products engineered to last.",
+    summary:
+      "Multi-tenant SaaS platforms, client dashboards, white-label software, and full-stack integrations architected cleanly from MVP to enterprise scale.",
+    image: "/luxury/service-software.webp",
+    imageAlt:
+      "3D visual representing CortexHive custom software and SaaS engineering",
+    use3DVideo: false,
+    specs: [
+      "Custom SaaS & Startup MVPs",
+      "Dashboards & Client Portals",
+      "White-Label Digital Tools",
+      "Stripe, Webhook & API Systems",
     ],
-  },
-  {
-    code: "04",
-    title: "Custom Digital Solutions",
-    benefit:
-      "Commission bespoke, privacy-conscious software and white-label digital tools when off-the-shelf products don't fit your model.",
-    icon: Wrench,
-    href: "/white-label-software",
-    ctaLabel: "Explore White-Label & Custom Solutions",
-    items: [
-      { name: "White-label software", desc: "Rebrandable digital platforms and tools tailored for agencies and partners." },
-      { name: "Browser-based tools", desc: "Fast client-side utilities that run directly in the browser without installs." },
-      { name: "Business management systems", desc: "Replace fragile spreadsheets with reliable internal operations software." },
-      { name: "Bespoke applications", desc: "Purpose-built digital products scoped and quoted around your requirements." },
-      { name: "Document processing solutions", desc: "Secure PDF and document utilities built for everyday business workflows." },
-    ],
+    primaryCta: { label: "Explore Software & SaaS", href: "/saas-development" },
+    secondaryCta: { label: "White-Label Solutions", href: "/white-label-software" },
   },
 ];
 
 export default function ServiceDivisions() {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const current = STAGE_DISCIPLINES[activeIdx];
+
   return (
-    <section id="services" className="py-20 sm:py-28 bg-white border-b border-[#E2E8F0]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end pb-10 mb-12 border-b border-[#E2E8F0]">
-          <div className="lg:col-span-7 space-y-2.5">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-blue-600 block">
-              Our Services
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#14243A] tracking-tight leading-[1.1]">
-              Four Practical Digital Capabilities Under One Roof.
+    <section
+      id="services"
+      className="py-20 sm:py-28 bg-white border-b border-[#DCE6F2]"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        {/* Top Header + Emerald Discipline Tabs */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-8 border-b border-[#DCE6F2]">
+          <div className="space-y-3 max-w-2xl">
+            <div className="inline-flex items-center gap-2.5 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-[#143A6B]">
+              <span className="w-6 h-[2px] bg-[#C69B3A]" />
+              <span>Core Engineering Disciplines</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-[#0A1628] tracking-[-0.03em] leading-[1.08]">
+              Three disciplines, engineered to{" "}
+              <span className="text-[#143A6B]">work together.</span>
             </h2>
           </div>
-          <div className="lg:col-span-5">
-            <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
-              Every service is designed around clear business outcomes — helping you win customers, save administrative time and launch dependable digital products.
-            </p>
+
+          <div
+            role="tablist"
+            aria-label="CortexHive Engineering Disciplines"
+            className="inline-flex flex-wrap sm:flex-nowrap border border-[#DCE6F2] rounded-xl bg-[#F4F7FB] p-1.5"
+          >
+            {STAGE_DISCIPLINES.map((item, idx) => {
+              const isActive = idx === activeIdx;
+              return (
+                <button
+                  key={item.code}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActiveIdx(idx)}
+                  className={`px-4 py-2.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                    isActive
+                      ? "bg-[#143A6B] text-white shadow-2xs"
+                      : "text-[#33475F] hover:text-[#0A1628]"
+                  }`}
+                >
+                  <span
+                    className={`font-mono mr-1.5 ${
+                      isActive ? "text-[#F4E3B2]" : "text-[#C69B3A]"
+                    }`}
+                  >
+                    {item.code}
+                  </span>
+                  {item.shortLabel}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* 2x2 Editorial Grid for the 4 Categories */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-          {SERVICE_CATEGORIES.map((cat) => {
-            const Icon = cat.icon;
-            return (
-              <div
-                key={cat.code}
-                className="rounded-2xl bg-[#F8FAFD] border border-[#E2E8F0] p-7 sm:p-8 flex flex-col justify-between hover:border-slate-300 transition-colors"
-              >
-                <div>
-                  <div className="flex items-center justify-between pb-5 mb-5 border-b border-[#E2E8F0]">
-                    <div className="flex items-center gap-3">
-                      <span className="text-xs font-bold text-blue-600">{cat.code}</span>
-                      <h3 className="text-xl font-extrabold text-[#14243A] tracking-tight">
-                        {cat.title}
-                      </h3>
-                    </div>
-                    <div className="w-9 h-9 rounded-lg bg-white border border-[#E2E8F0] text-[#14243A] flex items-center justify-center">
-                      <Icon className="w-4 h-4 text-blue-600" />
+        {/* Cinematic Discipline Showcase Frame */}
+        <div className="rounded-2xl border border-[#DCE6F2] bg-white overflow-hidden shadow-editorial">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current.code}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.24, ease: "easeOut" }}
+              className="grid grid-cols-1 lg:grid-cols-12 items-stretch"
+            >
+              {/* Left 7 Columns: Real-Time 3D Stage for Digital Experiences, Visual for AI/Software */}
+              <div className="lg:col-span-7 relative min-h-[340px] sm:min-h-[440px] lg:min-h-[480px] bg-[#07162B] border-b lg:border-b-0 lg:border-r border-[#DCE6F2] overflow-hidden p-3 sm:p-4 flex">
+                {current.use3DVideo ? (
+                  <DigitalExperiences3DVideo />
+                ) : (
+                  <div className="relative w-full h-full min-h-[320px] sm:min-h-[410px] rounded-xl overflow-hidden bg-white">
+                    <Image
+                      src={current.image}
+                      alt={current.imageAlt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 58vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute top-4 left-4 bg-white/95 border border-[#DCE6F2] rounded-full px-3.5 py-1.5 inline-flex items-center gap-2 font-mono text-[10.5px] font-semibold text-[#0A1628] shadow-2xs">
+                      <span className="text-[#C69B3A]">{current.code}</span>
+                      <span className="text-[#0A1628]/25">/</span>
+                      <span>{current.shortLabel}</span>
                     </div>
                   </div>
+                )}
+              </div>
 
-                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6">
-                    {cat.benefit}
+              {/* Right 5 Columns: Crisp Spec Panel */}
+              <div className="lg:col-span-5 p-7 sm:p-10 lg:p-11 flex flex-col justify-between bg-white space-y-8">
+                <div className="space-y-4">
+                  <span className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[#C69B3A] block">
+                    {current.eyebrow}
+                  </span>
+
+                  <h3 className="text-2xl sm:text-[28px] font-extrabold text-[#0A1628] tracking-[-0.025em] leading-[1.16]">
+                    {current.title}
+                  </h3>
+
+                  <p className="text-sm text-[#33475F] leading-relaxed">
+                    {current.summary}
                   </p>
 
-                  <ul className="space-y-3 mb-7">
-                    {cat.items.map((item) => (
-                      <li key={item.name} className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                        <div className="text-xs sm:text-sm leading-snug">
-                          <span className="font-bold text-[#14243A]">{item.name}: </span>
-                          <span className="text-[#475569]">{item.desc}</span>
-                        </div>
-                      </li>
+                  {/* Hairline Spec Index */}
+                  <div className="pt-2 border-t border-[#DCE6F2] divide-y divide-[#DCE6F2]">
+                    {current.specs.map((spec, sIdx) => (
+                      <div
+                        key={spec}
+                        className="py-2.5 flex items-center justify-between text-xs sm:text-sm font-semibold text-[#0A1628]"
+                      >
+                        <span>{spec}</span>
+                        <span className="font-mono text-[10.5px] text-[#C69B3A]">
+                          0{sIdx + 1}
+                        </span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
 
-                <div className="pt-5 border-t border-[#E2E8F0]">
+                <div className="pt-3 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center gap-3">
                   <Link
-                    href={cat.href}
-                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-blue-600 hover:text-[#14243A] transition-colors"
+                    href={current.primaryCta.href}
+                    className="px-5 py-3 rounded-full bg-[#143A6B] hover:bg-[#1D4ED8] text-white text-xs sm:text-[13px] font-semibold inline-flex items-center justify-center gap-2 transition-colors"
                   >
-                    <span>{cat.ctaLabel}</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <span>{current.primaryCta.label}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                  <Link
+                    href={current.secondaryCta.href}
+                    className="px-5 py-3 rounded-full bg-[#F4F7FB] hover:bg-[#EDF3FA] border border-[#DCE6F2] text-[#0A1628] text-xs sm:text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 transition-colors"
+                  >
+                    <span>{current.secondaryCta.label}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#143A6B]" />
                   </Link>
                 </div>
               </div>
-            );
-          })}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Directory Link */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
+          <p className="text-xs sm:text-sm text-[#33475F]">
+            Explore dedicated pages for Website Design, AI Receptionists, AI Agents, SaaS, and White-Label Engineering.
+          </p>
+          <Link
+            href="/services"
+            className="text-xs sm:text-sm font-bold text-[#143A6B] hover:text-[#C69B3A] inline-flex items-center gap-1.5 transition-colors flex-shrink-0"
+          >
+            <span>Full Services Directory</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </div>
     </section>

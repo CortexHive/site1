@@ -10,7 +10,6 @@ import {
   CheckCircle2,
   MessageSquare,
   ArrowRight,
-  Sparkles,
 } from "lucide-react";
 import { openConsultationModal } from "./consultation-modal";
 
@@ -285,45 +284,45 @@ export default function AiReceptionistDemo() {
   };
 
   return (
-    <div className="rounded-2xl bg-white border border-[#E2E8F0] overflow-hidden shadow-subtle">
-      {/* Top Bar */}
-      <div className="px-5 py-4 border-b border-[#E2E8F0] bg-[#14243A] text-white flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5 min-w-0">
-          <div className="w-8 h-8 rounded-lg bg-blue-600/25 border border-blue-400/40 flex items-center justify-center flex-shrink-0">
-            <PhoneCall className="w-4 h-4 text-blue-300" />
+    <div className="rounded-md bg-white border border-[#C5D6EA] overflow-hidden shadow-editorial">
+      {/* Grounded Reception Desk Header */}
+      <div className="px-5 sm:px-6 py-4 border-b border-[#DCE6F2] bg-[#08182E] text-white flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="w-8 h-8 rounded bg-[#143A6B] border border-[#FCFBF8]/15 flex items-center justify-center flex-shrink-0">
+            <PhoneCall className="w-4 h-4 text-white" />
           </div>
           <div className="min-w-0">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold tracking-tight truncate">
-                Realistic UK AI Call Demo
-              </span>
-              <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 whitespace-nowrap">
-                Studio Voice
-              </span>
+            <div className="text-sm font-semibold tracking-tight truncate">
+              UK Call Handling Desk
             </div>
-            <div className="text-[10px] text-slate-300 truncate">
+            <div className="font-mono text-[11px] text-white/65 truncate mt-0.5">
               {scenario.businessName} • {scenario.callerLabel}
             </div>
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setIsMuted((prev) => !prev)}
-          aria-label={isMuted ? "Unmute audio demo" : "Mute audio demo"}
-          className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors flex-shrink-0 cursor-pointer"
-          title={isMuted ? "Unmute voice audio" : "Mute voice audio"}
-        >
-          {isMuted ? (
-            <VolumeX className="w-4 h-4 text-slate-300" />
-          ) : (
-            <Volume2 className="w-4 h-4 text-emerald-300" />
-          )}
-        </button>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <span className="hidden sm:inline-block font-mono text-[10px] font-medium uppercase tracking-[0.1em] px-2.5 py-1 rounded-sm border border-[#FCFBF8]/25 text-[#DCE7F0] whitespace-nowrap">
+            Simulated Demo • Studio UK Voice
+          </span>
+          <button
+            type="button"
+            onClick={() => setIsMuted((prev) => !prev)}
+            aria-label={isMuted ? "Unmute audio demo" : "Mute audio demo"}
+            className="p-2 rounded bg-white/10 hover:bg-white/20 text-white transition-colors flex-shrink-0 cursor-pointer"
+            title={isMuted ? "Unmute voice audio" : "Mute voice audio"}
+          >
+            {isMuted ? (
+              <VolumeX className="w-4 h-4 text-slate-300" />
+            ) : (
+              <Volume2 className="w-4 h-4 text-emerald-300" />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Scenario Tabs */}
-      <div className="grid grid-cols-3 border-b border-[#E2E8F0] bg-[#F8FAFD]">
+      <div className="grid grid-cols-3 border-b border-[#DCE6F2] bg-[#F4F7FB]">
         {DEMO_SCENARIOS.map((item) => {
           const isActive = item.id === activeId;
           return (
@@ -331,10 +330,10 @@ export default function AiReceptionistDemo() {
               key={item.id}
               type="button"
               onClick={() => handleSelectScenario(item.id)}
-              className={`py-2.5 px-2 text-[11px] font-semibold transition-colors border-r last:border-r-0 border-[#E2E8F0] cursor-pointer ${
+              className={`py-3 px-2 text-xs transition-all border-r last:border-r-0 border-[#DCE6F2] cursor-pointer ${
                 isActive
-                  ? "bg-white text-blue-600 border-b-2 border-b-blue-600"
-                  : "text-[#64748B] hover:text-[#14243A]"
+                  ? "bg-white text-[#0A1628] font-semibold border-b-2 border-b-[#1B3B53]"
+                  : "text-[#33475F] font-medium hover:text-[#0A1628]"
               }`}
             >
               {item.label}
@@ -343,56 +342,60 @@ export default function AiReceptionistDemo() {
         })}
       </div>
 
-      {/* Audio Control Bar */}
-      <div className="px-5 py-3.5 bg-blue-50/60 border-b border-[#E2E8F0] flex items-center justify-between gap-3">
+      {/* Call Recording Playback Strip */}
+      <div className="px-5 sm:px-6 py-4 bg-[#F9F7F2] border-b border-[#DCE6F2] flex items-center justify-between gap-4">
         <button
           type="button"
           onClick={handleTogglePlay}
-          className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
+          className={`inline-flex items-center gap-2 px-4 py-2.5 rounded text-xs font-semibold transition-colors cursor-pointer ${
             isPlaying
-              ? "bg-red-600 hover:bg-red-700 text-white"
-              : "bg-blue-600 hover:bg-[#14243A] text-white"
+              ? "bg-[#991B1B] hover:bg-[#7F1D1D] text-white"
+              : "bg-[#143A6B] hover:bg-[#08182E] text-white"
           }`}
         >
           {isPlaying ? (
             <>
               <Square className="w-3.5 h-3.5 fill-current" />
-              <span>Stop Call Demo</span>
+              <span>Stop Recording</span>
             </>
           ) : (
             <>
               <Play className="w-3.5 h-3.5 fill-current" />
-              <span>Play Realistic Call Demo</span>
+              <span>Play Call Recording</span>
             </>
           )}
         </button>
 
-        {/* Animated Waveform */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-end gap-1 h-5" aria-hidden="true">
-            {[10, 18, 12, 20, 14, 17, 9, 16].map((h, i) => (
-              <span
-                key={i}
-                style={{
-                  height: isPlaying ? `${h}px` : "4px",
-                  transitionDelay: `${i * 40}ms`,
-                }}
-                className={`w-1 rounded-full transition-all duration-300 ${
-                  isPlaying
-                    ? "bg-blue-600 animate-pulse"
-                    : "bg-slate-300"
-                }`}
-              />
-            ))}
+        {/* Grounded Acoustic Bars */}
+        <div className="flex items-center gap-3 flex-1 justify-end">
+          <div className="flex items-center gap-1 h-7" aria-hidden="true">
+            {[8, 16, 12, 24, 18, 10, 26, 20, 14, 24, 20, 12, 22, 16, 10, 18, 12, 8].map(
+              (h, i) => (
+                <span
+                  key={i}
+                  style={{
+                    height: isPlaying ? `${h}px` : `${Math.max(4, Math.round(h * 0.42))}px`,
+                    transitionDelay: `${(i % 6) * 45}ms`,
+                  }}
+                  className={`w-[3px] rounded-sm transition-all duration-300 ${
+                    isPlaying
+                      ? "bg-[#143A6B] animate-pulse"
+                      : i < 7
+                      ? "bg-[#143A6B]/75"
+                      : "bg-[#143A6B]/30"
+                  }`}
+                />
+              )
+            )}
           </div>
-          <span className="text-[11px] font-semibold text-[#64748B]">
-            {isPlaying ? "Playing..." : scenario.duration}
+          <span className="font-mono text-[11px] font-medium text-[#61758F] tabular-nums">
+            {isPlaying ? "Live" : scenario.duration}
           </span>
         </div>
       </div>
 
       {/* Live Call Transcript */}
-      <div className="p-5 space-y-2.5 max-h-[290px] overflow-y-auto bg-white">
+      <div className="p-5 sm:p-6 space-y-3 max-h-[300px] overflow-y-auto bg-white">
         {scenario.lines.map((line, idx) => {
           const isCurrent = idx === activeLineIdx;
           const isPast = activeLineIdx > idx || completed;
@@ -404,77 +407,76 @@ export default function AiReceptionistDemo() {
               ref={(el) => {
                 lineRefs.current[idx] = el;
               }}
-              className={`p-3 rounded-xl border text-xs leading-relaxed transition-all duration-200 ${
+              className={`p-3.5 rounded border text-[13px] leading-relaxed transition-all duration-200 ${
                 isCurrent
                   ? isAi
-                    ? "bg-blue-50 border-blue-400 ring-2 ring-blue-100"
-                    : "bg-slate-100 border-slate-400 ring-2 ring-slate-200"
+                    ? "bg-white border-[#143A6B] border-l-[3px] shadow-subtle"
+                    : "bg-[#EDF3FA] border-[#143A6B]/35"
                   : isPast
                   ? isAi
-                    ? "bg-blue-50/40 border-blue-100"
-                    : "bg-[#F8FAFD] border-[#E2E8F0]"
-                  : "bg-[#F8FAFD]/70 border-slate-200/70 opacity-85"
+                    ? "bg-white border-[#DCE6F2] border-l-[3px] border-l-[#1B3B53]"
+                    : "bg-[#F4F7FB] border-[#DCE6F2]"
+                  : isAi
+                  ? "bg-white border-[#DCE6F2] border-l-[3px] border-l-[#1B3B53]/60"
+                  : "bg-[#F4F7FB]/80 border-[#143A6B]/10"
               }`}
             >
               <div className="flex items-center justify-between gap-2 mb-1">
                 <span
-                  className={`text-[10px] font-bold uppercase tracking-wider ${
-                    isAi ? "text-blue-600" : "text-[#64748B]"
+                  className={`font-mono text-[10px] font-medium uppercase tracking-[0.1em] ${
+                    isAi ? "text-[#143A6B]" : "text-[#61758F]"
                   }`}
                 >
                   {isAi ? "CortexHive AI Receptionist" : "Caller"}
                 </span>
                 {isCurrent && (
-                  <span className="text-[10px] font-bold text-blue-600 animate-pulse">
+                  <span className="font-mono text-[10px] font-semibold text-[#143A6B] animate-pulse">
                     Speaking...
                   </span>
                 )}
               </div>
-              <p className="text-[#14243A]">&ldquo;{line.text}&rdquo;</p>
+              <p className="text-[#0A1628]">&ldquo;{line.text}&rdquo;</p>
             </div>
           );
         })}
       </div>
 
-      {/* Instant Lead Summary Card */}
-      <div className="px-5 py-4 bg-emerald-50/70 border-t border-emerald-200 space-y-2.5">
-        <div className="flex items-center justify-between gap-2">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-emerald-800">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-            <span>Instant Lead Summary Sent to Owner</span>
+      {/* Simulated Lead Summary Output (Forest Sage Accent) */}
+      <div className="px-5 sm:px-6 py-4 bg-[#EDF3FA] border-t border-[#143A6B]/20 space-y-3">
+        <div className="flex items-center justify-between gap-2 flex-wrap">
+          <span className="inline-flex items-center gap-1.5 font-mono text-[10.5px] font-semibold uppercase tracking-[0.12em] text-[#143A6B]">
+            <CheckCircle2 className="w-3.5 h-3.5 text-[#143A6B]" />
+            <span>Simulated Lead Summary Output</span>
           </span>
-          {completed && (
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-600 text-white">
-              <Sparkles className="w-3 h-3" />
-              Captured
-            </span>
-          )}
+          <span className="font-mono text-[10.5px] font-medium text-[#143A6B]">
+            {completed ? "✓ Captured & Dispatched" : scenario.summary.action}
+          </span>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 text-[11px]">
-          <div className="bg-white/90 rounded-lg px-2.5 py-1.5 border border-emerald-200/70">
-            <span className="text-slate-500 block text-[10px]">Caller</span>
-            <strong className="text-[#14243A]">{scenario.summary.caller}</strong>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+          <div className="bg-white rounded px-3 py-2 border border-[#143A6B]/15">
+            <span className="font-mono text-[#61758F] uppercase block text-[9.5px]">Caller</span>
+            <strong className="text-[#0A1628] font-semibold">{scenario.summary.caller}</strong>
           </div>
-          <div className="bg-white/90 rounded-lg px-2.5 py-1.5 border border-emerald-200/70">
-            <span className="text-slate-500 block text-[10px]">Location / Slot</span>
-            <strong className="text-[#14243A]">{scenario.summary.postcode}</strong>
+          <div className="bg-white rounded px-3 py-2 border border-[#143A6B]/15">
+            <span className="font-mono text-[#61758F] uppercase block text-[9.5px]">Location / Slot</span>
+            <strong className="text-[#0A1628] font-semibold">{scenario.summary.postcode}</strong>
           </div>
-          <div className="col-span-2 bg-white/90 rounded-lg px-2.5 py-1.5 border border-emerald-200/70">
-            <span className="text-slate-500 block text-[10px]">Enquiry Captured</span>
-            <strong className="text-[#14243A]">{scenario.summary.service}</strong>
+          <div className="bg-white rounded px-3 py-2 border border-[#143A6B]/15">
+            <span className="font-mono text-[#61758F] uppercase block text-[9.5px]">Enquiry</span>
+            <strong className="text-[#0A1628] font-semibold">{scenario.summary.service}</strong>
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-2 pt-1">
-          <span className="inline-flex items-center gap-1.5 text-[11px] text-emerald-900 font-medium">
-            <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
-            {scenario.summary.action}
+        <div className="flex items-center justify-between gap-2 pt-0.5">
+          <span className="inline-flex items-center gap-1.5 text-[11px] text-[#143A6B] font-medium">
+            <MessageSquare className="w-3.5 h-3.5 text-[#143A6B]" />
+            <span>Tailored to your business script &amp; routing</span>
           </span>
           <button
             type="button"
             onClick={() => openConsultationModal("AI Receptionist")}
-            className="text-[11px] font-bold text-blue-700 hover:text-[#14243A] inline-flex items-center gap-1 whitespace-nowrap cursor-pointer"
+            className="text-xs font-semibold text-[#0A1628] hover:text-[#143A6B] border-b border-[#143A6B] inline-flex items-center gap-1 whitespace-nowrap cursor-pointer"
           >
             <span>Book Demo</span>
             <ArrowRight className="w-3 h-3" />

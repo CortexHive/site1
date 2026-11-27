@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -8,15 +8,16 @@ import ScrollToTop from "@/components/scroll-to-top";
 import FloatingWhatsApp from "@/components/floating-whatsapp";
 import ConsultationModal from "@/components/consultation-modal";
 
-const inter = Inter({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-sans",
   display: "swap",
 });
 
-const manrope = Manrope({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -208,7 +209,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${manrope.variable} font-sans bg-white text-[#475569] antialiased min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white overflow-x-hidden`}
+        className={`${plusJakartaSans.variable} ${ibmPlexMono.variable} font-sans bg-white text-[#33475F] antialiased min-h-screen flex flex-col justify-between selection:bg-[#143A6B] selection:text-white overflow-x-hidden`}
       >
         <Header />
         <main className="flex-grow">{children}</main>

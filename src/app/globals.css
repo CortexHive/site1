@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 215 48% 15%; /* #14243A */
+    --background: 0 0% 100%; /* #FFFFFF Pure Luminous White */
+    --foreground: 216 60% 10%; /* #0A1628 Deep Forest Obsidian */
 
     --card: 0 0% 100%;
-    --card-foreground: 215 48% 15%;
+    --card-foreground: 216 60% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 48% 15%;
+    --popover-foreground: 216 60% 10%;
 
-    --primary: 221 83% 53%; /* #2563EB */
-    --primary-foreground: 210 20% 98%;
+    --primary: 214 68% 25%; /* #143A6B Deep British Emerald */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 32% 91%; /* #E2E8F0 */
-    --secondary-foreground: 215 48% 15%;
+    --secondary: 214 45% 97%; /* #F4F7FB Gallery Pearl */
+    --secondary-foreground: 216 60% 10%;
 
-    --muted: 216 38% 97%; /* #F5F8FC */
-    --muted-foreground: 215 16% 47%; /* #64748B */
+    --muted: 214 45% 97%;
+    --muted-foreground: 214 19% 47%; /* #61758F */
 
-    --accent: 210 100% 97%;
-    --accent-foreground: 221 83% 53%;
+    --accent: 43 56% 50%; /* #C69B3A Brushed Gold */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%; /* #E2E8F0 */
-    --input: 214 32% 91%;
-    --ring: 221 83% 53%;
+    --border: 213 44% 91%; /* #DCE6F2 */
+    --input: 213 44% 91%;
+    --ring: 214 68% 25%;
 
     --radius: 0.75rem;
   }
@@ -43,75 +43,108 @@
   html {
     scroll-behavior: smooth;
     background-color: #FFFFFF;
-    color: #475569;
+    color: #33475F;
   }
   body {
     background-color: #FFFFFF;
-    color: #475569;
-    font-family: var(--font-inter), var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #33475F;
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    position: relative;
   }
   h1, h2, h3, h4, h5, h6 {
-    color: #14243A;
-    font-family: var(--font-inter), sans-serif;
-    letter-spacing: -0.02em;
+    color: #0A1628;
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.03em;
   }
 }
 
-/* Custom Scrollbar */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom Refined Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #F5F8FC;
+  background: #F4F7FB;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: #B6CAE0;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: #143A6B;
 }
 
-/* Light Commercial Design Utilities */
+/* Cinematic Emerald & Gold Studio Utilities */
 @layer utilities {
+  .font-editorial {
+    font-family: var(--font-sans), sans-serif;
+    letter-spacing: -0.03em;
+  }
+  .font-mono-tech {
+    font-family: var(--font-mono), monospace;
+  }
+  .font-display {
+    font-family: var(--font-sans), sans-serif;
+    letter-spacing: -0.035em;
+  }
   .text-brand-heading {
-    color: #14243A;
+    color: #0A1628;
   }
   .text-brand-body {
-    color: #475569;
+    color: #33475F;
   }
   .text-brand-secondary {
-    color: #64748B;
+    color: #61758F;
   }
   .bg-brand-secondary {
-    background-color: #F5F8FC;
+    background-color: #F4F7FB;
   }
   .bg-brand-alt {
-    background-color: #F8FAFD;
+    background-color: #FFFFFF;
   }
   .border-brand-subtle {
-    border-color: #E2E8F0;
+    border-color: #DCE6F2;
+  }
+
+  .glass-surface {
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(10, 22, 40, 0.08);
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, #2563EB 0%, #38BDF8 100%);
+    background: linear-gradient(135deg, #143A6B 0%, #C69B3A 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .text-gradient-blue {
-    background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 50%, #38BDF8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #143A6B;
   }
 
   .shadow-subtle {
-    box-shadow: 0 1px 3px rgba(20, 36, 58, 0.05), 0 10px 25px -5px rgba(20, 36, 58, 0.04);
+    box-shadow: 0 12px 32px -16px rgba(20, 58, 107, 0.10), 0 1px 3px rgba(10, 22, 40, 0.05);
   }
 
   .shadow-hover {
-    box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08), 0 20px 40px -15px rgba(20, 36, 58, 0.06);
+    box-shadow: 0 24px 48px -20px rgba(20, 58, 107, 0.16), 0 4px 12px rgba(10, 22, 40, 0.05);
+  }
+
+  .shadow-editorial {
+    box-shadow: 0 24px 54px -22px rgba(20, 58, 107, 0.18), 0 4px 12px rgba(10, 22, 40, 0.06);
   }
 }
